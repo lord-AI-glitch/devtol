@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { IconDragDrop, IconHeart } from '@tabler/icons-vue';
 import { useHead } from '@vueuse/head';
-import { computed } from 'vue';
-import Draggable from 'vuedraggable';
+import { computed, defineAsyncComponent } from 'vue';
+const Draggable = defineAsyncComponent(() => import('vuedraggable'));
 import ColoredCard from '../components/ColoredCard.vue';
 import ToolCard from '../components/ToolCard.vue';
 import AdSenseUnit from '../components/AdSenseUnit.vue';

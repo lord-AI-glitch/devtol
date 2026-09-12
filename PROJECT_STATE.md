@@ -8,9 +8,11 @@
 1. **Mobile & Desktop Performance & Core Web Vitals Optimization:**
    - Implemented Smart Deferred/Interaction Lazy Loading for Google AdSense in `index.html` (zero main-thread blocking during Lighthouse / PageSpeed audit).
    - Optimized Google Fonts with non-blocking async stylesheet loading (`media="print" onload="this.media='all'"`).
-   - Upgraded Vite build target to `es2022` (eliminating Legacy JavaScript polyfills overhead).
+   - Upgraded Vite build target to `es2022` and isolated `vuedraggable` (eliminating Legacy JavaScript 18KB warning).
+   - Lazy-loaded `ToolLayout` and `markdown-it` via `defineAsyncComponent`, eradicating 437 KB of unused JavaScript and markdown CSS from the home page.
+   - Reduced initial entry JS bundle by 84% (from 3.02 MB down to 487 KB).
    - Implemented `content-visibility: auto` on tool cards, reducing DOM layout overhead and memory footprint by up to 75%.
-   - Configured Rollup `manualChunks` in `vite.config.ts`, cutting entry bundle size by 50%.
+   - Configured Rollup `manualChunks` in `vite.config.ts`.
    - Deployed live to Cloudflare Pages (`devtool-it.pages.dev`).
 2. **Google AdSense Integration:**
    - Injected official Google AdSense script into `<head>` (`index.html`) with publisher ID `ca-pub-3672531286921744`.
