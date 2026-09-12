@@ -9,7 +9,7 @@ const theme = useThemeVars();
 </script>
 
 <template>
-  <router-link :to="tool.path" class="decoration-none">
+  <router-link :to="tool.path" class="decoration-none tool-card-wrapper">
     <c-card class="h-full transition transition-duration-0.5s !border-2px !hover:border-primary">
       <div flex items-center justify-between>
         <n-icon class="text-neutral-400 dark:text-neutral-600" size="40" :component="tool.icon" />
@@ -39,3 +39,10 @@ const theme = useThemeVars();
     </c-card>
   </router-link>
 </template>
+
+<style scoped>
+.tool-card-wrapper {
+  content-visibility: auto;
+  contain-intrinsic-size: 100px 140px;
+}
+</style>

@@ -116,7 +116,7 @@ export default defineConfig({
     exclude: [...configDefaults.exclude, '**/*.e2e.spec.ts'],
   },
   build: {
-    target: 'es2020',
+    target: 'es2022',
     chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
