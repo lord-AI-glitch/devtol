@@ -244,12 +244,8 @@ User-agent: meta-externalagent
 Allow: /
 
 # Host & Sitemaps
-Host: ${BASE_URL}
+Host: ${BASE_URL.replace(/^https?:\/\//, '')}
 Sitemap: ${BASE_URL}/sitemap.xml
-
-# LLMs Discovery Specification (https://llmstxt.org/)
-llms.txt: ${BASE_URL}/llms.txt
-llms-full.txt: ${BASE_URL}/llms-full.txt
 `;
 
 const robotsPath = path.join(publicDir, 'robots.txt');

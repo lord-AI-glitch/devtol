@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue';
 import { useHead } from '@vueuse/head';
 
@@ -51,12 +51,12 @@ function handleSubmit() {
             <div class="space-y-3 text-sm text-slate-600 dark:text-neutral-300">
               <div>
                 <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">General Inquiries & Support</p>
-                <a href="mailto:support@DevTool.it.tech" class="text-primary hover:underline font-medium">support@DevTool.it.tech</a>
+                <a href="mailto:support@devtool-it.pages.dev" class="text-primary hover:underline font-medium">support@devtool-it.pages.dev</a>
               </div>
 
               <div>
                 <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">Privacy & Legal</p>
-                <a href="mailto:privacy@DevTool.it.tech" class="text-primary hover:underline font-medium">privacy@DevTool.it.tech</a>
+                <a href="mailto:privacy@devtool-it.pages.dev" class="text-primary hover:underline font-medium">privacy@devtool-it.pages.dev</a>
               </div>
 
               <div>

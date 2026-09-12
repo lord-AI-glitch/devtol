@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { useHead } from '@vueuse/head';
 
 useHead({
@@ -122,7 +122,7 @@ useHead({
           <p>
             For questions or requests regarding this Privacy Policy or your data privacy rights, please reach out via our 
             <router-link to="/contact" class="text-primary hover:underline">Contact Us page</router-link> or email us at 
-            <a href="mailto:privacy@DevTool.it.tech" class="text-primary hover:underline">privacy@DevTool.it.tech</a>.
+            <a href="mailto:privacy@devtool-it.pages.dev" class="text-primary hover:underline">privacy@devtool-it.pages.dev</a>.
           </p>
         </section>
       </div>
