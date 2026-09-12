@@ -5,12 +5,13 @@ import { computed } from 'vue';
 import Draggable from 'vuedraggable';
 import ColoredCard from '../components/ColoredCard.vue';
 import ToolCard from '../components/ToolCard.vue';
+import AdSenseUnit from '../components/AdSenseUnit.vue';
 import { useToolStore } from '@/tools/tools.store';
 import { config } from '@/config';
 
 const toolStore = useToolStore();
 
-useHead({ title: 'IT Tools - Handy online tools for developers' });
+useHead({ title: 'DevTool.it - Handy online tools for developers' });
 const { t } = useI18n();
 
 const favoriteTools = computed(() => toolStore.favoriteTools);
@@ -76,11 +77,21 @@ function onUpdateFavoriteTools() {
         </div>
       </div>
 
+      <!-- Mid-Page Sponsored Banner on Home -->
+      <div class="my-30px">
+        <AdSenseUnit format="horizontal" min-height="110px" />
+      </div>
+
       <h3 class="mb-5px mt-25px text-neutral-400 font-500">
         {{ $t('home.categories.allTools') }}
       </h3>
       <div class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
         <ToolCard v-for="tool in toolStore.tools" :key="tool.name" :tool="tool" />
+      </div>
+
+      <!-- Bottom Sponsored Banner on Home -->
+      <div class="my-40px pb-20px">
+        <AdSenseUnit format="horizontal" min-height="110px" />
       </div>
     </div>
   </div>

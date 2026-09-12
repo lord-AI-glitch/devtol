@@ -1,11 +1,21 @@
 import type { GlobalThemeOverrides } from 'naive-ui';
 
 export const lightThemeOverrides: GlobalThemeOverrides = {
+  common: {
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    fontFamilyMono: '"JetBrains Mono", monospace',
+    primaryColor: '#312E81',
+    primaryColorHover: '#3730A3',
+    primaryColorPressed: '#1E1B4B',
+    primaryColorSuppl: '#4338CA',
+    warningColor: '#F97316',
+  },
+
   Menu: {
     itemHeight: '32px',
   },
 
-  Layout: { color: '#f1f5f9' },
+  Layout: { color: '#f8fafc' },
 
   AutoComplete: {
     peers: {
@@ -16,19 +26,30 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
 
 export const darkThemeOverrides: GlobalThemeOverrides = {
   common: {
-    primaryColor: '#1ea54cFF',
-    primaryColorHover: '#36AD6AFF',
-    primaryColorPressed: '#0C7A43FF',
-    primaryColorSuppl: '#36AD6AFF',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    fontFamilyMono: '"JetBrains Mono", monospace',
+    primaryColor: '#312E81',
+    primaryColorHover: '#3730A3',
+    primaryColorPressed: '#1E1B4B',
+    primaryColorSuppl: '#4338CA',
+    warningColor: '#F97316',
+    textColorBase: '#F8FAFC',
+    baseColor: '#0F0F23',
+    bodyColor: '#0F0F23',
+    cardColor: '#1B1B30',
+    modalColor: '#1B1B30',
+    popoverColor: '#1B1B30',
+    borderColor: '#282845',
   },
 
   Notification: {
-    color: '#333333',
+    color: '#1B1B30',
+    textColor: '#F8FAFC',
   },
 
   AutoComplete: {
     peers: {
-      InternalSelectMenu: { height: '500px', color: '#1e1e1e' },
+      InternalSelectMenu: { height: '500px', color: '#1B1B30' },
     },
   },
 
@@ -37,18 +58,20 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
   },
 
   Layout: {
-    color: '#1c1c1c',
-    siderColor: '#232323',
-    siderBorderColor: 'transparent',
+    color: '#0F0F23',
+    siderColor: '#14142B',
+    siderBorderColor: '#282845',
   },
 
   Card: {
-    color: '#232323',
-    borderColor: '#282828',
+    color: '#1B1B30',
+    borderColor: '#282845',
+    textColor: '#F8FAFC',
   },
 
   Table: {
-    tdColor: '#232323',
-    thColor: '#353535',
+    tdColor: '#1B1B30',
+    thColor: '#15152A',
+    borderColor: '#282845',
   },
 };

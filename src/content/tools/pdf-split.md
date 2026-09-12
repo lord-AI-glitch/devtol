@@ -1,0 +1,94 @@
+﻿# Split & Extract PDF — Free Online PDF Page Extractor
+
+> Extract any specific pages or page ranges from a PDF — directly in your browser. No file uploads, no watermarks, no size restrictions.
+
+## The Case for Client-Side PDF Splitting
+
+Traditional online PDF splitters upload your document to a remote server, process it, and send back a result. This means sensitive pages — contracts, medical records, financial data — pass through third-party infrastructure you don't control. Our Split PDF tool processes everything locally using **pdf-lib**, keeping your documents entirely private.
+
+## Step-by-Step: How to Split a PDF
+
+1. **Upload your PDF** by clicking the upload zone or dragging the file in.
+2. **Wait for analysis** — the tool reads the file and displays the total page count (e.g., "This PDF has 24 pages").
+3. **Enter your page range** in the input field using standard notation:
+   - Single page: `5`
+   - Continuous range: `3-8`
+   - Multiple selections: `1-3, 5, 7-10`
+4. **Click "Extract Pages"** — the tool builds a new PDF containing only the specified pages.
+5. **Download `extracted.pdf`** directly to your device.
+
+## Understanding Page Range Notation
+
+The tool supports flexible range syntax:
+
+| Input | Result |
+|-------|--------|
+| `1` | First page only |
+| `1-5` | Pages 1 through 5 |
+| `3, 7, 12` | Pages 3, 7, and 12 |
+| `2-4, 8-10` | Pages 2–4 and 8–10 |
+| `1-3, 5, 7-9` | Combined range and single pages |
+
+Duplicate page numbers are automatically de-duplicated. Ranges beyond the document length are silently clamped to the last page.
+
+## Technical Deep Dive: How Page Extraction Works
+
+Under the hood, the tool uses pdf-lib's `copyPages()` API:
+
+1. **Load**: The uploaded file is converted to `ArrayBuffer` and parsed into a `PDFDocument` object. The parser reads the PDF's cross-reference table to index all objects.
+2. **Index Mapping**: The user's page range string is parsed into a zero-indexed array (e.g., "3-5" becomes `[2, 3, 4]`).
+3. **Copy**: `copyPages(sourceDoc, indices)` creates deep copies of the selected pages, including all referenced resources (fonts, images, ICC profiles, form XObjects).
+4. **New Document**: A fresh `PDFDocument` is created and each copied page is appended.
+5. **Export**: The result is serialized and downloaded as a `.pdf` Blob.
+
+The copy operation resolves indirect object references, meaning embedded images and fonts are correctly included even when shared across multiple pages.
+
+## Real-World Use Cases
+
+### Legal & Compliance
+- Extract the signature page from a multi-page contract to send for review.
+- Pull out specific clauses or exhibits from lengthy legal agreements.
+- Isolate regulatory filing pages that need separate submission.
+
+### Academic & Research
+- Extract a specific chapter from a downloaded textbook or journal article.
+- Pull out figures and tables from a research paper for a presentation.
+- Create focused reading excerpts for students from long PDFs.
+
+### Business & Operations
+- Extract the invoice page from a combined financial report for accounting.
+- Pull individual policy sections from employee handbooks.
+- Isolate a product data sheet from a full catalog PDF.
+
+### Personal Use
+- Extract specific pages from a scanned document before sharing.
+- Pull out recipes from a downloaded cookbook PDF.
+- Create a highlights document from a long report.
+
+## Frequently Asked Questions
+
+### Can I extract non-consecutive pages?
+Yes. Use comma-separated values: `1, 5, 9, 15` extracts exactly those four pages in order.
+
+### Does the extracted PDF retain the original formatting?
+Yes. Text, images, vector graphics, embedded fonts, and hyperlinks are all preserved exactly as in the original.
+
+### Can I split a PDF into multiple separate files?
+The current version creates one output file per extraction. Run the tool multiple times with different ranges to create multiple separate files.
+
+### What is the maximum file size supported?
+There is no server-imposed limit. Browser memory is the practical constraint — most devices handle PDFs up to several hundred MB without issue.
+
+### Will annotations and comments be preserved?
+Annotations (comments, highlights, sticky notes) attached to extracted pages are preserved in the output document.
+
+### Can I preview pages before extracting?
+The tool shows the page count and lets you review the parsed range before processing. A full visual thumbnail preview is planned for a future update.
+
+## Security Considerations
+
+All file processing runs inside your browser's sandboxed JavaScript environment. The pdf-lib library does not make any network calls. You can verify this by opening your browser's DevTools Network tab — no outgoing requests will appear during processing.
+
+## Technical Verification & E-E-A-T Disclaimer
+
+Built on **pdf-lib** (MIT license), compliant with PDF specification ISO 32000-1:2008. Page copying has been tested against PDFs generated by Adobe Acrobat, LibreOffice, macOS, Google Docs, and Microsoft Word. All processing is deterministic and reproducible.

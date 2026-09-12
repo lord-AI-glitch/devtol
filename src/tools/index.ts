@@ -2,6 +2,46 @@ import { tool as base64FileConverter } from './base64-file-converter';
 import { tool as base64StringConverter } from './base64-string-converter';
 import { tool as basicAuthGenerator } from './basic-auth-generator';
 import { tool as emailNormalizer } from './email-normalizer';
+import { tool as mortgageCalculator } from './mortgage-calculator';
+import { tool as compoundInterestCalculator } from './compound-interest-calculator';
+import { tool as adsenseRevenueCalculator } from './adsense-revenue-calculator';
+
+// PDF Tools (1-11)
+import { tool as pdfEditor } from './pdf-editor';
+import { tool as pdfMerge } from './pdf-merge';
+import { tool as pdfSplit } from './pdf-split';
+import { tool as pdfCompress } from './pdf-compress';
+import { tool as pdfToImage } from './pdf-to-image';
+import { tool as imagesToPdf } from './images-to-pdf';
+import { tool as pdfProtect } from './pdf-protect';
+import { tool as pdfOrganize } from './pdf-organize';
+import { tool as pdfOcr } from './pdf-ocr';
+import { tool as pdfRedact } from './pdf-redact';
+import { tool as pdfWatermarkTool } from './pdf-watermark-tool';
+
+// Text & Data Tools (11-20)
+import { tool as wordCounter } from './word-counter';
+import { tool as regexReplace } from './regex-replace';
+import { tool as textSorter } from './text-sorter';
+import { tool as yamlValidator } from './yaml-validator';
+import { tool as textEncrypt } from './text-encrypt';
+import { tool as jwtBuilder } from './jwt-builder';
+import { tool as imageOcr } from './image-ocr';
+import { tool as mockDataGenerator } from './mock-data-generator';
+import { tool as lineDeduplicator } from './line-deduplicator';
+import { tool as textToSpeech } from './text-to-speech';
+
+// Image & Media Tools (21-30)
+import { tool as imageCompressor } from './image-compressor';
+import { tool as webpConverter } from './webp-converter';
+import { tool as imageResizer } from './image-resizer';
+import { tool as svgConverter } from './svg-converter';
+import { tool as exifViewer } from './exif-viewer';
+import { tool as videoToGif } from './video-to-gif';
+import { tool as colorPalette } from './color-palette';
+import { tool as faviconGenerator } from './favicon-generator';
+import { tool as imageWatermark } from './image-watermark';
+import { tool as qrScanner } from './qr-scanner';
 
 import { tool as asciiTextDrawer } from './ascii-text-drawer';
 
@@ -89,6 +129,18 @@ import { tool as xmlFormatter } from './xml-formatter';
 import { tool as yamlViewer } from './yaml-viewer';
 
 export const toolsByCategory: ToolCategory[] = [
+  {
+    name: 'PDF Tools',
+    components: [pdfEditor, pdfMerge, pdfSplit, pdfCompress, pdfToImage, imagesToPdf, pdfProtect, pdfOrganize, pdfOcr, pdfRedact, pdfWatermarkTool],
+  },
+  {
+    name: 'Image & Media',
+    components: [imageCompressor, webpConverter, imageResizer, svgConverter, exifViewer, videoToGif, colorPalette, faviconGenerator, imageWatermark, qrScanner],
+  },
+  {
+    name: 'Text Utilities',
+    components: [wordCounter, regexReplace, textSorter, yamlValidator, textEncrypt, jwtBuilder, imageOcr, mockDataGenerator, lineDeduplicator, textToSpeech],
+  },
   {
     name: 'Crypto',
     components: [tokenGenerator, hashText, bcrypt, uuidGenerator, ulidGenerator, cypher, bip39, hmacGenerator, rsaKeyPairGenerator, passwordStrengthAnalyser, pdfSignatureChecker],
@@ -189,6 +241,10 @@ export const toolsByCategory: ToolCategory[] = [
   {
     name: 'Data',
     components: [phoneParserAndFormatter, ibanValidatorAndParser],
+  },
+  {
+    name: 'Finance',
+    components: [mortgageCalculator, compoundInterestCalculator, adsenseRevenueCalculator],
   },
 ];
 

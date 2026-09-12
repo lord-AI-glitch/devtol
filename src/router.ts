@@ -29,7 +29,47 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      component: () => import('./pages/About.vue'),
+      component: () => import('./pages/legal/AboutUs.vue'),
+    },
+    {
+      path: '/about-us',
+      name: 'about-us',
+      component: () => import('./pages/legal/AboutUs.vue'),
+    },
+    {
+      path: '/privacy-policy',
+      name: 'privacy-policy',
+      component: () => import('./pages/legal/PrivacyPolicy.vue'),
+    },
+    {
+      path: '/privacy',
+      name: 'privacy',
+      component: () => import('./pages/legal/PrivacyPolicy.vue'),
+    },
+    {
+      path: '/terms-of-service',
+      name: 'terms-of-service',
+      component: () => import('./pages/legal/TermsOfService.vue'),
+    },
+    {
+      path: '/terms',
+      name: 'terms',
+      component: () => import('./pages/legal/TermsOfService.vue'),
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: () => import('./pages/legal/ContactUs.vue'),
+    },
+    {
+      path: '/contact-us',
+      name: 'contact-us',
+      component: () => import('./pages/legal/ContactUs.vue'),
+    },
+    {
+      path: '/disclaimer',
+      name: 'disclaimer',
+      component: () => import('./pages/legal/Disclaimer.vue'),
     },
     ...toolsRoutes,
     ...toolsRedirectRoutes,

@@ -57,14 +57,15 @@ export default defineConfig({
       registerType: 'autoUpdate',
       strategies: 'generateSW',
       manifest: {
-        name: 'IT Tools',
+        name: 'DevTool.it',
+        short_name: 'DevTool.it',
         description: 'Aggregated set of useful tools for developers.',
         display: 'standalone',
-        lang: 'fr-FR',
+        lang: 'en-US',
         start_url: `${baseUrl}?utm_source=pwa&utm_medium=pwa`,
         orientation: 'any',
-        theme_color: '#18a058',
-        background_color: '#f1f5f9',
+        theme_color: '#0F0F23',
+        background_color: '#0F0F23',
         icons: [
           {
             src: '/favicon-16x16.png',
@@ -102,6 +103,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@vueuse/shared': fileURLToPath(new URL('./node_modules/.pnpm/@vueuse+core@10.3.0_vue@3.3.4/node_modules/@vueuse/shared/index.mjs', import.meta.url)),
     },
   },
   define: {
@@ -111,6 +113,6 @@ export default defineConfig({
     exclude: [...configDefaults.exclude, '**/*.e2e.spec.ts'],
   },
   build: {
-    target: 'esnext',
+    target: 'es2020',
   },
 });

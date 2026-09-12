@@ -1,2 +1,52 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Search Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+# AI & LLM Search Crawlers (Generative Engine Optimization - GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Host & Sitemaps
+Host: https://devtool.it.com
+Sitemap: https://devtool.it.com/sitemap.xml
+
+# LLMs Discovery Specification (https://llmstxt.org/)
+llms.txt: https://devtool.it.com/llms.txt
+llms-full.txt: https://devtool.it.com/llms-full.txt

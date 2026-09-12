@@ -38,6 +38,10 @@ body {
   min-height: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 html {
@@ -48,5 +52,9 @@ html {
 
 * {
   box-sizing: border-box;
+}
+
+code, pre, kbd, samp {
+  font-family: 'JetBrains Mono', monospace;
 }
 </style>

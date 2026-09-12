@@ -1,0 +1,167 @@
+# DevTool.it
+
+> DevTool.it is a free, open-source, client-side developer utility platform featuring 120+ tools across PDF processing, cryptography, image editing, data converters, network utilities, and text formatting. All operations run 100% locally inside the browser sandbox with zero server data transmission.
+
+## Platform Principles
+- 100% Client-Side Privacy: Passwords, tokens, images, and documents never leave the user browser.
+- Offline Capable: Designed as a high-performance Progressive Web Application (PWA).
+- Zero Latency: Local execution using modern WebAssembly and JavaScript algorithms.
+
+## Developer Utilities Directory
+
+### PDF Tools
+- [Pdf Editor](https://devtool.it.com/pdf-editor): Free, client-side, instant Pdf Editor online developer tool.
+- [Pdf Merge](https://devtool.it.com/pdf-merge): Free, client-side, instant Pdf Merge online developer tool.
+- [Pdf Split](https://devtool.it.com/pdf-split): Free, client-side, instant Pdf Split online developer tool.
+- [Pdf Compress](https://devtool.it.com/pdf-compress): Free, client-side, instant Pdf Compress online developer tool.
+- [Pdf To Image](https://devtool.it.com/pdf-to-image): Free, client-side, instant Pdf To Image online developer tool.
+- [Images To Pdf](https://devtool.it.com/images-to-pdf): Free, client-side, instant Images To Pdf online developer tool.
+- [Pdf Protect](https://devtool.it.com/pdf-protect): Free, client-side, instant Pdf Protect online developer tool.
+- [Pdf Organize](https://devtool.it.com/pdf-organize): Free, client-side, instant Pdf Organize online developer tool.
+- [Pdf Ocr](https://devtool.it.com/pdf-ocr): Free, client-side, instant Pdf Ocr online developer tool.
+- [Pdf Redact](https://devtool.it.com/pdf-redact): Free, client-side, instant Pdf Redact online developer tool.
+- [Pdf Watermark Tool](https://devtool.it.com/pdf-watermark-tool): Free, client-side, instant Pdf Watermark Tool online developer tool.
+
+### Image & Media
+- [Image Compressor](https://devtool.it.com/image-compressor): Free, client-side, instant Image Compressor online developer tool.
+- [Webp Converter](https://devtool.it.com/webp-converter): Free, client-side, instant Webp Converter online developer tool.
+- [Image Resizer](https://devtool.it.com/image-resizer): Free, client-side, instant Image Resizer online developer tool.
+- [Svg Converter](https://devtool.it.com/svg-converter): Free, client-side, instant Svg Converter online developer tool.
+- [Exif Viewer](https://devtool.it.com/exif-viewer): Free, client-side, instant Exif Viewer online developer tool.
+- [Video To Gif](https://devtool.it.com/video-to-gif): Free, client-side, instant Video To Gif online developer tool.
+- [Color Palette](https://devtool.it.com/color-palette): Free, client-side, instant Color Palette online developer tool.
+- [Favicon Generator](https://devtool.it.com/favicon-generator): Free, client-side, instant Favicon Generator online developer tool.
+- [Image Watermark](https://devtool.it.com/image-watermark): Free, client-side, instant Image Watermark online developer tool.
+- [Qr Scanner](https://devtool.it.com/qr-scanner): Free, client-side, instant Qr Scanner online developer tool.
+
+### Text Utilities
+- [Word Counter](https://devtool.it.com/word-counter): Free, client-side, instant Word Counter online developer tool.
+- [Regex Replace](https://devtool.it.com/regex-replace): Free, client-side, instant Regex Replace online developer tool.
+- [Text Sorter](https://devtool.it.com/text-sorter): Free, client-side, instant Text Sorter online developer tool.
+- [Yaml Validator](https://devtool.it.com/yaml-validator): Free, client-side, instant Yaml Validator online developer tool.
+- [Text Encrypt](https://devtool.it.com/text-encrypt): Free, client-side, instant Text Encrypt online developer tool.
+- [Jwt Builder](https://devtool.it.com/jwt-builder): Free, client-side, instant Jwt Builder online developer tool.
+- [Image Ocr](https://devtool.it.com/image-ocr): Free, client-side, instant Image Ocr online developer tool.
+- [Mock Data Generator](https://devtool.it.com/mock-data-generator): Free, client-side, instant Mock Data Generator online developer tool.
+- [Line Deduplicator](https://devtool.it.com/line-deduplicator): Free, client-side, instant Line Deduplicator online developer tool.
+- [Text To Speech](https://devtool.it.com/text-to-speech): Free, client-side, instant Text To Speech online developer tool.
+
+### Crypto
+- [Token generator](https://devtool.it.com/token-generator): Generate random string with the chars you want, uppercase or lowercase letters, numbers and/or symbols.
+- [Hash text](https://devtool.it.com/hash-text): Hash a text string using the function you need : MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 or RIPEMD160
+- [Bcrypt](https://devtool.it.com/bcrypt): Hash and compare text string using bcrypt. Bcrypt is a password-hashing function based on the Blowfish cipher.
+- [UUIDs generator](https://devtool.it.com/uuid-generator): A Universally Unique Identifier (UUID) is a 128-bit number used to identify information in computer systems. The number of possible UUIDs is 16^32, which is 2^128 or about 3.4x10^38 (which is a lot!).
+- [ULID generator](https://devtool.it.com/ulid-generator): Generate random Universally Unique Lexicographically Sortable Identifier (ULID).
+- [Encrypt / decrypt text](https://devtool.it.com/encryption): Encrypt clear text and decrypt ciphertext using crypto algorithms like AES, TripleDES, Rabbit or RC4.
+- [BIP39 passphrase generator](https://devtool.it.com/bip39-generator): Generate a BIP39 passphrase from an existing or random mnemonic, or get the mnemonic from the passphrase.
+- [Hmac generator](https://devtool.it.com/hmac-generator): Computes a hash-based message authentication code (HMAC) using a secret key and your favorite hashing function.
+- [RSA key pair generator](https://devtool.it.com/rsa-key-pair-generator): Generate a new random RSA private and public pem certificate key pair.
+- [Password strength analyser](https://devtool.it.com/password-strength-analyser): Discover the strength of your password with this client-side-only password strength analyser and crack time estimation tool.
+- [PDF signature checker](https://devtool.it.com/pdf-signature-checker): Verify the signatures of a PDF file. A signed PDF file contains one or more signatures that may be used to determine whether the contents of the file have been altered since the file was signed.
+
+### Converter
+- [Date-time converter](https://devtool.it.com/date-converter): Convert date and time into the various different formats
+- [Integer base converter](https://devtool.it.com/base-converter): Convert a number between different bases (decimal, hexadecimal, binary, octal, base64, ...)
+- [Roman numeral converter](https://devtool.it.com/roman-numeral-converter): Convert Roman numerals to numbers and convert numbers to Roman numerals.
+- [Base64 string encoder/decoder](https://devtool.it.com/base64-string-converter): Simply encode and decode strings into their base64 representation.
+- [Base64 file converter](https://devtool.it.com/base64-file-converter): Convert a string, file, or image into its base64 representation.
+- [Color converter](https://devtool.it.com/color-converter): Convert color between the different formats (hex, rgb, hsl and css name)
+- [Case converter](https://devtool.it.com/case-converter): Transform the case of a string and choose between different formats
+- [Text to NATO alphabet](https://devtool.it.com/text-to-nato-alphabet): Transform text into the NATO phonetic alphabet for oral transmission.
+- [Text to ASCII binary](https://devtool.it.com/text-to-binary): Convert text to its ASCII binary representation and vice-versa.
+- [Text to Unicode](https://devtool.it.com/text-to-unicode): Parse and convert text to unicode and vice-versa
+- [YAML to JSON converter](https://devtool.it.com/yaml-to-json-converter): Simply convert YAML to JSON with this online live converter.
+- [YAML to TOML](https://devtool.it.com/yaml-to-toml): Parse and convert YAML to TOML.
+- [JSON to YAML converter](https://devtool.it.com/json-to-yaml-converter): Simply convert JSON to YAML with this online live converter.
+- [JSON to TOML](https://devtool.it.com/json-to-toml): Parse and convert JSON to TOML.
+- [List converter](https://devtool.it.com/list-converter): This tool can process column-based data and apply various changes (transpose, add prefix and suffix, reverse list, sort list, lowercase values, truncate values) to each row.
+- [TOML to JSON](https://devtool.it.com/toml-to-json): Parse and convert TOML to JSON.
+- [TOML to YAML](https://devtool.it.com/toml-to-yaml): Parse and convert TOML to YAML.
+- [Xml To Json](https://devtool.it.com/xml-to-json): Free, client-side, instant Xml To Json online developer tool.
+- [Json To Xml](https://devtool.it.com/json-to-xml): Free, client-side, instant Json To Xml online developer tool.
+- [Markdown To Html](https://devtool.it.com/markdown-to-html): Free, client-side, instant Markdown To Html online developer tool.
+
+### Web
+- [Encode/decode URL-formatted strings](https://devtool.it.com/url-encoder): Encode text to URL-encoded format (also known as "percent-encoded"), or decode from it.
+- [Escape HTML entities](https://devtool.it.com/html-entities): Escape or unescape HTML entities (replace characters like <,>, &, " and \' with their HTML version)
+- [URL parser](https://devtool.it.com/url-parser): Parse a URL into its separate constituent parts (protocol, origin, params, port, username-password, ...)
+- [Device information](https://devtool.it.com/device-information): Get information about your current device (screen size, pixel-ratio, user agent, ...)
+- [Basic auth generator](https://devtool.it.com/basic-auth-generator): Generate a base64 basic auth header from a username and password.
+- [Open graph meta generator](https://devtool.it.com/og-meta-generator): Generate open-graph and socials HTML meta tags for your website.
+- [OTP code generator](https://devtool.it.com/otp-generator): Generate and validate time-based OTP (one time password) for multi-factor authentication.
+- [MIME types](https://devtool.it.com/mime-types): Convert MIME types to file extensions and vice-versa.
+- [JWT parser](https://devtool.it.com/jwt-parser): Parse and decode your JSON Web Token (jwt) and display its content.
+- [Keycode info](https://devtool.it.com/keycode-info): Find the javascript keycode, code, location and modifiers of any pressed key.
+- [Slugify string](https://devtool.it.com/slugify-string): Make a string url, filename and id safe.
+- [HTML WYSIWYG editor](https://devtool.it.com/html-wysiwyg-editor): Online, feature-rich WYSIWYG HTML editor which generates the source code of the content immediately.
+- [User-agent parser](https://devtool.it.com/user-agent-parser): Detect and parse Browser, Engine, OS, CPU, and Device type/model from an user-agent string.
+- [HTTP status codes](https://devtool.it.com/http-status-codes): The list of all HTTP status codes, their name, and their meaning.
+- [JSON diff](https://devtool.it.com/json-diff): Compare two JSON objects and get the differences between them.
+- [Safelink Decoder](https://devtool.it.com/safelink-decoder): Free, client-side, instant Safelink Decoder online developer tool.
+
+### Images and videos
+- [QR Code generator](https://devtool.it.com/qrcode-generator): Generate and download a QR code for a URL (or just plain text), and customize the background and foreground colors.
+- [WiFi QR Code generator](https://devtool.it.com/wifi-qrcode-generator): Generate and download QR codes for quick connections to WiFi networks.
+- [SVG placeholder generator](https://devtool.it.com/svg-placeholder-generator): Generate svg images to use as a placeholder in your applications.
+- [Camera recorder](https://devtool.it.com/camera-recorder): Take a picture or record a video from your webcam or camera.
+
+### Development
+- [Git cheatsheet](https://devtool.it.com/git-memo): Git is a decentralized version management software. With this cheatsheet, you will have quick access to the most common git commands.
+- [Random port generator](https://devtool.it.com/random-port-generator): Generate random port numbers outside of the range of "known" ports (0-1023).
+- [Crontab generator](https://devtool.it.com/crontab-generator): Validate and generate crontab and get the human-readable description of the cron schedule.
+- [JSON prettify and format](https://devtool.it.com/json-prettify): Prettify your JSON string into a friendly, human-readable format.
+- [JSON minify](https://devtool.it.com/json-minify): Minify and compress your JSON by removing unnecessary whitespace.
+- [JSON to CSV](https://devtool.it.com/json-to-csv): Convert JSON to CSV with automatic header detection.
+- [SQL prettify and format](https://devtool.it.com/sql-prettify): Format and prettify your SQL queries online (it supports various SQL dialects).
+- [Chmod calculator](https://devtool.it.com/chmod-calculator): Compute your chmod permissions and commands with this online chmod calculator.
+- [Docker run to Docker compose converter](https://devtool.it.com/docker-run-to-docker-compose-converter): Transforms "docker run" commands into docker-compose files!
+- [XML formatter](https://devtool.it.com/xml-formatter): Prettify your XML string into a friendly, human-readable format.
+- [YAML prettify and format](https://devtool.it.com/yaml-prettify): Prettify your YAML string into a friendly, human-readable format.
+- [Email Normalizer](https://devtool.it.com/email-normalizer): Free, client-side, instant Email Normalizer online developer tool.
+- [Regex Tester](https://devtool.it.com/regex-tester): Free, client-side, instant Regex Tester online developer tool.
+- [Regex Memo](https://devtool.it.com/regex-memo): Free, client-side, instant Regex Memo online developer tool.
+
+### Network
+- [IPv4 subnet calculator](https://devtool.it.com/ipv4-subnet-calculator): Parse your IPv4 CIDR blocks and get all the info you need about your subnet.
+- [IPv4 address converter](https://devtool.it.com/ipv4-address-converter): Convert an IP address into decimal, binary, hexadecimal, or even an IPv6 representation of it.
+- [IPv4 range expander](https://devtool.it.com/ipv4-range-expander): Given a start and an end IPv4 address, this tool calculates a valid IPv4 subnet along with its CIDR notation.
+- [MAC address lookup](https://devtool.it.com/mac-address-lookup): Find the vendor and manufacturer of a device by its MAC address.
+- [MAC address generator](https://devtool.it.com/mac-address-generator): Enter the quantity and prefix. MAC addresses will be generated in your chosen case (uppercase or lowercase)
+- [IPv6 ULA generator](https://devtool.it.com/ipv6-ula-generator): Generate your own local, non-routable IP addresses for your network according to RFC4193.
+
+### Math
+- [Math evaluator](https://devtool.it.com/math-evaluator): A calculator for evaluating mathematical expressions. You can use functions like sqrt, cos, sin, abs, etc.
+- [ETA calculator](https://devtool.it.com/eta-calculator): An ETA (Estimated Time of Arrival) calculator to determine the approximate end time of a task, for example, the end time and duration of a file download.
+- [Percentage calculator](https://devtool.it.com/percentage-calculator): Easily calculate percentages from a value to another value, or from a percentage to a value.
+
+### Measurement
+- [Chronometer](https://devtool.it.com/chronometer): Monitor the duration of a thing. Basically a chronometer with simple chronometer features.
+- [Temperature converter](https://devtool.it.com/temperature-converter): Degrees temperature conversions for Kelvin, Celsius, Fahrenheit, Rankine, Delisle, Newton, Réaumur, and Rømer.
+- [Benchmark builder](https://devtool.it.com/benchmark-builder): Easily compare execution time of tasks with this very simple online benchmark builder.
+
+### Text
+- [Lorem ipsum generator](https://devtool.it.com/lorem-ipsum-generator): Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content
+- [Text statistics](https://devtool.it.com/text-statistics): Get information about a text, the number of characters, the number of words, its size in bytes, ...
+- [Emoji picker](https://devtool.it.com/emoji-picker): Copy and paste emojis easily and get the unicode and code points value of each emoji.
+- [String obfuscator](https://devtool.it.com/string-obfuscator): Obfuscate a string (like a secret, an IBAN, or a token) to make it shareable and identifiable without revealing its content.
+- [Text diff](https://devtool.it.com/text-diff): Compare two texts and see the differences between them.
+- [Numeronym generator](https://devtool.it.com/numeronym-generator): A numeronym is a word where a number is used to form an abbreviation. For example, "i18n" is a numeronym of "internationalization" where 18 stands for the number of letters between the first i and the last n in the word.
+- [Ascii Text Drawer](https://devtool.it.com/ascii-text-drawer): Free, client-side, instant Ascii Text Drawer online developer tool.
+
+### Data
+- [Phone parser and formatter](https://devtool.it.com/phone-parser-and-formatter): Parse, validate and format phone numbers. Get information about the phone number, like the country code, type, etc.
+- [IBAN validator and parser](https://devtool.it.com/iban-validator-and-parser): Validate and parse IBAN numbers. Check if an IBAN is valid and get the country, BBAN, if it is a QR-IBAN and the IBAN friendly format.
+
+### Finance
+- [Mortgage calculator](https://devtool.it.com/mortgage-calculator): Calculate your monthly mortgage payment including principal, interest, taxes, and insurance (PITI) with complete amortization schedule.
+- [Compound interest calculator](https://devtool.it.com/compound-interest-calculator): Calculate compound interest on your investments or savings with regular deposits and detailed yearly breakdown.
+- [AdSense revenue calculator](https://devtool.it.com/adsense-revenue-calculator): Estimate your Google AdSense daily, monthly, and yearly revenue based on pageviews, CTR%, CPC, or RPM across various industry niches.
+
+## Legal & Information
+- [About Us & Editorial Standards](https://devtool.it.com/about): Mission, technical advisory board, and RFC standards.
+- [Privacy Policy](https://devtool.it.com/privacy-policy): Guaranteed zero server logging and local data processing.
+- [Terms of Service](https://devtool.it.com/terms-of-service): Free open-source usage terms.
+- [Contact Support](https://devtool.it.com/contact): Bug reporting and tool suggestions.
+
+## Technical Architecture & Tool Guides
+Each utility operates as an independent client-side module adhering to official RFC and IEEE standards (e.g., RFC 7519 for JWT, RFC 4648 for Base64, RFC 4122 for UUID, RFC 6238 for TOTP/HOTP, and FIPS PUB 180-4 for SHA Cryptography).
