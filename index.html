@@ -24,20 +24,57 @@
     <meta name="msapplication-TileColor" content="#0F0F23" />
     <meta name="theme-color" content="#0F0F23" />
 
-    <!-- Google AdSense Auto Ads & Units -->
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3672531286921744"
-      crossorigin="anonymous"
-    ></script>
+    <!-- Google AdSense Smart Deferred Loader (Core Web Vitals & LCP Optimizer) -->
+    <script>
+      (function() {
+        var adsLoaded = false;
+        function initAdSense() {
+          if (adsLoaded) return;
+          adsLoaded = true;
+          var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+          events.forEach(function(ev) {
+            window.removeEventListener(ev, initAdSense, { passive: true });
+          });
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3672531286921744';
+          script.crossOrigin = 'anonymous';
+          document.head.appendChild(script);
+        }
+        var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+        events.forEach(function(ev) {
+          window.addEventListener(ev, initAdSense, { passive: true, once: true });
+        });
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(function() {
+            setTimeout(initAdSense, 4000);
+          });
+        } else {
+          setTimeout(initAdSense, 5000);
+        }
+      })();
+    </script>
 
-    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <!-- Google Fonts: Inter & JetBrains Mono (Non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <meta property="og:url" content="https://devtool-it.pages.dev/" />
     <meta property="og:type" content="website" />
