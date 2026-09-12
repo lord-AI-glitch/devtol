@@ -15,7 +15,7 @@ const siderPosition = computed(() => (isSmallScreen.value ? 'absolute' : 'static
       :width="240"
       :collapsed="isMenuCollapsed"
       :show-trigger="false"
-      :native-scrollbar="false"
+      :native-scrollbar="true"
       :position="siderPosition"
     >
       <slot name="sider" />

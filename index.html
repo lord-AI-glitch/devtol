@@ -55,6 +55,26 @@
       })();
     </script>
 
+    <!-- ARIA Accessibility Tree Sanitizer (Fixes vendor library typos like aria-hiddens) -->
+    <script>
+      (function() {
+        function fixAria() {
+          var badNodes = document.querySelectorAll('[aria-hiddens]');
+          for (var i = 0; i < badNodes.length; i++) {
+            var el = badNodes[i];
+            el.setAttribute('aria-hidden', el.getAttribute('aria-hiddens') || 'true');
+            el.removeAttribute('aria-hiddens');
+          }
+        }
+        if (typeof MutationObserver !== 'undefined') {
+          var observer = new MutationObserver(fixAria);
+          observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['aria-hiddens'] });
+        }
+        document.addEventListener('DOMContentLoaded', fixAria);
+        window.addEventListener('load', fixAria);
+      })();
+    </script>
+
     <!-- Google Fonts: Inter & JetBrains Mono (Non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
