@@ -1,41 +1,90 @@
-﻿<script setup lang="ts">
-import { ref, watch, computed } from "vue";
-import { useMessage } from "naive-ui";
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+import { useMessage } from 'naive-ui';
+import { colord, extend } from 'colord';
+import a11yPlugin from 'colord/plugins/a11y';
+import cmykPlugin from 'colord/plugins/cmyk';
+
+extend([a11yPlugin, cmykPlugin]);
+
 const message = useMessage();
-const hex = ref("#4F9CFF");
+const hex = ref('#4F9CFF');
 const formats = ref<any>(null);
 const isLoading = ref(false);
-async function analyze(){
-  isLoading.value=true;
-  try{
-    const chroma=(await import("https://cdn.skypack.dev/chroma-js")).default;
-    const c=chroma(hex.value);
-    const [r,g,b]=c.rgb();
-    const [h,s,l]=c.hsl();
-    const [hv,sv,v]=c.hsv();
-    const [cc,m,y,k]=c.cmyk();
-    const wcagW=chroma.contrast(c,"white");
-    const wcagB=chroma.contrast(c,"black");
-    const palette={
-      complementary:[chroma.hsl((h*360+180)%360,s,l).hex()],
-      triadic:[chroma.hsl((h*360+120)%360,s,l).hex(),chroma.hsl((h*360+240)%360,s,l).hex()],
-      analogous:[chroma.hsl((h*360-30+360)%360,s,l).hex(),chroma.hsl((h*360+30)%360,s,l).hex()],
+
+function rgbToHsv(r: number, g: number, b: number) {
+  r /= 255;
+  g /= 255;
+  b /= 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const d = max - min;
+  let h = 0;
+  const s = max === 0 ? 0 : d / max;
+  const v = max;
+
+  if (max !== min) {
+    switch (max) {
+      case r:
+        h = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      case g:
+        h = (b - r) / d + 2;
+        break;
+      case b:
+        h = (r - g) / d + 4;
+        break;
+    }
+    h /= 6;
+  }
+  return {
+    h: Math.round(h * 360),
+    s: Math.round(s * 100),
+    v: Math.round(v * 100),
+  };
+}
+
+function analyze() {
+  try {
+    const c = colord(hex.value);
+    if (!c.isValid()) return;
+
+    const { r, g, b } = c.toRgb();
+    const { h, s, l } = c.toHsl();
+    const hsv = rgbToHsv(r, g, b);
+    const cmyk = c.toCmyk();
+    const wcagW = c.contrast('#ffffff');
+    const wcagB = c.contrast('#000000');
+
+    const baseHex = c.toHex().toUpperCase();
+    const palette = {
+      complementary: [baseHex, c.rotate(180).toHex().toUpperCase()],
+      triadic: [baseHex, c.rotate(120).toHex().toUpperCase(), c.rotate(240).toHex().toUpperCase()],
+      analogous: [c.rotate(-30).toHex().toUpperCase(), baseHex, c.rotate(30).toHex().toUpperCase()],
+      splitComplementary: [baseHex, c.rotate(150).toHex().toUpperCase(), c.rotate(210).toHex().toUpperCase()],
+      tetradic: [baseHex, c.rotate(90).toHex().toUpperCase(), c.rotate(180).toHex().toUpperCase(), c.rotate(270).toHex().toUpperCase()],
     };
-    formats.value={
-      hex:hex.value.toUpperCase(),
-      rgb:`rgb(${r},${g},${b})`,
-      hsl:`hsl(${Math.round(h*360)},${Math.round(s*100)}%,${Math.round(l*100)}%)`,
-      hsv:`hsv(${Math.round(hv*360)},${Math.round(sv*100)}%,${Math.round(v*100)}%)`,
-      cmyk:`cmyk(${Math.round(cc*100)}%,${Math.round(m*100)}%,${Math.round(y*100)}%,${Math.round(k*100)}%)`,
-      wcagWhite:{ratio:wcagW.toFixed(2),pass:wcagW>=4.5?"AA":"Fail"},
-      wcagBlack:{ratio:wcagB.toFixed(2),pass:wcagB>=4.5?"AA":"Fail"},
+
+    formats.value = {
+      hex: baseHex,
+      rgb: `rgb(${r}, ${g}, ${b})`,
+      hsl: `hsl(${Math.round(h)}, ${Math.round(s)}%, ${Math.round(l)}%)`,
+      hsv: `hsv(${hsv.h}, ${hsv.s}%, ${hsv.v}%)`,
+      cmyk: `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`,
+      wcagWhite: { ratio: wcagW.toFixed(2), pass: wcagW >= 4.5 ? 'AA' : 'Fail' },
+      wcagBlack: { ratio: wcagB.toFixed(2), pass: wcagB >= 4.5 ? 'AA' : 'Fail' },
       palette,
     };
-  }catch(e:any){message.error(e.message);}
-  finally{isLoading.value=false;}
+  } catch (e: any) {
+    message.error(e.message);
+  }
 }
-watch(hex,analyze,{immediate:true});
-function copy(v:string){navigator.clipboard.writeText(v);message.success("Copied: "+v);}
+
+watch(hex, analyze, { immediate: true });
+function copy(v: string) {
+  navigator.clipboard.writeText(v);
+  message.success('Copied: ' + v);
+}
 </script>
 <template>
   <div style="max-width:800px;margin:0 auto">
