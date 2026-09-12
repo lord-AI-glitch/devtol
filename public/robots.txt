@@ -44,9 +44,9 @@ User-agent: meta-externalagent
 Allow: /
 
 # Host & Sitemaps
-Host: https://devtool.it.com
-Sitemap: https://devtool.it.com/sitemap.xml
+Host: https://devtool-it.pages.dev
+Sitemap: https://devtool-it.pages.dev/sitemap.xml
 
 # LLMs Discovery Specification (https://llmstxt.org/)
-llms.txt: https://devtool.it.com/llms.txt
-llms-full.txt: https://devtool.it.com/llms-full.txt
+llms.txt: https://devtool-it.pages.dev/llms.txt
+llms-full.txt: https://devtool-it.pages.dev/llms-full.txt

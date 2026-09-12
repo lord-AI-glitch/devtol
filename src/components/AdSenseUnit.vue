@@ -1,5 +1,5 @@
-﻿<script setup lang="ts">
-import { computed } from 'vue';
+<script setup lang="ts">
+import { computed, onMounted } from 'vue';
 import { useStyleStore } from '@/stores/style.store';
 
 interface Props {
@@ -11,12 +11,19 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   slotId: '1234567890',
-  adClient: 'ca-pub-XXXXXXXXXXXXXXXX',
+  adClient: 'ca-pub-3672531286921744',
   format: 'horizontal',
   minHeight: '120px',
 });
 
 const styleStore = useStyleStore();
+
+onMounted(() => {
+  try {
+    // @ts-expect-error window.adsbygoogle
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch (_) {}
+});
 
 // Preset aspect ratios and min-heights to eliminate Layout Shifts (CLS)
 const formatStyles = computed(() => {

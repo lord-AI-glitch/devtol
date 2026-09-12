@@ -56,6 +56,9 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       strategies: 'generateSW',
+      workbox: {
+        navigateFallbackDenylist: [/^\/sitemap\.xml$/, /^\/robots\.txt$/, /^\/llms.*\.txt$/, /^\/google.*\.html$/],
+      },
       manifest: {
         name: 'DevTool.it',
         short_name: 'DevTool.it',

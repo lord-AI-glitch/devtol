@@ -79394,16 +79394,16 @@
       "source_location": "L1"
     },
     {
-      "id": "project_state_project_state_zero_token_checkpoint",
-      "label": "Project State & Zero-Token Checkpoint",
+      "id": "project_state_core_accomplishments_architecture",
+      "label": "Core Accomplishments & Architecture:",
       "_origin": "ast",
       "community": 218,
       "community_name": "PROJECT_STATE.md",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "project state & zero-token checkpoint",
+      "norm_label": "core accomplishments & architecture:",
       "source_file": "PROJECT_STATE.md",
-      "source_location": "L1"
+      "source_location": "L7"
     },
     {
       "id": "scripts_b64writer",
@@ -98096,7 +98096,7 @@
       "file_type": "code",
       "norm_label": "formatstyles",
       "source_file": "src/components/AdSenseUnit.vue",
-      "source_location": "L22"
+      "source_location": "L29"
     },
     {
       "id": "src_components_adsenseunit_stylestore",
@@ -186944,13 +186944,13 @@
     },
     {
       "source": "project_state",
-      "target": "project_state_project_state_zero_token_checkpoint",
+      "target": "project_state_core_accomplishments_architecture",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "PROJECT_STATE.md",
-      "source_location": "L1",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -203989,7 +203989,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/AdSenseUnit.vue",
-      "source_location": "L22",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -281512,5 +281512,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "d505845f918e946ec300af7b36efc107e2f66e9e"
+  "built_at_commit": "ef8b8814594ce89831d943d3e6a500dfdf1585cd"
 }

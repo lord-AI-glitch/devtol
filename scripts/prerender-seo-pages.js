@@ -1,4 +1,4 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import YAML from 'yaml';
@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 
-const BASE_URL = process.env.SITE_URL || 'https://devtool.it.com';
+const BASE_URL = process.env.SITE_URL || 'https://devtool-it.pages.dev';
 
 console.log('[SEO Prerender] Starting static HTML generation for all routes...');
 

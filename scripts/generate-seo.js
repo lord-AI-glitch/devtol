@@ -1,4 +1,4 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import YAML from 'yaml';
@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-const BASE_URL = process.env.SITE_URL || 'https://devtool.it.com';
+const BASE_URL = process.env.SITE_URL || 'https://devtool-it.pages.dev';
 
 console.log('[SEO Generator] Starting comprehensive SEO generation (sitemap, robots, llms.txt)...');
 console.log(`[SEO Generator] Base URL: ${BASE_URL}`);

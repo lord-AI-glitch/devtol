@@ -28,7 +28,7 @@ const seoDescription = computed<string>(() => {
   const desc = rawDescription.value || `${toolTitle.value} online utility`;
   return `${desc}. Free, secure, client-side developer tool on DevTool.it.`;
 });
-const canonicalUrl = computed<string>(() => `https://devtool.it.com${route.path}`);
+const canonicalUrl = computed<string>(() => `https://devtool-it.pages.dev${route.path}`);
 const seoKeywords = computed<string>(() => {
   const customKeywords = (route.meta.keywords ?? []) as string[];
   const baseKeywords = [toolTitle.value.toLowerCase(), 'online tool', 'free tool', 'developer utility', 'client-side', 'devtool.it'];
@@ -64,7 +64,7 @@ const head = computed<HeadObject>(() => ({
     },
     {
       property: 'og:image',
-      content: 'https://devtool.it.com/banner.png?v=2',
+      content: 'https://devtool-it.pages.dev/banner.png?v=2',
     },
     {
       name: 'twitter:card',
@@ -80,7 +80,7 @@ const head = computed<HeadObject>(() => ({
     },
     {
       name: 'twitter:image',
-      content: 'https://devtool.it.com/banner.png?v=2',
+      content: 'https://devtool-it.pages.dev/banner.png?v=2',
     },
   ],
   link: [
@@ -118,7 +118,7 @@ const head = computed<HeadObject>(() => ({
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://devtool.it.com',
+                'item': 'https://devtool-it.pages.dev',
               },
               {
                 '@type': 'ListItem',
