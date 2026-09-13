@@ -24,7 +24,20 @@ if (!fs.existsSync(templateIndexPath)) {
   process.exit(1);
 }
 
-const baseHtmlTemplate = fs.readFileSync(templateIndexPath, 'utf8');
+let baseHtmlTemplate = fs.readFileSync(templateIndexPath, 'utf8');
+
+// Inline critical index.css into HTML to eliminate render-blocking CSS requests
+const cssMatch = baseHtmlTemplate.match(/<link rel="stylesheet" href="([^"]*\/assets\/index-[^"]+\.css)">/);
+if (cssMatch) {
+  const cssHref = cssMatch[1];
+  const cssFilePath = path.join(distDir, cssHref.replace(/^\//, ''));
+  if (fs.existsSync(cssFilePath)) {
+    const cssContent = fs.readFileSync(cssFilePath, 'utf8');
+    baseHtmlTemplate = baseHtmlTemplate.replace(cssMatch[0], `<style>${cssContent}</style>`);
+    fs.writeFileSync(templateIndexPath, baseHtmlTemplate, 'utf8');
+    console.log(`[SEO Prerender] Inlined critical CSS (${cssHref}) to eliminate render-blocking resources!`);
+  }
+}
 
 // Initialize markdown renderer
 const md = new MarkdownIt({
