@@ -26,7 +26,11 @@
    - `WebSite` SearchAction schema + `WebApplication` ($0 Free Offer) + `BreadcrumbList`.
 5. **GEO / AEO AI Search Optimization:**
    - Standard `llms.txt` and `llms-full.txt` cataloging all 120+ tools for ChatGPT, Perplexity, and Claude.
-6. **Quality & Compliance:**
+6. **Microsoft Bing & IndexNow Instant Indexing:**
+   - Deployed official IndexNow API key (`63ceff34c1ae6ac3262b428c60f2aadd.txt`) live to Cloudflare Pages.
+   - Submitted all 126 website URLs to `www.bing.com` (HTTP 202 Accepted) and `api.indexnow.org` (HTTP 200 Success) for instant crawl by Bing & Copilot.
+   - Added `npm run indexnow` automated command to `package.json`.
+7. **Quality & Compliance:**
    - 144 unit tests passing (0 failures).
    - E-E-A-T editorial compliance & fixed unicode formatting.
 7. **Bug Fixes & Offline Stability:**
