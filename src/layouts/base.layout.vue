@@ -59,10 +59,6 @@ const tools = computed<ToolCategory[]>(() => [
 
         <CollapsibleToolMenu :tools-by-category="tools" />
 
-        <!-- Sidebar Vertical/Rectangle Ad Unit -->
-        <div class="px-3 my-4">
-          <AdSenseUnit format="rectangle" min-height="250px" />
-        </div>
 
 
       </div>
