@@ -1151,7 +1151,7 @@ async function saveAndDownload() {
 
       <h3 text-lg font-bold mt-6 mb-2 style="color: var(--n-text-color-1)">Why use our Client-Side PDF Editor?</h3>
       <p>
-        Most free PDF editors require you to upload your sensitive documents to a third-party cloud server, putting your data privacy at risk. DevTool's PDF Editor utilizes modern WebAssembly (WASM) and HTML5 Canvas technologies to decode, render, and repackage your PDF entirely on your machine. This guarantees zero data transmission, blazing fast performance, and no file size limits.
+        Most free PDF editors require you to upload your sensitive documents to a third-party cloud server, putting your data privacy at risk. DevTol's PDF Editor utilizes modern WebAssembly (WASM) and HTML5 Canvas technologies to decode, render, and repackage your PDF entirely on your machine. This guarantees zero data transmission, blazing fast performance, and no file size limits.
       </p>
     </div>
   </div>

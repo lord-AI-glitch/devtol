@@ -1,7 +1,7 @@
 # Project State & Zero-Token Checkpoint
-- **Project:** DevTool.it Web Platform (Vite + Vue 3 + UnoCSS)
-- **Status:** Complete Enterprise SEO, GEO & AdSense Monetization Overhaul Deployed Live ✅.
-- **Production URL:** `https://devtool-it.pages.dev` (Canonical: `https://devtool.it.com`)
+- **Project:** DevTol Web Platform (Vite + Vue 3 + UnoCSS)
+- **Brand Name:** DevTol
+- **Production URL:** `https://devtol.online`
 - **AdSense Publisher ID:** `ca-pub-3672531286921744`
 
 ## Core Accomplishments & Architecture:

@@ -11,7 +11,7 @@ import { config } from '@/config';
 
 const toolStore = useToolStore();
 
-useHead({ title: 'DevTool.it - Handy online tools for developers' });
+useHead({ title: 'DevTol - Handy online tools for developers' });
 const { t } = useI18n();
 
 const favoriteTools = computed(() => toolStore.favoriteTools);

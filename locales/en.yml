@@ -8,36 +8,36 @@ home:
   toggleMenu: 'Toggle menu'
   home: Home
   uiLib: 'UI Lib'
-  support: 'Support DevTool.it development'
+  support: 'Support DevTol development'
   buyMeACoffee: 'Buy me a coffee'
   follow:
-    title: 'You like DevTool.it?'
+    title: 'You like DevTol?'
     p1: 'Give us a star on'
-    githubRepository: 'DevTool.it GitHub repository'
+    githubRepository: 'DevTol GitHub repository'
     p2: 'or follow us on'
-    twitterXAccount: 'DevTool.it X account'
+    twitterXAccount: 'DevTol X account'
     thankYou: 'Thank you!'
   nav:
     github: 'GitHub repository'
-    githubRepository: 'DevTool.it GitHub repository'
+    githubRepository: 'DevTol GitHub repository'
     twitterX: 'X account'
-    twitterXAccount: 'DevTool.it X account'
-    about: 'About DevTool.it'
+    twitterXAccount: 'DevTol X account'
+    about: 'About DevTol'
     aboutLabel: 'About'
     darkMode: 'Dark mode'
     lightMode: 'Light mode'
     mode: 'Toggle dark/light mode'
 about:
   content: >
-    # About DevTool.it
+    # About DevTol
 
     This wonderful platform aggregates useful tools for developers, designers, and people working in IT. If you find it useful, please feel free to share it with colleagues and bookmark it in your shortcut bar!
 
-    DevTool.it is client-side, privacy-first, and completely free. If you want to support development, and encourage adding more tools, please consider supporting by [sponsoring us](https://buymeacoffee.com/lordrealstx).
+    DevTol is client-side, privacy-first, and completely free. If you want to support development, and encourage adding more tools, please consider supporting by [sponsoring us](https://buymeacoffee.com/lordrealstx).
 
     ## Technologies
 
-    DevTool.it is crafted with Vue 3, TypeScript, and Naive UI. All tools run 100% locally in your browser for maximum privacy and security.
+    DevTol is crafted with Vue 3, TypeScript, and Naive UI. All tools run 100% locally in your browser for maximum privacy and security.
 
     ## Found a bug? A tool is missing?
 

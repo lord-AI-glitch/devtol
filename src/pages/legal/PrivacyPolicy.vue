@@ -2,11 +2,11 @@
 import { useHead } from '@vueuse/head';
 
 useHead({
-  title: 'Privacy Policy - DevTool.it',
+  title: 'Privacy Policy - DevTol',
   meta: [
     {
       name: 'description',
-      content: 'Privacy Policy for DevTool.it. Learn how we handle your data, Google AdSense cookies, DART cookies, GDPR, and CCPA compliance.',
+      content: 'Privacy Policy for DevTol. Learn how we handle your data, Google AdSense cookies, DART cookies, GDPR, and CCPA compliance.',
     },
   ],
 });
@@ -22,14 +22,14 @@ useHead({
         <section>
           <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">1. Introduction</h2>
           <p>
-            Welcome to <strong>DevTool.it</strong> ("we", "our", or "us"). We respect your privacy and are committed to protecting any personal data you share or that is collected through your use of our website and utilities. This Privacy Policy outlines the types of information we collect, how it is processed, and your legal rights under applicable privacy frameworks, including the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).
+            Welcome to <strong>DevTol</strong> ("we", "our", or "us"). We respect your privacy and are committed to protecting any personal data you share or that is collected through your use of our website and utilities. This Privacy Policy outlines the types of information we collect, how it is processed, and your legal rights under applicable privacy frameworks, including the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).
           </p>
         </section>
 
         <section>
           <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">2. Client-Side Processing Architecture (Zero Data Storage)</h2>
           <p>
-            The vast majority of utilities on DevTool.it (such as JWT Parser, Base64 Converter, JSON Viewer, UUID Generator, Hashing utilities, and financial calculators) operate <strong>entirely client-side within your browser</strong>. 
+            The vast majority of utilities on DevTol (such as JWT Parser, Base64 Converter, JSON Viewer, UUID Generator, Hashing utilities, and financial calculators) operate <strong>entirely client-side within your browser</strong>. 
           </p>
           <ul class="list-disc pl-5 mt-2 space-y-1">
             <li>Your input data, secrets, tokens, hashes, and text payloads are <strong>never transmitted</strong> to our web servers.</li>
@@ -122,7 +122,7 @@ useHead({
           <p>
             For questions or requests regarding this Privacy Policy or your data privacy rights, please reach out via our 
             <router-link to="/contact" class="text-primary hover:underline">Contact Us page</router-link> or email us at 
-            <a href="mailto:privacy@devtool-it.pages.dev" class="text-primary hover:underline">privacy@devtool-it.pages.dev</a>.
+            <a href="mailto:privacy@devtol.online" class="text-primary hover:underline">privacy@devtol.online</a>.
           </p>
         </section>
       </div>

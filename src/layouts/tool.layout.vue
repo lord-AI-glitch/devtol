@@ -23,15 +23,15 @@ const i18nKey = computed<string>(() => route.path.trim().replace('/', ''));
 const toolTitle = computed<string>(() => t(`tools.${i18nKey.value}.title`, String(route.meta.name || 'Tool')));
 const rawDescription = computed<string>(() => t(`tools.${i18nKey.value}.description`, String(route.meta.description || '')));
 
-const seoTitle = computed<string>(() => `${toolTitle.value} Online (Free & Fast) - DevTool.it`);
+const seoTitle = computed<string>(() => `${toolTitle.value} Online (Free & Fast) - DevTol`);
 const seoDescription = computed<string>(() => {
   const desc = rawDescription.value || `${toolTitle.value} online utility`;
-  return `${desc}. Free, secure, client-side developer tool on DevTool.it.`;
+  return `${desc}. Free, secure, client-side developer tool on DevTol.`;
 });
-const canonicalUrl = computed<string>(() => `https://devtool-it.pages.dev${route.path}`);
+const canonicalUrl = computed<string>(() => `https://devtol.online${route.path}`);
 const seoKeywords = computed<string>(() => {
   const customKeywords = (route.meta.keywords ?? []) as string[];
-  const baseKeywords = [toolTitle.value.toLowerCase(), 'online tool', 'free tool', 'developer utility', 'client-side', 'devtool.it'];
+  const baseKeywords = [toolTitle.value.toLowerCase(), 'online tool', 'free tool', 'developer utility', 'client-side', 'devtol'];
   return Array.from(new Set([...customKeywords, ...baseKeywords])).join(', ');
 });
 
@@ -64,7 +64,7 @@ const head = computed<HeadObject>(() => ({
     },
     {
       property: 'og:image',
-      content: 'https://devtool-it.pages.dev/banner.png?v=2',
+      content: 'https://devtol.online/banner.png?v=2',
     },
     {
       name: 'twitter:card',
@@ -80,7 +80,7 @@ const head = computed<HeadObject>(() => ({
     },
     {
       name: 'twitter:image',
-      content: 'https://devtool-it.pages.dev/banner.png?v=2',
+      content: 'https://devtol.online/banner.png?v=2',
     },
   ],
   link: [
@@ -118,7 +118,7 @@ const head = computed<HeadObject>(() => ({
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://devtool-it.pages.dev',
+                'item': 'https://devtol.online',
               },
               {
                 '@type': 'ListItem',

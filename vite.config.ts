@@ -60,9 +60,9 @@ export default defineConfig({
         navigateFallbackDenylist: [/^\/sitemap\.xml$/, /^\/robots\.txt$/, /^\/llms.*\.txt$/, /^\/google.*\.html$/],
       },
       manifest: {
-        name: 'DevTool.it',
-        short_name: 'DevTool.it',
-        description: 'Aggregated set of useful tools for developers.',
+        name: 'DevTol',
+        short_name: 'DevTol',
+        description: 'Aggregated set of useful online tools for developers.',
         display: 'standalone',
         lang: 'en-US',
         start_url: `${baseUrl}?utm_source=pwa&utm_medium=pwa`,

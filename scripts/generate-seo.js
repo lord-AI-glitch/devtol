@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-const BASE_URL = process.env.SITE_URL || 'https://devtool-it.pages.dev';
+const BASE_URL = process.env.SITE_URL || 'https://devtol.online';
 
 console.log('[SEO Generator] Starting comprehensive SEO generation (sitemap, robots, llms.txt)...');
 console.log(`[SEO Generator] Base URL: ${BASE_URL}`);
@@ -255,9 +255,9 @@ console.log(`[SEO Generator] Successfully generated ${robotsPath}`);
 // 5. Generate llms.txt (GEO standard)
 const toolDetailMap = new Map(toolDetails.map(t => [t.varName, t]));
 
-let llmsContent = `# DevTool.it
+let llmsContent = `# DevTol
 
-> DevTool.it is a free, open-source, client-side developer utility platform featuring 120+ tools across PDF processing, cryptography, image editing, data converters, network utilities, and text formatting. All operations run 100% locally inside the browser sandbox with zero server data transmission.
+> DevTol is a free, open-source, client-side developer utility platform featuring 120+ tools across PDF processing, cryptography, image editing, data converters, network utilities, and text formatting. All operations run 100% locally inside the browser sandbox with zero server data transmission.
 
 ## Platform Principles
 - 100% Client-Side Privacy: Passwords, tokens, images, and documents never leave the user browser.

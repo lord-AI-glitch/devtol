@@ -44,5 +44,5 @@ User-agent: meta-externalagent
 Allow: /
 
 # Host & Sitemaps
-Host: devtool-it.pages.dev
-Sitemap: https://devtool-it.pages.dev/sitemap.xml
+Host: devtol.online
+Sitemap: https://devtol.online/sitemap.xml

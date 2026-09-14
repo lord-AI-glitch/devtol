@@ -39,7 +39,7 @@ const tools = computed<ToolCategory[]>(() => [
         <HeroGradient class="gradient" />
         <div class="text-wrapper">
           <div class="title">
-            DevTool.it
+            <span class="brand-dev">Dev</span><span class="brand-tol">Tol</span>
           </div>
           <div class="divider" />
           <div class="subtitle">
@@ -137,7 +137,7 @@ const tools = computed<ToolCategory[]>(() => [
 
             <!-- Copyright and Open Source Credit -->
             <div class="mt-8 text-center text-xs text-slate-400 dark:text-slate-500">
-              <p>&copy; {{ new Date().getFullYear() }} IT-Tools. Free and open source under GNU GPLv3 license.</p>
+              <p>&copy; {{ new Date().getFullYear() }} DevTol. Free and open source under GNU GPLv3 license.</p>
             </div>
           </div>
         </footer>
@@ -194,9 +194,19 @@ const tools = computed<ToolCategory[]>(() => [
     color: #fff;
 
     .title {
-      font-size: 25px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      font-family: 'JetBrains Mono', monospace, -apple-system, BlinkMacSystemFont, sans-serif;
+
+      .brand-dev {
+        color: #ffffff;
+      }
+
+      .brand-tol {
+        color: #34d399;
+        text-shadow: 0 0 16px rgba(52, 211, 153, 0.45);
+      }
     }
 
     .divider {

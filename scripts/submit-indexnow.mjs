@@ -1,7 +1,7 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import https from 'https';
 
-const HOST = 'devtool-it.pages.dev';
+const HOST = 'devtol.online';
 const KEY = '63ceff34c1ae6ac3262b428c60f2aadd';
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 const SITEMAP_PATH = './dist/sitemap.xml';

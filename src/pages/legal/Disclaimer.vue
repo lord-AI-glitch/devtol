@@ -1,12 +1,12 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { useHead } from '@vueuse/head';
 
 useHead({
-  title: 'Disclaimer - IT Tools',
+  title: 'Disclaimer - DevTol',
   meta: [
     {
       name: 'description',
-      content: 'Disclaimer and terms regarding the usage, accuracy, and client-side processing of tools on IT Tools.',
+      content: 'Disclaimer and terms regarding the usage, accuracy, and client-side processing of tools on DevTol.',
     },
   ],
 });
@@ -26,7 +26,7 @@ useHead({
         <section>
           <h2 class="text-xl font-semibold text-slate-900 dark:text-white">1. General Information</h2>
           <p>
-            The information and developer utilities provided on <strong>IT Tools</strong> are intended strictly for general informational, development, educational, and testing purposes. While we strive to ensure that calculations, format conversions, cryptographic hash algorithms, and formatting outputs are accurate and up to date, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, or availability with respect to the website or the tools contained herein.
+            The information and developer utilities provided on <strong>DevTol</strong> are intended strictly for general informational, development, educational, and testing purposes. While we strive to ensure that calculations, format conversions, cryptographic hash algorithms, and formatting outputs are accurate and up to date, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, or availability with respect to the website or the tools contained herein.
           </p>
         </section>
 
@@ -40,7 +40,7 @@ useHead({
         <section>
           <h2 class="text-xl font-semibold text-slate-900 dark:text-white">3. Professional Advice & Liability</h2>
           <p>
-            Under no circumstances shall IT Tools or its contributors be held liable for any loss or damage including, without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.
+            Under no circumstances shall DevTol or its contributors be held liable for any loss or damage including, without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.
           </p>
         </section>
 

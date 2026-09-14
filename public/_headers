@@ -14,7 +14,8 @@
 /robots.txt
   Cache-Control: public, max-age=86400, stale-while-revalidate=43200
 /sitemap.xml
-  Cache-Control: public, max-age=86400, stale-while-revalidate=43200
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: no-cache, no-store, must-revalidate
 /llms.txt
   Cache-Control: public, max-age=86400, stale-while-revalidate=43200
 /llms-full.txt

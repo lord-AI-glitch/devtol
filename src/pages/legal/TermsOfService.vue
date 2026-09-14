@@ -1,12 +1,12 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { useHead } from '@vueuse/head';
 
 useHead({
-  title: 'Terms of Service - DevTool.it',
+  title: 'Terms of Service - DevTol',
   meta: [
     {
       name: 'description',
-      content: 'Terms of Service for DevTool.it web utilities, including financial calculation disclaimers, intellectual property, and liability limitations.',
+      content: 'Terms of Service for DevTol web utilities, including financial calculation disclaimers, intellectual property, and liability limitations.',
     },
   ],
 });
@@ -22,14 +22,14 @@ useHead({
         <section>
           <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">1. Agreement to Terms</h2>
           <p>
-            By accessing or using the website and developer utilities hosted on <strong>DevTool.it</strong> ("the Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, you must discontinue use of the Service immediately.
+            By accessing or using the website and developer utilities hosted on <strong>DevTol</strong> ("the Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, you must discontinue use of the Service immediately.
           </p>
         </section>
 
         <section>
           <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">2. Permitted Use & Acceptable Conduct</h2>
           <p>
-            DevTool.it provides open-source, client-side web utilities designed for software engineers, systems administrators, webmasters, and digital professionals. You agree to use the Service only for lawful purposes. You agree NOT to:
+            DevTol provides open-source, client-side web utilities designed for software engineers, systems administrators, webmasters, and digital professionals. You agree to use the Service only for lawful purposes. You agree NOT to:
           </p>
           <ul class="list-disc pl-5 mt-2 space-y-1">
             <li>Attempt to disrupt, overwhelm, or compromise the availability of our web infrastructure through distributed denial-of-service (DDoS) attacks.</li>
@@ -45,14 +45,14 @@ useHead({
             </h2>
             <p class="text-sm text-slate-700 dark:text-neutral-200">
               <strong>NOT FINANCIAL, INVESTMENT, TAX, OR LEGAL ADVICE:</strong> 
-              The financial utilities available on DevTool.itâ€”including the <em>Mortgage Calculator</em>, <em>Compound Interest Calculator</em>, and <em>AdSense Revenue Calculator</em>â€”are provided strictly for <strong>general informational and educational purposes only</strong>.
+              The financial utilities available on DevTol — including the <em>Mortgage Calculator</em>, <em>Compound Interest Calculator</em>, and <em>AdSense Revenue Calculator</em> — are provided strictly for <strong>general informational and educational purposes only</strong>.
             </p>
             <ul class="list-disc pl-5 mt-3 space-y-2 text-sm text-slate-600 dark:text-neutral-300">
               <li>
                 <strong>Theoretical Projections Only</strong>: All calculations, projections, amortizations, and revenue estimates are mathematical simulations based upon variables entered solely by the user. Real-world results will inevitably vary due to fluctuating interest rates, lender closing fees, amortization conventions, local tax ordinances, currency fluctuations, real-time programmatic ad auctions, and ad-blocker penetration rates.
               </li>
               <li>
-                <strong>No Professional Fiduciary Duty</strong>: DevTool.it, its authors, contributors, and maintainers are not certified financial planners (CFP), registered investment advisors (RIA), licensed mortgage loan officers, certified public accountants (CPA), or attorneys. No fiduciary or advisory relationship is established through your use of these tools.
+                <strong>No Professional Fiduciary Duty</strong>: DevTol, its authors, contributors, and maintainers are not certified financial planners (CFP), registered investment advisors (RIA), licensed mortgage loan officers, certified public accountants (CPA), or attorneys. No fiduciary or advisory relationship is established through your use of these tools.
               </li>
               <li>
                 <strong>Mandatory Professional Consultation</strong>: You must consult a qualified, licensed financial advisor, mortgage broker, or accountant before making significant financial commitments, signing mortgage agreements, or making capital investment decisions.
@@ -74,21 +74,21 @@ useHead({
         <section>
           <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">5. Intellectual Property & Open Source Licensing</h2>
           <p>
-            The software source code of DevTool.it is released under the MIT Open Source License. The proprietary trademarks, logos, domain names, distinctive site design, and educational technical editorial articles remain the intellectual property of DevTool.it and its content creators.
+            The software source code of DevTol is released under the MIT Open Source License. The proprietary trademarks, logos, domain names, distinctive site design, and educational technical editorial articles remain the intellectual property of DevTol and its content creators.
           </p>
         </section>
 
         <section>
           <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">6. Limitation of Liability</h2>
           <p>
-            TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL DevTool.it, ITS CONTRIBUTORS, AUTHORS, AFFILIATES, OR PARTNERS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, FINANCIAL LOSSES, LOSS OF ANTICIPATED SAVINGS, BUSINESS INTERRUPTION, LOSS OF REVENUE, OR DATA CORRUPTION) ARISING IN ANY WAY OUT OF THE USE OF OR INABILITY TO USE THE SERVICE OR ITS CALCULATORS.
+            TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL DevTol, ITS CONTRIBUTORS, AUTHORS, AFFILIATES, OR PARTNERS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, FINANCIAL LOSSES, LOSS OF ANTICIPATED SAVINGS, BUSINESS INTERRUPTION, LOSS OF REVENUE, OR DATA CORRUPTION) ARISING IN ANY WAY OUT OF THE USE OF OR INABILITY TO USE THE SERVICE OR ITS CALCULATORS.
           </p>
         </section>
 
         <section>
           <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">7. Third-Party Links & Advertising</h2>
           <p>
-            Our Service may display links to third-party websites or services (including advertisers via Google AdSense) that are not owned or controlled by DevTool.it. We assume no responsibility for the content, privacy policies, or practices of any third-party web properties.
+            Our Service may display links to third-party websites or services (including advertisers via Google AdSense) that are not owned or controlled by DevTol. We assume no responsibility for the content, privacy policies, or practices of any third-party web properties.
           </p>
         </section>
 

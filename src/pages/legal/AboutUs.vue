@@ -2,11 +2,11 @@
 import { useHead } from '@vueuse/head';
 
 useHead({
-  title: 'About Us & Editorial Standards - DevTool.it',
+  title: 'About Us & Editorial Standards - DevTol',
   meta: [
     {
       name: 'description',
-      content: 'Learn about the engineering team, mission, privacy-first client-side architecture, and E-E-A-T editorial standards behind DevTool.it.',
+      content: 'Learn about the engineering team, mission, privacy-first client-side architecture, and E-E-A-T editorial standards behind DevTol.',
     },
   ],
 });
@@ -54,7 +54,7 @@ const pillars = [
   <div class="about-container">
     <div class="about-card">
       <div class="text-center mb-10">
-        <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">About DevTool.it</h1>
+        <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">About DevTol</h1>
         <p class="text-lg text-primary font-medium mt-2">
           Engineering Craftsmanship, Privacy-First Architecture & Rigorous Developer Utilities
         </p>
@@ -64,10 +64,10 @@ const pillars = [
         <section>
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Our Mission</h2>
           <p>
-            Founded by <strong>Corentin Thomasset</strong>, <strong>DevTool.it</strong> was created to solve a pervasive problem faced by software developers, DevOps practitioners, and systems engineers: the proliferation of ad-cluttered, privacy-invasive, and untrustworthy web utilities.
+            Founded by <strong>Corentin Thomasset</strong>, <strong>DevTol</strong> was created to solve a pervasive problem faced by software developers, DevOps practitioners, and systems engineers: the proliferation of ad-cluttered, privacy-invasive, and untrustworthy web utilities.
           </p>
           <p class="mt-3">
-            Traditional online utilities often upload your code, JSON payloads, passwords, and private tokens to remote backends for processingâ€”creating critical compliance violations and security risks. DevTool.it was built upon a radically different architectural philosophy: <strong>100% Client-Side Computation</strong>. By delegating all data transformations to modern browser APIs and WebAssembly, your sensitive tokens and proprietary data never leave your local computer.
+            Traditional online utilities often upload your code, JSON payloads, passwords, and private tokens to remote backends for processing — creating critical compliance violations and security risks. DevTol was built upon a radically different architectural philosophy: <strong>100% Client-Side Computation</strong>. By delegating all data transformations to modern browser APIs and WebAssembly, your sensitive tokens and proprietary data never leave your local computer.
           </p>
         </section>
 
@@ -88,7 +88,7 @@ const pillars = [
           <div class="bg-slate-100 dark:bg-neutral-800/40 p-5 rounded-lg border border-slate-200 dark:border-neutral-700/70 mt-3 space-y-2">
             <p><strong>Experience:</strong> Our editorial materials are authored by practicing engineers with hands-on production experience managing cloud microservices, authentication gateways, and distributed databases.</p>
             <p><strong>Expertise:</strong> Technical specifications, formulas, and code snippets are cross-referenced directly against canonical RFCs (e.g., IETF RFC 7519 for JWTs, RFC 4648 for Base64, RFC 4122/9562 for UUIDs, and POSIX IEEE 1003.1 for crontab syntax).</p>
-            <p><strong>Authoritativeness:</strong> DevTool.it is recognized across the global developer community with tens of thousands of GitHub stars and active deployments worldwide.</p>
+            <p><strong>Authoritativeness:</strong> DevTol is recognized across the global developer community with tens of thousands of GitHub stars and active deployments worldwide.</p>
             <p><strong>Trustworthiness:</strong> Complete source code transparency under the open-source MIT License, allowing any security auditor to inspect the codebase.</p>
           </div>
         </section>
@@ -110,8 +110,8 @@ const pillars = [
         <section>
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Open Source Transparency</h2>
           <p>
-            We believe that security and developer tools should be open for public scrutiny. DevTool.it is proudly hosted on 
-            <a href="https://github.com/CorentinTh/DevTool.it" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">GitHub</a>, where developers worldwide can submit issues, suggest enhancements, and audit every single line of code.
+            We believe that security and developer tools should be open for public scrutiny. DevTol is proudly hosted on 
+            <a href="https://github.com/CorentinTh/it-tools" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">GitHub</a>, where developers worldwide can submit issues, suggest enhancements, and audit every single line of code.
           </p>
         </section>
       </div>

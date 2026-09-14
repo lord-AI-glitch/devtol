@@ -3,11 +3,11 @@ import { ref } from 'vue';
 import { useHead } from '@vueuse/head';
 
 useHead({
-  title: 'Contact Us & Technical Support - DevTool.it',
+  title: 'Contact Us & Technical Support - DevTol',
   meta: [
     {
       name: 'description',
-      content: 'Contact the DevTool.it engineering and support team. Submit tool feedback, report security vulnerabilities, or inquire about partnerships.',
+      content: 'Contact the DevTol engineering and support team. Submit tool feedback, report security vulnerabilities, or inquire about partnerships.',
     },
   ],
 });
@@ -51,17 +51,17 @@ function handleSubmit() {
             <div class="space-y-3 text-sm text-slate-600 dark:text-neutral-300">
               <div>
                 <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">General Inquiries & Support</p>
-                <a href="mailto:support@devtool-it.pages.dev" class="text-primary hover:underline font-medium">support@devtool-it.pages.dev</a>
+                <a href="mailto:support@devtol.online" class="text-primary hover:underline font-medium">support@devtol.online</a>
               </div>
 
               <div>
                 <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">Privacy & Legal</p>
-                <a href="mailto:privacy@devtool-it.pages.dev" class="text-primary hover:underline font-medium">privacy@devtool-it.pages.dev</a>
+                <a href="mailto:privacy@devtol.online" class="text-primary hover:underline font-medium">privacy@devtol.online</a>
               </div>
 
               <div>
                 <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">Open Source Bug Tracker</p>
-                <a href="https://github.com/CorentinTh/DevTool.it/issues" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">
+                <a href="https://github.com/CorentinTh/it-tools/issues" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">
                   GitHub Issues Tracker
                 </a>
               </div>
