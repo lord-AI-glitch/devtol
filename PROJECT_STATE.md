@@ -1,10 +1,10 @@
 # Project State & Zero-Token Checkpoint
 - **Project:** DevTol Web Platform (Vite + Vue 3 + UnoCSS)
 - **Brand Name:** DevTol
-- **Production Domain:** `https://devtol.online`
+- **Production Domain:** `https://devtol.online` (🟢 LIVE & VERIFIED)
 - **Cloudflare Pages Production Project:** `devtol` (`https://devtol.pages.dev`)
 - **AdSense Publisher ID:** `ca-pub-3672531286921744`
-- **AdSense Verification:** Verified Live (`https://devtol.pages.dev/ads.txt` returns `google.com, pub-3672531286921744, DIRECT, f08c47fec0942fa0`)
+- **AdSense Verification:** Verified Live (`https://devtol.online/ads.txt` returns `google.com, pub-3672531286921744, DIRECT, f08c47fec0942fa0` with HTTP 200)
 
 ## Core Accomplishments & Architecture:
 1. **Complete Rebrand to DevTol (100% Repository-Wide Cleaned):**

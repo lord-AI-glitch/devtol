@@ -79339,7 +79339,7 @@
       "node_kind": "heading",
       "norm_label": "core accomplishments & architecture:",
       "source_file": "PROJECT_STATE.md",
-      "source_location": "L7"
+      "source_location": "L9"
     },
     {
       "id": "project_state_project_state_zero_token_checkpoint",
@@ -187061,7 +187061,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "PROJECT_STATE.md",
-      "source_location": "L7",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -281654,5 +281654,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "b002fac8e9a14f9c35b66625aeb8fca8bc779153"
+  "built_at_commit": "30f3e1fd85fd252c7bd4ecd5248538df1392e58a"
 }
