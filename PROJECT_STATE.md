@@ -16,10 +16,10 @@
    - Created new dedicated Cloudflare Pages project named `devtol`.
    - Deployed full production build (445 files including 125 pre-rendered static HTML routes).
    - Live URL: `https://devtol.pages.dev`.
-3. **AdSense Compliance & Core Web Vitals:**
-   - `ads.txt` deployed and verified live with code 200 at `https://devtol.pages.dev/ads.txt`.
+3. **AdSense Compliance & Direct Script Integration:**
+   - `ads.txt` deployed and verified live with code 200 at `https://devtol.online/ads.txt`.
+   - Official Google AdSense script (`ca-pub-3672531286921744`) placed statically in `<head>` in `index.html` for instant site verification and Auto Ads detection.
    - Workbox PWA configuration updated to exclude `/ads.txt` from cache fallback.
-   - Smart Deferred Loader in `<head>` ensures perfect LCP and Core Web Vitals (90+ score).
 4. **Static HTML Prerendering (125 Static Routes):**
    - Automated postbuild script generates complete static HTML files in `dist/` with high-CTR titles, meta descriptions, canonical URLs (`https://devtol.online`), and full markdown technical guides.
 5. **Dual Schema.org Structured Data (JSON-LD) & GEO/AEO:**
