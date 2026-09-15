@@ -1,4 +1,4 @@
-﻿import { defineTool } from '../tool';
+import { defineTool } from '../tool';
 import { Crop } from '@vicons/tabler';
 export const tool = defineTool({
   name: 'Image Resizer & Cropper',

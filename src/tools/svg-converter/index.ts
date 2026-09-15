@@ -1,4 +1,4 @@
-﻿import { defineTool } from '../tool';
+import { defineTool } from '../tool';
 import { VectorBezier } from '@vicons/tabler';
 export const tool = defineTool({
   name: 'SVG to PNG/JPG Converter',

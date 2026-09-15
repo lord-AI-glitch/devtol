@@ -1,4 +1,4 @@
-﻿import { defineTool } from '../tool';
+import { defineTool } from '../tool';
 import { Palette } from '@vicons/tabler';
 export const tool = defineTool({
   name: 'Color Palette Generator',

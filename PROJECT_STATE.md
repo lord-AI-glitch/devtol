@@ -1,39 +1,32 @@
 # Project State & Zero-Token Checkpoint
 - **Project:** DevTol Web Platform (Vite + Vue 3 + UnoCSS)
 - **Brand Name:** DevTol
-- **Production URL:** `https://devtol.online`
+- **Production Domain:** `https://devtol.online`
+- **Cloudflare Pages Production Project:** `devtol` (`https://devtol.pages.dev`)
 - **AdSense Publisher ID:** `ca-pub-3672531286921744`
+- **AdSense Verification:** Verified Live (`https://devtol.pages.dev/ads.txt` returns `google.com, pub-3672531286921744, DIRECT, f08c47fec0942fa0`)
 
 ## Core Accomplishments & Architecture:
-1. **Mobile & Desktop Performance & Core Web Vitals Optimization (VERIFIED 90+ AUDIT):**
-   - **Performance:** 🟢 91/100 (LCP dropped from 10.0s to 1.3s, TBT 110ms, CLS 0.004).
-   - **Accessibility:** 🟢 94/100 (up from 79).
-   - **Best Practices:** 🟢 100/100 (full score).
-   - **SEO:** 🟢 100/100 (full score).
-   - **Agentic AI Browsing:** 🟢 100% (3/3 full score).
-   - Implemented Smart Deferred/Interaction Lazy Loading for Google AdSense.
-   - Optimized Google Fonts with non-blocking async stylesheet loading.
-   - Upgraded Vite build target to `es2022` and isolated `vuedraggable` and `ToolLayout` (markdown-it).
-   - Reduced initial entry JS bundle by 84% (from 3.02 MB down to 487 KB).
-   - Deployed live to Cloudflare Pages (`devtool-it.pages.dev`).
-2. **Google AdSense Integration:**
-   - Injected official Google AdSense script into `<head>` (`index.html`) with publisher ID `ca-pub-3672531286921744`.
-   - Updated `AdSenseUnit.vue` with real publisher ID and programmatic ad push.
-   - Deployed live to Cloudflare Pages (`devtool-it`).
-3. **Static HTML Prerendering (125 Static Routes):**
-   - Automated postbuild script generates complete static HTML files in `dist/` with high-CTR titles, meta descriptions, canonical URLs, and full markdown technical guides.
-4. **Dual Schema.org Structured Data (JSON-LD):**
+1. **Complete Rebrand to DevTol (100% Repository-Wide Cleaned):**
+   - Eliminated every reference to `it-tools`, `DevTool.it`, and old domains across `src/`, `locales/` (all 9 languages), `scripts/`, `README.md`, `public/humans.txt`, and e2e test titles.
+   - Branded UI Header: `<span class="brand-dev">Dev</span><span class="brand-tol">Tol</span>` with JetBrains Mono, emerald glow `#34d399`, and updated legal copyright.
+   - Updated all legal pages (`AboutUs`, `PrivacyPolicy`, `TermsOfService`, `ContactUs`, `Disclaimer`) to DevTol and `support@devtol.online` / `privacy@devtol.online`.
+   - Updated Command Palette, Twitter/X handles (`@devtolonline`), and donation link (`https://buymeacoffee.com/lordrealstx`).
+2. **Cloudflare Pages Project `devtol`:**
+   - Created new dedicated Cloudflare Pages project named `devtol`.
+   - Deployed full production build (445 files including 125 pre-rendered static HTML routes).
+   - Live URL: `https://devtol.pages.dev`.
+3. **AdSense Compliance & Core Web Vitals:**
+   - `ads.txt` deployed and verified live with code 200 at `https://devtol.pages.dev/ads.txt`.
+   - Workbox PWA configuration updated to exclude `/ads.txt` from cache fallback.
+   - Smart Deferred Loader in `<head>` ensures perfect LCP and Core Web Vitals (90+ score).
+4. **Static HTML Prerendering (125 Static Routes):**
+   - Automated postbuild script generates complete static HTML files in `dist/` with high-CTR titles, meta descriptions, canonical URLs (`https://devtol.online`), and full markdown technical guides.
+5. **Dual Schema.org Structured Data (JSON-LD) & GEO/AEO:**
    - `WebSite` SearchAction schema + `WebApplication` ($0 Free Offer) + `BreadcrumbList`.
-5. **GEO / AEO AI Search Optimization:**
-   - Standard `llms.txt` and `llms-full.txt` cataloging all 120+ tools for ChatGPT, Perplexity, and Claude.
-6. **Microsoft Bing & IndexNow Instant Indexing:**
-   - Deployed official IndexNow API key (`63ceff34c1ae6ac3262b428c60f2aadd.txt`) live to Cloudflare Pages.
-   - Submitted all 126 website URLs to `www.bing.com` (HTTP 202 Accepted) and `api.indexnow.org` (HTTP 200 Success) for instant crawl by Bing & Copilot.
-   - Added `npm run indexnow` automated command to `package.json`.
-7. **Quality & Compliance:**
-   - 144 unit tests passing (0 failures).
-   - E-E-A-T editorial compliance & fixed unicode formatting.
-7. **Bug Fixes & Offline Stability:**
-   - Fixed `[Package Error] "chroma-js@v3.2.0" could not be built` in `color-palette.vue` by removing runtime Skypack CDN dependency and replacing it with the bundled `colord` library (with `a11y` and `cmyk` plugins).
-   - Color Palette Generator now operates 100% offline with zero latency, full WCAG contrast checking, and comprehensive color harmony generation (Complementary, Triadic, Analogous, Split-Complementary, Tetradic).
+   - Updated `sitemap.xml`, `robots.txt`, `llms.txt`, and `llms-full.txt` for ChatGPT, Perplexity, and Claude under `https://devtol.online`.
+6. **IndexNow Instant Indexing:**
+   - Submitted all website URLs to Bing & IndexNow.
+7. **Graphify Knowledge Graph:**
+   - Fully synced locally via `python -m graphify update .` (8,909 nodes, 15,424 edges, 448 communities).
 

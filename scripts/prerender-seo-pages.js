@@ -91,9 +91,9 @@ function escapeHtml(str) {
 
 function generatePrerenderedHtml({ pathSlug, title, description, keywords, articleHtml, category }) {
   const canonicalUrl = `${BASE_URL}/${pathSlug}`;
-  const fullTitle = `${title} Online (Free & Fast) - DevTool.it`;
-  const fullDesc = `${description}. 100% client-side, free, fast, and secure online developer tool on DevTool.it.`;
-  const keywordStr = Array.from(new Set([...(keywords || []), title.toLowerCase(), 'free online tool', 'client side', 'developer utility', 'devtool.it'])).join(', ');
+  const fullTitle = `${title} Online (Free & Fast) - DevTol`;
+  const fullDesc = `${description}. 100% client-side, free, fast, and secure online developer tool on DevTol.`;
+  const keywordStr = Array.from(new Set([...(keywords || []), title.toLowerCase(), 'free online tool', 'client side', 'developer utility', 'devtol'])).join(', ');
 
   const schemaJson = JSON.stringify({
     '@context': 'https://schema.org',
@@ -257,27 +257,27 @@ const legalPages = [
   {
     slug: 'about',
     title: 'About Us & Editorial Standards',
-    description: 'Learn about the engineering team, mission, privacy-first client-side architecture, and E-E-A-T editorial standards behind DevTool.it.',
+    description: 'Learn about the engineering team, mission, privacy-first client-side architecture, and E-E-A-T editorial standards behind DevTol.',
   },
   {
     slug: 'privacy-policy',
     title: 'Privacy Policy & Local Data Processing',
-    description: 'Read the privacy policy of DevTool.it. 100% client-side computing guarantees zero transmission or logging of user data.',
+    description: 'Read the privacy policy of DevTol. 100% client-side computing guarantees zero transmission or logging of user data.',
   },
   {
     slug: 'terms-of-service',
     title: 'Terms of Service',
-    description: 'Terms of service and acceptable usage guidelines for DevTool.it open-source developer utilities.',
+    description: 'Terms of service and acceptable usage guidelines for DevTol open-source developer utilities.',
   },
   {
     slug: 'contact',
     title: 'Contact Us & Technical Support',
-    description: 'Get in touch with DevTool.it team for feature suggestions, tool contributions, or technical bug reports.',
+    description: 'Get in touch with DevTol team for feature suggestions, tool contributions, or technical bug reports.',
   },
   {
     slug: 'disclaimer',
     title: 'Disclaimer & RFC Compliance',
-    description: 'Disclaimer regarding algorithmic calculations, cryptography tools, and developer utilities on DevTool.it.',
+    description: 'Disclaimer regarding algorithmic calculations, cryptography tools, and developer utilities on DevTol.',
   },
 ];
 
@@ -286,7 +286,7 @@ for (const page of legalPages) {
     pathSlug: page.slug,
     title: page.title,
     description: page.description,
-    keywords: ['about', 'privacy', 'terms', 'contact', 'disclaimer', 'devtool.it'],
+    keywords: ['about', 'privacy', 'terms', 'contact', 'disclaimer', 'devtol'],
     articleHtml: '',
     category: 'InformationPage',
   });

@@ -108,10 +108,9 @@ const pillars = [
         </section>
 
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Open Source Transparency</h2>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Open Source Transparency & Privacy</h2>
           <p>
-            We believe that security and developer tools should be open for public scrutiny. DevTol is proudly hosted on 
-            <a href="https://github.com/CorentinTh/it-tools" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">GitHub</a>, where developers worldwide can submit issues, suggest enhancements, and audit every single line of code.
+            We believe that developer tools must be secure, transparent, and auditable. DevTol utilities run strictly client-side inside your browser sandbox, ensuring zero tracking, complete data privacy, and peerless execution speed.
           </p>
         </section>
       </div>

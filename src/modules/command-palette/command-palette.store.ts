@@ -47,19 +47,11 @@ export const useCommandPaletteStore = defineStore('command-palette', () => {
       keywords: ['dark', 'theme', 'toggle', 'mode', 'light', 'system'],
     },
     {
-      name: 'Github repository',
-      href: 'https://github.com/CorentinTh/it-tools',
-      category: 'External',
-      description: 'View the source code of DevTol on Github.',
-      keywords: ['github', 'repo', 'repository', 'source', 'code'],
-      icon: GithubIcon,
-    },
-    {
-      name: 'Report a bug or an issue',
-      description: 'Report a bug or an issue to help improve DevTol.',
-      href: 'https://github.com/CorentinTh/it-tools/issues/new/choose',
+      name: 'Contact & Support',
+      description: 'Report a bug, suggest an idea, or contact the DevTol team.',
+      to: '/legal/contact',
       category: 'Actions',
-      keywords: ['report', 'issue', 'bug', 'problem', 'error'],
+      keywords: ['report', 'issue', 'bug', 'problem', 'error', 'contact', 'support'],
       icon: BugIcon,
     },
     {

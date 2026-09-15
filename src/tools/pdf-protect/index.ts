@@ -1,4 +1,4 @@
-﻿import { defineTool } from '../tool';
+import { defineTool } from '../tool';
 import { Lock } from '@vicons/tabler';
 export const tool = defineTool({
   name: 'PDF Protect & Unlock',

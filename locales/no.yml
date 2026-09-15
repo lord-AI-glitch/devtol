@@ -8,42 +8,40 @@ home:
   toggleMenu: 'Vekslemenmy'
   home: Hjem
   uiLib: 'UI Bib'
-  support: 'Støtt utviklingen av IT-Tools'
+  support: 'Støtt utviklingen av DevTol'
   buyMeACoffee: 'Kjøp en kaffe til meg'
   follow:
-    title: 'Liker du it-tools?'
+    title: 'Liker du DevTol?'
     p1: 'Gi oss en stjerne på'
-    githubRepository: 'IT-Tools GitHub-depotet'
+    githubRepository: 'DevTol GitHub-depotet'
     p2: 'eller følg oss på'
-    twitterXAccount: 'IT-Tools sin X konto'
+    twitterXAccount: 'DevTol sin X konto'
     thankYou: 'Tusen takk!'
   nav:
     github: 'GitHub-depot'
-    githubRepository: 'IT-Tools GitHub-depot'
+    githubRepository: 'DevTol GitHub-depot'
     twitterX: 'X konto'
-    twitterXAccount: 'IT Tools X konto'
-    about: 'Om  IT-Tools'
+    twitterXAccount: 'DevTol X konto'
+    about: 'Om  DevTol'
     aboutLabel: 'Om'
     darkMode: 'Mørk modus'
     lightMode: 'Lys modus'
     mode: 'Veksle mørk/lys modus'
 about:
   content: >
-    # Om IT-Tools
+    # Om DevTol
 
-    Denne vidunderlige nettsiden, laget med ❤ av [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about) , sammenstiller nyttige verktøy for utviklere og folk som jobber innen IT. Hvis du finner dette nyttig, Del det gjerne med andre som du tror kan få nytte av dette, og ikke glem å lage et bokmerke!
+    Denne fantastiske plattformen samler nyttige verktøy for utviklere, designere og IT-fagfolk. Hvis du synes den er nyttig, del den gjerne med kolleger og legg den til i bokmerkene dine!
 
-    IT Tools er åpen kildekode (under GPL-3.0 lisensen) og gratis, og det vil det alltid være, men det koster å drifte og å fornye domenet. Hvis du ønsker å støtte arbeidet mitt, og motivere meg til å legge til flere verktøy, gjerne støtt meg ved å [sponse meg](https://buymeacoffee.com/lordrealstx).
+    DevTol kjører på klientsiden, prioriterer personvern og er 100% gratis. Hvis du ønsker å støtte utviklingen og oppmuntre til nye verktøy, kan du gjerne [støtte oss](https://buymeacoffee.com/lordrealstx).
 
     ## Teknologier
 
-    IT Tools er laget i Vue.js (Vue 3) med Naive UI komponent bibliotektet og er hosted og kontinuerlig deployet av Vercel. Tredjeparts åpen-kildekode biblioteker er brukt i noen verktøy, du kan finne den komplette listen i [package.json](https://github.com/CorentinTh/it-tools/blob/main/package.json) filen i depoet.
+    DevTol er bygget med Vue 3, TypeScript og Naive UI. Alle verktøy kjører 100% lokalt i nettleseren din for maksimal sikkerhet og personvern.
 
     ## Funnet en feil? Et verktøy som mangler?
 
-    Hvis du trenger et verktøy som foreløpig ikke er tilgjengelig her, og du tenker det kan være nyttig for andre, så er du velkommen til å legge til en funksjonsforespørsel i [problem seksjonen](https://github.com/CorentinTh/it-tools/issues/new/choose) i github-depotet.
-
-    Og hvis du har funnet en feil, eller noe ikke oppfører seg som forventet, vennligst send inn en feilrapport i [problem seksjonen](https://github.com/CorentinTh/it-tools/issues/new/choose) i github-depotet.
+    Hvis du trenger et verktøy som foreløpig ikke er tilgjengelig, eller vil rapportere et problem, ta gjerne kontakt med teamet vårt.
 
 404:
   notFound: '404 ikke funnet'

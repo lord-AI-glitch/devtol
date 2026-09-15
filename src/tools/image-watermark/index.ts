@@ -1,4 +1,4 @@
-﻿import { defineTool } from '../tool';
+import { defineTool } from '../tool';
 import { Droplet } from '@vicons/tabler';
 export const tool = defineTool({
   name: 'Image Watermark',

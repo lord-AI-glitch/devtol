@@ -1,4 +1,4 @@
-﻿import { defineTool } from '../tool';
+import { defineTool } from '../tool';
 import { Star } from '@vicons/tabler';
 export const tool = defineTool({
   name: 'Favicon Generator',

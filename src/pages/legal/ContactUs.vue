@@ -60,16 +60,16 @@ function handleSubmit() {
               </div>
 
               <div>
-                <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">Open Source Bug Tracker</p>
-                <a href="https://github.com/CorentinTh/it-tools/issues" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">
-                  GitHub Issues Tracker
+                <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">Feature Requests & Feedback</p>
+                <a href="mailto:support@devtol.online?subject=Feature%20Request" class="text-primary hover:underline font-medium">
+                  Submit Feedback / Request
                 </a>
               </div>
 
               <div>
                 <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">Twitter / X</p>
-                <a href="https://x.com/ittoolsdottech" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">
-                  @ittoolsdottech
+                <a href="https://x.com/devtolonline" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">
+                  @devtolonline
                 </a>
               </div>
             </div>

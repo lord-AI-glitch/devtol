@@ -57,7 +57,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       strategies: 'generateSW',
       workbox: {
-        navigateFallbackDenylist: [/^\/sitemap\.xml$/, /^\/robots\.txt$/, /^\/llms.*\.txt$/, /^\/google.*\.html$/],
+        navigateFallbackDenylist: [/^\/sitemap\.xml$/, /^\/robots\.txt$/, /^\/llms.*\.txt$/, /^\/google.*\.html$/, /^\/ads\.txt$/],
       },
       manifest: {
         name: 'DevTol',
