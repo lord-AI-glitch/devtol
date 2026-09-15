@@ -20,13 +20,19 @@
    - `ads.txt` deployed and verified live with code 200 at `https://devtol.online/ads.txt`.
    - Official Google AdSense script (`ca-pub-3672531286921744`) placed statically in `<head>` in `index.html` for instant site verification and Auto Ads detection.
    - Workbox PWA configuration updated to exclude `/ads.txt` from cache fallback.
-4. **Static HTML Prerendering (125 Static Routes):**
-   - Automated postbuild script generates complete static HTML files in `dist/` with high-CTR titles, meta descriptions, canonical URLs (`https://devtol.online`), and full markdown technical guides.
-5. **Dual Schema.org Structured Data (JSON-LD) & GEO/AEO:**
-   - `WebSite` SearchAction schema + `WebApplication` ($0 Free Offer) + `BreadcrumbList`.
+4. **Hybrid Monetization Engine (100% Traffic Value Capture):**
+   - Upgraded `src/components/AdSenseUnit.vue` with automated AdBlock/Brave Shields detection.
+   - Fallback system gracefully swaps blocked or unfilled ads for high-converting native Developer Partner Offers (DigitalOcean $200 credit, Cloudflare, Namecheap, BuyMeACoffee) with zero layout shift (CLS = 0).
+5. **Static HTML Prerendering & FAQPage Schema (125 Static Routes):**
+   - Automated postbuild script generates complete static HTML files in `dist/` with high-CTR titles, meta descriptions, and canonical URLs (`https://devtol.online`).
+   - Automated extraction of `## 5. Frequently Asked Questions (FAQs)` into `@type: "FAQPage"` in JSON-LD `@graph`, triggering Google Rich Results accordion snippets in SERPs.
+   - Injected semantic "Related Online Developer Tools" internal linking clusters at the bottom of every tool guide (Hub & Spoke architecture).
+6. **Dual Schema.org Structured Data (JSON-LD) & GEO/AEO:**
+   - `WebSite` SearchAction schema + `WebApplication` ($0 Free Offer) + `BreadcrumbList` + `FAQPage`.
    - Updated `sitemap.xml`, `robots.txt`, `llms.txt`, and `llms-full.txt` for ChatGPT, Perplexity, and Claude under `https://devtol.online`.
-6. **IndexNow Instant Indexing:**
-   - Submitted all website URLs to Bing & IndexNow.
-7. **Graphify Knowledge Graph:**
-   - Fully synced locally via `python -m graphify update .` (8,909 nodes, 15,424 edges, 448 communities).
+7. **IndexNow Instant Indexing:**
+   - Submitted all 126 website URLs to Bing & IndexNow engines with HTTP 200 verification.
+8. **Graphify Knowledge Graph:**
+   - Fully synced locally via `python -m graphify update .` (8,917 nodes, 15,432 edges, 469 communities).
+
 

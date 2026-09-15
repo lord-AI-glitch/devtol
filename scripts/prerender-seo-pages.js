@@ -89,49 +89,85 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;');
 }
 
-function generatePrerenderedHtml({ pathSlug, title, description, keywords, articleHtml, category }) {
+function extractFaqsFromMarkdown(rawMd) {
+  if (!rawMd) return [];
+  const faqs = [];
+  const regex = /###\s*(?:Q\d+:\s*)?([^\n\?]+\?)\s*\n([\s\S]*?)(?=(?:###|\n---|\n##|\Z))/g;
+  let match;
+  while ((match = regex.exec(rawMd)) !== null) {
+    const q = match[1].trim();
+    let a = match[2].trim();
+    a = a.replace(/```[\s\S]*?```/g, '').replace(/[*_#`]/g, '').replace(/\s+/g, ' ').trim();
+    if (q && a) {
+      faqs.push({
+        question: q,
+        answer: a.slice(0, 450),
+      });
+    }
+  }
+  return faqs;
+}
+
+function generatePrerenderedHtml({ pathSlug, title, description, keywords, articleHtml, category, faqs = [], relatedTools = [] }) {
   const canonicalUrl = `${BASE_URL}/${pathSlug}`;
   const fullTitle = `${title} Online (Free & Fast) - DevTol`;
   const fullDesc = `${description}. 100% client-side, free, fast, and secure online developer tool on DevTol.`;
   const keywordStr = Array.from(new Set([...(keywords || []), title.toLowerCase(), 'free online tool', 'client side', 'developer utility', 'devtol'])).join(', ');
 
+  const graphNodes = [
+    {
+      '@type': 'WebApplication',
+      '@id': `${canonicalUrl}#webapp`,
+      'url': canonicalUrl,
+      'name': `${title} Online`,
+      'applicationCategory': category || 'DeveloperApplication',
+      'operatingSystem': 'All',
+      'browserRequirements': 'Requires JavaScript. Requires HTML5.',
+      'description': fullDesc,
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalUrl}#breadcrumb`,
+      'itemListElement': [
+        {
+          '@type': 'ListItem',
+          'position': 1,
+          'name': 'Home',
+          'item': BASE_URL,
+        },
+        {
+          '@type': 'ListItem',
+          'position': 2,
+          'name': title,
+          'item': canonicalUrl,
+        },
+      ],
+    },
+  ];
+
+  if (faqs && faqs.length > 0) {
+    graphNodes.push({
+      '@type': 'FAQPage',
+      '@id': `${canonicalUrl}#faq`,
+      'mainEntity': faqs.map(item => ({
+        '@type': 'Question',
+        'name': item.question,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': item.answer,
+        },
+      })),
+    });
+  }
+
   const schemaJson = JSON.stringify({
     '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'WebApplication',
-        '@id': `${canonicalUrl}#webapp`,
-        'url': canonicalUrl,
-        'name': `${title} Online`,
-        'applicationCategory': category || 'DeveloperApplication',
-        'operatingSystem': 'All',
-        'browserRequirements': 'Requires JavaScript. Requires HTML5.',
-        'description': fullDesc,
-        'offers': {
-          '@type': 'Offer',
-          'price': '0',
-          'priceCurrency': 'USD',
-        },
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${canonicalUrl}#breadcrumb`,
-        'itemListElement': [
-          {
-            '@type': 'ListItem',
-            'position': 1,
-            'name': 'Home',
-            'item': BASE_URL,
-          },
-          {
-            '@type': 'ListItem',
-            'position': 2,
-            'name': title,
-            'item': canonicalUrl,
-          },
-        ],
-      },
-    ],
+    '@graph': graphNodes,
   });
 
   let html = baseHtmlTemplate;
@@ -160,6 +196,21 @@ function generatePrerenderedHtml({ pathSlug, title, description, keywords, artic
   const schemaScriptTag = `\n    <!-- Dynamic Tool Schema.org Structured Data -->\n    <script type="application/ld+json">\n    ${schemaJson}\n    </script>\n  </head>`;
   html = html.replace('</head>', schemaScriptTag);
 
+  // Related tools navigation for internal link graph & topic clusters
+  const relatedHtml = (relatedTools && relatedTools.length > 0) ? `
+    <nav class="related-tools" style="margin-top: 48px; padding-top: 32px; border-top: 2px solid #e2e8f0;">
+      <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin: 0 0 16px 0;">Related Online Developer Tools</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px;">
+        ${relatedTools.map(rt => `
+          <a href="/${rt.slug}" style="display: block; padding: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; text-decoration: none; color: #0f172a;">
+            <strong style="display: block; font-size: 0.875rem; color: #059669;">${escapeHtml(rt.title)}</strong>
+            <span style="display: block; font-size: 0.75rem; color: #64748b; margin-top: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(rt.description)}</span>
+          </a>
+        `).join('')}
+      </div>
+    </nav>
+  ` : '';
+
   // Inject rich semantic content inside <div id="app"></div>
   const preRenderedContent = `
     <div id="app">
@@ -169,6 +220,7 @@ function generatePrerenderedHtml({ pathSlug, title, description, keywords, artic
           <p style="font-size: 1.125rem; color: #475569; margin: 0; line-height: 1.5;">${escapeHtml(description)}</p>
         </header>
         ${articleHtml ? `<section class="tool-guide" style="margin-top: 24px; line-height: 1.7;">${articleHtml}</section>` : ''}
+        ${relatedHtml}
       </main>
     </div>`;
 
@@ -177,7 +229,7 @@ function generatePrerenderedHtml({ pathSlug, title, description, keywords, artic
   return html;
 }
 
-let generatedCount = 0;
+const toolsList = [];
 
 for (const varName of registeredToolVars) {
   const relImport = importedModules.get(varName);
@@ -229,28 +281,55 @@ for (const varName of registeredToolVars) {
 
     const articlePath = path.join(rootDir, 'src', 'content', 'tools', `${toolSlug}.md`);
     let articleHtml = '';
+    let faqs = [];
     if (fs.existsSync(articlePath)) {
       const rawMd = fs.readFileSync(articlePath, 'utf8');
       articleHtml = md.render(rawMd);
+      faqs = extractFaqsFromMarkdown(rawMd);
     }
 
-    const toolHtml = generatePrerenderedHtml({
-      pathSlug: toolSlug,
+    toolsList.push({
+      slug: toolSlug,
       title,
       description,
       keywords,
       articleHtml,
-      category: 'DeveloperApplication',
+      faqs,
     });
-
-    const targetDir = path.join(distDir, toolSlug);
-    if (!fs.existsSync(targetDir)) {
-      fs.mkdirSync(targetDir, { recursive: true });
-    }
-
-    fs.writeFileSync(path.join(targetDir, 'index.html'), toolHtml, 'utf8');
-    generatedCount++;
   }
+}
+
+let generatedCount = 0;
+const totalTools = toolsList.length;
+
+for (let i = 0; i < totalTools; i++) {
+  const tool = toolsList[i];
+  // Select 4 related tools for internal linking network
+  const relatedTools = [
+    toolsList[(i - 2 + totalTools) % totalTools],
+    toolsList[(i - 1 + totalTools) % totalTools],
+    toolsList[(i + 1) % totalTools],
+    toolsList[(i + 2) % totalTools],
+  ].map(t => ({ slug: t.slug, title: t.title, description: t.description }));
+
+  const toolHtml = generatePrerenderedHtml({
+    pathSlug: tool.slug,
+    title: tool.title,
+    description: tool.description,
+    keywords: tool.keywords,
+    articleHtml: tool.articleHtml,
+    category: 'DeveloperApplication',
+    faqs: tool.faqs,
+    relatedTools,
+  });
+
+  const targetDir = path.join(distDir, tool.slug);
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, { recursive: true });
+  }
+
+  fs.writeFileSync(path.join(targetDir, 'index.html'), toolHtml, 'utf8');
+  generatedCount++;
 }
 
 const legalPages = [

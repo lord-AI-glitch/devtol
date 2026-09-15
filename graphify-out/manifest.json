@@ -1,7 +1,7 @@
 {
   ".eslintrc-auto-import.json": {
-    "mtime": 1789431172.5120971,
-    "seen": 1789431684.4447246,
+    "mtime": 1789441222.6309912,
+    "seen": 1789441453.87017,
     "ast_hash": "1a9528ffe7ff12a34b4fa901a93c50ef",
     "semantic_hash": ""
   },
@@ -18,14 +18,14 @@
     "semantic_hash": "822f88174871e2c3e1aa8743550074b0"
   },
   "auto-imports.d.ts": {
-    "mtime": 1789431172.5140958,
-    "seen": 1789431684.444739,
+    "mtime": 1789441222.6309912,
+    "seen": 1789441453.870187,
     "ast_hash": "80448bb044a7e5016d4f1b31dc0c939e",
     "semantic_hash": ""
   },
   "components.d.ts": {
-    "mtime": 1789431223.4991682,
-    "seen": 1789431684.444741,
+    "mtime": 1789441274.2990358,
+    "seen": 1789441453.8701897,
     "ast_hash": "b3259a7edaba4da37fcb4936c5921d15",
     "semantic_hash": ""
   },
@@ -2802,8 +2802,8 @@
     "semantic_hash": ""
   },
   "public/robots.txt": {
-    "mtime": 1789431164.5336745,
-    "seen": 1789431684.4455783,
+    "mtime": 1789441214.4359171,
+    "seen": 1789441453.8711634,
     "ast_hash": "70c05d77d4cac39da6275be614ce8e1c",
     "semantic_hash": ""
   },
@@ -3072,9 +3072,9 @@
     "semantic_hash": ""
   },
   "src/components/AdSenseUnit.vue": {
-    "mtime": 1789332443.6027305,
-    "seen": 1789332715.2127063,
-    "ast_hash": "f36811c8137195a63d0cdc863dbaa3a3",
+    "mtime": 1789441135.6929648,
+    "seen": 1789441453.8702428,
+    "ast_hash": "a7f08128daf2280e1500535df59ade6b",
     "semantic_hash": ""
   },
   "src/pages/legal/Disclaimer.vue": {
@@ -3102,9 +3102,9 @@
     "semantic_hash": ""
   },
   "PROJECT_STATE.md": {
-    "mtime": 1789433654.5342526,
-    "seen": 1789433694.5735621,
-    "ast_hash": "5f4d9087c84a59d10d00c9786767f8c1",
+    "mtime": 1789439584.1203833,
+    "seen": 1789441453.8711321,
+    "ast_hash": "6edbba03e998bedd13268838db51112f",
     "semantic_hash": ""
   },
   "scripts/test_node.txt": {
@@ -4260,9 +4260,9 @@
     "semantic_hash": ""
   },
   "scripts/prerender-seo-pages.js": {
-    "mtime": 1789430944.5830734,
-    "seen": 1789431684.4447756,
-    "ast_hash": "66cd9df4b960fcb3bd03d7402456ee6e",
+    "mtime": 1789441199.8167999,
+    "seen": 1789441453.8702242,
+    "ast_hash": "982fb53521c3b86f075751220dfb830e",
     "semantic_hash": ""
   },
   "scripts/write_any_b64.py": {
@@ -4272,14 +4272,14 @@
     "semantic_hash": ""
   },
   "public/llms-full.txt": {
-    "mtime": 1789431164.5347586,
-    "seen": 1789431684.4455755,
+    "mtime": 1789441214.4370472,
+    "seen": 1789441453.8711605,
     "ast_hash": "746b7e639565dbe1d7779aee579d3e18",
     "semantic_hash": ""
   },
   "public/llms.txt": {
-    "mtime": 1789431164.534194,
-    "seen": 1789431684.445577,
+    "mtime": 1789441214.4364936,
+    "seen": 1789441453.8711622,
     "ast_hash": "4541a67d384a2692f8c0c3c4dea61459",
     "semantic_hash": ""
   },
