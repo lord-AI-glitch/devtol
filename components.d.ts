@@ -255,6 +255,7 @@ declare module '@vue/runtime-core' {
     SlugifyString: typeof import('./src/content/tools/slugify-string.md')['default']
     SpanCopyable: typeof import('./src/components/SpanCopyable.vue')['default']
     SqlPrettify: typeof import('./src/content/tools/sql-prettify.md')['default']
+    SqlToOrmConverter: typeof import('./src/content/tools/sql-to-orm-converter.md')['default']
     StringObfuscator: typeof import('./src/content/tools/string-obfuscator.md')['default']
     SvgConverter: typeof import('./src/content/tools/svg-converter.md')['default']
     SvgPlaceholderGenerator: typeof import('./src/content/tools/svg-placeholder-generator.md')['default']

@@ -25,6 +25,7 @@
 ### AI Tools
 - [AI token & LLM cost calculator](https://devtol.online/ai-token-cost-calculator): Estimate prompt tokens via BPE heuristic and compare live pricing across OpenAI, Anthropic, Gemini, and DeepSeek with prompt caching discounts.
 - [AI regex generator & structural explainer](https://devtol.online/ai-regex-generator-explainer): Generate regular expressions from natural language prompts, disassemble pattern structures, test live strings with capture groups, and export production code.
+- [SQL to ORM schema converter](https://devtol.online/sql-to-orm-converter): Convert raw SQL CREATE TABLE DDL statements into Prisma schemas, SQLAlchemy 2.0 models, Drizzle ORM, TypeORM, Go GORM, and TypeScript interfaces.
 
 ### Image & Media
 - [Image Compressor](https://devtol.online/image-compressor): Compress JPG, PNG, and WebP images up to 90% smaller. Real-time preview, no uploads.

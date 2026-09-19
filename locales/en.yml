@@ -107,6 +107,10 @@ tools:
     title: AI regex generator & structural explainer
     description: Generate regular expressions from natural language prompts, disassemble pattern structures, test live strings with capture groups, and export production code.
 
+  sql-to-orm-converter:
+    title: SQL to ORM schema converter
+    description: Convert raw SQL CREATE TABLE DDL statements into Prisma schemas, SQLAlchemy 2.0 models, Drizzle ORM, TypeORM, Go GORM, and TypeScript interfaces.
+
   mortgage-calculator:
     title: Mortgage calculator
     description: Calculate your monthly mortgage payment including principal, interest, taxes, and insurance (PITI) with complete amortization schedule.

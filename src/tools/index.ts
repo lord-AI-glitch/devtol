@@ -8,6 +8,7 @@ import { tool as adsenseRevenueCalculator } from './adsense-revenue-calculator';
 import { tool as aiTokenCostCalculator } from './ai-token-cost-calculator';
 import { tool as curlToCodeConverter } from './curl-to-code-converter';
 import { tool as aiRegexGeneratorExplainer } from './ai-regex-generator-explainer';
+import { tool as sqlToOrmConverter } from './sql-to-orm-converter';
 
 // PDF Tools (1-11)
 import { tool as pdfEditor } from './pdf-editor';
@@ -138,7 +139,7 @@ export const toolsByCategory: ToolCategory[] = [
   },
   {
     name: 'AI Tools',
-    components: [aiTokenCostCalculator, aiRegexGeneratorExplainer],
+    components: [aiTokenCostCalculator, aiRegexGeneratorExplainer, sqlToOrmConverter],
   },
   {
     name: 'Image & Media',
