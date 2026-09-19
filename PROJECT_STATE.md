@@ -102,6 +102,18 @@
       - Verified complete static prerender build generating 1,234 static HTML pages.
       - Deployed live to Cloudflare Pages (`https://df5dcab0.devtol.pages.dev` & `https://devtol.online`) verified with HTTP 200.
       - Synced Graphify AST knowledge graph (`python -m graphify update .`).
-
-
-
+17. **Global Tool Runtime Fix: Root Cause of "storeToRefs is not defined" Resolved (Phase 5):**
+    - **Root Cause Identified**:
+      - During the previous bundle optimization in commit `aeeacf4` that removed lodash, `import { storeToRefs } from 'pinia';` in `src/modules/command-palette/command-palette.vue` was inadvertently removed.
+      - Because `<CommandPalette />` is rendered inside `BaseLayout`, and every tool page renders `BaseLayout` inside `tool.layout.vue`, `CommandPalette` threw `ReferenceError: storeToRefs is not defined` upon mounting.
+      - `tool.layout.vue`'s `onErrorCaptured` hook appropriately caught this unhandled exception from its descendant tree and displayed the Tool Execution Error banner across all tool pages.
+    - **Root Cause Elimination & Multi-Layer Defense**:
+      - Explicitly imported `storeToRefs` in `src/modules/command-palette/command-palette.vue`.
+      - Added `'pinia'` to `AutoImport.imports` in `vite.config.ts` as an architectural safeguard to guarantee all Pinia composables and helpers are automatically registered project-wide.
+    - **Verification & Deployment**:
+      - Added dedicated regression test `src/modules/command-palette/command-palette.test.ts` verifying error-free mounting with Pinia and i18n plugins.
+      - Passed all 39 test suites with 100% success.
+      - Passed strict TypeScript compilation (`vue-tsc --noEmit`).
+      - Generated 1,234 static prerendered HTML routes via `npm run build`.
+      - Deployed live to Cloudflare Pages (`https://f0c61167.devtol.pages.dev` & `https://devtol.online`) verified with HTTP 200.
+      - Synced local AST knowledge graph via `python -m graphify update .` (9,235 nodes, 15,804 edges, 446 communities).
