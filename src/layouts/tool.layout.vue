@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue';
+import { computed, onErrorCaptured, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useHead } from '@vueuse/head';
 import type { HeadObject } from '@vueuse/head';
@@ -9,6 +9,7 @@ import 'highlight.js/styles/atom-one-dark.css';
 
 import BaseLayout from './base.layout.vue';
 import FavoriteButton from '@/components/FavoriteButton.vue';
+import ToolIssueWhatsApp from '@/components/ToolIssueWhatsApp.vue';
 import AdSenseUnit from '@/components/AdSenseUnit.vue';
 import type { Tool } from '@/tools/tools.types';
 import { useStyleStore } from '@/stores/style.store';
@@ -22,6 +23,15 @@ const { t } = useI18n();
 const i18nKey = computed<string>(() => route.path.trim().replace('/', ''));
 const toolTitle = computed<string>(() => t(`tools.${i18nKey.value}.title`, String(route.meta.name || 'Tool')));
 const rawDescription = computed<string>(() => t(`tools.${i18nKey.value}.description`, String(route.meta.description || '')));
+const toolDescription = computed<string>(() => rawDescription.value);
+
+const capturedError = ref<Error | null>(null);
+
+onErrorCaptured((err, instance, info) => {
+  console.error('[DevTol Tool Error Captured]:', err, info);
+  capturedError.value = err instanceof Error ? err : new Error(String(err));
+  return false;
+});
 
 const seoTitle = computed<string>(() => `${toolTitle.value} Online (Free & Fast) - DevTol`);
 const seoDescription = computed<string>(() => {
@@ -136,7 +146,7 @@ const head = computed<HeadObject>(() => ({
 useHead(head);
 
 // Markdown-it engine setup with highlight.js integration
-const md = new MarkdownIt({
+const md: MarkdownIt = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
@@ -173,6 +183,7 @@ function loadArticle(toolSlug: string) {
 watch(
   () => route.path,
   newPath => {
+    capturedError.value = null;
     loadArticle(newPath);
   },
   { immediate: true },
@@ -188,7 +199,12 @@ watch(
             {{ toolTitle }}
           </n-h1>
 
-          <div>
+          <div flex items-center gap-2>
+            <ToolIssueWhatsApp
+              mode="header"
+              :tool-title="toolTitle"
+              :tool-path="route.path"
+            />
             <FavoriteButton :tool="{ name: route.meta.name, path: route.path } as Tool" />
           </div>
         </div>
@@ -201,9 +217,18 @@ watch(
       </div>
     </div>
 
-    <!-- Interactive Tool Component Slot -->
+    <!-- Interactive Tool Component Slot or Error Boundary -->
     <div class="tool-content">
-      <slot />
+      <div v-if="capturedError" class="w-full max-w-650px px-4 mx-auto">
+        <ToolIssueWhatsApp
+          mode="banner"
+          :tool-title="toolTitle"
+          :tool-path="route.path"
+          :error-message="capturedError.message"
+          @retry="capturedError = null"
+        />
+      </div>
+      <slot v-else />
     </div>
 
     <!-- Responsive AdSense Spaceholder to maintain 0 CLS -->
@@ -229,6 +254,13 @@ watch(
         <AdSenseUnit format="horizontal" min-height="110px" />
       </div>
     </div>
+
+    <!-- Floating WhatsApp Action Button for Instant Tool Assistance / Malfunction Reporting -->
+    <ToolIssueWhatsApp
+      mode="floating"
+      :tool-title="toolTitle"
+      :tool-path="route.path"
+    />
   </BaseLayout>
 </template>
 
