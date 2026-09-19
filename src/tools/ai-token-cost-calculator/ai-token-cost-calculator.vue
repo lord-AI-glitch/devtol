@@ -11,41 +11,85 @@ import {
   type LlmModel,
 } from './ai-token-cost-calculator.service';
 
-const message = useMessage();
+let message: ReturnType<typeof useMessage> | null = null;
+try {
+  message = useMessage();
+} catch {
+  // Graceful fallback if mounted without n-message-provider
+}
 
 // Persisted inputs
 const systemPrompt = useStorage('ai-calc:system-prompt', '');
 const userPrompt = useStorage(
   'ai-calc:user-prompt',
-  SAMPLE_PROMPTS[0].userPrompt,
+  SAMPLE_PROMPTS[0]?.userPrompt || '',
 );
 const expectedOutputTokens = useStorage('ai-calc:output-tokens', 500);
 const requestVolume = useStorage('ai-calc:volume', 10000);
 const usePromptCache = useStorage('ai-calc:cache', false);
 const selectedTier = ref<string>('all');
 
-// Combine full text for estimation
+const defaultMetrics = {
+  charCount: 0,
+  wordCount: 0,
+  lineCount: 0,
+  estimatedTokens: 0,
+  arabicCharRatio: 0,
+  codeDensityRatio: 0,
+};
+
+// Combine full text for estimation safely
 const fullPromptText = computed(() => {
-  const parts = [];
-  if (systemPrompt.value.trim()) parts.push(systemPrompt.value.trim());
-  if (userPrompt.value.trim()) parts.push(userPrompt.value.trim());
+  const parts: string[] = [];
+  const sys = typeof systemPrompt.value === 'string' ? systemPrompt.value.trim() : '';
+  const usr = typeof userPrompt.value === 'string' ? userPrompt.value.trim() : '';
+  if (sys) parts.push(sys);
+  if (usr) parts.push(usr);
   return parts.join('\n\n');
 });
 
-const tokenMetrics = computed(() => estimateTokens(fullPromptText.value));
+const tokenMetrics = computed(() => {
+  try {
+    const raw = estimateTokens(fullPromptText.value || '') || defaultMetrics;
+    return {
+      ...raw,
+      formattedTokens: Number(raw.estimatedTokens || 0).toLocaleString('en-US'),
+      formattedChars: Number(raw.charCount || 0).toLocaleString('en-US'),
+      formattedWords: Number(raw.wordCount || 0).toLocaleString('en-US'),
+    };
+  } catch (e) {
+    console.error('[AI Token Calculator] Error estimating tokens:', e);
+    return {
+      ...defaultMetrics,
+      formattedTokens: '0',
+      formattedChars: '0',
+      formattedWords: '0',
+    };
+  }
+});
 
-const allCalculations = computed(() =>
-  calculateLlmCosts({
-    inputTokens: tokenMetrics.value.estimatedTokens,
-    outputTokens: expectedOutputTokens.value,
-    requestVolume: requestVolume.value,
-    usePromptCache: usePromptCache.value,
-  }),
-);
+const allCalculations = computed(() => {
+  try {
+    const inputTokens = tokenMetrics.value?.estimatedTokens ?? 0;
+    const outputTokens = Number(expectedOutputTokens.value) || 500;
+    const volume = Number(requestVolume.value) || 10000;
+    const cache = Boolean(usePromptCache.value);
+    return calculateLlmCosts({
+      inputTokens,
+      outputTokens,
+      requestVolume: volume,
+      usePromptCache: cache,
+    }) || [];
+  } catch (e) {
+    console.error('[AI Token Calculator] Error calculating costs:', e);
+    return [];
+  }
+});
 
 const filteredCalculations = computed(() => {
+  if (!Array.isArray(allCalculations.value)) return [];
   if (selectedTier.value === 'all') return allCalculations.value;
-  return allCalculations.value.filter(c => c.model.tier === selectedTier.value);
+  return allCalculations.value.filter(c => c?.model?.tier === selectedTier.value);
 });
 
 const loadSample = (index: number) => {
@@ -54,33 +98,40 @@ const loadSample = (index: number) => {
     systemPrompt.value = sample.systemPrompt;
     userPrompt.value = sample.userPrompt;
     expectedOutputTokens.value = sample.expectedOutputTokens;
-    message.success(`Loaded preset: ${sample.name}`);
+    message?.success?.(`Loaded preset: ${sample.name}`);
   }
 };
 
 const clearAll = () => {
   systemPrompt.value = '';
   userPrompt.value = '';
-  message.info('Cleared inputs');
+  message?.info?.('Cleared inputs');
 };
 
-const formatPricePerM = (price: number) => `$${price.toFixed(price < 0.1 ? 3 : 2)}`;
+const formatPricePerM = (price: number) => `$${(price || 0).toFixed(price < 0.1 ? 3 : 2)}`;
 
 const formatCost = (val: number) => {
-  if (val === 0) return '$0.00';
+  if (!val || val === 0) return '$0.00';
   if (val < 0.0001) return `$${val.toFixed(6)}`;
   if (val < 0.01) return `$${val.toFixed(4)}`;
   return `$${val.toFixed(2)}`;
 };
 
-const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num);
+const formatCount = (num: number | string | undefined | null): string => {
+  if (num === undefined || num === null || isNaN(Number(num))) {
+    return '0';
+  }
+  return Number(num).toLocaleString('en-US');
+};
 
-const copyMarkdownSummary = () => {
+const formattedVolume = computed(() => formatCount(requestVolume.value));
+
+const copyMarkdownSummary = async () => {
   const lines = [
     `### AI Prompt Cost Analysis (DevTol.online)`,
-    `- **Input Tokens**: ~${formatNumber(tokenMetrics.value.estimatedTokens)}`,
-    `- **Expected Output Tokens**: ${formatNumber(expectedOutputTokens.value)}`,
-    `- **Monthly Request Volume**: ${formatNumber(requestVolume.value)} requests`,
+    `- **Input Tokens**: ~${formatCount(tokenMetrics.value?.estimatedTokens ?? 0)}`,
+    `- **Expected Output Tokens**: ${formatCount(expectedOutputTokens.value)}`,
+    `- **Monthly Request Volume**: ${formatCount(requestVolume.value)} requests`,
     `- **Prompt Caching**: ${usePromptCache.value ? 'Enabled' : 'Disabled'}`,
     '',
     `| Model | Provider | Input / 1M | Output / 1M | Cost / Call | Monthly Total | Savings |`,
@@ -93,9 +144,14 @@ const copyMarkdownSummary = () => {
     );
   });
 
-  navigator.clipboard.writeText(lines.join('\n')).then(() => {
-    message.success('Copied Markdown analysis table to clipboard!');
-  });
+  if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(lines.join('\n'));
+      message?.success?.('Copied Markdown analysis table to clipboard!');
+    } catch {
+      message?.warning?.('Could not copy to clipboard');
+    }
+  }
 };
 
 const volumePresets = [
@@ -186,7 +242,7 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
                 Estimated Input Tokens
               </div>
               <div class="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 my-1">
-                {{ formatNumber(tokenMetrics.estimatedTokens) }}
+                {{ tokenMetrics?.formattedTokens || '0' }}
               </div>
               <div class="text-xs text-gray-500">
                 BPE-calibrated heuristic estimation
@@ -196,19 +252,19 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
             <div class="grid grid-cols-2 gap-2 text-center">
               <div class="p-2 rounded bg-gray-50 dark:bg-gray-800">
                 <div class="text-xs text-gray-500">Characters</div>
-                <div class="text-lg font-bold">{{ formatNumber(tokenMetrics.charCount) }}</div>
+                <div class="text-lg font-bold">{{ tokenMetrics?.formattedChars || '0' }}</div>
               </div>
               <div class="p-2 rounded bg-gray-50 dark:bg-gray-800">
                 <div class="text-xs text-gray-500">Words</div>
-                <div class="text-lg font-bold">{{ formatNumber(tokenMetrics.wordCount) }}</div>
+                <div class="text-lg font-bold">{{ tokenMetrics?.formattedWords || '0' }}</div>
               </div>
             </div>
 
             <!-- Language / Density Alerts -->
-            <div v-if="tokenMetrics.arabicCharRatio > 0.2" class="p-2 rounded bg-amber-500/10 border border-amber-500/20 text-xs text-amber-700 dark:text-amber-300">
+            <div v-if="tokenMetrics && tokenMetrics.arabicCharRatio > 0.2" class="p-2 rounded bg-amber-500/10 border border-amber-500/20 text-xs text-amber-700 dark:text-amber-300">
               ⚡ <strong>Arabic Script Detected</strong>: Standard BPE models expand Arabic into ~2.1 tokens/word compared to ~1.3 for English.
             </div>
-            <div v-else-if="tokenMetrics.codeDensityRatio > 0.12" class="p-2 rounded bg-blue-500/10 border border-blue-500/20 text-xs text-blue-700 dark:text-blue-300">
+            <div v-else-if="tokenMetrics && tokenMetrics.codeDensityRatio > 0.12" class="p-2 rounded bg-blue-500/10 border border-blue-500/20 text-xs text-blue-700 dark:text-blue-300">
               ⚙️ <strong>Code / JSON Syntax Detected</strong>: Punctuation and identifier splits increase token density.
             </div>
 
@@ -217,7 +273,7 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
               <div>
                 <div class="flex justify-between text-xs mb-1">
                   <span>Expected Output Tokens:</span>
-                  <strong class="text-primary">{{ formatNumber(expectedOutputTokens) }}</strong>
+                  <strong class="text-primary">{{ expectedOutputTokens }}</strong>
                 </div>
                 <n-slider v-model:value="expectedOutputTokens" :min="50" :max="4096" :step="50" />
               </div>
@@ -291,7 +347,7 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
               <th>Input / 1M</th>
               <th>Output / 1M</th>
               <th>Single Call Cost</th>
-              <th>Monthly ({{ formatNumber(requestVolume) }} calls)</th>
+              <th>Monthly ({{ formattedVolume }} calls)</th>
               <th>Savings vs Max</th>
             </tr>
           </thead>

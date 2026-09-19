@@ -86,8 +86,22 @@
       1. *Header Action*: Sleek button beside the favorite toggle in `src/layouts/tool.layout.vue` with instant tooltip.
       2. *Floating Action Widget (FAB)*: Unobtrusive, bottom-corner badge with WhatsApp green styling and smooth expand-on-hover effect.
       3. *Automated Error Boundary (`onErrorCaptured`)*: Catches unexpected tool crashes in `<slot />`, preventing screen breakage and presenting an actionable recovery card with a direct error-report WhatsApp trigger.
-    - **Pre-filled Contextual Messaging**: Dynamically encodes current tool name, canonical/live URL, and technical error payload in both Arabic and English (`locales/ar.yml` and `locales/en.yml`).
-    - **Zero AdSense/Legal Impact**: Maintained 100% read-only integrity for AdSense configuration and legal pages.
-    - **Verification**: `vue-tsc` passed with 0 errors; all 157 unit tests passed across 38 suites; Graphify synced.
+16. **WhatsApp Floating FAB Redesign, Egypt International Code (+20), & AI Token Calculator Fix (Phase 4):**
+    - **Egypt International Code Standardized (+20)**:
+      - Updated all UI strings, tooltips, buttons, and wa.me links to explicitly include the Egypt country code: `+20 109 665 6588` (wa.me link `https://wa.me/201096656588?text=...`) across `locales/ar.yml` and `locales/en.yml`.
+    - **Ultra-Compact Circular Floating WhatsApp FAB**:
+      - Re-architected the floating button from an oversized pill box into a sleek, circular Floating Action Button (52×52px circle, WhatsApp green gradient `#25d366` -> `#128c7e`, centered 28px Tabler WhatsApp icon, circular breathing pulse ring, and subtle hover elevation).
+      - Retained full accessibility with clean `:aria-label` and interactive desktop tooltip.
+    - **AI Token Cost Calculator Runtime Fix (`/ai-token-cost-calculator`)**:
+      - Diagnosed and resolved runtime `$setup.formatNumber is not a function` collision caused by `@intlify/unplugin-vue-i18n` compiler shadowing.
+      - Refactored numeric formatting to pre-computed reactive properties (`tokenMetrics.formattedTokens`, `formattedChars`, `formattedWords`, `formattedVolume`) and renamed helper to `formatCount`.
+      - Added defensive `try/catch` around `useMessage()` and fallback defaults for token estimation and cost calculation.
+    - **Full Production Testing & Deployment**:
+      - Verified 158/158 unit tests passing across 39 suites.
+      - Verified zero TypeScript errors (`vue-tsc --noEmit`).
+      - Verified complete static prerender build generating 1,234 static HTML pages.
+      - Deployed live to Cloudflare Pages (`https://df5dcab0.devtol.pages.dev` & `https://devtol.online`) verified with HTTP 200.
+      - Synced Graphify AST knowledge graph (`python -m graphify update .`).
+
 
 

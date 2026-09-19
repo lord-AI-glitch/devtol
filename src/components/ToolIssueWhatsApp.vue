@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { IconAlertTriangle, IconBrandWhatsapp, IconRefresh } from '@tabler/icons-vue';
 import { useI18n } from 'vue-i18n';
 
@@ -21,7 +21,6 @@ const emit = defineEmits<{
 }>();
 
 const { t, locale } = useI18n();
-const isHovered = ref(false);
 
 const WHATSAPP_PHONE = '201096656588';
 
@@ -72,12 +71,10 @@ function handleOpenWhatsApp() {
     </c-tooltip>
   </div>
 
-  <!-- 2. Floating Mode: Fixed corner button with subtle pulse and hover expand -->
+  <!-- 2. Floating Mode: Compact circular floating button with WhatsApp logo only -->
   <div
     v-else-if="mode === 'floating'"
     class="tool-issue-floating"
-    @mouseenter="isHovered = true"
-    @mouseleave="isHovered = false"
   >
     <c-tooltip :tooltip="$t('toolIssue.floatingTooltip')" position="left">
       <a
@@ -88,10 +85,7 @@ function handleOpenWhatsApp() {
         :aria-label="$t('toolIssue.floatingLabel')"
       >
         <div class="pulse-ring" />
-        <IconBrandWhatsapp class="floating-icon" :size="24" stroke-width="2.2" />
-        <span class="floating-text">
-          {{ $t('toolIssue.floatingLabel') }}
-        </span>
+        <IconBrandWhatsapp class="floating-icon" :size="28" stroke-width="2.2" />
       </a>
     </c-tooltip>
   </div>
@@ -170,39 +164,34 @@ function handleOpenWhatsApp() {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
   background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
   color: #ffffff !important;
   text-decoration: none !important;
-  border-radius: 9999px;
-  box-shadow: 0 4px 18px rgba(18, 140, 126, 0.38), 0 2px 6px rgba(0, 0, 0, 0.15);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+  box-shadow: 0 4px 18px rgba(18, 140, 126, 0.4), 0 2px 6px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
   backdrop-filter: blur(8px);
 }
 
 .floating-wa-link:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5), 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.55), 0 4px 12px rgba(0, 0, 0, 0.22);
   color: #ffffff !important;
 }
 
 .floating-icon {
   flex-shrink: 0;
-}
-
-.floating-text {
-  white-space: nowrap;
+  color: #ffffff;
 }
 
 .pulse-ring {
   position: absolute;
   inset: -4px;
-  border-radius: 9999px;
-  border: 2px solid rgba(37, 211, 102, 0.5);
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.55);
   animation: pulse-border 2.5s infinite ease-out;
   pointer-events: none;
 }
@@ -213,7 +202,7 @@ function handleOpenWhatsApp() {
     opacity: 0.8;
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.08);
     opacity: 0;
   }
   100% {
@@ -228,10 +217,12 @@ function handleOpenWhatsApp() {
     inset-inline-end: 18px;
   }
   .floating-wa-link {
-    padding: 12px;
+    width: 48px;
+    height: 48px;
   }
-  .floating-text {
-    display: none;
+  .floating-icon {
+    width: 24px;
+    height: 24px;
   }
 }
 
