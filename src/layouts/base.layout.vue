@@ -12,8 +12,11 @@ import { config } from '@/config';
 import type { ToolCategory } from '@/tools/tools.types';
 import { useToolStore } from '@/tools/tools.store';
 import { useTracker } from '@/modules/tracker/tracker.services';
+import { computed, defineAsyncComponent } from 'vue';
 import CollapsibleToolMenu from '@/components/CollapsibleToolMenu.vue';
 import AdSenseUnit from '@/components/AdSenseUnit.vue';
+
+const CommandPalette = defineAsyncComponent(() => import('@/modules/command-palette/command-palette.vue'));
 
 const themeVars = useThemeVars();
 const styleStore = useStyleStore();
@@ -83,7 +86,7 @@ const tools = computed<ToolCategory[]>(() => [
               </c-button>
             </c-tooltip>
 
-            <command-palette />
+            <CommandPalette />
 
             <locale-selector v-if="!styleStore.isSmallScreen" />
 

@@ -150,7 +150,7 @@ function handleSubmit() {
             <button
               type="submit"
               :disabled="isSubmitting"
-              class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-slate-900 dark:text-white font-semibold rounded-md text-sm transition-colors"
+              class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-semibold rounded-md text-sm transition-colors"
             >
               {{ isSubmitting ? 'Transmitting...' : 'Send Message' }}
             </button>
@@ -169,11 +169,18 @@ function handleSubmit() {
 }
 
 .contact-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  padding: 36px;
+}
+
+:global(.dark) .contact-card {
   background: rgba(24, 24, 28, 0.85);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 36px;
+  box-shadow: none;
 }
 
 .text-primary {

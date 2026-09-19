@@ -39,35 +39,25 @@
             el.removeAttribute('aria-hiddens');
           }
         }
-        if (typeof MutationObserver !== 'undefined') {
-          var observer = new MutationObserver(fixAria);
-          observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['aria-hiddens'] });
+        if (typeof window !== 'undefined') {
+          window.addEventListener('load', function() {
+            if ('requestIdleCallback' in window) {
+              window.requestIdleCallback(fixAria);
+            } else {
+              setTimeout(fixAria, 200);
+            }
+          });
         }
-        document.addEventListener('DOMContentLoaded', fixAria);
-        window.addEventListener('load', fixAria);
       })();
     </script>
 
-    <!-- Google Fonts: Inter & JetBrains Mono (Non-blocking) -->
+    <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
       rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
     />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
 
     <meta property="og:url" content="https://devtol.online/" />
     <meta property="og:type" content="website" />

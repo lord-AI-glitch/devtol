@@ -39,15 +39,15 @@ useHead({
         </section>
 
         <section>
-          <div class="bg-amber-950/40 border border-amber-500/50 p-5 rounded-lg">
-            <h2 class="text-xl font-semibold text-amber-300 mb-2">
+          <div class="bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-500/50 p-5 rounded-lg">
+            <h2 class="text-xl font-semibold text-amber-800 dark:text-amber-300 mb-2">
               3. Crucial Financial & Mathematical Disclaimer
             </h2>
             <p class="text-sm text-slate-700 dark:text-neutral-200">
               <strong>NOT FINANCIAL, INVESTMENT, TAX, OR LEGAL ADVICE:</strong> 
               The financial utilities available on DevTol — including the <em>Mortgage Calculator</em>, <em>Compound Interest Calculator</em>, and <em>AdSense Revenue Calculator</em> — are provided strictly for <strong>general informational and educational purposes only</strong>.
             </p>
-            <ul class="list-disc pl-5 mt-3 space-y-2 text-sm text-slate-600 dark:text-neutral-300">
+            <ul class="list-disc pl-5 mt-3 space-y-2 text-sm text-slate-700 dark:text-neutral-300">
               <li>
                 <strong>Theoretical Projections Only</strong>: All calculations, projections, amortizations, and revenue estimates are mathematical simulations based upon variables entered solely by the user. Real-world results will inevitably vary due to fluctuating interest rates, lender closing fees, amortization conventions, local tax ordinances, currency fluctuations, real-time programmatic ad auctions, and ad-blocker penetration rates.
               </li>
@@ -126,11 +126,18 @@ useHead({
 }
 
 .legal-card {
-  background: rgba(24, 24, 28, 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   padding: 36px;
+}
+
+:global(.dark) .legal-card {
+  background: rgba(24, 24, 28, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
 }
 
 .text-primary {

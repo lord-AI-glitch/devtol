@@ -117,26 +117,6 @@ export default defineConfig({
   },
   build: {
     target: 'es2022',
-    chunkSizeWarningLimit: 1500,
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('naive-ui') || id.includes('async-validator')) {
-              return 'vendor-naive';
-            }
-            if (id.includes('@tabler/icons') || id.includes('@vicons')) {
-              return 'vendor-icons';
-            }
-            if (id.includes('lodash')) {
-              return 'vendor-lodash';
-            }
-            if (id.includes('highlight.js') || id.includes('markdown-it')) {
-              return 'vendor-markdown';
-            }
-          }
-        },
-      },
-    },
+    chunkSizeWarningLimit: 2500,
   },
 });

@@ -1,0 +1,429 @@
+home:
+  hero:
+    title: 'منصة أدوات المطورين والمصممين الشاملة والمحلية'
+    description: 'أكثر من 126 أداة إنتاجية آمنة تعمل بنسبة 100% داخل متصفحك. تحويل، تشفير، معالجة ملفات PDF وتنسيق الأكواد بأمان ودون خوادم خارجية.'
+    searchPlaceholder: 'ابحث في أكثر من 126 أداة بالاسم أو الوظيفة أو الصيغة (مثل PDF, JSON, WebP, Hash)...'
+  pillars:
+    privacyTitle: 'خصوصية محلية مطلقة 100%'
+    privacyDesc: 'ملفاتك ومفاتيحك وبياناتك تُعالج داخل الذاكرة المحلية لمتصفحك فقط، ولا يتم إرسال أي بايت أو تخزينه سحابياً.'
+    speedTitle: 'سرعة فائقة مع WebAssembly'
+    speedDesc: 'استفد من أداء المعالجة المباشر لجهازك لضغط الصور ومعالجة المستندات والتشفير الفوري دون انتظار.'
+    frictionlessTitle: 'مجاني تماماً ويعمل دون إنترنت (PWA)'
+    frictionlessDesc: 'لا حاجة لإنشاء حساب أو تسجيل دخول. يمكنك تثبيت DevTol واستخدامه في أي وقت ومكان دون اتصال بالإنترنت.'
+  categories:
+    featuredTools: 'الأدوات الأكثر استخداماً ومميزة'
+    newestTools: أحدث الأدوات
+    favoriteTools: 'أدواتك المفضلة'
+    allTools: 'جميع الأدوات'
+    favoritesDndToolTip: 'اسحب وأفلت لإعادة ترتيب المفضلة'
+  subtitle: 'أدوات عملية ومفيدة للجميع'
+  toggleMenu: 'تبديل القائمة'
+  home: الرئيسية
+  uiLib: 'مكتبة الواجهات'
+  support: 'دعم تطوير DevTol'
+  buyMeACoffee: 'اشترِ لي قهوة'
+  follow:
+    title: 'هل يعجبك DevTol؟'
+    p1: 'امنحنا نجمة على'
+    githubRepository: 'مستودع DevTol على GitHub'
+    p2: 'أو تابعنا على'
+    twitterXAccount: 'حساب DevTol على X'
+    thankYou: 'شكراً جزيلاً!'
+  nav:
+    github: 'مستودع GitHub'
+    githubRepository: 'مستودع DevTol على GitHub'
+    twitterX: 'حساب X'
+    twitterXAccount: 'حساب DevTol على X'
+    about: 'عن DevTol'
+    aboutLabel: 'حول'
+    deals: 'عروض المطورين'
+    darkMode: 'الوضع الداكن'
+    lightMode: 'الوضع الفاتح'
+    mode: 'تبديل الوضع الداكن/الفاتح'
+about:
+  content: >
+    # عن DevTol
+
+    تجمع هذه المنصة الرائعة مجموعة أدوات مفيدة للمطورين والمصممين والمتخصصين في تكنولوجيا المعلومات. إذا وجدتها مفيدة، فلا تتردد في مشاركتها مع زملائك وإضافتها إلى إشاراتك المرجعية!
+
+    تعمل DevTol بالكامل من جانب العميل (Client-side)، وتضع الخصوصية في المقام الأول، وهي مجانية بالكامل. إذا كنت ترغب في دعم التطوير وتشجيع إضافة المزيد من الأدوات، فيرجى التفكير في [دعمنا هنا](https://buymeacoffee.com/lordrealstx).
+
+    ## التقنيات المستخدمة
+
+    تم تطوير DevTol باستخدام Vue 3 و TypeScript و Naive UI. تعمل جميع الأدوات محلياً بنسبة 100% داخل متصفحك لضمان أقصى درجات الخصوصية والأمان.
+
+    ## هل وجدت خطأً؟ أو تنقصك أداة معينة؟
+
+    إذا كنت بحاجة إلى أداة غير متوفرة حالياً، أو أردت الإبلاغ عن مشكلة، فلا تتردد في التواصل مع فريقنا.
+
+404:
+  notFound: '404 الصفحة غير موجودة'
+  sorry: 'عذراً، يبدو أن هذه الصفحة غير موجودة'
+  maybe: 'ربما تقوم الذاكرة المؤقتة بسلوك غير متوقع، جرّب إعادة التحميل الإجباري؟'
+  backHome: 'العودة للرئيسية'
+favoriteButton:
+  remove: 'إزالة من المفضلة'
+  add: 'إضافة إلى المفضلة'
+toolCard:
+  new: جديد
+search:
+  label: بحث
+tools:
+  categories:
+    favorite-tools: 'أدواتك المفضلة'
+    crypto: 'التشفير والأمان'
+    converter: 'المحولات'
+    web: 'الويب'
+    images and videos: 'الصور والفيديو'
+    development: 'التطوير والبرمجة'
+    network: 'الشبكات'
+    math: 'الرياضيات'
+    measurement: 'القياس والوحدات'
+    text: 'النصوص'
+    data: 'البيانات'
+    finance: 'المالية'
+    pdf tools: 'أدوات PDF'
+    ai tools: 'أدوات الذكاء الاصطناعي'
+
+  ai-token-cost-calculator:
+    title: حاسبة توكنز الذكاء الاصطناعي وتكاليف النماذج
+    description: قدّر عدد التوكنز بنظام BPE وقارن التكاليف الفورية والشهرية لأشهر النماذج (OpenAI, Claude, Gemini, DeepSeek) مع حساب خصومات التخزين المؤقت (Prompt Caching).
+
+  curl-to-code-converter:
+    title: محول cURL إلى كود برمجي
+    description: حوّل أوامر cURL إلى كود برمجي جاهز للإنتاج بلغات بايثون، جافاسكريبت، تايب سكريبت، Go، PHP، Rust، وجافا بأمان تام 100% داخل المتصفح.
+
+  mortgage-calculator:
+    title: حاسبة الرهن العقاري
+    description: احسب الدفعات الشهرية للرهن العقاري شاملة أصل القرض والفوائد والضرائب والتأمين مع جدول إهلاك تفصيلي كامل.
+
+  compound-interest-calculator:
+    title: حاسبة الفائدة المركبة
+    description: احسب الفائدة المركبة على استثماراتك أو مدخراتك مع خيارات الإيداع المنتظم وتفصيل سنوي دقيق.
+
+  adsense-revenue-calculator:
+    title: حاسبة أرباح أدسنس
+    description: قدّر أرباح Google AdSense اليومية والشهرية والسنوية بناءً على عدد المشاهدات، ونسبة النقر (CTR)، وسعر النقرة (CPC) أو العائد لكل ألف ظهور (RPM).
+
+  password-strength-analyser:
+    title: محلل قوة كلمة المرور
+    description: اختبر قوة كلمة المرور وتقدير الوقت اللازم لفك تشفيرها عبر فحص محلي آمن داخل متصفحك دون إرسال أي بيانات.
+
+  chronometer:
+    title: ساعة إيقاف
+    description: راقب وقِس المدة الزمنية لأي حدث مع خصائص وتفاصيل دقيقة لساعة الإيقاف.
+
+  token-generator:
+    title: مولد الرموز العشوائية
+    description: أنشئ سلاسل نصية ورموزاً عشوائية بالأحرف الكبيرة أو الصغيرة أو الأرقام أو الرموز الخاصة التي تحددها.
+
+    uppercase: أحرف كبيرة (ABC...)
+    lowercase: أحرف صغيرة (abc...)
+    numbers: أرقام (123...)
+    symbols: رموز (!-;...)
+    length: الطول
+    tokenPlaceholder: 'الرمز الناتج...'
+    copied: تم نسخ الرمز إلى الحافظة
+    button:
+      copy: نسخ
+      refresh: تحديث
+
+  percentage-calculator:
+    title: حاسبة النسبة المئوية
+    description: احسب النسب المئوية بسهولة بين القيم المختلفة، أو استخرج القيمة من نسبة مئوية محددة.
+
+  svg-placeholder-generator:
+    title: مولد صور SVG النائبة
+    description: أنشئ صور SVG لاستخدامها كعناصر نائبة مؤقتة في مواقعك وتطبيقاتك.
+
+  json-to-csv:
+    title: محول JSON إلى CSV
+    description: حوّل بيانات JSON إلى جدول وملف CSV مع الكشف التلقائي عن رؤوس الأعمدة.
+
+  camera-recorder:
+    title: مسجل الكاميرا
+    description: التقط صوراً أو سجّل مقاطع فيديو مباشرة من كاميرا الويب أو كاميرا الهاتف.
+
+  keycode-info:
+    title: معلومات مفاتيح لوحة المفاتيح
+    description: تعرّف على رمز المفتاح (Keycode)، والموقع، ومفاتيح التعديل لأي زر تضغط عليه على لوحة المفاتيح.
+
+  emoji-picker:
+    title: منتقي الرموز التعبيرية
+    description: تصفح وانسخ الرموز التعبيرية بسهولة واطلع على قيم اليونيكود ونقاط الكود الخاصة بها.
+
+  color-converter:
+    title: محول صيغ الألوان
+    description: حوّل قيم الألوان بدقة بين مختلف الصيغ (HEX و RGB و HSL وأسماء ألوان CSS).
+
+  bcrypt:
+    title: أداة تشفير Bcrypt
+    description: ولّد وافحص تجزئة كلمات المرور والنصوص باستخدام خوارزمية تشفير Bcrypt.
+
+  crontab-generator:
+    title: منشئ ومفسر Crontab
+    description: أنشئ وتحقق من صحة تعبيرات وجداول Crontab واحصل على شرح مفهوم لجدولة المهام.
+
+  http-status-codes:
+    title: رموز استجابة HTTP
+    description: قائمة شاملة بجميع رموز استجابة بروتوكول HTTP وأسمائها ومعانيها ودلالاتها التقنية.
+
+  sql-prettify:
+    title: منسق استعلامات SQL
+    description: نسّق وجمل استعلامات SQL عبر الإنترنت مع دعم لمختلف لهجات قواعد البيانات.
+
+  benchmark-builder:
+    title: أداة قياس الأداء (Benchmark)
+    description: قارن زمن وكفاءة تنفيذ العمليات والأكواد البرمجية عبر أداة قياس مبسطة ومباشرة.
+
+  git-memo:
+    title: بطاقة مرجعية لأوامر Git
+    description: مرجع سريع وشامل لأهم أوامر نظام إدارة النسخ Git لاسترجاعها واستخدامها بسهولة.
+
+  slugify-string:
+    title: تحويل النصوص إلى روابط (Slugify)
+    description: حوّل أي نص إلى صيغة Slug آمنة ومناسبة للروابط وأسماء الملفات والمعرفات.
+
+  encryption:
+    title: تشفير وفك تشفير النصوص
+    description: شفّر النصوص الصريحة وفك تشفير النصوص المشفرة باستخدام خوارزميات مثل AES و TripleDES و Rabbit و RC4.
+
+  random-port-generator:
+    title: مولد المنافذ العشوائية
+    description: أنشئ أرقام منافذ شبكية عشوائية خارج نطاق المنافذ المحجوزة والمعروفة (0-1023).
+
+  yaml-prettify:
+    title: منسق نصوص YAML
+    description: نسّق وجمل نصوص ومستندات YAML لتصبح واضحة ومرتبة وسهلة القراءة.
+
+  eta-calculator:
+    title: حاسبة وقت الوصول المقدر (ETA)
+    description: حدد وقت الانتهاء التقريبي لأي عملية أو مهمة جارية مثل تحميل الملفات أو معالجة البيانات.
+
+  roman-numeral-converter:
+    title: محول الأرقام الرومانية
+    description: حوّل الأرقام الرومانية إلى أرقام عربية وحوّل الأرقام العادية إلى نظيرتها الرومانية.
+
+  hmac-generator:
+    title: منشئ كود HMAC
+    description: احسب رمز مصادقة الرسائل المستند إلى التجزئة (HMAC) باستخدام مفتاحك السري وخوارزمية الهاش المختارة.
+
+  bip39-generator:
+    title: مولد عبارات استرداد BIP39
+    description: أنشئ عبارات استرداد تذكيرية BIP39 من نيمونيك عشوائي أو استخرج النيمونيك من العبارة الحالية.
+
+  base64-file-converter:
+    title: محول الملفات إلى Base64
+    description: حوّل الملفات والصور والمستندات إلى صيغة Base64 والعكس بالعكس بسهولة.
+
+  list-converter:
+    title: محول القوائم المتقدم
+    description: عالج القوائم والبيانات العمودية وطبق عليها تعديلات مثل التبديل، وإضافة البوادئ واللواحق، والترتيب والحذف.
+
+  base64-string-converter:
+    title: مشفر ومفكك Base64 للنصوص
+    description: ترميز وفك ترميز النصوص والسلاسل النصية إلى صيغة Base64 فورياً.
+
+  toml-to-yaml:
+    title: محول TOML إلى YAML
+    description: حلل وحوّل ملفات وبيانات TOML إلى صيغة YAML المتوافقة.
+
+  math-evaluator:
+    title: حاسبة التعبيرات الرياضية
+    description: آلة حاسبة متقدمة لتقييم التعابير الرياضية المعقدة مع دعم دوال المثلثات والجذور والقيم المطلقة.
+
+  json-to-yaml-converter:
+    title: محول JSON إلى YAML
+    description: حوّل بيانات ومستندات JSON إلى YAML فورياً في المتصفح وبشكل مباشر.
+
+  url-parser:
+    title: محلل عناوين الويب (URL)
+    description: فكك عنوان URL إلى أجزائه المكونة المنفصلة كالبروتوكول، والنطاق، والمنفذ، والمعاملات، والمصادقة.
+
+  iban-validator-and-parser:
+    title: فاحص ومحلل الآيبان (IBAN)
+    description: تحقق من صحة أرقام الحسابات البنكية الدولية واستخرج رمز الدولة ورقم BBAN وتنسيق العرض.
+
+  user-agent-parser:
+    title: محلل وكيل المستخدم (User-Agent)
+    description: استخرج واكتشف المتصفح ونظام التشغيل ومحرك العرض والمعالج وطراز الجهاز من نص User-Agent.
+
+  numeronym-generator:
+    title: مولد الاختصارات الرقمية (Numeronym)
+    description: أنشئ اختصارات عددية للكلمات الطويلة مثل توليد 'i18n' من كلمة 'internationalization'.
+
+  case-converter:
+    title: محول حالات الأحرف
+    description: غيّر حالة النصوص بالتبديل بين الصيغ الشائعة مثل camelCase و snake_case و kebab-case و PascalCase.
+
+  html-entities:
+    title: ترميز وفك كيانات HTML
+    description: ترميز وفك ترميز محارف HTML الخاصة لتضمينها بأمان في الشيفرة البرمجية.
+
+  json-prettify:
+    title: منسق ومجمل JSON
+    description: نسّق وجمل نصوص JSON غير المنظمة لتصبح سهلة القراءة ومرتبة بشكل قياسي.
+
+  docker-run-to-docker-compose-converter:
+    title: محول Docker Run إلى Compose
+    description: حوّل أوامر تشغيل Docker run الفردية إلى ملفات تكوين docker-compose.yml متكاملة.
+
+  mac-address-lookup:
+    title: استعلام عنوان MAC
+    description: ابحث عن الشركة المصنعة ومزود بطاقة الشبكة لأي جهاز من خلال عنوان MAC الخاص به.
+
+  mime-types:
+    title: جدول وتحويل أنواع MIME
+    description: حوّل أنواع وسائط MIME إلى امتدادات الملفات المقابلة والعكس بالعكس.
+
+  toml-to-json:
+    title: محول TOML إلى JSON
+    description: حلل وحوّل ملفات وبيانات TOML إلى صيغة JSON القياسية.
+
+  lorem-ipsum-generator:
+    title: مولد نصوص لوريم إيبسوم
+    description: أنشئ نصوصاً شكلية ونائبة لاختبار تصاميم المواقع والطباعة وتوزيع المساحات.
+
+  qrcode-generator:
+    title: منشئ رموز الاستجابة السريعة (QR Code)
+    description: أنشئ وحمّل رموز QR لأي رابط أو نص مع إمكانية تخصيص ألوان الخلفية والمقدمة.
+
+  wifi-qrcode-generator:
+    title: منشئ كود QR لشبكات الواي فاي
+    description: أنشئ وحمّل رموز QR لمشاركة الاتصال السريع بشبكات WiFi دون إدخال كلمة المرور يدوياً.
+
+  xml-formatter:
+    title: منسق ومجمل XML
+    description: نسّق نصوص ومستندات XML لتصبح مرتبة ومنظمة هيكلياً وواضحة القراءة.
+
+  temperature-converter:
+    title: محول درجات الحرارة
+    description: تحويل درجات الحرارة بين مقاييس كلفن، وسيلزيوس، وفهرنهايت، ورانكين، وغيرها.
+
+  chmod-calculator:
+    title: حاسبة تصاريح Chmod
+    description: احسب تصاريح الملفات في لينكس وولّد الأوامر الرقمية والرمزية المناسبة لأوامر chmod.
+
+  rsa-key-pair-generator:
+    title: مولد أزواج مفاتيح RSA
+    description: أنشئ زوج مفاتيح تشفير RSA عشوائي (عام وخاص) بصيغة شهادات PEM القياسية.
+
+  html-wysiwyg-editor:
+    title: محرر HTML المرئي (WYSIWYG)
+    description: محرر نصوص غني ومرئي يتيح إنشاء وتنسيق المحتوى وتوليد كود HTML المقابل مباشرة.
+
+  yaml-to-toml:
+    title: محول YAML إلى TOML
+    description: حلل وحوّل بيانات ومستندات YAML إلى صيغة TOML المتوافقة.
+
+  mac-address-generator:
+    title: مولد عناوين MAC
+    description: أنشئ عناوين MAC عشوائية بالكمية والبادئة المحددة وبحالة الأحرف التي تختارها.
+
+  json-diff:
+    title: مقارنة كائنات JSON
+    description: قارن بين كائني JSON بدقة واكتشف الاختلافات والإضافات والتعديلات بينهما.
+
+  jwt-parser:
+    title: محلل وفاحص رموز JWT
+    description: فك تشفير واقرأ محتويات رموز JSON Web Token واعرض ترويستها وبياناتها بأمان محلياً.
+
+  date-converter:
+    title: محول التاريخ والوقت
+    description: حوّل التواريخ والأوقات بدقة بين مختلف الصيغ العالمية القياسية وUnix Timestamp.
+
+  phone-parser-and-formatter:
+    title: محلل ومنسق أرقام الهواتف
+    description: تحقق من صحة أرقام الهواتف ونسقها بالصيغة الدولية والمحلية واكتشف كود الدولة ونوع الخط.
+
+  ipv4-subnet-calculator:
+    title: حاسبة الشبكات الفرعية IPv4
+    description: حلل كتل عناوين IPv4 بتدوين CIDR واكتشف نطاق العناوين وعنوان البث وقناع الشبكة.
+
+  og-meta-generator:
+    title: منشئ وسوم Open Graph
+    description: أنشئ وسوم Open Graph ووسوم التواصل الاجتماعي لتحسين ظهور موقعك عند المشاركة.
+
+  ipv6-ula-generator:
+    title: مولد عناوين IPv6 ULA
+    description: ولّد عناوين IPv6 محلية فريدة وغير قابلة للتوجيه العام وفقاً للمعيار RFC4193.
+
+  hash-text:
+    title: تجزئة النصوص (Hash)
+    description: 'احسب تجزئة النصوص باستخدام الخوارزمية التي تحتاجها: MD5, SHA1, SHA256, SHA512 وغيرها.'
+
+  json-to-toml:
+    title: محول JSON إلى TOML
+    description: حلل وحوّل بيانات ومستندات JSON إلى صيغة TOML.
+
+  device-information:
+    title: معلومات الجهاز والمواصفات
+    description: اطلع على تفاصيل جهازك الحالي كأبعاد الشاشة وكثافة البكسل والمتصفح ونظام التشغيل.
+
+  pdf-signature-checker:
+    title: فاحص تواقيع مستندات PDF
+    description: تحقق من صحة التواقيع الرقمية في ملفات PDF وتأكد من عدم تعديل المستند بعد توقيعه.
+
+  json-minify:
+    title: ضغط وتصغير JSON
+    description: قلص حجم بيانات JSON بحذف المسافات البيضاء والأسطر غير الضرورية لتسريع النقل.
+
+  ulid-generator:
+    title: مولد معرّفات ULID
+    description: أنشئ معرّفات ULID عشوائية فريدة عالمياً وقابلة للترتيب زمانياً ومعجمياً.
+
+  string-obfuscator:
+    title: تعتيم وتظليل النصوص
+    description: عتّم السلاسل النصية الحساسة كالأسرار والرموز لمشاركتها بأمان دون كشف محتواها الحقيقي.
+
+  base-converter:
+    title: محول الأنظمة العددية
+    description: حوّل الأعداد بين الأنظمة والأسس المختلفة (عشري، ست عشري، ثنائي، ثماني، Base64).
+
+  yaml-to-json-converter:
+    title: محول YAML إلى JSON
+    description: حوّل مستندات وبيانات YAML إلى JSON فورياً في متصفحك.
+
+  uuid-generator:
+    title: مولد معرّفات UUID
+    description: أنشئ معرّفات فريدة عالمياً (UUID) بمختلف إصداراتها لتعيين معرّفات مميزة لعناصر بياناتك.
+
+  ipv4-address-converter:
+    title: محول عناوين IPv4
+    description: حوّل عنوان IP إلى تمثيل عشري، أو ثنائي، أو ست عشري، أو إلى صيغة IPv6 المقابلة.
+
+  text-statistics:
+    title: إحصائيات وتحليل النصوص
+    description: احسب عدد الكلمات، والأحرف، والأسطر، وحجم النص بالبايت وزمن القراءة المتوقع.
+
+  text-to-nato-alphabet:
+    title: تحويل النص لأبجدية الناتو
+    description: حوّل النصوص إلى الأبجدية الصوتية العسكرية (NATO Phonetic) لسهولة النطق اللاسلكي.
+
+  basic-auth-generator:
+    title: منشئ ترويسة Basic Auth
+    description: ولّد ترويسة المصادقة الأساسية المشفرة بـ Base64 من اسم المستخدم وكلمة المرور.
+
+  text-to-unicode:
+    title: تحويل النصوص إلى يونيكود
+    description: فكك وحوّل محارف النصوص إلى شفرة اليونيكود البرمجية والعكس بالعكس.
+
+  ipv4-range-expander:
+    title: موسّع نطاق عناوين IPv4
+    description: احسب الشبكات الفرعية الصالحة بتدوين CIDR انطلاقاً من عنواني بداية ونهاية IPv4.
+
+  text-diff:
+    title: مقارنة النصوص (Text Diff)
+    description: قارن بين نصين واكتشف بدقة الاختلافات والأسطر والكلمات المضافة والمحذوفة.
+
+  otp-generator:
+    title: مولد رموز التحقق OTP
+    description: أنشئ وافحص رموز المرور لمرة واحدة المعتمدة على الوقت (TOTP) للمصادقة الثنائية.
+
+  url-encoder:
+    title: ترميز وفك ترميز الروابط
+    description: رمّز النصوص إلى صيغة روابط الويب الآمنة (Percent-encoded) أو فك ترميزها بدقة.
+
+  text-to-binary:
+    title: تحويل النصوص إلى النظام الثنائي
+    description: حوّل النصوص إلى سلاسل ثنائية (0 و 1) بجدول ASCII والعكس بالعكس.

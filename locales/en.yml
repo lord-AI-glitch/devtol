@@ -1,5 +1,17 @@
 home:
+  hero:
+    title: 'All-in-One Local Toolbox for Developers & Designers'
+    description: 'Over 126 secure productivity utilities running entirely in your browser sandbox. Convert, encode, debug, and optimize without sending a single byte to external servers.'
+    searchPlaceholder: 'Search 126+ tools by name, keyword, or format (e.g. PDF, JSON, WebP, Hash)...'
+  pillars:
+    privacyTitle: 'Total Client-Side Privacy'
+    privacyDesc: 'Your files, secret keys, tokens, and payloads are processed solely in your browser memory. Nothing touches a remote database or cloud server.'
+    speedTitle: 'WebAssembly & Instant Execution'
+    speedDesc: 'Harness native device hardware for ultra-fast PDF manipulation, image compression, and cryptographic calculations with zero network queue delays.'
+    frictionlessTitle: 'Frictionless & Offline PWA'
+    frictionlessDesc: 'No accounts, no subscriptions, no paywalls. Install DevTol as a progressive web application and continue working even without an active internet connection.'
   categories:
+    featuredTools: 'Popular & Essential Tools'
     newestTools: Newest tools
     favoriteTools: 'Your favorite tools'
     allTools: 'All the tools'
@@ -24,6 +36,7 @@ home:
     twitterXAccount: 'DevTol X account'
     about: 'About DevTol'
     aboutLabel: 'About'
+    deals: 'Developer Deals & Perks'
     darkMode: 'Dark mode'
     lightMode: 'Light mode'
     mode: 'Toggle dark/light mode'
@@ -69,6 +82,16 @@ tools:
     text: Text
     data: Data
     finance: Finance
+    pdf tools: 'PDF Tools'
+    ai tools: 'AI Tools'
+
+  ai-token-cost-calculator:
+    title: AI token & LLM cost calculator
+    description: Estimate prompt tokens via BPE heuristic and compare live pricing across OpenAI, Anthropic, Gemini, and DeepSeek with prompt caching discounts.
+
+  curl-to-code-converter:
+    title: cURL to code converter
+    description: Convert cURL commands into clean, production-ready code in Python, JavaScript, TypeScript, Go, PHP, Rust, and Java with 100% client-side privacy.
 
   mortgage-calculator:
     title: Mortgage calculator

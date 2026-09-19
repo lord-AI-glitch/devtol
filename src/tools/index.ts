@@ -5,6 +5,8 @@ import { tool as emailNormalizer } from './email-normalizer';
 import { tool as mortgageCalculator } from './mortgage-calculator';
 import { tool as compoundInterestCalculator } from './compound-interest-calculator';
 import { tool as adsenseRevenueCalculator } from './adsense-revenue-calculator';
+import { tool as aiTokenCostCalculator } from './ai-token-cost-calculator';
+import { tool as curlToCodeConverter } from './curl-to-code-converter';
 
 // PDF Tools (1-11)
 import { tool as pdfEditor } from './pdf-editor';
@@ -134,6 +136,10 @@ export const toolsByCategory: ToolCategory[] = [
     components: [pdfEditor, pdfMerge, pdfSplit, pdfCompress, pdfToImage, imagesToPdf, pdfProtect, pdfOrganize, pdfOcr, pdfRedact, pdfWatermarkTool],
   },
   {
+    name: 'AI Tools',
+    components: [aiTokenCostCalculator],
+  },
+  {
     name: 'Image & Media',
     components: [imageCompressor, webpConverter, imageResizer, svgConverter, exifViewer, videoToGif, colorPalette, faviconGenerator, imageWatermark, qrScanner],
   },
@@ -212,6 +218,7 @@ export const toolsByCategory: ToolCategory[] = [
       emailNormalizer,
       regexTester,
       regexMemo,
+      curlToCodeConverter,
     ],
   },
   {

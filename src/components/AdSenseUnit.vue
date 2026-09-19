@@ -50,6 +50,14 @@ const developerOffers = [
     badge: 'Best Value',
   },
   {
+    tag: 'Privacy & Security',
+    title: 'NordVPN — Encrypted Traffic & Geo-Routing for Developers',
+    description: 'Protect your remote development, test global endpoints, and prevent DNS leaks with zero-logging privacy.',
+    cta: 'Get 70% Off + 3 Mo',
+    link: 'https://nordvpn.com',
+    badge: 'Privacy Choice',
+  },
+  {
     tag: 'Support Open Source',
     title: 'Support DevTol — 100% Free, Private Developer Tools',
     description: 'Help us maintain server infrastructure and add more zero-tracking client-side utilities.',
@@ -138,6 +146,12 @@ const formatStyles = computed(() => {
             {{ selectedOffer.badge }}
           </span>
           <span class="text-xs text-slate-400 font-mono">Sponsored • {{ selectedOffer.tag }}</span>
+          <RouterLink
+            to="/deals"
+            class="text-[11px] font-semibold text-emerald-500 hover:text-emerald-400 ms-auto transition-colors"
+          >
+            All Perks & Deals →
+          </RouterLink>
         </div>
         <h4 class="text-sm sm:text-base font-bold tracking-tight mb-1 text-inherit truncate">
           {{ selectedOffer.title }}

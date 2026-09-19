@@ -1,0 +1,340 @@
+<script setup lang="ts">
+import { computed, ref, watch } from 'vue';
+import { useStorage } from '@vueuse/core';
+import { useMessage } from 'naive-ui';
+import { Copy, Wand, Refresh } from '@vicons/tabler';
+import {
+  LLM_MODELS,
+  SAMPLE_PROMPTS,
+  calculateLlmCosts,
+  estimateTokens,
+  type LlmModel,
+} from './ai-token-cost-calculator.service';
+
+const message = useMessage();
+
+// Persisted inputs
+const systemPrompt = useStorage('ai-calc:system-prompt', '');
+const userPrompt = useStorage(
+  'ai-calc:user-prompt',
+  SAMPLE_PROMPTS[0].userPrompt,
+);
+const expectedOutputTokens = useStorage('ai-calc:output-tokens', 500);
+const requestVolume = useStorage('ai-calc:volume', 10000);
+const usePromptCache = useStorage('ai-calc:cache', false);
+const selectedTier = ref<string>('all');
+
+// Combine full text for estimation
+const fullPromptText = computed(() => {
+  const parts = [];
+  if (systemPrompt.value.trim()) parts.push(systemPrompt.value.trim());
+  if (userPrompt.value.trim()) parts.push(userPrompt.value.trim());
+  return parts.join('\n\n');
+});
+
+const tokenMetrics = computed(() => estimateTokens(fullPromptText.value));
+
+const allCalculations = computed(() =>
+  calculateLlmCosts({
+    inputTokens: tokenMetrics.value.estimatedTokens,
+    outputTokens: expectedOutputTokens.value,
+    requestVolume: requestVolume.value,
+    usePromptCache: usePromptCache.value,
+  }),
+);
+
+const filteredCalculations = computed(() => {
+  if (selectedTier.value === 'all') return allCalculations.value;
+  return allCalculations.value.filter(c => c.model.tier === selectedTier.value);
+});
+
+const loadSample = (index: number) => {
+  const sample = SAMPLE_PROMPTS[index];
+  if (sample) {
+    systemPrompt.value = sample.systemPrompt;
+    userPrompt.value = sample.userPrompt;
+    expectedOutputTokens.value = sample.expectedOutputTokens;
+    message.success(`Loaded preset: ${sample.name}`);
+  }
+};
+
+const clearAll = () => {
+  systemPrompt.value = '';
+  userPrompt.value = '';
+  message.info('Cleared inputs');
+};
+
+const formatPricePerM = (price: number) => `$${price.toFixed(price < 0.1 ? 3 : 2)}`;
+
+const formatCost = (val: number) => {
+  if (val === 0) return '$0.00';
+  if (val < 0.0001) return `$${val.toFixed(6)}`;
+  if (val < 0.01) return `$${val.toFixed(4)}`;
+  return `$${val.toFixed(2)}`;
+};
+
+const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num);
+
+const copyMarkdownSummary = () => {
+  const lines = [
+    `### AI Prompt Cost Analysis (DevTol.online)`,
+    `- **Input Tokens**: ~${formatNumber(tokenMetrics.value.estimatedTokens)}`,
+    `- **Expected Output Tokens**: ${formatNumber(expectedOutputTokens.value)}`,
+    `- **Monthly Request Volume**: ${formatNumber(requestVolume.value)} requests`,
+    `- **Prompt Caching**: ${usePromptCache.value ? 'Enabled' : 'Disabled'}`,
+    '',
+    `| Model | Provider | Input / 1M | Output / 1M | Cost / Call | Monthly Total | Savings |`,
+    `|---|---|---|---|---|---|---|`,
+  ];
+
+  filteredCalculations.value.forEach(c => {
+    lines.push(
+      `| ${c.model.name} | ${c.model.provider} | ${formatPricePerM(c.model.inputPricePerMillion)} | ${formatPricePerM(c.model.outputPricePerMillion)} | ${formatCost(c.singleRequestTotalCost)} | ${formatCost(c.monthlyTotalCost)} | ${c.savingsVsHighest}% |`,
+    );
+  });
+
+  navigator.clipboard.writeText(lines.join('\n')).then(() => {
+    message.success('Copied Markdown analysis table to clipboard!');
+  });
+};
+
+const volumePresets = [
+  { label: '1 req', val: 1 },
+  { label: '1,000 reqs', val: 1000 },
+  { label: '10,000 reqs', val: 10000 },
+  { label: '100,000 reqs', val: 100000 },
+  { label: '1,000,000 reqs', val: 1000000 },
+];
+
+const getProviderTagType = (provider: string): 'default' | 'success' | 'warning' | 'info' | 'error' => {
+  switch (provider) {
+    case 'Google': return 'success';
+    case 'DeepSeek': return 'info';
+    case 'OpenAI': return 'warning';
+    case 'Anthropic': return 'error';
+    default: return 'default';
+  }
+};
+</script>
+
+<template>
+  <div class="ai-token-calculator" style="max-width: 1200px; margin: 0 auto;">
+    <!-- Preset Banner -->
+    <div class="preset-section mb-4 flex flex-wrap items-center gap-2">
+      <span class="text-sm font-semibold text-gray-500">Quick Presets:</span>
+      <n-button
+        v-for="(sample, idx) in SAMPLE_PROMPTS"
+        :key="sample.name"
+        size="small"
+        secondary
+        @click="loadSample(idx)"
+      >
+        <template #icon>
+          <n-icon :component="Wand" />
+        </template>
+        {{ sample.name }}
+      </n-button>
+      <n-button size="small" quaternary type="error" @click="clearAll">
+        <template #icon>
+          <n-icon :component="Refresh" />
+        </template>
+        Clear
+      </n-button>
+    </div>
+
+    <!-- Main Grid: Input & Metrics -->
+    <n-grid :cols="24" :x-gap="16" :y-gap="16" class="mb-6">
+      <!-- Input Left Column -->
+      <n-gi :span="24" :m="16">
+        <n-card title="System & User Prompt" size="small">
+          <div class="space-y-4">
+            <div>
+              <div class="mb-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                System Prompt / Instructions (Optional)
+              </div>
+              <n-input
+                v-model:value="systemPrompt"
+                type="textarea"
+                placeholder="e.g. You are a senior software architect. Provide secure, production-ready solutions..."
+                :rows="2"
+                clearable
+              />
+            </div>
+
+            <div>
+              <div class="mb-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                User Prompt / Context / Document Body
+              </div>
+              <n-input
+                v-model:value="userPrompt"
+                type="textarea"
+                placeholder="Paste your prompt, questions, code, or context payload here..."
+                :rows="7"
+                clearable
+              />
+            </div>
+          </div>
+        </n-card>
+      </n-gi>
+
+      <!-- Metrics Right Column -->
+      <n-gi :span="24" :m="8">
+        <n-card title="Real-Time Tokenization Metrics" size="small" class="h-full">
+          <div class="flex flex-col gap-4">
+            <div class="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-center">
+              <div class="text-xs font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                Estimated Input Tokens
+              </div>
+              <div class="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 my-1">
+                {{ formatNumber(tokenMetrics.estimatedTokens) }}
+              </div>
+              <div class="text-xs text-gray-500">
+                BPE-calibrated heuristic estimation
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 text-center">
+              <div class="p-2 rounded bg-gray-50 dark:bg-gray-800">
+                <div class="text-xs text-gray-500">Characters</div>
+                <div class="text-lg font-bold">{{ formatNumber(tokenMetrics.charCount) }}</div>
+              </div>
+              <div class="p-2 rounded bg-gray-50 dark:bg-gray-800">
+                <div class="text-xs text-gray-500">Words</div>
+                <div class="text-lg font-bold">{{ formatNumber(tokenMetrics.wordCount) }}</div>
+              </div>
+            </div>
+
+            <!-- Language / Density Alerts -->
+            <div v-if="tokenMetrics.arabicCharRatio > 0.2" class="p-2 rounded bg-amber-500/10 border border-amber-500/20 text-xs text-amber-700 dark:text-amber-300">
+              ⚡ <strong>Arabic Script Detected</strong>: Standard BPE models expand Arabic into ~2.1 tokens/word compared to ~1.3 for English.
+            </div>
+            <div v-else-if="tokenMetrics.codeDensityRatio > 0.12" class="p-2 rounded bg-blue-500/10 border border-blue-500/20 text-xs text-blue-700 dark:text-blue-300">
+              ⚙️ <strong>Code / JSON Syntax Detected</strong>: Punctuation and identifier splits increase token density.
+            </div>
+
+            <!-- Parameters -->
+            <div class="border-t pt-3 dark:border-gray-700 space-y-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span>Expected Output Tokens:</span>
+                  <strong class="text-primary">{{ formatNumber(expectedOutputTokens) }}</strong>
+                </div>
+                <n-slider v-model:value="expectedOutputTokens" :min="50" :max="4096" :step="50" />
+              </div>
+
+              <div>
+                <div class="text-xs mb-1">Prompt Caching:</div>
+                <n-switch v-model:value="usePromptCache">
+                  <template #checked>Enabled (Discounts applied)</template>
+                  <template #unchecked>Standard (No Cache)</template>
+                </n-switch>
+              </div>
+            </div>
+          </div>
+        </n-card>
+      </n-gi>
+    </n-grid>
+
+    <!-- Volume & Scaling Controls -->
+    <n-card size="small" class="mb-6">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <span class="text-sm font-semibold">Monthly Scale:</span>
+          <n-button-group size="small">
+            <n-button
+              v-for="p in volumePresets"
+              :key="p.val"
+              :type="requestVolume === p.val ? 'primary' : 'default'"
+              @click="requestVolume = p.val"
+            >
+              {{ p.label }}
+            </n-button>
+          </n-button-group>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-gray-500">Custom volume:</span>
+          <n-input-number
+            v-model:value="requestVolume"
+            size="small"
+            :min="1"
+            :step="1000"
+            style="width: 140px"
+          />
+          <n-button size="small" type="primary" secondary @click="copyMarkdownSummary">
+            <template #icon>
+              <n-icon :component="Copy" />
+            </template>
+            Export Table
+          </n-button>
+        </div>
+      </div>
+    </n-card>
+
+    <!-- Pricing Comparison Section -->
+    <n-card title="LLM Cost Comparison Leaderboard (2025/2026 Live Pricing)" size="small">
+      <template #header-extra>
+        <n-radio-group v-model:value="selectedTier" size="small">
+          <n-radio-button value="all">All Models</n-radio-button>
+          <n-radio-button value="budget">Budget Leaders (&lt;$1)</n-radio-button>
+          <n-radio-button value="flagship">Flagship Intelligence</n-radio-button>
+          <n-radio-button value="reasoning">Reasoning & STEM</n-radio-button>
+        </n-radio-group>
+      </template>
+
+      <div class="overflow-x-auto">
+        <n-table :bordered="true" :single-line="false" size="small" striped>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Provider</th>
+              <th>Input / 1M</th>
+              <th>Output / 1M</th>
+              <th>Single Call Cost</th>
+              <th>Monthly ({{ formatNumber(requestVolume) }} calls)</th>
+              <th>Savings vs Max</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in filteredCalculations" :key="item.model.id">
+              <td>
+                <div class="font-bold">{{ item.model.name }}</div>
+                <div class="text-xs text-gray-500">{{ item.model.recommendedFor }}</div>
+              </td>
+              <td>
+                <n-tag size="small" :type="getProviderTagType(item.model.provider)" round>
+                  {{ item.model.provider }}
+                </n-tag>
+              </td>
+              <td>
+                <span :class="{ 'line-through text-gray-400': item.isCached }">
+                  {{ formatPricePerM(item.model.inputPricePerMillion) }}
+                </span>
+                <span v-if="item.isCached" class="text-emerald-500 font-bold ml-1">
+                  {{ formatPricePerM(item.model.cachedInputPricePerMillion || 0) }}
+                </span>
+              </td>
+              <td>{{ formatPricePerM(item.model.outputPricePerMillion) }}</td>
+              <td class="font-mono font-semibold">{{ formatCost(item.singleRequestTotalCost) }}</td>
+              <td class="font-mono font-bold text-primary">
+                {{ formatCost(item.monthlyTotalCost) }}
+              </td>
+              <td>
+                <n-tag v-if="item.savingsVsHighest > 0" size="small" type="success" :bordered="false">
+                  Save {{ item.savingsVsHighest }}%
+                </n-tag>
+                <span v-else class="text-xs text-gray-400">Baseline</span>
+              </td>
+            </tr>
+          </tbody>
+        </n-table>
+      </div>
+    </n-card>
+  </div>
+</template>
+
+<style scoped>
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+</style>

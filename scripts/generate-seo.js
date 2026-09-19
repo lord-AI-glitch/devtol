@@ -174,28 +174,57 @@ if (!fs.existsSync(publicDir)) {
   fs.mkdirSync(publicDir, { recursive: true });
 }
 
-// 3. Generate sitemap.xml
-const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-${uniqueRoutes
-  .map(
-    route => `  <url>
-    <loc>${BASE_URL}${route.path}</loc>
+const supportedLangs = ['ar', 'de', 'es', 'fr', 'no', 'pt', 'uk', 'vi', 'zh'];
+
+// 3. Generate multi-language sitemap.xml with full bidirectional xhtml:link hreflang annotations
+const sitemapEntries = [];
+
+for (const route of uniqueRoutes) {
+  const isHome = route.path === '/';
+  const defaultUrl = `${BASE_URL}${route.path}`;
+  
+  // Build alternate links for default, en, and each supported language
+  const alternates = [
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${defaultUrl}" />`,
+    `    <xhtml:link rel="alternate" hreflang="en" href="${defaultUrl}" />`,
+    ...supportedLangs.map(
+      lang => `    <xhtml:link rel="alternate" hreflang="${lang}" href="${BASE_URL}/${lang}${isHome ? '' : route.path}" />`
+    ),
+  ].join('\n');
+
+  // 1. English / default URL entry
+  sitemapEntries.push(`  <url>
+    <loc>${defaultUrl}</loc>
+${alternates}
     <lastmod>${route.lastmod || today}</lastmod>
     <changefreq>${route.changefreq || 'weekly'}</changefreq>
     <priority>${route.priority || '0.8'}</priority>
-  </url>`,
-  )
-  .join('\n')}
+  </url>`);
+
+  // 2. Localized URL entries for each supported language
+  for (const lang of supportedLangs) {
+    const localizedUrl = `${BASE_URL}/${lang}${isHome ? '' : route.path}`;
+    const priority = route.path === '/' ? '0.9' : '0.8';
+    sitemapEntries.push(`  <url>
+    <loc>${localizedUrl}</loc>
+${alternates}
+    <lastmod>${route.lastmod || today}</lastmod>
+    <changefreq>${route.changefreq || 'weekly'}</changefreq>
+    <priority>${priority}</priority>
+  </url>`);
+  }
+}
+
+const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${sitemapEntries.join('\n')}
 </urlset>
 `;
 
 const sitemapPath = path.join(publicDir, 'sitemap.xml');
 fs.writeFileSync(sitemapPath, sitemapXml.trim() + '\n', 'utf8');
-console.log(`[SEO Generator] Successfully generated ${sitemapPath}`);
+console.log(`[SEO Generator] Successfully generated ${sitemapPath} with ${sitemapEntries.length} multi-lingual URLs & bidirectional hreflangs!`);
 
 // 4. Generate robots.txt
 const robotsTxt = `# https://www.robotstxt.org/robotstxt.html

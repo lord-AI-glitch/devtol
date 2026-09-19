@@ -18,6 +18,17 @@ syncRef(
   locale,
   useStorage('locale', locale),
 );
+
+watch(
+  locale,
+  (val) => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('lang', val);
+      document.documentElement.setAttribute('dir', val === 'ar' ? 'rtl' : 'ltr');
+    }
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
@@ -54,7 +65,9 @@ html {
   box-sizing: border-box;
 }
 
-code, pre, kbd, samp {
+code, pre, kbd, samp, textarea.font-mono, input.font-mono, [class*="font-mono"] {
   font-family: 'JetBrains Mono', monospace;
+  direction: ltr;
+  text-align: left;
 }
 </style>

@@ -42,15 +42,15 @@ useHead({
           <p>
             We use third-party advertising services, including <strong>Google AdSense</strong>, to serve advertisements when you visit our website. Google and other certified third-party ad networks use cookies to serve ads based on your prior visits to our website or other websites across the Internet.
           </p>
-          <div class="bg-slate-50 dark:bg-neutral-800/60 p-4 rounded-lg border border-slate-200 dark:border-neutral-700 mt-3">
-            <h3 class="font-semibold text-amber-400 mb-1">Google DART Cookie Notice</h3>
-            <p class="text-sm">
+          <div class="bg-amber-50 dark:bg-neutral-800/60 p-4 rounded-lg border border-amber-200 dark:border-neutral-700 mt-3">
+            <h3 class="font-semibold text-amber-800 dark:text-amber-400 mb-1">Google DART Cookie Notice</h3>
+            <p class="text-sm text-slate-700 dark:text-neutral-200">
               Google's use of advertising cookies (including the DoubleClick DART cookie) enables it and its partners to serve targeted ads to users based on their visits to our site and/or other sites on the Internet.
             </p>
-            <p class="text-sm mt-2">
+            <p class="text-sm mt-2 text-slate-700 dark:text-neutral-200">
               Users may opt out of personalized advertising by visiting the 
-              <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Google Ads Settings</a> page. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting 
-              <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">aboutads.info</a>.
+              <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">Google Ads Settings</a> page. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting 
+              <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">aboutads.info</a>.
             </p>
           </div>
         </section>
@@ -138,11 +138,18 @@ useHead({
 }
 
 .legal-card {
-  background: rgba(24, 24, 28, 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   padding: 36px;
+}
+
+:global(.dark) .legal-card {
+  background: rgba(24, 24, 28, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
 }
 
 .text-primary {

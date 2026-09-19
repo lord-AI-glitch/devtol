@@ -22,6 +22,9 @@
 - [PDF Redaction Tool](https://devtol.online/pdf-redact): Permanently redact sensitive text from PDF files. Client-side privacy guaranteed.
 - [PDF Watermark](https://devtol.online/pdf-watermark-tool): Add text watermarks to all pages of a PDF. Custom position, opacity, and font.
 
+### AI Tools
+- [AI token & LLM cost calculator](https://devtol.online/ai-token-cost-calculator): Estimate prompt tokens via BPE heuristic and compare live pricing across OpenAI, Anthropic, Gemini, and DeepSeek with prompt caching discounts.
+
 ### Image & Media
 - [Image Compressor](https://devtol.online/image-compressor): Compress JPG, PNG, and WebP images up to 90% smaller. Real-time preview, no uploads.
 - [WebP Converter](https://devtol.online/webp-converter): Convert WebP to PNG/JPG or convert PNG/JPG to WebP format. Client-side processing.
@@ -120,6 +123,7 @@
 - [Email normalizer](https://devtol.online/email-normalizer): Normalize email addresses to a standard format for easier comparison. Useful for deduplication and data cleaning.
 - [Regex Tester](https://devtol.online/regex-tester): Test your regular expressions with sample text.
 - [Regex cheatsheet](https://devtol.online/regex-memo): Javascript Regex/Regular Expression cheatsheet
+- [cURL to code converter](https://devtol.online/curl-to-code-converter): Convert cURL commands into clean, production-ready code in Python, JavaScript, TypeScript, Go, PHP, Rust, and Java with 100% client-side privacy.
 
 ### Network
 - [IPv4 subnet calculator](https://devtol.online/ipv4-subnet-calculator): Parse your IPv4 CIDR blocks and get all the info you need about your subnet.

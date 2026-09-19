@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { useThemeVars } from 'naive-ui';
 import FavoriteButton from './FavoriteButton.vue';
 import type { Tool } from '@/tools/tools.types';
 
 const props = defineProps<{ tool: Tool & { category: string } }>();
 const { tool } = toRefs(props);
-const theme = useThemeVars();
 </script>
 
 <template>
@@ -17,10 +15,7 @@ const theme = useThemeVars();
         <div flex items-center gap-8px>
           <div
             v-if="tool.isNew"
-            class="rounded-full px-8px py-3px text-xs text-white dark:text-neutral-800"
-            :style="{
-              'background-color': theme.primaryColor,
-            }"
+            class="rounded-full px-8px py-3px text-xs text-white dark:text-neutral-800 bg-primary"
           >
             {{ $t('toolCard.new') }}
           </div>

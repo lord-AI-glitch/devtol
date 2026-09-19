@@ -126,11 +126,18 @@ const pillars = [
 }
 
 .about-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  padding: 40px;
+}
+
+:global(.dark) .about-card {
   background: rgba(24, 24, 28, 0.85);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 40px;
+  box-shadow: none;
 }
 
 .text-primary {
