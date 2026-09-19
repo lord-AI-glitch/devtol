@@ -103,6 +103,10 @@ tools:
     title: cURL to code converter
     description: Convert cURL commands into clean, production-ready code in Python, JavaScript, TypeScript, Go, PHP, Rust, and Java with 100% client-side privacy.
 
+  ai-regex-generator-explainer:
+    title: AI regex generator & structural explainer
+    description: Generate regular expressions from natural language prompts, disassemble pattern structures, test live strings with capture groups, and export production code.
+
   mortgage-calculator:
     title: Mortgage calculator
     description: Calculate your monthly mortgage payment including principal, interest, taxes, and insurance (PITI) with complete amortization schedule.

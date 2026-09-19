@@ -24,6 +24,7 @@
 
 ### AI Tools
 - [AI token & LLM cost calculator](https://devtol.online/ai-token-cost-calculator): Estimate prompt tokens via BPE heuristic and compare live pricing across OpenAI, Anthropic, Gemini, and DeepSeek with prompt caching discounts.
+- [AI regex generator & structural explainer](https://devtol.online/ai-regex-generator-explainer): Generate regular expressions from natural language prompts, disassemble pattern structures, test live strings with capture groups, and export production code.
 
 ### Image & Media
 - [Image Compressor](https://devtol.online/image-compressor): Compress JPG, PNG, and WebP images up to 90% smaller. Real-time preview, no uploads.

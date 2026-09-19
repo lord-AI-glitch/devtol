@@ -7,6 +7,7 @@ import { tool as compoundInterestCalculator } from './compound-interest-calculat
 import { tool as adsenseRevenueCalculator } from './adsense-revenue-calculator';
 import { tool as aiTokenCostCalculator } from './ai-token-cost-calculator';
 import { tool as curlToCodeConverter } from './curl-to-code-converter';
+import { tool as aiRegexGeneratorExplainer } from './ai-regex-generator-explainer';
 
 // PDF Tools (1-11)
 import { tool as pdfEditor } from './pdf-editor';
@@ -137,7 +138,7 @@ export const toolsByCategory: ToolCategory[] = [
   },
   {
     name: 'AI Tools',
-    components: [aiTokenCostCalculator],
+    components: [aiTokenCostCalculator, aiRegexGeneratorExplainer],
   },
   {
     name: 'Image & Media',
