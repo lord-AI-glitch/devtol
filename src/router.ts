@@ -39,6 +39,76 @@ const localizedDealsRoutes = supportedLangs.map(lang => ({
   meta: { lang },
 }));
 
+const dockerTool = tools.find(t => t.path === '/docker-run-to-docker-compose-converter');
+const colorTool = tools.find(t => t.path === '/color-converter');
+const dateTool = tools.find(t => t.path === '/date-converter');
+
+const programmaticRoutes = [
+  {
+    path: '/docker-run-to-docker-compose-converter/:preset',
+    name: 'docker-run-preset',
+    component: dockerTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: dockerTool?.name },
+  },
+  {
+    path: '/docker-run-to-compose/:preset',
+    name: 'docker-run-to-compose-preset',
+    component: dockerTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: dockerTool?.name },
+  },
+  {
+    path: '/color-converter/:pair',
+    name: 'color-converter-pair',
+    component: colorTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: colorTool?.name },
+  },
+  {
+    path: '/date-converter/:pair',
+    name: 'date-converter-pair',
+    component: dateTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: dateTool?.name },
+  },
+  {
+    path: '/date-time-converter/:pair',
+    name: 'date-time-converter-pair',
+    component: dateTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: dateTool?.name },
+  },
+];
+
+const localizedProgrammaticRoutes = supportedLangs.flatMap(lang => [
+  {
+    path: `/${lang}/docker-run-to-docker-compose-converter/:preset`,
+    name: `${lang}-docker-run-preset`,
+    component: dockerTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: dockerTool?.name, lang },
+  },
+  {
+    path: `/${lang}/docker-run-to-compose/:preset`,
+    name: `${lang}-docker-run-to-compose-preset`,
+    component: dockerTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: dockerTool?.name, lang },
+  },
+  {
+    path: `/${lang}/color-converter/:pair`,
+    name: `${lang}-color-converter-pair`,
+    component: colorTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: colorTool?.name, lang },
+  },
+  {
+    path: `/${lang}/date-converter/:pair`,
+    name: `${lang}-date-converter-pair`,
+    component: dateTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: dateTool?.name, lang },
+  },
+  {
+    path: `/${lang}/date-time-converter/:pair`,
+    name: `${lang}-date-time-converter-pair`,
+    component: dateTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: dateTool?.name, lang },
+  },
+]);
+
 const toolsRedirectRoutes = tools
   .filter(({ redirectFrom }) => redirectFrom && redirectFrom.length > 0)
   .flatMap(
@@ -107,6 +177,8 @@ const router = createRouter({
     },
     ...toolsRoutes,
     ...localizedToolsRoutes,
+    ...programmaticRoutes,
+    ...localizedProgrammaticRoutes,
     ...toolsRedirectRoutes,
     ...(config.app.env === 'development' ? demoRoutes : []),
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },

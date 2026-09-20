@@ -510,4 +510,148 @@ for (const page of legalPages) {
   generatedCount++;
 }
 
+// 5. Prerender Programmatic Scenario Landing Pages (Docker presets, Color pairs, Date pairs)
+const programmaticScenarios = [
+  {
+    pathSlug: 'docker-run-to-compose/nginx',
+    title: 'Convert Docker Run Nginx to Docker Compose YML',
+    description: 'Instantly convert Nginx web server docker run command into a clean, production-ready docker-compose.yml file. 100% client-side privacy.',
+    keywords: ['docker run to compose nginx', 'convert docker run nginx', 'docker-compose nginx yaml'],
+    titleAr: 'تحويل أمر تشغيل Docker Nginx إلى ملف Docker Compose YML',
+    descAr: 'حوّل أمر تشغيل خادم Nginx في دوكر مباشرة إلى ملف docker-compose.yml جاهز للإنتاج بخصوصية تامة محلياً.',
+  },
+  {
+    pathSlug: 'docker-run-to-compose/postgres',
+    title: 'Convert Docker Run PostgreSQL to Docker Compose YML',
+    description: 'Instantly convert PostgreSQL 16 docker run command into a production-ready docker-compose.yml file with persistent volumes and credentials.',
+    keywords: ['docker run postgres to compose', 'convert docker run postgresql', 'docker-compose postgres yaml'],
+    titleAr: 'تحويل أمر تشغيل Docker PostgreSQL إلى ملف Docker Compose YML',
+    descAr: 'حوّل أمر تشغيل قاعدة بيانات PostgreSQL 16 إلى ملف docker-compose.yml مع وسائط التخزين الدائمة والمتغيرات.',
+  },
+  {
+    pathSlug: 'docker-run-to-compose/redis',
+    title: 'Convert Docker Run Redis to Docker Compose YML',
+    description: 'Instantly convert Redis in-memory cache docker run command into a production-ready docker-compose.yml file with AOF persistence.',
+    keywords: ['docker run redis to compose', 'convert docker run redis', 'docker-compose redis yaml'],
+    titleAr: 'تحويل أمر تشغيل Docker Redis إلى ملف Docker Compose YML',
+    descAr: 'حوّل أمر تشغيل خادم التخزين المؤقت Redis إلى ملف docker-compose.yml جاهز بضغطة واحدة.',
+  },
+  {
+    pathSlug: 'docker-run-to-compose/mysql',
+    title: 'Convert Docker Run MySQL to Docker Compose YML',
+    description: 'Instantly convert MySQL 8.0 database docker run command into a production-ready docker-compose.yml file with storage and auth.',
+    keywords: ['docker run mysql to compose', 'convert docker run mysql', 'docker-compose mysql yaml'],
+    titleAr: 'تحويل أمر تشغيل Docker MySQL إلى ملف Docker Compose YML',
+    descAr: 'حوّل أمر تشغيل قاعدة بيانات MySQL 8.0 إلى ملف docker-compose.yml جاهز مع مساحات التخزين وكلمات المرور.',
+  },
+  {
+    pathSlug: 'docker-run-to-compose/mongodb',
+    title: 'Convert Docker Run MongoDB to Docker Compose YML',
+    description: 'Instantly convert MongoDB NoSQL document database docker run command into a production-ready docker-compose.yml file.',
+    keywords: ['docker run mongodb to compose', 'convert docker run mongo', 'docker-compose mongodb yaml'],
+    titleAr: 'تحويل أمر تشغيل Docker MongoDB إلى ملف Docker Compose YML',
+    descAr: 'حوّل أمر تشغيل قاعدة بيانات MongoDB إلى ملف docker-compose.yml جاهز للإنتاج بخصوصية تامة.',
+  },
+  {
+    pathSlug: 'docker-run-to-compose/rabbitmq',
+    title: 'Convert Docker Run RabbitMQ to Docker Compose YML',
+    description: 'Instantly convert RabbitMQ message broker docker run command into a production-ready docker-compose.yml file with management UI ports.',
+    keywords: ['docker run rabbitmq to compose', 'convert docker run rabbitmq', 'docker-compose rabbitmq yaml'],
+    titleAr: 'تحويل أمر تشغيل Docker RabbitMQ إلى ملف Docker Compose YML',
+    descAr: 'حوّل أمر تشغيل وسيط الرسائل RabbitMQ مع واجهة الإدارة إلى ملف docker-compose.yml جاهز.',
+  },
+  {
+    pathSlug: 'docker-run-to-compose/wordpress',
+    title: 'Convert Docker Run WordPress to Docker Compose YML',
+    description: 'Instantly convert WordPress CMS docker run command into a production-ready docker-compose.yml file linked to MySQL/MariaDB.',
+    keywords: ['docker run wordpress to compose', 'convert docker run wordpress', 'docker-compose wordpress yaml'],
+    titleAr: 'تحويل أمر تشغيل Docker WordPress إلى ملف Docker Compose YML',
+    descAr: 'حوّل أمر تشغيل موقع ووردبريس إلى ملف docker-compose.yml متكامل مع قاعدة البيانات.',
+  },
+  {
+    pathSlug: 'color-converter/hex-to-rgb',
+    title: 'HEX to RGB Color Converter: Instant Hexadecimal to RGB Conversion',
+    description: 'Convert HEX color codes (#ffffff) to RGB values (rgb(255, 255, 255)) instantly with live real-time color preview and CSS copy.',
+    keywords: ['hex to rgb', 'convert hex to rgb', 'hex color to rgb online'],
+    titleAr: 'محول ألوان HEX إلى RGB: تحويل كود الهيكس إلى RGB أونلاين',
+    descAr: 'حوّل أكواد الألوان الست عشرية (HEX) إلى قيم RGB فورياً مع معاينة حية ونسخ سريع لـ CSS.',
+  },
+  {
+    pathSlug: 'color-converter/rgb-to-hex',
+    title: 'RGB to HEX Color Converter: Instant RGB to Hexadecimal Conversion',
+    description: 'Convert RGB color values (255, 255, 255) to clean HEX color codes (#ffffff) instantly with interactive color picker.',
+    keywords: ['rgb to hex', 'convert rgb to hex', 'rgb to hex converter online'],
+    titleAr: 'محول ألوان RGB إلى HEX: تحويل قيم RGB إلى كود هيكس',
+    descAr: 'حوّل قيم ألوان RGB الرقمية إلى كود HEX ست عشري فوري مع منتقي ألوان تفاعلي.',
+  },
+  {
+    pathSlug: 'color-converter/hex-to-hsl',
+    title: 'HEX to HSL Color Converter: Convert Hex Codes to HSL Notations',
+    description: 'Convert HEX colors to HSL (Hue, Saturation, Lightness) format with live color palette updates and CSS copy.',
+    keywords: ['hex to hsl', 'convert hex to hsl', 'hex to hsl converter online'],
+    titleAr: 'محول ألوان HEX إلى HSL أونلاين',
+    descAr: 'حوّل أكواد HEX إلى نظام HSL (درجة اللون، التشبع، الإضاءة) المناسب لتصميم واجهات المستخدم الحديثة.',
+  },
+  {
+    pathSlug: 'color-converter/rgb-to-hsl',
+    title: 'RGB to HSL Color Converter: Convert RGB to Hue, Saturation & Lightness',
+    description: 'Convert RGB color values to HSL notation instantly for CSS stylesheet design systems.',
+    keywords: ['rgb to hsl', 'convert rgb to hsl', 'rgb to hsl converter online'],
+    titleAr: 'محول ألوان RGB إلى HSL أونلاين',
+    descAr: 'حوّل قيم ألوان RGB إلى صيغة HSL القياسية لتصميم الويب والـ CSS.',
+  },
+  {
+    pathSlug: 'date-converter/unix-timestamp-to-utc',
+    title: 'Unix Timestamp to UTC Converter: Convert Epoch Seconds to Human Date',
+    description: 'Convert Unix epoch timestamp seconds or milliseconds into human-readable UTC date and time format instantly.',
+    keywords: ['unix timestamp to utc', 'convert epoch to utc', 'unix time to human date'],
+    titleAr: 'محول التوقيت الزمني Unix Timestamp إلى UTC أونلاين',
+    descAr: 'حوّل ثواني وميلي ثواني توقيت يونكس (Epoch) إلى تاريخ ووقت UTC مقروء للبشر فورياً.',
+  },
+  {
+    pathSlug: 'date-converter/unix-timestamp-to-iso',
+    title: 'Unix Timestamp to ISO 8601 Converter: Instant Epoch to ISO Conversion',
+    description: 'Convert Unix epoch timestamp into standard ISO 8601 international datetime format (YYYY-MM-DDTHH:mm:ss.sssZ).',
+    keywords: ['unix timestamp to iso', 'convert epoch to iso 8601', 'unix to iso string'],
+    titleAr: 'محول توقيت يونكس إلى صيغة ISO 8601 العالمية',
+    descAr: 'حوّل ثواني توقيت يونكس إلى صيغة ISO 8601 القياسية المتوافقة مع واجهات الـ API.',
+  },
+  {
+    pathSlug: 'date-converter/iso-to-unix-timestamp',
+    title: 'ISO 8601 to Unix Timestamp Converter: Convert ISO String to Epoch Seconds',
+    description: 'Convert ISO 8601 datetime strings into Unix epoch seconds and milliseconds with instant validation.',
+    keywords: ['iso to unix timestamp', 'convert iso 8601 to epoch', 'iso string to timestamp'],
+    titleAr: 'محول تاريخ ISO 8601 إلى توقيت يونكس (Unix Timestamp)',
+    descAr: 'حوّل نصوص تواريخ ISO 8601 إلى ثواني وميلي ثواني Epoch فورياً وبأمان تام داخل المتصفح.',
+  },
+];
+
+for (const sc of programmaticScenarios) {
+  for (const lang of allLangCodes) {
+    const isEn = lang === 'en';
+    const title = (lang === 'ar' && sc.titleAr) ? sc.titleAr : sc.title;
+    const description = (lang === 'ar' && sc.descAr) ? sc.descAr : sc.description;
+
+    const pageHtml = generatePrerenderedHtml({
+      pathSlug: sc.pathSlug,
+      title,
+      description,
+      keywords: sc.keywords,
+      articleHtml: '',
+      category: 'DeveloperTools',
+      lang,
+    });
+
+    const targetDir = isEn
+      ? path.join(distDir, sc.pathSlug)
+      : path.join(distDir, lang, sc.pathSlug);
+
+    if (!fs.existsSync(targetDir)) {
+      fs.mkdirSync(targetDir, { recursive: true });
+    }
+    fs.writeFileSync(path.join(targetDir, 'index.html'), pageHtml, 'utf8');
+    generatedCount++;
+  }
+}
+
 console.log(`[SEO Prerender] Successfully generated ${generatedCount} static HTML pages across 10 languages in dist/!`);

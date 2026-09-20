@@ -164,8 +164,109 @@ for (const varName of registeredToolVars) {
   }
 }
 
+const programmaticScenarios = [
+  {
+    path: '/docker-run-to-compose/nginx',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Convert Docker Run Nginx to Docker Compose YML',
+    description: 'Instantly convert Nginx docker run command into a production-ready docker-compose.yml file.',
+  },
+  {
+    path: '/docker-run-to-compose/postgres',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Convert Docker Run PostgreSQL to Docker Compose YML',
+    description: 'Instantly convert PostgreSQL 16 docker run command into a production-ready docker-compose.yml file.',
+  },
+  {
+    path: '/docker-run-to-compose/redis',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Convert Docker Run Redis to Docker Compose YML',
+    description: 'Instantly convert Redis docker run command into a production-ready docker-compose.yml file.',
+  },
+  {
+    path: '/docker-run-to-compose/mysql',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Convert Docker Run MySQL to Docker Compose YML',
+    description: 'Instantly convert MySQL 8.0 docker run command into a production-ready docker-compose.yml file.',
+  },
+  {
+    path: '/docker-run-to-compose/mongodb',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Convert Docker Run MongoDB to Docker Compose YML',
+    description: 'Instantly convert MongoDB NoSQL docker run command into a production-ready docker-compose.yml file.',
+  },
+  {
+    path: '/docker-run-to-compose/rabbitmq',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Convert Docker Run RabbitMQ to Docker Compose YML',
+    description: 'Instantly convert RabbitMQ message broker docker run command into a production-ready docker-compose.yml file.',
+  },
+  {
+    path: '/docker-run-to-compose/wordpress',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Convert Docker Run WordPress to Docker Compose YML',
+    description: 'Instantly convert WordPress CMS docker run command into a production-ready docker-compose.yml file.',
+  },
+  {
+    path: '/color-converter/hex-to-rgb',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'HEX to RGB Color Converter',
+    description: 'Convert HEX color codes to RGB values instantly with live preview.',
+  },
+  {
+    path: '/color-converter/rgb-to-hex',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'RGB to HEX Color Converter',
+    description: 'Convert RGB color values to hexadecimal format instantly with live preview.',
+  },
+  {
+    path: '/color-converter/hex-to-hsl',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'HEX to HSL Color Converter',
+    description: 'Convert HEX colors to HSL (Hue, Saturation, Lightness) values for CSS.',
+  },
+  {
+    path: '/color-converter/rgb-to-hsl',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'RGB to HSL Color Converter',
+    description: 'Convert RGB colors to HSL notation for modern UI/UX design systems.',
+  },
+  {
+    path: '/date-converter/unix-timestamp-to-utc',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Unix Timestamp to UTC Converter',
+    description: 'Convert Unix epoch timestamp seconds to UTC human-readable format.',
+  },
+  {
+    path: '/date-converter/unix-timestamp-to-iso',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Unix Timestamp to ISO 8601 Converter',
+    description: 'Convert seconds since Unix epoch to standard ISO 8601 datetime format.',
+  },
+  {
+    path: '/date-converter/iso-to-unix-timestamp',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'ISO 8601 to Unix Timestamp Converter',
+    description: 'Convert ISO 8601 date string to Unix epoch seconds and milliseconds.',
+  },
+];
+
 // Combine all routes
-const allRoutes = [...staticRoutes, ...toolRoutes];
+const allRoutes = [...staticRoutes, ...toolRoutes, ...programmaticScenarios];
 const uniqueRoutes = Array.from(new Map(allRoutes.map(item => [item.path, item])).values());
 console.log(`[SEO Generator] Total unique URLs to index in sitemap: ${uniqueRoutes.length}`);
 

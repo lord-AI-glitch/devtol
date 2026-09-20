@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { ref, computed, onMounted, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useHead } from '@vueuse/head';
+import { useNow } from '@vueuse/core';
 import {
   formatISO,
   formatISO9075,
@@ -28,7 +32,33 @@ import {
 } from './date-time-converter.models';
 import { withDefaultOnError } from '@/utils/defaults';
 import { useValidation } from '@/composable/validation';
+import { Calendar, Check } from '@vicons/tabler';
 
+const DATE_PAIRS: Record<
+  string,
+  { title: string; desc: string; defaultFormatIndex: number }
+> = {
+  'unix-timestamp-to-utc': {
+    title: 'Unix Timestamp to UTC Converter',
+    desc: 'Convert Unix epoch timestamp seconds to UTC human-readable format',
+    defaultFormatIndex: 5,
+  },
+  'unix-timestamp-to-iso': {
+    title: 'Unix Timestamp to ISO 8601 Converter',
+    desc: 'Convert seconds since Unix epoch to standard ISO 8601 datetime format',
+    defaultFormatIndex: 5,
+  },
+  'iso-to-unix-timestamp': {
+    title: 'ISO 8601 to Unix Timestamp Converter',
+    desc: 'Convert ISO 8601 date string to Unix epoch seconds and milliseconds',
+    defaultFormatIndex: 1,
+  },
+};
+
+const route = useRoute();
+const router = useRouter();
+
+const activePairKey = ref<string>('');
 const inputDate = ref('');
 
 const toDate: ToDateMapper = date => new Date(date);
@@ -99,6 +129,60 @@ const formats: DateFormat[] = [
 const formatIndex = ref(6);
 const now = useNow();
 
+function selectPair(pairKey: string, updateUrl = true) {
+  if (DATE_PAIRS[pairKey]) {
+    activePairKey.value = pairKey;
+    formatIndex.value = DATE_PAIRS[pairKey].defaultFormatIndex;
+    if (updateUrl) {
+      const langPrefix = route.path.match(/^\/(ar|de|es|fr|no|pt|uk|vi|zh)/);
+      const prefix = langPrefix ? `/${langPrefix[1]}` : '';
+      router.replace(`${prefix}/date-converter/${pairKey}`);
+    }
+  } else {
+    activePairKey.value = '';
+  }
+}
+
+onMounted(() => {
+  const param = (route.params.pair as string) || '';
+  if (param && DATE_PAIRS[param.toLowerCase()]) {
+    selectPair(param.toLowerCase(), false);
+  } else {
+    const pathParts = route.path.split('/').filter(Boolean);
+    const lastPart = pathParts[pathParts.length - 1]?.toLowerCase();
+    if (lastPart && DATE_PAIRS[lastPart]) {
+      selectPair(lastPart, false);
+    }
+  }
+});
+
+watch(
+  () => route.params.pair,
+  newPair => {
+    if (newPair && typeof newPair === 'string' && DATE_PAIRS[newPair.toLowerCase()]) {
+      activePairKey.value = newPair.toLowerCase();
+      formatIndex.value = DATE_PAIRS[newPair.toLowerCase()].defaultFormatIndex;
+    }
+  },
+);
+
+const activePair = computed(() => DATE_PAIRS[activePairKey.value]);
+
+useHead(
+  computed(() => {
+    if (!activePair.value) return {};
+    return {
+      title: `${activePair.value.title} | DevTol`,
+      meta: [
+        {
+          name: 'description',
+          content: `${activePair.value.desc}. Accurate, instant, 100% client-side date & time converter.`,
+        },
+      ],
+    };
+  }),
+);
+
 const normalizedDate = computed(() => {
   if (!inputDate.value) {
     return now.value;
@@ -108,8 +192,7 @@ const normalizedDate = computed(() => {
 
   try {
     return toDate(inputDate.value);
-  }
-  catch (_ignored) {
+  } catch (_ignored) {
     return undefined;
   }
 });
@@ -150,40 +233,76 @@ function formatDateUsingFormatter(formatter: (date: Date) => string, date?: Date
 </script>
 
 <template>
-  <div>
-    <div flex gap-2>
-      <c-input-text
-        v-model:value="inputDate"
-        autofocus
-        placeholder="Put your date string here..."
-        clearable
-        test-id="date-time-converter-input"
-        :validation="validation"
-        @update:value="onDateInputChanged"
-      />
+  <div class="space-y-4">
+    <!-- Quick Date Scenario Chips -->
+    <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700/60 space-y-2">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <n-icon :size="18" class="text-primary-500"><Calendar /></n-icon>
+          <span class="text-xs font-semibold text-slate-700 dark:text-slate-200">
+            Frequent Date Conversions:
+          </span>
+        </div>
+        <span v-if="activePair" class="text-xs text-primary-600 dark:text-primary-400 font-medium">
+          {{ activePair.title }}
+        </span>
+      </div>
 
-      <c-select
-        v-model:value="formatIndex"
-        style="flex: 0 0 170px"
-        :options="formats.map(({ name }, i) => ({ label: name, value: i }))"
-        data-test-id="date-time-converter-format-select"
-      />
+      <div class="flex flex-wrap items-center gap-2">
+        <button
+          v-for="(pair, key) in DATE_PAIRS"
+          :key="key"
+          type="button"
+          class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium transition-all"
+          :class="[
+            activePairKey === key
+              ? 'bg-primary-600 text-white shadow-sm font-semibold'
+              : 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 hover:border-primary-400'
+          ]"
+          @click="selectPair(key as string)"
+        >
+          <n-icon v-if="activePairKey === key" :size="12"><Check /></n-icon>
+          <span>{{ pair.title.replace(' Converter', '') }}</span>
+        </button>
+      </div>
     </div>
 
-    <n-divider />
+    <!-- Main Date Converter Inputs -->
+    <div>
+      <div flex gap-2>
+        <c-input-text
+          v-model:value="inputDate"
+          autofocus
+          placeholder="Put your date string or timestamp here..."
+          clearable
+          test-id="date-time-converter-input"
+          :validation="validation"
+          @update:value="onDateInputChanged"
+        />
 
-    <input-copyable
-      v-for="{ name, fromDate } in formats"
-      :key="name"
-      :label="name"
-      label-width="150px"
-      label-position="left"
-      label-align="right"
-      :value="formatDateUsingFormatter(fromDate, normalizedDate)"
-      placeholder="Invalid date..."
-      :test-id="name"
-      readonly
-      mt-2
-    />
+        <c-select
+          v-model:value="formatIndex"
+          style="flex: 0 0 170px"
+          :options="formats.map(({ name }, i) => ({ label: name, value: i }))"
+          data-test-id="date-time-converter-format-select"
+        />
+      </div>
+
+      <n-divider />
+
+      <input-copyable
+        v-for="{ name, fromDate } in formats"
+        :key="name"
+        :label="name"
+        label-width="150px"
+        label-position="left"
+        label-align="right"
+        :value="formatDateUsingFormatter(fromDate, normalizedDate)"
+        placeholder="Invalid date..."
+        :test-id="name"
+        readonly
+        mt-2
+      />
+    </div>
   </div>
 </template>
