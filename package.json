@@ -25,6 +25,7 @@
     "prebuild": "node scripts/generate-seo.js",
     "postbuild": "node scripts/prerender-seo-pages.js",
     "indexnow": "node scripts/submit-indexnow.mjs",
+    "build:extension": "node scripts/build-extension.mjs",
     "dev": "vite",
     "build": "vue-tsc --noEmit && cross-env NODE_OPTIONS=--max_old_space_size=4096 vite build",
     "preview": "vite preview --port 5050",

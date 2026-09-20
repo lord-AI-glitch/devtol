@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevTol - Developer Tools</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="https://devtol.online?utm_source=chrome_extension" target="_blank" class="brand" title="Open DevTol Suite">
+      <img src="../icons/icon-32.png" alt="DevTol" class="brand-icon">
+      <span class="brand-title">DevTol</span>
+      <span class="brand-badge">PRO</span>
+    </a>
+    <div class="header-actions">
+      <button id="themeToggle" class="icon-btn" title="Toggle Light/Dark Theme">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+      </button>
+      <a href="https://devtol.online?utm_source=chrome_extension" target="_blank" class="icon-btn" title="Open Full Suite in New Tab">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav-tabs">
+    <button class="tab-btn active" data-tab="search">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      Search
+    </button>
+    <button class="tab-btn" data-tab="json">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8a4 4 0 0 1 4-4h2"/><path d="M4 16a4 4 0 0 0 4 4h2"/><path d="M8 12h3"/><path d="M20 8a4 4 0 0 0-4-4h-2"/><path d="M20 16a4 4 0 0 1-4 4h-2"/><path d="M16 12h-3"/></svg>
+      JSON
+    </button>
+    <button class="tab-btn" data-tab="tokens">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Tokens
+    </button>
+    <button class="tab-btn" data-tab="base64">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+      Base64
+    </button>
+    <button class="tab-btn" data-tab="ai">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="M2 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="M12 22v-4"/><path d="m19.07 19.07-2.83-2.83"/><path d="M22 12h-4"/><path d="m19.07 4.93-2.83 2.83"/></svg>
+      AI Cost
+    </button>
+    <button class="tab-btn" data-tab="unix">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Time
+    </button>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="main-content">
+
+    <!-- 1. Search Tab -->
+    <section id="panel-search" class="tab-panel active">
+      <div class="search-wrapper">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="toolSearchInput" class="search-input" placeholder="Search 126+ developer tools... (e.g. jwt, docker, curl, regex)" autofocus>
+        <button id="clearSearchBtn" class="clear-search-btn">✕</button>
+      </div>
+      <div class="category-chips">
+        <button class="chip-btn active" data-category="all">All Tools</button>
+        <button class="chip-btn" data-category="ai">AI Tools</button>
+        <button class="chip-btn" data-category="web">Web</button>
+        <button class="chip-btn" data-category="crypto">Crypto</button>
+        <button class="chip-btn" data-category="converter">Converters</button>
+        <button class="chip-btn" data-category="dev">Development</button>
+      </div>
+      <div id="toolsList" class="tools-list">
+        <!-- Injected via popup.js -->
+      </div>
+    </section>
+
+    <!-- 2. JSON Formatter & Minifier Tab -->
+    <section id="panel-json" class="tab-panel">
+      <div class="card">
+        <div class="card-title">
+          <span>JSON Formatter & Minifier</span>
+          <span id="jsonValidationBadge" class="badge badge-success">Ready</span>
+        </div>
+        <textarea id="jsonInput" class="textarea-field" placeholder='Paste JSON here... e.g. {"name":"DevTol","tools":126,"offline":true}'></textarea>
+        <div class="btn-group">
+          <button id="jsonPrettify2" class="primary-btn">Format (2 Spaces)</button>
+          <button id="jsonPrettify4" class="secondary-btn">Format (4)</button>
+          <button id="jsonMinify" class="secondary-btn">Minify</button>
+          <button id="jsonCopy" class="secondary-btn">Copy</button>
+          <button id="jsonClear" class="secondary-btn">Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Password & Token Generator Tab -->
+    <section id="panel-tokens" class="tab-panel">
+      <div class="card">
+        <div class="card-title">
+          <span>Generated Secure Token</span>
+          <span id="tokenEntropyBadge" class="badge badge-success">Strong</span>
+        </div>
+        <div class="output-box">
+          <span id="tokenOutput">Click Generate</span>
+          <button id="tokenCopyBtn" class="icon-btn" title="Copy Token">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          </button>
+        </div>
+        <div class="option-row">
+          <span>Length: <strong id="tokenLengthVal">24</strong></span>
+          <div class="slider-container">
+            <input type="range" id="tokenLengthSlider" min="8" max="64" value="24">
+          </div>
+        </div>
+        <div class="checkbox-grid">
+          <label class="checkbox-label"><input type="checkbox" id="tokenUpper" checked> Uppercase (A-Z)</label>
+          <label class="checkbox-label"><input type="checkbox" id="tokenLower" checked> Lowercase (a-z)</label>
+          <label class="checkbox-label"><input type="checkbox" id="tokenNumbers" checked> Numbers (0-9)</label>
+          <label class="checkbox-label"><input type="checkbox" id="tokenSymbols" checked> Symbols (!@#$)</label>
+        </div>
+        <div class="btn-group" style="margin-top: 6px;">
+          <button id="tokenGenerateBtn" class="primary-btn" style="flex: 1;">Generate New Secret</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Base64 Converter Tab -->
+    <section id="panel-base64" class="tab-panel">
+      <div class="card">
+        <div class="card-title">
+          <span>Base64 String Converter</span>
+          <div class="btn-group">
+            <button id="b64ModeEncode" class="primary-btn" style="padding: 3px 8px; font-size: 11px;">Encode</button>
+            <button id="b64ModeDecode" class="secondary-btn" style="padding: 3px 8px; font-size: 11px;">Decode</button>
+          </div>
+        </div>
+        <textarea id="b64Input" class="textarea-field" placeholder="Enter text to encode/decode..."></textarea>
+        <div class="card-title" style="margin-top: 4px;">
+          <span>Result</span>
+          <button id="b64CopyBtn" class="secondary-btn" style="padding: 3px 8px; font-size: 11px;">Copy</button>
+        </div>
+        <textarea id="b64Output" class="textarea-field" readonly placeholder="Output will appear here..."></textarea>
+      </div>
+    </section>
+
+    <!-- 5. AI Token & Cost Estimator Tab -->
+    <section id="panel-ai" class="tab-panel">
+      <div class="card">
+        <div class="card-title">
+          <span>Prompt Token & Cost Estimator</span>
+          <span id="aiTokenCountBadge" class="badge badge-success">0 tokens</span>
+        </div>
+        <textarea id="aiPromptInput" class="textarea-field" style="height: 80px;" placeholder="Paste LLM prompt here to estimate tokens and pricing..."></textarea>
+        <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 4px;">
+          <div class="model-row">
+            <span class="model-name">OpenAI GPT-4o</span>
+            <span id="costGpt4o" class="model-cost">$0.0000</span>
+          </div>
+          <div class="model-row">
+            <span class="model-name">Claude 3.5 Sonnet</span>
+            <span id="costClaude" class="model-cost">$0.0000</span>
+          </div>
+          <div class="model-row">
+            <span class="model-name">Google Gemini 1.5 Pro</span>
+            <span id="costGemini" class="model-cost">$0.0000</span>
+          </div>
+        </div>
+        <a href="https://devtol.online/ai-token-cost-calculator?utm_source=chrome_extension" target="_blank" class="secondary-btn" style="text-decoration: none; justify-content: center; margin-top: 6px;">
+          Open Advanced AI Calculator ↗
+        </a>
+      </div>
+    </section>
+
+    <!-- 6. Unix Time Converter Tab -->
+    <section id="panel-unix" class="tab-panel">
+      <div class="card">
+        <div class="card-title">
+          <span>Current Unix Epoch Timestamp</span>
+          <button id="unixEpochCopy" class="secondary-btn" style="padding: 3px 8px; font-size: 11px;">Copy</button>
+        </div>
+        <div id="liveUnixDisplay" class="time-display">0000000000</div>
+        <div class="option-row">
+          <input type="number" id="unixInputVal" class="search-input" style="padding: 6px 8px; flex: 1;" placeholder="Enter Epoch (seconds)">
+          <button id="unixConvertBtn" class="primary-btn" style="margin-left: 6px;">Convert</button>
+        </div>
+        <div id="unixResultsBox" style="display: flex; flex-direction: column; gap: 6px; font-family: var(--font-mono); font-size: 11px; margin-top: 4px;">
+          <div class="model-row">
+            <span style="color: var(--text-muted);">UTC (ISO-8601):</span>
+            <span id="unixUtcRes" style="color: var(--text-primary);">-</span>
+          </div>
+          <div class="model-row">
+            <span style="color: var(--text-muted);">Local Time:</span>
+            <span id="unixLocalRes" style="color: var(--text-primary);">-</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span>DevTol v1.0 • 100% Client-Side</span>
+    <a href="https://devtol.online?utm_source=chrome_extension" target="_blank">devtol.online ↗</a>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">Copied to clipboard!</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
