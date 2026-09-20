@@ -178,4 +178,26 @@
       - Deployed live to Cloudflare Pages (`https://d50a0592.devtol.pages.dev` & `https://devtol.online`) verified with HTTP 200 across all scenario URLs.
       - Synced AST knowledge graph via `python -m graphify update .`.
 
-
+21. **Official Browser Extension for Chrome & Edge (Manifest V3 - Phase 4):**
+    - **Architecture & MV3 Specification**:
+      - Implemented full Google Chrome Web Store and Microsoft Edge Add-ons compliant extension under `extension/`.
+      - Secure Manifest V3 standard with `storage` permission only, zero host permissions, zero tracking, and zero remote code for fast-track store approval.
+      - Generated full icon asset suite (16x16, 32x32, 48x48, 128x128) with high-res Lanczos resampling.
+    - **Popup Capabilities (< 30ms Instant Startup)**:
+      - **Instant Search Across 126+ Tools**: Real-time fuzzy filtering through all DevTol tools with category chips and direct deep links to `https://devtol.online/tool-slug`.
+      - **5 Built-in Offline Micro-Tools**:
+        1. *JSON Prettifier & Minifier*: Format (2/4 spaces), validate, and minify with instant copy.
+        2. *Cryptographic Token & Password Generator*: Length slider (8–64), character set toggles, and live entropy bit calculation.
+        3. *Base64 String Converter*: UTF-8 safe encode and decode.
+        4. *AI Prompt Token & Cost Estimator*: Real-time token heuristics and cost estimations for GPT-4o, Claude 3.5 Sonnet, and Gemini 1.5 Pro.
+        5. *Unix Epoch Converter*: Live ticking Unix timestamp with ISO-8601 UTC and local time conversion.
+      - Dark & Light mode toggle persisting to `chrome.storage.local`.
+    - **Automated Packaging Pipeline**:
+      - Built `scripts/build-extension.mjs` and added `"build:extension"` to `package.json`.
+      - Automatically extracts live tool catalog from `src/tools/index.ts` and `locales/en.yml`.
+      - Assembles unpacked extension into `dist-extension/` (ready for "Load unpacked").
+      - Compresses store-ready archive `dist-extension/devtol-chrome-extension.zip` (38.6 KB).
+    - **Testing & Verification**:
+      - 171/171 unit tests passed across 41 test suites (`npx vitest run --environment jsdom`).
+      - 0 TypeScript errors (`npx vue-tsc --noEmit`).
+      - Updated local Graphify knowledge graph (9,426 nodes, 16,084 edges, 455 communities).
