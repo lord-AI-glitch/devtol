@@ -18,9 +18,11 @@ const route = useRoute();
 const styleStore = useStyleStore();
 const isDark = computed(() => styleStore.isDarkTheme);
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
-const i18nKey = computed<string>(() => route.path.trim().replace('/', ''));
+const i18nKey = computed<string>(() =>
+  route.path.replace(/^\/(?:ar|de|es|fr|no|pt|uk|vi|zh)(?=\/|$)/, '').replace(/^\/+/, '').split('/')[0] || '',
+);
 const toolTitle = computed<string>(() => t(`tools.${i18nKey.value}.title`, String(route.meta.name || 'Tool')));
 const rawDescription = computed<string>(() => t(`tools.${i18nKey.value}.description`, String(route.meta.description || '')));
 const toolDescription = computed<string>(() => rawDescription.value);
@@ -33,16 +35,50 @@ onErrorCaptured((err, instance, info) => {
   return false;
 });
 
-const seoTitle = computed<string>(() => `${toolTitle.value} Online (Free & Fast) - DevTol`);
-const seoDescription = computed<string>(() => {
-  const desc = rawDescription.value || `${toolTitle.value} online utility`;
-  return `${desc}. Free, secure, client-side developer tool on DevTol.`;
+const seoTitle = computed<string>(() => {
+  if (locale.value === 'ar') {
+    return `${toolTitle.value} أونلاين مجاناً (سريع ومحلي 100%) - DevTol`;
+  }
+  return `${toolTitle.value} Online — Free, Fast & Client-Side | DevTol`;
 });
+
+const seoDescription = computed<string>(() => {
+  if (locale.value === 'ar') {
+    const desc = rawDescription.value || `${toolTitle.value} أداة برمجية أونلاين`;
+    return `${desc}. أداة مطورين ومصممين مجانية 100% تعمل محلياً داخل المتصفح بأمان وخصوصية تامة على DevTol.`;
+  }
+  const desc = rawDescription.value || `${toolTitle.value} online utility`;
+  return `${desc}. 100% free, private, and client-side developer tool running locally on DevTol.`;
+});
+
 const canonicalUrl = computed<string>(() => `https://devtol.online${route.path}`);
+
 const seoKeywords = computed<string>(() => {
   const customKeywords = (route.meta.keywords ?? []) as string[];
-  const baseKeywords = [toolTitle.value.toLowerCase(), 'online tool', 'free tool', 'developer utility', 'client-side', 'devtol'];
-  return Array.from(new Set([...customKeywords, ...baseKeywords])).join(', ');
+  const baseKeywordsEn = [
+    toolTitle.value.toLowerCase(),
+    'online tool',
+    'free tool',
+    'developer utility',
+    'client-side tool',
+    'browser tool',
+    'no server upload',
+    'private developer tool',
+    'devtol',
+  ];
+  const baseKeywordsAr = [
+    toolTitle.value,
+    'أداة أونلاين',
+    'أداة مجانية',
+    'أدوات مطورين',
+    'أدوات مصممين',
+    'تعمل في المتصفح',
+    'بدون رفع ملفات',
+    'حماية الخصوصية',
+    'ديف تول',
+  ];
+  const activeBase = locale.value === 'ar' ? [...baseKeywordsAr, ...baseKeywordsEn] : baseKeywordsEn;
+  return Array.from(new Set([...customKeywords, ...activeBase])).join(', ');
 });
 
 const head = computed<HeadObject>(() => ({
@@ -55,6 +91,14 @@ const head = computed<HeadObject>(() => ({
     {
       name: 'keywords',
       content: seoKeywords.value,
+    },
+    {
+      property: 'og:site_name',
+      content: 'DevTol',
+    },
+    {
+      property: 'og:locale',
+      content: locale.value === 'ar' ? 'ar_AR' : 'en_US',
     },
     {
       property: 'og:title',
@@ -75,6 +119,14 @@ const head = computed<HeadObject>(() => ({
     {
       property: 'og:image',
       content: 'https://devtol.online/banner.png?v=2',
+    },
+    {
+      property: 'og:image:width',
+      content: '1200',
+    },
+    {
+      property: 'og:image:height',
+      content: '630',
     },
     {
       name: 'twitter:card',
@@ -127,8 +179,8 @@ const head = computed<HeadObject>(() => ({
               {
                 '@type': 'ListItem',
                 'position': 1,
-                'name': 'Home',
-                'item': 'https://devtol.online',
+                'name': locale.value === 'ar' ? 'الرئيسية' : 'Home',
+                'item': locale.value === 'ar' ? 'https://devtol.online/ar' : 'https://devtol.online',
               },
               {
                 '@type': 'ListItem',
@@ -168,7 +220,10 @@ const toolGuides = import.meta.glob('/src/content/tools/*.md', { as: 'raw', eage
 const renderedGuideHtml = ref<string>('');
 
 function loadArticle(toolSlug: string) {
-  const normalizedSlug = toolSlug.replace(/^\//, '');
+  const normalizedSlug = toolSlug
+    .replace(/^\/(?:ar|de|es|fr|no|pt|uk|vi|zh)(?=\/|$)/, '')
+    .replace(/^\/+/, '')
+    .split('/')[0] || '';
   const guidePath = `/src/content/tools/${normalizedSlug}.md`;
   
   if (guidePath in toolGuides) {

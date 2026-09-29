@@ -11,7 +11,7 @@
 
 ### PDF Tools
 - [PDF Editor](https://devtol.online/pdf-editor): 100% Free Client-Side PDF Editor. Edit PDF text directly, find & replace text with full Arabic support, load system fonts, add signatures, draw, and redact PDFs securely in your browser.
-- [Merge PDF](https://devtol.online/pdf-merge): Merge multiple PDF files into one. 100% client-side � files never leave your browser.
+- [Merge PDF](https://devtol.online/pdf-merge): Merge multiple PDF files into one. 100% client-side - files never leave your browser.
 - [Split PDF](https://devtol.online/pdf-split): Split or extract specific pages from a PDF file. Client-side processing, total privacy.
 - [Compress PDF](https://devtol.online/pdf-compress): Reduce PDF file size with adjustable quality. 100% browser-based, no uploads.
 - [PDF to Image](https://devtol.online/pdf-to-image): Convert PDF pages to PNG or JPG images. Download all pages as a ZIP. Client-side only.

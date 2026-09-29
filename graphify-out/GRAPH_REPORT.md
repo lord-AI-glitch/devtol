@@ -1,16 +1,16 @@
-# Graph Report - IT TOOLS  (2026-09-15)
+# Graph Report - devtol  (2026-09-29)
 
 ## Corpus Check
-- 666 files · ~274,313 words
+- 715 files · ~350,640 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 8917 nodes · 15432 edges · 469 communities (341 shown, 114 thin omitted)
-- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 545 edges (avg confidence: 0.85)
+- 9612 nodes · 16277 edges · 461 communities (386 shown, 62 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 545 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d8c22eda`
+- Built from commit: `86fa1856`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -23,7 +23,7 @@
 - package.json
 - toml-to-yaml.vue
 - og-schemas/index.ts
-- ipv4-range-expander.vue
+- text-to-speech.vue
 - date-time-converter.vue
 - c-select.vue
 - Regular Expression Memo & Engine Guide: NFA/DFA Automata & ReDoS Mitigation
@@ -32,10 +32,10 @@
 - components.d.ts
 - @playwright/test
 - Universal Color Space Converter & Contrast Engine: HEX, RGB, HSL, HSV, CMYK & CSS Color 4/5
-- command-palette.vue
+- src/modules/command-palette/command-palette.vue
 - wifi-qr-code-generator.vue
 - pdf-editor.vue
-- color-converter.vue
+- executeOpTree
 - tool.layout.vue
 - xml-formatter.vue
 - temperature-converter.vue
@@ -49,18 +49,18 @@
 - editor.vue
 - roman-numeral-converter.vue
 - jwt-parser.service.ts
-- CollapsibleToolMenu.vue
+- video-to-gif.vue
 - pdf-signature-checker.vue
 - pdf-ocr.md
 - pdf.worker.min.js
 - scripts
-- PDFFetchStreamReader
+- create
 - fontkit.umd.min.js
 - adsense-revenue-calculator.vue
 - @vueuse/core
 - mac-address-generator.vue
 - router.ts
-- AnnotationStorage
+- curl-to-code-converter.vue
 - base64-string-converter.vue
 - benchmark-builder.vue
 - .success
@@ -72,72 +72,72 @@
 - password-strength-analyser.vue
 - pdf.min.js
 - ascii-text-drawer.vue
-- user-agent-parser.vue
-- GlobalImageCache
-- string-obfuscator.vue
+- WidgetAnnotation
+- ai-regex-generator-explainer.vue
+- PartialEvaluator
 - text-to-unicode.vue
 - url-encoder.vue
 - c-modal.vue
 - docker-run-to-docker-compose-converter.vue
 - iban-validator-and-parser.vue
 - lodash
-- TemplateNamespace
+- f
 - uuid-generator.vue
 - percentage-calculator.vue
 - c-button.vue
 - c-button.theme.ts
 - c-file-upload.vue
-- f
-- valueToHtml
+- Subform
+- BasePdfManager
 - rsa-key-pair-generator.vue
-- validation.ts
+- sql-to-orm-converter.vue
 - text-to-nato-alphabet.vue
 - IT-Tools Web Platform: Complete Step-by-Step Antigravity Master Prompts Guide
 - tsconfig.vitest.json
 - create-tool.mjs
 - .getTextContent
-- vitest
+- numeronym-generator.vue
 - theme/themes.ts
 - random.ts
-- c-markdown.vue
-- BasePdfManager
+- ai-token-cost-calculator.vue
+- extractFontProgram
 - tsconfig.vite-config.json
 - Estimated Time of Arrival (ETA) & Data Transfer Calculator: Throughput, Moving Averages, and Jitter Compensation
-- .toString
+- has
 - Online Percentage Calculator: Precision Math, Business Formulas & Financial Ratios
-- Edge
+- 1. Top Tier Developer & Tool Directories (Free Submission)
 - generate-seo.js
-- .resolve
+- BaseFullReader
 - DevTol — Handy Online Developer Utilities
 - c-alert.vue
 - JSON to CSV Converter: RFC 4180 Compliance, Nested Object Flattening & Streaming Serialization
-- WidgetAnnotation
+- Reddit Viral Launch Playbook for DevTol
 - c-diff-editor.vue
 - mac-address-lookup.vue
 - pdf-split.md
 - c-card.vue
 - c-modal-value.vue
-- BaseFullReader
+- 4. Frequently Asked Questions (FAQs)
 - 📄 Category 1: PDF Management Tools (Tools 1 to 10)
-- ariaLabel
+- InkEditor
 - compound-interest-calculator.vue
-- LocaleSetNamespace
+- .#Ts
 - .get
 - WorkerTransport
 - random-port-generator/index.ts
 - mortgage-calculator.vue
-- bind
-- .createElement
-- PageViewport
+- ipv4-range-expander.service.ts
+- LinkAnnotationElement
+- Arbitrary-Precision Integer Base Converter: Radix Math, Two's Complement & BigInt Bitwise Architecture
 - chmod-calculator.vue
 - renovate.json
 - Arbitrary-Precision Integer Base Converter: Radix Math, Two's Complement & BigInt Bitwise Architecture
-- readBit
-- SimpleSegmentVisitor
+- Epoch Timestamp & ISO 8601 Date-Time Converter: The Complete Distributed Systems Reference
+- OpenGraph & Dublin Core Meta Tag Generator: Machine-Readable Metadata & SEO Specs
 - pdf-to-image.md
-- PDFWorker
+- XFAObjectArray
 - AnnotationEditorUIManager
-- .push
+- Glyph
 - env.d.ts
 - .add
 - image-resizer.vue
@@ -151,7 +151,7 @@
 - regex-memo.content.md
 - base64.ts
 - JSON to YAML Converter: Structural Serialization, Block Styles & YAML 1.2
-- ExclGroup
+- 1. High-Engagement Twitter / X Thread
 - Changelog
 - Version 2023.08.16-9bd4ad4
 - Delimited List Converter: String Tokenization, Array Wrapping & SQL Formatting
@@ -159,11 +159,11 @@
 - Version 2024.10.22-7ca5933
 - Version 2023.05.14-77f2efc
 - Version 2024.05.13-a0bc346
-- CMap
+- ISO/IEC 18004 QR Code Generator: Reed-Solomon Error Correction & 2D Matrix Specs
 - Version 2023.12.21-5ed3693
 - pull_request_template.md
 - ASCII Text Drawer: Online FIGlet & Banner Font Generator for Developers
-- Caption
+- yaml-validator.vue
 - Base64 File Converter: Binary-to-ASCII & Data URI Architecture Guide
 - Version 2023.11.02-7d94e11
 - Version 2023.08.21-6f93cba
@@ -181,7 +181,7 @@
 - Universally Unique Identifiers (UUID): RFC 4122 Standards, Entropy & Collision Probability
 - mock-data-generator.vue
 - JSON to XML Converter: Structural Transformation, Attributes & W3C Standards
-- AnnotationEditorLayer
+- Base64 String Encoding & Decoding Manual: RFC 4648 Specification, Bitwise Mechanics, UTF-8 Handling & Security Protocols
 - Online RSA Key Pair Generator: Public/Private Keys, PEM Formatting & PKCS#8 Cryptography
 - Random Port Generator: RFC 793, IANA Port Registry & Networking Entropy
 - High-Precision Online Chronometer & Millisecond Lap Timer: The Architectural Guide
@@ -219,7 +219,7 @@
 - Online HMAC Generator: Cryptographic Signatures, Hash Algorithms & API Security
 - c-buttons-select.vue
 - HTTP Status Codes: Comprehensive RFC Reference, Header Semantics & Debugging Guide
-- Page
+- Text Diff & Code Comparison Engine: Myers Algorithm, Visual Delta Analysis & Privacy-First Document Auditing
 - Word64
 - Online Password Strength Analyser: Entropy Measurement, Zxcvbn Modeling & Credential Security
 - .constructor
@@ -234,7 +234,7 @@
 - json5
 - Online TOML to YAML Converter: Cloud Configuration, Kubernetes Manifests & Data Serialization
 - Online URL Encoder & Decoder: RFC 3986 Percent-Encoding, Query Strings & URI Components
-- video-to-gif.vue
+- .createElement
 - IBAN Validator & Parser: ISO 13616 Standards, MOD-97 Checksums & SEPA Routing
 - MIME Types: IANA Media Types, HTTP Content Negotiation & Security Headers
 - Online String Obfuscator: Text Masking, Entropy Encoding & Anti-Scraping Techniques
@@ -243,7 +243,7 @@
 - Online Text to Unicode Converter: Code Points, UTF-8/16/32 Encodings & Escape Sequences
 - Online Cryptographic Token Generator: CSPRNG Randomness, API Secrets & High Entropy
 - Online User-Agent Parser: Device Detection, Browser Engines & Client Hints
-- text-to-speech.vue
+- checkAndRepair
 - IPv4 Subnet Calculator: CIDR Notation, Bitwise Masks & VLSM Network Design
 - IPv6 ULA Generator: RFC 4193 Unique Local IPv6 Unicast Addressing & Entropy Guide
 - JSON Diff: RFC 6902 Patch Operations, AST Structural Comparison & Deep Object Equality
@@ -258,23 +258,23 @@
 - svg-converter.vue
 - IPv4 Range Expander: CIDR Blocks, Subnet Parsing & IP List Generation
 - Markdown to HTML: CommonMark & GFM Specifications, AST Parsing & XSS Sanitization
-- @vicons/material
-- InkEditor
+- ipv4-subnet-calculator.vue
+- bcrypt.vue
 - text-encrypt.vue
 - AnnotationEditor
 - image-ocr.vue
 - DOMFilterFactory
-- Glyph
+- manifest.json
 - process
 - exif-viewer.vue
-- XMLParserBase
-- checkAndRepair
-- json-viewer.vue
-- https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.mjs
-- .i
-- add
 - xfaFactory
-- BitModel
+- SimpleDOMNode
+- PDFDataRangeTransport
+- https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.mjs
+- constructor
+- 5. Frequently Asked Questions (FAQs)
+- validation.ts
+- Professional SQL Prettifier & Formatter: Syntax Standards, Dialect Beautification & Readability Engineering
 - pdf-compress.md
 - pdf-merge.md
 - pdf-protect.md
@@ -283,17 +283,17 @@
 - XFAObject
 - PDFPageProxy
 - pdf-organize.md
-- integer-base-converter.vue
+- Wi-Fi QR Code Generator: MeCard URI Specification, WPA2/WPA3 Standards & Secure Device Onboarding
 - bip39-generator.vue
 - AES256Cipher
 - color-palette.md
 - exif-viewer.md
 - favicon-generator.md
-- image-compressor.md
+- Free Online Image Compressor — Compress JPG, PNG & WebP up to 90% (Zero Server Upload)
 - image-ocr.md
 - image-resizer.md
 - image-watermark.md
-- jwt-builder.md
+- Free Online JWT Builder & Signer — Create, Sign & Decode JSON Web Tokens (HMAC-SHA256)
 - line-deduplicator.md
 - mock-data-generator.md
 - pdf-redact.md
@@ -305,183 +305,176 @@
 - text-sorter.md
 - text-to-speech.md
 - video-to-gif.md
-- webp-converter.md
-- word-counter.md
+- Free Online WebP Converter — Convert WebP to PNG/JPG & PNG/JPG to WebP (100% Private)
+- Free Online Word & Character Counter — Real-Time Text Statistics, Reading Time & Density
 - yaml-validator.md
-- webp-converter.vue
-- pdf-compress.vue
+- PDFFetchStreamReader
+- popup.js
 - prerender-seo-pages.js
 - FreeTextEditor
-- readNextChar
+- XML to JSON Converter: Schema Transformation, Type Inferences & Modern API Modernization
 - .createDocumentHandler
 - CanvasExtraState
 - PDFDocumentProxy
-- CFFCompiler
+- 2. Empirical Verification & Architecture Upgrades
 - otp.service.ts
 - .compile
-- pdf-merge.vue
-- ipv4-subnet-calculator.vue
-- .remove
+- .i
+- jp
+- Hacker News Launch Guide: "Show HN"
 - PDFImage
 - text-statistics/index.ts
-- .onSymbolDictionary
-- Color
-- CFFStrings
-- list-converter.vue
-- Subform
-- images-to-pdf.vue
-- BaseShadingPattern
-- .constructor
+- readBit
+- pdf-merge.vue
+- GlobalImageCache
+- Professional YAML Prettifier & Formatter: Syntax Standards, Indentation Normalization & DevOps Pipeline Security
+- build-extension.mjs
+- pdf-organize.vue
+- CollapsibleToolMenu.vue
+- 3. Supported Languages & Frameworks
 - token-generator.tool.vue
-- bcrypt.vue
-- LinkAnnotationElement
-- .compilePrivateDicts
+- images-to-pdf.vue
+- Action Plan & Implementation Roadmap — DevTol SEO & GEO Dominance
+- Online OTP Code Generator & Validator: RFC 6238 TOTP, HOTP & Two-Factor Authentication
 - qr-code-generator.vue
-- yaml-validator.vue
-- PostScriptToken
+- Xdp
+- webp-converter.vue
 - ChunkedStream
 - image-compressor.vue
-- pdf-organize.vue
+- CFFCompiler
 - parseTilePackets
 - XmlObject
-- parse
-- text-sorter.vue
+- AnnotationEditorLayer
+- rv
 - html-entities.vue
-- PDFDataRangeTransport
+- user-agent-result-cards.vue
 - LabCS
-- shims.d.ts
+- 4. Frequently Asked Questions (FAQ)
 - ColorSpace
 - ContentObject
-- dynamic-values.vue
+- PDFWorkerStreamReader
 - CalRGBCS
-- Text
-- B
+- string-obfuscator.vue
+- XhtmlObject
 - NullOptimizer
-- color-palette.vue
-- device-information/index.ts
+- .push
+- .resolve
 - pdf-split.vue
-- encryption.vue
-- http-status-codes/index.ts
+- _bindElement
 - pdf-watermark-tool.vue
-- PageArea
-- XFAAttribute
 - naive-ui
+- AnnotationStorage
+- XFAAttribute
+- PDFWorker
 - sql-prettify.vue
-- closePath
-- vue
+- Article 1: "10 Essential Free Developer Tools for 2026 (That Don't Send Your Data to a Server)"
+- pdf-to-image.vue
 - BaseCanvasFactory
-- CommandManager
-- transform
-- BehaviorOverride
-- c-key-value-list.vue
+- Professional XML Formatter & Validator: DOM Tree Prettification, Syntax Verification & Hierarchy Structuring
+- parsePrivateDict
+- ExclGroup
+- CFFStrings
 - TextState
 - DeviceRgbCS
 - Home.page.vue
 - Datasets
 - BaseFilterFactory
+- طريقة الاستخدام اليومية (تستغرق 3 دقائق):
+- Frequently Asked Questions (FAQs)
+- ipv4-range-expander.vue
 - DeviceCmykCS
-- Key Features
-- auto-imports.d.ts
-- ExData
 - git-memo.content.md
-- XhtmlObject
-- P
-- yaml-to-json-converter/index.ts
-- .log
+- Mastering JSON: Data Interchange Standards, Parsing Performance & Schema Validation
+- YAML to JSON Converter: Schema Translation, Data Serialization & DevOps Configuration Interoperability
+- YAML to TOML Converter: Configuration Migration, Syntax Translation & Rust/Python Ecosystem Tooling
+- Interactive YAML Viewer & Inspector: Tree Navigation, Structural Validation & Syntax Exploration
 - DeviceGrayCS
 - IndexedCS
-- Br
-- getEmbeddedFont
+- json-viewer.vue
+- .read
 - AlternateCS
-- PageSet
-- Xdp
-- Signature
-- renderPage
-- ulid-generator.vue
-- html-wysiwyg-editor.vue
+- vue
+- pdf-protect.vue
+- App.vue
+- base64-file-converter.vue
+- list-converter.vue
+- color-converter.vue
 - email-normalizer.vue
 - word-counter/index.ts
-- markdown-to-html/index.ts
-- Stylesheet
-- safelink-decoder.vue
-- c-input-text.demo.vue
-- Traverse
-- Ui
-- submit-indexnow.mjs
-- c-tooltip.vue
-- c-select.demo.vue
-- math-evaluator/index.ts
-- Assist
+- pdf-compress.vue
 - AnnotationBorderStyle
-- Rename
+- AdSenseUnit.vue
+- DevTol Official Browser Extension (Manifest V3)
+- add
+- jwt-builder.vue
+- submit-indexnow.mjs
+- FavoriteButton.vue
+- lf
+- math-evaluator/index.ts
+- regex-replace.vue
+- .parse
+- html-wysiwyg-editor.vue
 - token-display.vue
-- Body
-- constructor
-- SpanCopyable.vue
-- getBrowserFontFamily
-- PageRange
-- Range
-- ContentArea
-- Font
-- Html
-- repository
+- ulid-generator.vue
+- c-link.vue
+- uc
+- P
+- Ref
+- safelink-decoder.vue
+- vitest
+- CommandManager
+- device-information/index.ts
+- CFFIndex
 - text-to-binary.vue
-- HuffmanTreeNode
+- df
 - https://cdn.skypack.dev/chroma-js
-- ImageEdit
-- LockDocument
-- Margin
-- Occur
-- Para
-- PartialEvaluator
-- Pattern
-- Radial
-- Solid
-- SubjectDN
-- result-row.vue
-- Barcode
-- Bookend
-- Break
-- Calculate
-- Certificate
-- Certificates
-- Connect
-- DefaultUi
-- EncryptionMethod
-- normalizeExtractedText
-- Filter
-- Format
-- Handler
-- Hyphenation
-- Keep
-- Li
-- Mdp
-- Oid
-- Ol
-- PasswordEdit
-- Reason
-- RefElement
-- SignData
-- Span
-- Sub
-- Sup
-- TimeStamp
-- ToolTip
-- Variables
-- Ul
-- text-diff/index.ts
+- DevTol Web Utilities Suite — Agent Directives
+- Og
+- dynamic-values.vue
+- Hd
+- Bc
+- transform
+- ct
+- http-status-codes/index.ts
+- Fa
+- Fc
+- je
+- FormatTransformer.vue
+- queryParams.ts
+- Bl
+- c-markdown.vue
+- markdown-to-html/index.ts
+- dy
+- Ml
+- CalGrayCS
+- Gf
+- Font
+- c-table.vue
+- Wa
+- nd
+- Rh
+- od
+- SpanCopyable.vue
+- dt
+- Ud
+- Ie
+- oy
+- ib
+- iy
+- Ky
+- ng
 
 ## God Nodes (most connected - your core abstractions)
 1. `c()` - 160 edges
 2. `ConfigNamespace` - 141 edges
-3. `f()` - 124 edges
-4. `defineTool()` - 121 edges
-5. `TemplateNamespace` - 115 edges
-6. `@vicons/tabler` - 114 edges
+3. `@vicons/tabler` - 125 edges
+4. `defineTool()` - 125 edges
+5. `f()` - 124 edges
+6. `TemplateNamespace` - 115 edges
 7. `CanvasGraphics` - 96 edges
-8. `AnnotationEditorUIManager` - 80 edges
-9. `AnnotationEditor` - 78 edges
-10. `vue` - 69 edges
+8. `vue` - 81 edges
+9. `AnnotationEditorUIManager` - 80 edges
+10. `AnnotationEditor` - 78 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `enqueueChunk()` --indirect_call--> `d()`  [INFERRED]
@@ -498,19 +491,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (469 total, 114 thin omitted)
+## Communities (461 total, 62 thin omitted)
 
 ### Community 0 - "dependencies"
 Cohesion: 0.03
 Nodes (70): dependencies, arabic-persian-reshaper, bcryptjs, bidi-js, change-case, colord, composerize-ts, country-code-lookup (+62 more)
 
 ### Community 1 - "tools/index.ts"
-Cohesion: 0.04
-Nodes (83): @vicons/tabler, tool, tool, tool, tool, tool, tool, tool (+75 more)
+Cohesion: 0.03
+Nodes (91): @vicons/tabler, tool, tool, tool, tool, tool, tool, tool (+83 more)
 
 ### Community 2 - "regex-tester.vue"
-Cohesion: 0.10
-Nodes (20): randexp, @regexper/render, vue-shadow-dom, dotAll, global, ignoreCase, multiline, regex (+12 more)
+Cohesion: 0.09
+Nodes (21): randexp, @regexper/render, vue-shadow-dom, dotAll, global, ignoreCase, multiline, regex (+13 more)
 
 ### Community 3 - "otp-code-generator-and-validator.vue"
 Cohesion: 0.18
@@ -521,8 +514,8 @@ Cohesion: 0.04
 Nodes (48): devDependencies, @antfu/eslint-config, consola, cross-env, eslint, highlight.js, hygen, @iconify-json/mdi (+40 more)
 
 ### Community 5 - "package.json"
-Cohesion: 0.04
-Nodes (55): author, description, keywords, license, name, packageManager, type, version (+47 more)
+Cohesion: 0.03
+Nodes (60): author, description, keywords, license, name, packageManager, repository, type (+52 more)
 
 ### Community 6 - "toml-to-yaml.vue"
 Cohesion: 0.11
@@ -532,13 +525,13 @@ Nodes (19): iarna-toml-esm, tool, convertJsonToToml(), rules, transformer(), too
 Cohesion: 0.11
 Nodes (25): @it-tools/oggen, metadata, metaTags, sections, article, book, image, ogSchemas (+17 more)
 
-### Community 8 - "ipv4-range-expander.vue"
-Cohesion: 0.16
-Nodes (18): { attrs: validationAttrs }, convertedSections, rawIpAddress, ipv4ToInt(), ipv4ToIpv6(), isValidIpv4(), calculatedValues, endIpValidation (+10 more)
+### Community 8 - "text-to-speech.vue"
+Cohesion: 0.12
+Nodes (9): isPaused, isSpeaking, message, pitch, rate, selectedVoice, text, voices (+1 more)
 
 ### Community 9 - "date-time-converter.vue"
-Cohesion: 0.09
-Nodes (29): date-fns, formatIndex, formats, inputDate, dateToExcelFormat(), excelFormatToDate(), isExcelFormat, isISO8601DateTimeString (+21 more)
+Cohesion: 0.07
+Nodes (34): date-fns, activePair, activePairKey, DATE_PAIRS, formatIndex, formats, inputDate, dateToExcelFormat() (+26 more)
 
 ### Community 10 - "c-select.vue"
 Cohesion: 0.09
@@ -550,7 +543,7 @@ Nodes (26): 1. DFA Engines (Deterministic Finite Automata - e.g., Google RE2, Ru
 
 ### Community 12 - "c"
 Cohesion: 0.01
-Nodes (111): c(), Acrobat7, ADBE_JSConsole, ADBE_JSDebugger, AddSilentPrint, AddViewerPreferences, AdjustData, AdobeExtensionLevel (+103 more)
+Nodes (116): c(), Acrobat7, ADBE_JSConsole, ADBE_JSDebugger, AddSilentPrint, AddViewerPreferences, AdjustData, AdobeExtensionLevel (+108 more)
 
 ### Community 13 - "diff-viewer.vue"
 Cohesion: 0.12
@@ -558,35 +551,35 @@ Nodes (25): appTheme, jsonAreTheSame, { leftJson, rightJson }, ChildrenViewer(),
 
 ### Community 14 - "components.d.ts"
 Cohesion: 0.03
-Nodes (21): GlobalComponents, @vue/runtime-core, Code Example, Security & Privacy Note, Why use Base64 Encoding?, { availableLocales, locale }, localeOptions, localesLong (+13 more)
+Nodes (30): GlobalComponents, @vue/runtime-core, { availableLocales, locale }, localeOptions, localesLong, variants, optionB, optionsA (+22 more)
 
 ### Community 16 - "Universal Color Space Converter & Contrast Engine: HEX, RGB, HSL, HSV, CMYK & CSS Color 4/5"
 Cohesion: 0.07
 Nodes (27): 1. Quick Overview & Key Benefits, 2.1 Bidirectional Transformation Workflow, 2.2 Practical Conversion Example Matrix, 2. Step-by-Step Practical Usage Guide, 3.1 sRGB Gamma Correction and Companding Mechanics, 3.2 HSL and HSV Color Coordinate Math, 3.3 Subtractive CMYK Transformation, 3.4 WCAG 2.1 Contrast Ratio Algorithm (+19 more)
 
-### Community 17 - "command-palette.vue"
-Cohesion: 0.10
-Nodes (19): pinia, @vue/test-utils, activateOption(), close(), commandPaletteStore, handleKeydown(), inputRef, isMac (+11 more)
+### Community 17 - "src/modules/command-palette/command-palette.vue"
+Cohesion: 0.11
+Nodes (17): activateOption(), close(), commandPaletteStore, handleKeydown(), inputRef, isMac, isModalOpen, keys (+9 more)
 
 ### Community 18 - "wifi-qr-code-generator.vue"
 Cohesion: 0.10
 Nodes (22): EAPMethod, EAPMethods, EAPPhase2Method, EAPPhase2Methods, escapeString(), getQrCodeText(), GetQrCodeTextOptions, IWifiQRCodeOptions (+14 more)
 
 ### Community 19 - "pdf-editor.vue"
-Cohesion: 0.04
-Nodes (52): arabic-persian-reshaper, bidi-js, pdf-lib, @pdf-lib/fontkit, activeTool, autoMatchSize, bidi, canUndo (+44 more)
+Cohesion: 0.03
+Nodes (72): arabic-persian-reshaper, @pdf-lib/fontkit, activeTool, applyDirectTextEdit(), autoMatchSize, bidi, canUndo, clearCurrentPageAnnotations() (+64 more)
 
-### Community 20 - "color-converter.vue"
-Cohesion: 0.36
-Nodes (4): colord, formats, buildColorFormat(), removeAlphaChannelWhenOpaque()
+### Community 20 - "executeOpTree"
+Cohesion: 0.05
+Nodes (56): addFontStyle(), beginText(), closeEOFillStroke(), closeFillStroke(), closePath(), closeStroke(), ColorManager, constructPath() (+48 more)
 
 ### Community 21 - "tool.layout.vue"
 Cohesion: 0.05
-Nodes (33): highlight.js, vue-router, { isMenuCollapsed, isSmallScreen }, siderPosition, styleStore, commitSha, { favoriteTools, toolsByCategory }, styleStore (+25 more)
+Nodes (36): highlight.js, vue-router, { isMenuCollapsed, isSmallScreen }, siderPosition, styleStore, CommandPalette, commitSha, { favoriteTools, toolsByCategory } (+28 more)
 
 ### Community 22 - "xml-formatter.vue"
-Cohesion: 0.16
-Nodes (12): xml-formatter, xml-js, tool, collapseContent, indentSize, rules, cleanRawXml(), formatXml() (+4 more)
+Cohesion: 0.12
+Nodes (14): xml-formatter, xml-js, tool, rules, tool, collapseContent, indentSize, rules (+6 more)
 
 ### Community 23 - "temperature-converter.vue"
 Cohesion: 0.19
@@ -614,8 +607,8 @@ Nodes (10): currentCamera, currentMicrophone, {
 }, video (+2 more)
 
 ### Community 26 - "hmac-generator.vue"
-Cohesion: 0.09
-Nodes (22): crypto-js, AlgoNames, algos, clearText, Encoding, formatWithEncoding(), hashText(), convertHexToBin() (+14 more)
+Cohesion: 0.06
+Nodes (32): crypto-js, algos, cypherAlgo, cypherInput, cypherOutput, cypherSecret, decryptAlgo, decryptInput (+24 more)
 
 ### Community 27 - "emoji-picker.vue"
 Cohesion: 0.16
@@ -645,9 +638,9 @@ Nodes (13): { attrs: validationNumeral }, { copy: copyArabic }, { copy: copyRoma
 Cohesion: 0.21
 Nodes (12): RFC-7518, jwt-decode, ALGORITHM_DESCRIPTIONS, CLAIM_DESCRIPTIONS, decodedJWT, rawJwt, sections, dateFormatter() (+4 more)
 
-### Community 34 - "CollapsibleToolMenu.vue"
-Cohesion: 0.16
-Nodes (11): collapsedCategories, makeIcon(), makeLabel(), menuOptions, props, route, themeVars, { toolsByCategory } (+3 more)
+### Community 34 - "video-to-gif.vue"
+Cohesion: 0.12
+Nodes (11): endTime, file, fps, fpsOptions, isProcessing, message, progress, resultUrl (+3 more)
 
 ### Community 35 - "pdf-signature-checker.vue"
 Cohesion: 0.18
@@ -659,39 +652,39 @@ Nodes (18): Academic Research — Extract text from scanned historical documents
 
 ### Community 37 - "pdf.worker.min.js"
 Cohesion: 0.01
-Nodes (130): _addNamespacePrefix(), adjustMapping(), amend(), amendFallbackToUnicode(), applyStandardFontGlyphMap(), BaseException(), bind(), _bindElement() (+122 more)
+Nodes (135): accept(), _addNamespacePrefix(), amend(), amendFallbackToUnicode(), applyStandardFontGlyphMap(), applyTransform(), BaseException(), bezierBoundingBox() (+127 more)
 
 ### Community 38 - "scripts"
-Cohesion: 0.12
-Nodes (17): scripts, build, coverage, dev, indexnow, lint, postbuild, prebuild (+9 more)
+Cohesion: 0.11
+Nodes (18): scripts, build, build:extension, coverage, dev, indexnow, lint, postbuild (+10 more)
 
-### Community 39 - "PDFFetchStreamReader"
-Cohesion: 0.07
-Nodes (12): BaseCMapReaderFactory, BaseStandardFontDataFactory, createFetchOptions(), createHeaders(), DOMCMapReaderFactory, DOMStandardFontDataFactory, fetchData(), isValidFetchUrl() (+4 more)
+### Community 39 - "create"
+Cohesion: 0.06
+Nodes (26): Annotation, _cache(), CaretAnnotation, CircleAnnotation, create(), getInt(), createFromArray(), FileAttachmentAnnotation (+18 more)
 
 ### Community 40 - "fontkit.umd.min.js"
-Cohesion: 0.01
-Nodes (153): ab(), af(), ag(), An(), Av(), Bc(), Bl(), bp() (+145 more)
+Cohesion: 0.02
+Nodes (37): ag(), An(), cd(), cy(), dd(), Dg(), Dl(), Ec() (+29 more)
 
 ### Community 41 - "adsense-revenue-calculator.vue"
 Cohesion: 0.13
 Nodes (15): calculationMode, cpc, ctrPercent, dailyPageviews, modeOptions, nicheOptions, result, rpm (+7 more)
 
 ### Community 42 - "@vueuse/core"
-Cohesion: 0.05
-Nodes (24): fuse.js, @vueuse/core, @vueuse/router, yaml, { copy, isJustCopied }, props, tooltipText, { value, language, followHeightOf, copyPlacement, copyMessage } (+16 more)
+Cohesion: 0.09
+Nodes (15): fuse.js, @vueuse/core, yaml, { copy, isJustCopied }, props, tooltipText, { value, language, followHeightOf, copyPlacement, copyMessage }, rules (+7 more)
 
 ### Community 43 - "mac-address-generator.vue"
 Cohesion: 0.20
 Nodes (11): amount, casesTransformers, caseTransformer, { copy }, [macAddresses, refreshMacAddresses], macAddressPrefix, prefixValidation, separator (+3 more)
 
 ### Community 44 - "router.ts"
-Cohesion: 0.09
-Nodes (18): figue, @vueuse/head, config, layouts, pillars, teamMembers, form, isSubmitted (+10 more)
+Cohesion: 0.06
+Nodes (31): figue, @vueuse/head, config, Deal, deals, isDark, styleStore, activeGuideId (+23 more)
 
-### Community 45 - "AnnotationStorage"
-Cohesion: 0.07
-Nodes (12): AnnotationStorage, CheckboxWidgetAnnotationElement, ChoiceWidgetAnnotationElement, PrintAnnotationStorage, PushButtonWidgetAnnotationElement, RadioButtonWidgetAnnotationElement, render(), setAttributes() (+4 more)
+### Community 45 - "curl-to-code-converter.vue"
+Cohesion: 0.09
+Nodes (27): activeLibrary, curlInput, generatedOutput, jsLib, jsLibOptions, languageOptions, message, parsedCurl (+19 more)
 
 ### Community 46 - "base64-string-converter.vue"
 Cohesion: 0.17
@@ -702,12 +695,12 @@ Cohesion: 0.24
 Nodes (9): { copy }, copyAsMarkdown(), header, arrayToMarkdownTable(), computeAverage(), computeVariance(), results, suites (+1 more)
 
 ### Community 48 - ".success"
-Cohesion: 0.09
-Nodes (12): applyAssist(), BreakAfter, BreakBefore, Button, getBorderDims(), handleBreak(), handleOverflow(), HTMLResult (+4 more)
+Cohesion: 0.03
+Nodes (27): applyAssist(), ariaLabel(), BreakAfter, BreakBefore, Button, Caption, CheckButton, ChoiceList (+19 more)
 
 ### Community 49 - "CanvasGraphics"
 Cohesion: 0.04
-Nodes (24): applyBoundingBox(), applyTransform(), CanvasGraphics, clip(), composeSMask(), copyCtxState(), drawImageAtIntegerCoords(), endPath() (+16 more)
+Nodes (22): CanvasGraphics, clip(), composeSMask(), composeSMaskBackdrop(), copyCtxState(), drawImageAtIntegerCoords(), endPath(), endText() (+14 more)
 
 ### Community 50 - "phone-parser-and-formatter.vue"
 Cohesion: 0.26
@@ -722,8 +715,8 @@ Cohesion: 0.24
 Nodes (5): counter, isRunning, { pause: pauseRaf, resume: resumeRaf }, previousRafDate, formatMs()
 
 ### Community 53 - "lorem-ipsum-generator.vue"
-Cohesion: 0.21
-Nodes (10): asHTML, { copy }, [loremIpsumText, refreshLoremIpsum], paragraphs, sentences, generateLoremIpsum(), generateSentence(), vocabulary (+2 more)
+Cohesion: 0.19
+Nodes (11): tool, asHTML, { copy }, [loremIpsumText, refreshLoremIpsum], paragraphs, sentences, generateLoremIpsum(), generateSentence() (+3 more)
 
 ### Community 54 - "password-strength-analyser.vue"
 Cohesion: 0.33
@@ -731,19 +724,23 @@ Nodes (7): crackTimeEstimation, details, password, getCharsetLength(), getHumanF
 
 ### Community 55 - "pdf.min.js"
 Cohesion: 0.03
-Nodes (96): addFontStyle(), AnnotationElementFactory, BaseException(), beginText(), bytesToString(), CMYK_HTML(), CMYK_RGB(), ColorManager (+88 more)
+Nodes (61): addNativeFontFace(), AnnotationElementFactory, BaseException(), bind(), bytesToString(), CMYK_HTML(), CMYK_RGB(), constructor() (+53 more)
 
 ### Community 56 - "ascii-text-drawer.vue"
 Cohesion: 0.22
 Nodes (8): figlet, errored, font, fonts, input, output, processing, width
 
-### Community 57 - "user-agent-parser.vue"
-Cohesion: 0.29
-Nodes (8): ua-parser-js, getUserAgentInfo(), sections, UserAgentResultSection, ua, userAgentInfo, props, { userAgentInfo, sections }
+### Community 57 - "WidgetAnnotation"
+Cohesion: 0.14
+Nodes (8): addString(), charsToGlyphs(), ChoiceWidgetAnnotation, encodeString(), getCharPositions(), SignatureWidgetAnnotation, TextWidgetAnnotation, WidgetAnnotation
 
-### Community 59 - "string-obfuscator.vue"
-Cohesion: 0.24
-Nodes (8): { copy }, keepFirst, keepLast, keepSpace, obfuscateString(), useObfuscateString(), obfuscatedString, str
+### Community 58 - "ai-regex-generator-explainer.vue"
+Cohesion: 0.08
+Nodes (29): activeCodeTab, activeFlags, categories, codeSnippets, copiedCode, copiedRegex, currentPattern, filteredPresets (+21 more)
+
+### Community 59 - "PartialEvaluator"
+Cohesion: 0.06
+Nodes (11): clean(), EvalState, forEach(), getTransformMatrix(), loadXfaFonts(), OperatorList, PartialEvaluator, closePendingRestoreOPS() (+3 more)
 
 ### Community 60 - "text-to-unicode.vue"
 Cohesion: 0.29
@@ -758,20 +755,20 @@ Cohesion: 0.18
 Nodes (7): { centered }, emit, isOpen, modal, props, { useTheme }, theme
 
 ### Community 63 - "docker-run-to-docker-compose-converter.vue"
-Cohesion: 0.20
-Nodes (9): composerize-ts, conversionResult, dockerCompose, dockerComposeBase64, dockerRun, { download }, errors, notComposable (+1 more)
+Cohesion: 0.12
+Nodes (14): composerize-ts, activePreset, activePresetKey, conversionResult, DOCKER_PRESETS, dockerCompose, dockerComposeBase64, dockerRun (+6 more)
 
 ### Community 64 - "iban-validator-and-parser.vue"
 Cohesion: 0.36
 Nodes (6): ibantools, ibanExamples, ibanInfo, rawIban, getFriendlyErrors(), ibanErrorToMessage
 
 ### Community 65 - "lodash"
-Cohesion: 0.09
-Nodes (15): lodash, createMissingLocaleFile(), getPathsFromGlobs(), input, inputElement, output, props, { transformer, inputValidationRules, inputLabel, outputLabel, outputLanguage, inputPlaceholder, inputDefault } (+7 more)
+Cohesion: 0.11
+Nodes (13): lodash, createMissingLocaleFile(), getPathsFromGlobs(), buttonSizes, buttonTypes, buttonVariants, formattedItems, { item } (+5 more)
 
-### Community 66 - "TemplateNamespace"
-Cohesion: 0.03
-Nodes (28): AppearanceFilter, Comb, Desc, DigestMethod, DigestMethods, Encoding, Encodings, EncryptData (+20 more)
+### Community 66 - "f"
+Cohesion: 0.01
+Nodes (70): f(), AppearanceFilter, Arc, Assist, Barcode, Bookend, BooleanElement, Border (+62 more)
 
 ### Community 67 - "uuid-generator.vue"
 Cohesion: 0.20
@@ -793,21 +790,17 @@ Nodes (7): createState(), createTheme(), { useTheme }, clampHex(), darken(), lig
 Cohesion: 0.27
 Nodes (8): emit, fileInput, handleDrop(), handleFileInput(), handleUpload(), isOverDropZone, { multiple }, props
 
-### Community 72 - "f"
-Cohesion: 0.03
-Nodes (19): f(), Acrobat, Agent, Common, Config, Data, Encrypt, Encryption (+11 more)
-
-### Community 73 - "valueToHtml"
-Cohesion: 0.06
-Nodes (8): BooleanElement, DateElement, DateTime, Decimal, Float, Integer, Time, valueToHtml()
+### Community 72 - "Subform"
+Cohesion: 0.07
+Nodes (4): Area, getContainedChildren(), Subform, SubformSet
 
 ### Community 74 - "rsa-key-pair-generator.vue"
 Cohesion: 0.31
 Nodes (7): node-forge, { attrs: bitsValidationAttrs }, bits, [certs, refreshCerts], emptyCerts, generateKeyPair(), generateRawPairs()
 
-### Community 75 - "validation.ts"
-Cohesion: 0.31
-Nodes (7): getErrorMessageOrThrown(), GetErrorMessageReturnType, isFalsyOrHasThrown(), useValidation(), UseValidationRule, ValidationAttrs, ValidatorReturnType
+### Community 75 - "sql-to-orm-converter.vue"
+Cohesion: 0.14
+Nodes (23): { copy, isCopied }, generatedCode, parsedTables, PRESETS, rawSql, selectedTarget, convertSqlToOrm(), generateDrizzle() (+15 more)
 
 ### Community 76 - "text-to-nato-alphabet.vue"
 Cohesion: 0.27
@@ -826,12 +819,12 @@ Cohesion: 0.25
 Nodes (6): currentDirname, toolDir, toolNameCamelCase, toolsDir, toolsIndex, ./${toolName}.vue
 
 ### Community 80 - ".getTextContent"
-Cohesion: 0.13
-Nodes (16): EvaluatorPreprocessor, addFakeSpaces(), appendEOL(), applyInverseRotation(), buildTextContentItem(), compareWithLastPosition(), enqueueChunk(), ensureTextContentItem() (+8 more)
+Cohesion: 0.11
+Nodes (16): BaseLocalCache, EvaluatorPreprocessor, addFakeSpaces(), appendEOL(), applyInverseRotation(), buildTextContentItem(), compareWithLastPosition(), enqueueChunk() (+8 more)
 
-### Community 81 - "vitest"
-Cohesion: 0.23
-Nodes (6): vitest, numeronym, generateNumeronym(), word, regexesData, getErrorMessageIfThrows()
+### Community 81 - "numeronym-generator.vue"
+Cohesion: 0.53
+Nodes (3): numeronym, generateNumeronym(), word
 
 ### Community 82 - "theme/themes.ts"
 Cohesion: 0.47
@@ -841,9 +834,13 @@ Nodes (3): sizes, defineThemes(), { themes: appThemes, useTheme: useAppTheme }
 Cohesion: 0.43
 Nodes (7): generateRandomId(), randFromArray(), randIntFromInterval(), random(), shuffleArray(), shuffleArrayMutate(), shuffleString()
 
-### Community 84 - "c-markdown.vue"
-Cohesion: 0.29
-Nodes (5): dompurify, marked, html, { markdown }, props
+### Community 84 - "ai-token-cost-calculator.vue"
+Cohesion: 0.09
+Nodes (25): allCalculations, copyMarkdownSummary(), defaultMetrics, expectedOutputTokens, filteredCalculations, formatCost(), formatCount(), formatPricePerM() (+17 more)
+
+### Community 85 - "extractFontProgram"
+Cohesion: 0.15
+Nodes (11): decrypt(), extractFontHeader(), extractFontProgram(), getToken(), isSpecial(), PostScriptToken, prevChar(), readBoolean() (+3 more)
 
 ### Community 86 - "tsconfig.vite-config.json"
 Cohesion: 0.29
@@ -853,25 +850,25 @@ Nodes (6): @tsconfig/node18/tsconfig.json, compilerOptions, composite, types, ex
 Cohesion: 0.07
 Nodes (27): 1. Mathematical Rate Estimators, 1. Quick Overview & Key Benefits, 1. Why does my ETA fluctuate violently when a transfer begins?, 2. High-Precision TypeScript Implementation, 2. Step-by-Step Practical Usage Guide, 2. What is the difference between Decimal (MB/s) and Binary (MiB/s) throughput?, 3. How does TCP congestion control affect ETA accuracy?, 3. Technical Under the Hood: Specifications & Architecture (+19 more)
 
-### Community 88 - ".toString"
+### Community 88 - "has"
 Cohesion: 0.04
-Nodes (24): addNode(), addTopLevelNode(), calculationOrderIds(), Catalog, appendIfJavaScriptDict(), addPageDict(), parseNestedOrder(), parseOnOff() (+16 more)
+Nodes (24): addNode(), addTopLevelNode(), calculationOrderIds(), Catalog, addPageDict(), parseNestedOrder(), parseOnOff(), parseOrder() (+16 more)
 
 ### Community 89 - "Online Percentage Calculator: Precision Math, Business Formulas & Financial Ratios"
 Cohesion: 0.10
 Nodes (20): 1. E-Commerce Discount and Sales Tax Computation, 1. Percentage Change Formula, 1. Quick Overview & Core Advantages, 2. DevOps Server Capacity & Resource Utilization, 2. How to Use Step-by-Step Guide, 2. Margin vs. Markup Distinction, 3. Floating-Point Rounding Mitigation, 3. Mathematical Deep Dive & Precision Formulas (+12 more)
 
-### Community 90 - "Edge"
-Cohesion: 0.09
-Nodes (7): Arc, Border, Corner, Edge, hasMargin(), Line, Rectangle
+### Community 90 - "1. Top Tier Developer & Tool Directories (Free Submission)"
+Cohesion: 0.15
+Nodes (12): 1. AlternativeTo.net (DR 82 — Extremely High Authority), 1. Top Tier Developer & Tool Directories (Free Submission), 2. Standard Submission Copy (Copy-Paste Ready), 2. Toolify.ai (DR 79 — Fast Growing AI Directory), 3. AllThingsAI (DR 75 — High Authority AI & Tech Hub), 4. Devpost (DR 85 — Trusted by Hackathons & Tech Giants), 5. StartupBase & StartupBuffer (DR 68 — SaaS & Tool Directory), 6. Free-for-dev (Curated GitHub List with 90,000+ Stars) (+4 more)
 
 ### Community 91 - "generate-seo.js"
-Cohesion: 0.08
-Nodes (23): allRoutes, categoriesWithTools, categorySection, __dirname, enLocale, enLocalePath, __filename, importedModules (+15 more)
+Cohesion: 0.07
+Nodes (26): allRoutes, categoriesWithTools, categorySection, __dirname, enLocale, enLocalePath, __filename, importedModules (+18 more)
 
-### Community 92 - ".resolve"
-Cohesion: 0.04
-Nodes (17): constructor(), #de(), DOMSVGFactory, _onProgressiveDone(), _onReceiveData(), OptionalContentGroup, PDFDataTransportStreamRangeReader, PDFDataTransportStreamReader (+9 more)
+### Community 92 - "BaseFullReader"
+Cohesion: 0.09
+Nodes (10): BaseFullReader, BaseRangeReader, createRequestOptions(), getFullReader(), getRangeReader(), on(), PDFNodeStreamFsFullReader, PDFNodeStreamFsRangeReader (+2 more)
 
 ### Community 93 - "DevTol — Handy Online Developer Utilities"
 Cohesion: 0.25
@@ -885,9 +882,9 @@ Nodes (5): props, { useTheme }, { type, title }, variantTheme, theme
 Cohesion: 0.07
 Nodes (27): 1. Quick Overview & Key Benefits, 1. RFC 4180 Specification Rules, 1. Why does Microsoft Excel display strange characters (e.g., `Ã©` instead of `é`) when opening my CSV?, 2. How are arrays handled when converting JSON to CSV?, 2. Recursive Flattening Algorithm, 2. Step-by-Step Practical Usage Guide, 3. Production TypeScript Implementation, 3. Technical Under the Hood: Specifications & Architecture (+19 more)
 
-### Community 96 - "WidgetAnnotation"
-Cohesion: 0.08
-Nodes (12): addString(), ButtonWidgetAnnotation, charsToGlyphs(), ChoiceWidgetAnnotation, documentInfo(), encodeString(), fetchIfRef(), getCharPositions() (+4 more)
+### Community 96 - "Reddit Viral Launch Playbook for DevTol"
+Cohesion: 0.15
+Nodes (12): 1. Post for `r/webdev` (2.2 Million Members), 2. Post for `r/InternetIsBeautiful` (16 Million Members), 3. Post for `r/Frontend` (350,000 Members), 4. Engagement & Upvote Strategy (How to hit the Front Page), First Comment (Immediately after submitting):, Post Body:, Post Body:, Reddit Viral Launch Playbook for DevTol (+4 more)
 
 ### Community 97 - "c-diff-editor.vue"
 Cohesion: 0.33
@@ -909,29 +906,21 @@ Nodes (4): props, { useTheme }, { title }, theme
 Cohesion: 0.33
 Nodes (5): { copy, isJustCopied }, isModalOpen, props, toggleModal, { value, label }
 
-### Community 102 - "BaseFullReader"
-Cohesion: 0.06
-Nodes (13): BaseFullReader, BaseRangeReader, createRequestOptions(), getArrayBuffer(), getFullReader(), getRangeReader(), NetworkManager, on() (+5 more)
+### Community 102 - "4. Frequently Asked Questions (FAQs)"
+Cohesion: 0.14
+Nodes (13): 1. Supported ORMs and Frameworks, 2. Key Capabilities & Architecture, 3. Practical Example: Users & Posts Schema, 4. Frequently Asked Questions (FAQs), Can I convert multiple SQL tables at the same time?, Does this tool send my database schema over the network?, Generated Prisma Schema, Generated SQLAlchemy 2.0 (Modern Python Mapped) (+5 more)
 
 ### Community 103 - "📄 Category 1: PDF Management Tools (Tools 1 to 10)"
 Cohesion: 0.05
 Nodes (36): 10. Redact PDF (`pdf-lib`), 11. Word & Character Counter, 12. Text Diff Checker (`diff`), 13. Markdown ↔ HTML Converter (`marked` / `turndown`), 14. JSON ↔ CSV / Excel Converter (`papaparse`), 15. Case Converter & Text Cleaner, 16. Base64 / URL Encoder & Decoder, 17. OCR Image to Text (`tesseract.js`) (+28 more)
 
-### Community 104 - "ariaLabel"
-Cohesion: 0.11
-Nodes (7): ariaLabel(), CheckButton, ChoiceList, DateTimeEdit, isRequired(), NumericEdit, TextEdit
-
 ### Community 105 - "compound-interest-calculator.vue"
 Cohesion: 0.13
 Nodes (15): annualInterestRate, columns, compoundFrequency, frequencyOptions, initialInvestment, monthlyContribution, pagination, result (+7 more)
 
-### Community 106 - "LocaleSetNamespace"
-Cohesion: 0.03
-Nodes (24): CalendarSymbols, CurrencySymbol, CurrencySymbols, DatePattern, DatePatterns, DateTimeSymbols, Day, DayNames (+16 more)
-
 ### Community 107 - ".get"
-Cohesion: 0.04
-Nodes (36): #a(), Annotation, CaretAnnotation, CircleAnnotation, create(), getInt(), Dict, FakeUnicodeFont (+28 more)
+Cohesion: 0.06
+Nodes (14): ButtonWidgetAnnotation, Dict, documentInfo(), FakeUnicodeFont, fetch(), fetchIfRef(), formInfo(), FreeTextAnnotation (+6 more)
 
 ### Community 109 - "random-port-generator/index.ts"
 Cohesion: 0.43
@@ -941,13 +930,13 @@ Nodes (4): tool, { copy }, generatePort(), [port, refreshPort]
 Cohesion: 0.11
 Nodes (16): columns, downPayment, hoaMonthly, homeInsuranceYearly, homeValue, interestRate, loanTermYears, pagination (+8 more)
 
-### Community 111 - "bind"
-Cohesion: 0.12
-Nodes (11): addNativeFontFace(), bind(), createFontFaceRule(), createNativeFontFace(), insertRule(), KeyboardManager, loadSystemFont(), _prepareFontLoadEvent() (+3 more)
+### Community 111 - "ipv4-range-expander.service.ts"
+Cohesion: 0.19
+Nodes (12): error, errorlessConvert(), input, inputBase, inputProps, convertBase(), outputBase, bits2ip() (+4 more)
 
-### Community 112 - ".createElement"
-Cohesion: 0.11
-Nodes (7): appendText(), BaseSVGFactory, get(), getCtx(), layout(), PopupElement, TextLayerRenderTask
+### Community 113 - "Arbitrary-Precision Integer Base Converter: Radix Math, Two's Complement & BigInt Bitwise Architecture"
+Cohesion: 0.07
+Nodes (26): 1. Mathematical Radix Representation, 1. Quick Overview & Key Benefits, 1. Why does JavaScript's `parseInt("0x1fffffffffffff", 16)` produce incorrect values for large numbers?, 2. Step-by-Step Practical Usage Guide, 2. The IEEE 754 vs. BigInt Boundary, 2. What is the difference between Base64 and Base62?, 3. How does Two's Complement handle negative numbers?, 3. Signed Two's Complement Arithmetic (+18 more)
 
 ### Community 114 - "chmod-calculator.vue"
 Cohesion: 0.22
@@ -961,25 +950,25 @@ Nodes (3): config:base, extends, $schema
 Cohesion: 0.07
 Nodes (26): 1. Mathematical Radix Representation, 1. Quick Overview & Key Benefits, 1. Why does JavaScript's `parseInt("0x1fffffffffffff", 16)` produce incorrect values for large numbers?, 2. Step-by-Step Practical Usage Guide, 2. The IEEE 754 vs. BigInt Boundary, 2. What is the difference between Base64 and Base62?, 3. How does Two's Complement handle negative numbers?, 3. Signed Two's Complement Arithmetic (+18 more)
 
-### Community 117 - "readBit"
-Cohesion: 0.18
-Nodes (14): buildComponentData(), readBits(), decodeScan(), decodeBlock(), decodeHuffman(), decodeMcu(), readBit(), receive() (+6 more)
+### Community 117 - "Epoch Timestamp & ISO 8601 Date-Time Converter: The Complete Distributed Systems Reference"
+Cohesion: 0.08
+Nodes (24): 1. Quick Overview & Key Benefits, 2.1 Converting UNIX Epoch to Human-Readable Formats, 2.2 Converting Human Date Strings to Epoch Timestamps, 2. Step-by-Step Practical Usage Guide, 3.1 The Epoch Origin & Leap Second Handling, 3.2 ISO 8601 vs RFC 3339, 3.3 The Year 2038 Problem (Y2038 / Epochalypse), 3.4 Production TypeScript Temporal Parsing Architecture (+16 more)
 
-### Community 118 - "SimpleSegmentVisitor"
-Cohesion: 0.20
-Nodes (5): ContextCache, decodeBitmap(), decodeMMRBitmap(), DecodingContext, SimpleSegmentVisitor
+### Community 118 - "OpenGraph & Dublin Core Meta Tag Generator: Machine-Readable Metadata & SEO Specs"
+Cohesion: 0.08
+Nodes (24): 1. Quick Overview & Core Advantages, 2.1 The Open Graph Protocol (OGP) Specification, 2.2 Twitter Cards Specification, 2.3 Dublin Core Metadata Initiative (DCMI) Standards, 2.4 Robots Directives & Crawl Budget Control, 2. Technical Under the Hood: Specifications & Algorithmic Principles, 3.1 Primary SEO Fields Configuration, 3.2 Social Media Card Tailoring (+16 more)
 
 ### Community 119 - "pdf-to-image.md"
 Cohesion: 0.11
 Nodes (18): Can I convert only specific pages?, Content Creation — Extract slides from a PDF presentation to use as images in social media posts or blog articles., Does the tool support password-protected PDFs?, E-Learning — Extract diagrams and charts from PDF textbooks for use in educational presentations., Frequently Asked Questions, How large will the output ZIP file be?, How to Convert PDF to Images, Introduction & Privacy Guarantee (+10 more)
 
-### Community 120 - "PDFWorker"
-Cohesion: 0.11
-Nodes (8): getDataProp(), getDocument(), getUrlProp(), _initialize(), LoopbackPort, PDFDocumentLoadingTask, PDFWorker, send()
+### Community 120 - "XFAObjectArray"
+Cohesion: 0.02
+Nodes (29): Acrobat, Agent, Common, Config, Data, Desc, DigestMethods, Encodings (+21 more)
 
-### Community 122 - ".push"
-Cohesion: 0.04
-Nodes (50): addChildren(), bezierBoundingBox(), buildHuffmanTable(), CFFFDSelect, sanitizeTTProgram(), compileCharString(), bezierCurveTo(), lineTo() (+42 more)
+### Community 122 - "Glyph"
+Cohesion: 0.18
+Nodes (5): CompositeGlyph, getSize(), Glyph, scale(), write()
 
 ### Community 124 - ".add"
 Cohesion: 0.05
@@ -1009,9 +998,9 @@ Nodes (8): js-base64, base64ToText(), isValidBase64(), makeUriSafe(), removePote
 Cohesion: 0.07
 Nodes (26): 1. Quick Overview & Key Benefits, 2. Step-by-Step Practical Usage Guide, 3. Technical Under the Hood: Specifications & Architecture, 4. Real-World Production Use Cases, 5. Frequently Asked Questions (FAQs), 6. Technical Accuracy & Client-Side Privacy Notice, Example Input: Kubernetes Deployment & Ingress Definition (`deploy.json`), Example Output: Production-Grade YAML 1.2 (`deploy.yaml`) (+18 more)
 
-### Community 140 - "ExclGroup"
-Cohesion: 0.11
-Nodes (3): ExclGroup, Image, Value
+### Community 140 - "1. High-Engagement Twitter / X Thread"
+Cohesion: 0.17
+Nodes (11): 1. High-Engagement Twitter / X Thread, 2. LinkedIn Engineering Post, 3. منشور مجتمعات المطورين بالعربية (LinkedIn / Facebook / Telegram), Social Media Launch Kit: Twitter/X & LinkedIn, Tweet 1 (The Hook):, Tweet 2 (cURL to Code):, Tweet 3 (AI Token Cost Calculator):, Tweet 4 (SQL to ORM): (+3 more)
 
 ### Community 141 - "Changelog"
 Cohesion: 0.29
@@ -1041,6 +1030,10 @@ Nodes (6): Bug fixes, Chores, Features, Refactoring, Ui-lib, Version 2023.05.14-
 Cohesion: 0.33
 Nodes (6): Bug fixes, Chores, Documentation, Features, Refactoring, Version 2024.05.13-a0bc346
 
+### Community 148 - "ISO/IEC 18004 QR Code Generator: Reed-Solomon Error Correction & 2D Matrix Specs"
+Cohesion: 0.08
+Nodes (24): 1. Quick Overview & Core Advantages, 2.1 The Physical Structure of a QR Code Matrix, 2.2 Data Encoding Modes & Bitstream Efficiency, 2.3 Reed-Solomon Error Correction Over Galois Fields $GF(2^8)$, 2.4 Data Masking Evaluation, 2. Technical Under the Hood: Matrix Anatomy & Algorithmic Principles, 3.1 Choosing the Data Type, 3.2 Setting Error Correction & Styling (+16 more)
+
 ### Community 149 - "Version 2023.12.21-5ed3693"
 Cohesion: 0.40
 Nodes (5): Bug fixes, Chores, Features, Refactoring, Version 2023.12.21-5ed3693
@@ -1053,9 +1046,9 @@ Nodes (4): Additional context, Before submitting the PR, please make sure you do
 Cohesion: 0.08
 Nodes (25): 1. Modern CLI Framework Initialization & Startup Splash Banners, 1. Quick Overview & Key Benefits, 2. Linux Server Message of the Day (MOTD) & SSH Login Notice, 2. Step-by-Step Practical Usage Guide, 3. Source Code Section Dividers & Architecture Documentation, 3. Technical Under the Hood: Specifications & Architecture, 4. Real-World Production Use Cases, 5. Frequently Asked Questions (FAQs) (+17 more)
 
-### Community 152 - "Caption"
-Cohesion: 0.14
-Nodes (4): Caption, Draw, Field, _setValue()
+### Community 152 - "yaml-validator.vue"
+Cohesion: 0.20
+Nodes (6): input, message, modeOptions, outputMode, result, syncResult
 
 ### Community 153 - "Base64 File Converter: Binary-to-ASCII & Data URI Architecture Guide"
 Cohesion: 0.08
@@ -1125,9 +1118,9 @@ Nodes (18): cities, count, dataType, domains, firstNames, formatOptions, generat
 Cohesion: 0.08
 Nodes (25): 1. Quick Overview & Key Benefits, 2. Step-by-Step Practical Usage Guide, 3. Technical Under the Hood: Specifications & Architecture, 4. Real-World Production Use Cases, 5. Frequently Asked Questions (FAQs), 6. Technical Accuracy & Client-Side Privacy Notice, Entity Encoding and Tag Sanitization Algorithm, Example Input: Enterprise Payment Order Manifest (`payment.json`) (+17 more)
 
-### Community 170 - "AnnotationEditorLayer"
-Cohesion: 0.06
-Nodes (4): AnnotationEditorLayer, FakeEditor, getEditableAnnotation(), has()
+### Community 170 - "Base64 String Encoding & Decoding Manual: RFC 4648 Specification, Bitwise Mechanics, UTF-8 Handling & Security Protocols"
+Cohesion: 0.14
+Nodes (13): 1. Overview & Architectural Significance, 2. Mathematical & Bitwise Mechanics (Radix-64 Translation), 3. The Multi-Byte UTF-8 Challenge in JavaScript, 4. Step-by-Step Practical Usage Guide, 5. Security & Cryptographic Distinctions, 6. Frequently Asked Questions (FAQs), Base64 String Encoding & Decoding Manual: RFC 4648 Specification, Bitwise Mechanics, UTF-8 Handling & Security Protocols, Client-Side Execution Guarantee (+5 more)
 
 ### Community 171 - "Online RSA Key Pair Generator: Public/Private Keys, PEM Formatting & PKCS#8 Cryptography"
 Cohesion: 0.10
@@ -1277,9 +1270,9 @@ Nodes (10): emits, options, { options: rawOptions, size }, props, CButtonSelectO
 Cohesion: 0.09
 Nodes (21): 1. Quick Overview & Core Advantages, 1xx: Informational Responses, 2. Step-by-Step Usage Guide, 2xx: Success Responses, 3. Technical Deep-Dive: RFC Classification & Semantics, 3xx: Redirection Responses, 4. Real-World Production Use Cases, 4xx: Client Error Responses (+13 more)
 
-### Community 208 - "Page"
-Cohesion: 0.04
-Nodes (13): AppearanceStreamEvaluator, cancelAllRequests(), DefaultAppearanceEvaluator, getRangeReader(), Page, parseCff(), PDFFunction, PDFWorkerStreamRangeReader (+5 more)
+### Community 208 - "Text Diff & Code Comparison Engine: Myers Algorithm, Visual Delta Analysis & Privacy-First Document Auditing"
+Cohesion: 0.14
+Nodes (13): 1. Overview & Core Engineering Problem, 2. Mathematical Foundations: The Myers Diff Algorithm, 3. Advanced Comparison Modes & Key Features, 4. Step-by-Step Usage Guide, 5. Security & Zero-Leakage Privacy Architecture, 6. Frequently Asked Questions (FAQs), Can DevTol compare structured formats like JSON, XML, or YAML?, Does the tool support multi-language and non-English scripts? (+5 more)
 
 ### Community 209 - "Word64"
 Cohesion: 0.20
@@ -1290,8 +1283,8 @@ Cohesion: 0.11
 Nodes (17): 1. Client-Side Registration Validation (NIST SP 800-63B), 1. Quick Overview & Core Advantages, 2. How to Use Step-by-Step Guide, 2. Password Health Auditing for Corporate Access, 3. Cryptographic & Algorithmic Deep Dive, 4. Real-World Production Security Use Cases & Workflows, 5. Frequently Asked Questions (FAQs), 6. Security and Privacy Guarantee (+9 more)
 
 ### Community 211 - ".constructor"
-Cohesion: 0.23
-Nodes (3): getB(), MeshShading, MeshStreamReader
+Cohesion: 0.13
+Nodes (7): BaseShading, DummyShading, getB(), MeshShading, MeshStreamReader, parseShading(), RadialAxialShading
 
 ### Community 212 - "Online Text Statistics & Readability Analyser: Lexical Density, Syllables & Reading Metrics"
 Cohesion: 0.10
@@ -1314,16 +1307,16 @@ Cohesion: 0.11
 Nodes (18): 1. Embedded Firmware & Hardware Protocol Debugging, 1. Quick Overview & Core Advantages, 2. How to Use Step-by-Step Guide, 2. Network Packet Payload Analysis, 3. Encoding & Algorithmic Deep Dive, 4. Real-World Production & Systems Use Cases, 5. Frequently Asked Questions (FAQs), 6. Security and Privacy Guarantee (+10 more)
 
 ### Community 221 - "wrap"
-Cohesion: 0.21
-Nodes (4): CFFDict, CFFPrivateDict, CFFTopDict, wrap()
+Cohesion: 0.17
+Nodes (5): CFFCharset, CFFDict, CFFPrivateDict, CFFTopDict, wrap()
 
 ### Community 222 - "InputCopyable.vue"
 Cohesion: 0.09
 Nodes (19): change-case, { copy, isJustCopied }, emit, props, tooltipText, value, baseConfig, formats (+11 more)
 
 ### Community 223 - "json5"
-Cohesion: 0.11
-Nodes (13): json5, tool, rules, tool, rules, convertArrayToCsv(), getHeaders(), serializeValue() (+5 more)
+Cohesion: 0.09
+Nodes (17): json5, tool, jsonValidationRules, leftJson, rawLeftJson, rawRightJson, rightJson, tool (+9 more)
 
 ### Community 224 - "Online TOML to YAML Converter: Cloud Configuration, Kubernetes Manifests & Data Serialization"
 Cohesion: 0.11
@@ -1333,9 +1326,9 @@ Nodes (18): 1. Generating Helm Values from Application Manifests, 1. Quick Overv
 Cohesion: 0.11
 Nodes (18): 1. OAuth Redirect URI and State Encoding, 1. Quick Overview & Core Advantages, 2. Deep-Linking and Webhook Parameter Sanitation, 2. How to Use Step-by-Step Guide, 3. Algorithmic & Specification Deep Dive, 4. Real-World Production & API Use Cases, 5. Frequently Asked Questions (FAQs), 6. Security and Privacy Guarantee (+10 more)
 
-### Community 226 - "video-to-gif.vue"
-Cohesion: 0.12
-Nodes (11): endTime, file, fps, fpsOptions, isProcessing, message, progress, resultUrl (+3 more)
+### Community 226 - ".createElement"
+Cohesion: 0.11
+Nodes (7): appendText(), BaseSVGFactory, get(), getCtx(), layout(), PopupElement, TextLayerRenderTask
 
 ### Community 228 - "IBAN Validator & Parser: ISO 13616 Standards, MOD-97 Checksums & SEPA Routing"
 Cohesion: 0.11
@@ -1369,9 +1362,9 @@ Nodes (17): 1. Generating API Keys and Webhook Signing Secrets, 1. Quick Overvie
 Cohesion: 0.11
 Nodes (17): 1. Quick Overview & Core Advantages, 1. Responsive Asset & Feature Delivery, 2. How to Use Step-by-Step Guide, 2. Traffic Auditing and Bot Traffic Analysis, 3. Algorithmic & Specification Deep Dive, 4. Real-World Production & DevOps Use Cases, 5. Frequently Asked Questions (FAQs), 6. Security and Privacy Guarantee (+9 more)
 
-### Community 236 - "text-to-speech.vue"
-Cohesion: 0.12
-Nodes (9): isPaused, isSpeaking, message, pitch, rate, selectedVoice, text, voices (+1 more)
+### Community 236 - "checkAndRepair"
+Cohesion: 0.03
+Nodes (49): adjustMapping(), adjustWidths(), Ascii85Stream, AsciiHexStream, BaseStream, appendIfJavaScriptDict(), CCITTFaxStream, checkAndRepair() (+41 more)
 
 ### Community 237 - "IPv4 Subnet Calculator: CIDR Notation, Bitwise Masks & VLSM Network Design"
 Cohesion: 0.12
@@ -1410,8 +1403,8 @@ Cohesion: 0.12
 Nodes (16): 1. Identifying Sensitive Token Leaks in URLs, 1. Quick Overview & Core Advantages, 2. How to Use Step-by-Step Guide, 2. Microservice Routing and Webhook Debugging, 3. Algorithmic & Specification Deep Dive, 4. Real-World Production & Web Security Use Cases, 5. Frequently Asked Questions (FAQs), 6. Security and Privacy Guarantee (+8 more)
 
 ### Community 246 - "favicon-generator.vue"
-Cohesion: 0.08
-Nodes (20): activeTab, bgColor, downloadAll(), drawSize(), file, generate(), imgUrl, isProcessing (+12 more)
+Cohesion: 0.15
+Nodes (13): activeTab, bgColor, downloadAll(), drawSize(), file, generate(), imgUrl, isProcessing (+5 more)
 
 ### Community 247 - "image-watermark.vue"
 Cohesion: 0.13
@@ -1429,9 +1422,13 @@ Nodes (15): 1. Quick Overview & Core Advantages, 2. Step-by-Step Usage Guide, 3.
 Cohesion: 0.12
 Nodes (15): 1. Quick Overview & Core Advantages, 2. Step-by-Step Usage Guide, 3. Technical Deep-Dive: Abstract Syntax Trees (AST) & Parser Phases, 4. Real-World Production Use Cases, 5. Frequently Asked Questions (FAQs), 6. Privacy & Security Notice, Can I convert HTML back to Markdown?, Converting Markdown to Sanitized HTML (+7 more)
 
-### Community 251 - "@vicons/material"
-Cohesion: 0.08
-Nodes (20): @sindresorhus/slugify, @vicons/material, { copy }, header, password, username, tool, tool (+12 more)
+### Community 251 - "ipv4-subnet-calculator.vue"
+Cohesion: 0.07
+Nodes (22): netmask, @sindresorhus/slugify, @vicons/material, { copy }, header, password, username, tool (+14 more)
+
+### Community 252 - "bcrypt.vue"
+Cohesion: 0.20
+Nodes (9): bcryptjs, compareHash, compareMatch, compareString, { copy }, hashed, input, saltCount (+1 more)
 
 ### Community 253 - "text-encrypt.vue"
 Cohesion: 0.16
@@ -1441,37 +1438,45 @@ Nodes (12): activeTab, ciphertext, decrypt(), decryptInput, decryptOutput, decry
 Cohesion: 0.08
 Nodes (15): confidence, file, isProcessing, lang, langOptions, message, progress, result (+7 more)
 
-### Community 257 - "Glyph"
-Cohesion: 0.18
-Nodes (5): CompositeGlyph, getSize(), Glyph, scale(), write()
+### Community 257 - "manifest.json"
+Cohesion: 0.09
+Nodes (21): action, default_icon, default_popup, default_title, 128, 16, 32, 48 (+13 more)
 
 ### Community 258 - "process"
-Cohesion: 0.07
-Nodes (24): addHex(), BinaryCMapStream, clean(), createBuiltInCMap(), expectInt(), expectString(), extendCMap(), forEach() (+16 more)
+Cohesion: 0.06
+Nodes (23): addHex(), BinaryCMapStream, CMap, createBuiltInCMap(), expectInt(), expectString(), extendCMap(), getUint32() (+15 more)
 
 ### Community 259 - "exif-viewer.vue"
 Cohesion: 0.18
 Nodes (7): file, isLoading, message, metadata, onFile(), readExif(), strippedUrl
 
-### Community 260 - "XMLParserBase"
-Cohesion: 0.10
-Nodes (7): DatasetXMLParser, isWhitespace(), onText(), parseFromString(), XFAParser, XMLParserBase, skipWs()
+### Community 260 - "xfaFactory"
+Cohesion: 0.07
+Nodes (8): DatasetXMLParser, isWhitespace(), onText(), parseFromString(), xfaFactory(), XFAParser, XMLParserBase, skipWs()
 
-### Community 261 - "checkAndRepair"
+### Community 261 - "SimpleDOMNode"
+Cohesion: 0.18
+Nodes (5): _getSequence(), onBeginElement(), onCdata(), _parseArray(), SimpleDOMNode
+
+### Community 262 - "PDFDataRangeTransport"
+Cohesion: 0.07
+Nodes (4): KeyboardManager, NetworkManager, PDFDataRangeTransport, toDateObject()
+
+### Community 264 - "constructor"
 Cohesion: 0.03
-Nodes (51): adjustWidths(), Ascii85Stream, AsciiHexStream, BaseStream, CCITTFaxStream, checkAndRepair(), readNameTable(), readOpenTypeHeader() (+43 more)
+Nodes (89): a(), ae(), r(), at(), b(), l(), be(), ce() (+81 more)
 
-### Community 262 - "json-viewer.vue"
-Cohesion: 0.25
-Nodes (8): formatJson(), sortObjectKeys(), cleanJson, indentSize, inputElement, rawJson, rawJsonValidation, sortKeys
+### Community 265 - "5. Frequently Asked Questions (FAQs)"
+Cohesion: 0.13
+Nodes (14): 1. How It Works: Natural Language Intent & Structural Parsing, 2. Supported Categories & Production Presets, 3. Regular Expression Flag Reference, 4. Multi-Language Code Integration, 5. Frequently Asked Questions (FAQs), AI Regex Generator & Structural Explainer: Master Regular Expressions Instantly, Are my test strings or regex patterns sent to external servers?, Go (Golang) (+6 more)
 
-### Community 264 - ".i"
-Cohesion: 0.06
-Nodes (15): ConnectionSet, ConnectionSetNamespace, EffectiveInputPolicy, EffectiveOutputPolicy, getGlyphMapping(), Operation, parseExpression(), RootElement (+7 more)
+### Community 266 - "validation.ts"
+Cohesion: 0.31
+Nodes (7): getErrorMessageOrThrown(), GetErrorMessageReturnType, isFalsyOrHasThrown(), useValidation(), UseValidationRule, ValidationAttrs, ValidatorReturnType
 
-### Community 265 - "add"
-Cohesion: 0.25
-Nodes (3): add(), addPdfFont(), CFFIndex
+### Community 267 - "Professional SQL Prettifier & Formatter: Syntax Standards, Dialect Beautification & Readability Engineering"
+Cohesion: 0.15
+Nodes (12): 1. Overview & Architectural Purpose, 2. Technical Formatting Rules & Supported SQL Dialects, 3. Step-by-Step Practical Usage Guide, 4. Privacy, Security & Client-Side Execution Guarantee, 5. Frequently Asked Questions (FAQs), Can this formatter handle large SQL migration scripts with hundreds of queries?, Complex Subqueries & Common Table Expressions (CTEs), Does DevTol's SQL Prettifier alter query execution plans or performance? (+4 more)
 
 ### Community 268 - "pdf-compress.md"
 Cohesion: 0.11
@@ -1494,16 +1499,16 @@ Cohesion: 0.14
 Nodes (13): tool, base64, bgColor, { copy: copyBase64 }, { copy: copySVG }, customText, { download }, fgColor (+5 more)
 
 ### Community 274 - "PDFPageProxy"
-Cohesion: 0.06
+Cohesion: 0.07
 Nodes (7): cancelAllRequests(), clear(), InternalRenderTask, PDFPageProxy, RenderingCancelledException, RenderTask, XfaText
 
 ### Community 275 - "pdf-organize.md"
 Cohesion: 0.12
 Nodes (15): Archive Management — Correct incorrectly ordered historical document scans before archiving., Book & Report Assembly — Reorder chapters or sections in a multi-part document., Can I delete pages using this tool?, Can I undo a reorder operation?, Does rotation affect the text direction?, Frequently Asked Questions, How many pages can the tool handle?, How to Organize PDF Pages (+7 more)
 
-### Community 277 - "integer-base-converter.vue"
-Cohesion: 0.29
-Nodes (7): error, errorlessConvert(), input, inputBase, inputProps, convertBase(), outputBase
+### Community 277 - "Wi-Fi QR Code Generator: MeCard URI Specification, WPA2/WPA3 Standards & Secure Device Onboarding"
+Cohesion: 0.09
+Nodes (21): 1. Overview & Core Advantages, 1. Zero-Trust Guest Onboarding & Network Segmentation, 2. High-Density Conference & Event Fast-Track Onboarding, 2. Theoretical Principles & URI Specification Standards, 3. IoT Device Provisioning via Mobile Applications, 3. Step-by-Step Custom Configuration Guide, 4. Production Engineering & Security Use Cases, 5. Frequently Asked Questions (FAQs) (+13 more)
 
 ### Community 280 - "bip39-generator.vue"
 Cohesion: 0.15
@@ -1525,9 +1530,9 @@ Nodes (10): Are there execution limits or usage caps?, Core Benefits, Does this 
 Cohesion: 0.18
 Nodes (10): Are there execution limits or usage caps?, Core Benefits, Does this utility work offline?, E-E-A-T Technical Disclaimer, Frequently Asked Questions (FAQ), Is my input data monitored, collected, or logged?, Overview & Zero-Knowledge Architecture, Practical Real-World Use Cases (+2 more)
 
-### Community 285 - "image-compressor.md"
-Cohesion: 0.18
-Nodes (10): Are there execution limits or usage caps?, Core Benefits, Does this utility work offline?, E-E-A-T Technical Disclaimer, Frequently Asked Questions (FAQ), Is my input data monitored, collected, or logged?, Overview & Zero-Knowledge Architecture, Practical Real-World Use Cases (+2 more)
+### Community 285 - "Free Online Image Compressor — Compress JPG, PNG & WebP up to 90% (Zero Server Upload)"
+Cohesion: 0.20
+Nodes (9): Free Online Image Compressor — Compress JPG, PNG & WebP up to 90% (Zero Server Upload), Frequently Asked Questions (FAQs), How to Compress Images Online for Free (Step-by-Step), Q1: Does compressing images reduce print or screen resolution?, Q2: Which format achieves the smallest file size: JPG, PNG, or WebP?, Q3: Are my uploaded photos or graphics saved on any server?, Q4: Can I compress multiple images offline?, Web Performance & SEO: How Image Compression Drives Higher Rankings (+1 more)
 
 ### Community 286 - "image-ocr.md"
 Cohesion: 0.18
@@ -1541,9 +1546,9 @@ Nodes (10): Are there execution limits or usage caps?, Core Benefits, Does this 
 Cohesion: 0.18
 Nodes (10): Are there execution limits or usage caps?, Core Benefits, Does this utility work offline?, E-E-A-T Technical Disclaimer, Frequently Asked Questions (FAQ), Is my input data monitored, collected, or logged?, Overview & Zero-Knowledge Architecture, Practical Real-World Use Cases (+2 more)
 
-### Community 289 - "jwt-builder.md"
-Cohesion: 0.18
-Nodes (10): Are there execution limits or usage caps?, Core Benefits, Does this utility work offline?, E-E-A-T Technical Disclaimer, Frequently Asked Questions (FAQ), Is my input data monitored, collected, or logged?, Overview & Zero-Knowledge Architecture, Practical Real-World Use Cases (+2 more)
+### Community 289 - "Free Online JWT Builder & Signer — Create, Sign & Decode JSON Web Tokens (HMAC-SHA256)"
+Cohesion: 0.22
+Nodes (8): Anatomical Structure of a JSON Web Token (RFC 7519), Free Online JWT Builder & Signer — Create, Sign & Decode JSON Web Tokens (HMAC-SHA256), Frequently Asked Questions (FAQs), How to Build and Sign a JWT Step-by-Step, Q1: Is my secret signing key stored or transmitted anywhere?, Q2: What is the difference between JWT encoding and encryption?, Q3: Does this tool validate token expiration timestamps (`exp`)?, Why Client-Side JWT Construction is Essential for Security
 
 ### Community 290 - "line-deduplicator.md"
 Cohesion: 0.18
@@ -1589,41 +1594,45 @@ Nodes (10): Are there execution limits or usage caps?, Core Benefits, Does this 
 Cohesion: 0.18
 Nodes (10): Are there execution limits or usage caps?, Core Benefits, Does this utility work offline?, E-E-A-T Technical Disclaimer, Frequently Asked Questions (FAQ), Is my input data monitored, collected, or logged?, Overview & Zero-Knowledge Architecture, Practical Real-World Use Cases (+2 more)
 
-### Community 301 - "webp-converter.md"
-Cohesion: 0.18
-Nodes (10): Are there execution limits or usage caps?, Core Benefits, Does this utility work offline?, E-E-A-T Technical Disclaimer, Frequently Asked Questions (FAQ), Is my input data monitored, collected, or logged?, Overview & Zero-Knowledge Architecture, Practical Real-World Use Cases (+2 more)
+### Community 301 - "Free Online WebP Converter — Convert WebP to PNG/JPG & PNG/JPG to WebP (100% Private)"
+Cohesion: 0.20
+Nodes (9): Comparison: WebP vs PNG vs JPG, Free Online WebP Converter — Convert WebP to PNG/JPG & PNG/JPG to WebP (100% Private), Frequently Asked Questions (FAQs), Q1: Does converting WebP to PNG degrade image quality?, Q2: Are my uploaded images stored or logged on any cloud server?, Q3: Can I convert WebP images on Mac, iPhone, Windows, and Android?, Step-by-Step: How to Convert Images Online for Free, When to Convert WebP to PNG or JPG (+1 more)
 
-### Community 302 - "word-counter.md"
-Cohesion: 0.18
-Nodes (10): Are there execution limits or usage caps?, Core Benefits, Does this utility work offline?, E-E-A-T Technical Disclaimer, Frequently Asked Questions (FAQ), Is my input data monitored, collected, or logged?, Overview & Zero-Knowledge Architecture, Practical Real-World Use Cases (+2 more)
+### Community 302 - "Free Online Word & Character Counter — Real-Time Text Statistics, Reading Time & Density"
+Cohesion: 0.20
+Nodes (9): Free Online Word & Character Counter — Real-Time Text Statistics, Reading Time & Density, Frequently Asked Questions (FAQs), How to Count Words and Analyze Text Step-by-Step, Key Character & Limit Benchmarks for Digital Platforms, Q1: Is there a character limit or word count ceiling?, Q2: Is my text uploaded or stored on any server?, Q3: How is keyword density calculated?, Q4: Does this word counter work on mobile devices and offline? (+1 more)
 
 ### Community 303 - "yaml-validator.md"
 Cohesion: 0.18
 Nodes (10): Are there execution limits or usage caps?, Core Benefits, Does this utility work offline?, E-E-A-T Technical Disclaimer, Frequently Asked Questions (FAQ), Is my input data monitored, collected, or logged?, Overview & Zero-Knowledge Architecture, Practical Real-World Use Cases (+2 more)
 
-### Community 304 - "webp-converter.vue"
-Cohesion: 0.15
-Nodes (9): file, isProcessing, message, mode, modeOptions, outFormat, outFormatOptions, quality (+1 more)
+### Community 304 - "PDFFetchStreamReader"
+Cohesion: 0.07
+Nodes (12): BaseCMapReaderFactory, BaseStandardFontDataFactory, createFetchOptions(), createHeaders(), DOMCMapReaderFactory, DOMStandardFontDataFactory, fetchData(), isValidFetchUrl() (+4 more)
 
-### Community 305 - "pdf-compress.vue"
-Cohesion: 0.17
-Nodes (7): file, isProcessing, message, original, quality, result, savings
+### Community 305 - "popup.js"
+Cohesion: 0.15
+Nodes (12): allTools, copyToClipboard(), escapeHtml(), filterTools(), getCoreFallbackTools(), initBase64Tool(), initJsonTool(), initTokenTool() (+4 more)
 
 ### Community 306 - "prerender-seo-pages.js"
-Cohesion: 0.10
-Nodes (19): baseHtmlTemplate, categorySection, cssMatch, __dirname, distDir, enLocale, enLocalePath, escapeHtml() (+11 more)
+Cohesion: 0.08
+Nodes (26): allLangCodes, allLocales, baseHtmlTemplate, categorySection, cssMatch, __dirname, distDir, enHomePrerenderBody (+18 more)
 
-### Community 308 - "readNextChar"
-Cohesion: 0.50
-Nodes (9): _addPixels(), _addPixelsNeg(), _eatBits(), _findTableCode(), _getBlackCode(), _getTwoDimCode(), _getWhiteCode(), _lookBits() (+1 more)
+### Community 308 - "XML to JSON Converter: Schema Transformation, Type Inferences & Modern API Modernization"
+Cohesion: 0.15
+Nodes (12): 1. Overview & Data Interchange Architecture, 2. Core Transformation Logic & Structural Rules, 3. Step-by-Step Practical Usage Guide, 4. Performance & Client-Side Privacy Guarantee, 5. Frequently Asked Questions (FAQs), Attribute and Text Content Mapping, Automatic Array Detection for Sibling Nodes, Can DevTol convert XML with CDATA sections to JSON? (+4 more)
 
 ### Community 309 - ".createDocumentHandler"
 Cohesion: 0.05
-Nodes (29): annotationGlobals(), checkFirstPage(), checkLastPage(), createGlobals(), ensure(), getFullReader(), getNewTemporaryRef(), getPage() (+21 more)
+Nodes (22): annotationGlobals(), checkFirstPage(), checkLastPage(), createGlobals(), ensure(), _getPageIndex(), load(), loadXfaImages() (+14 more)
 
 ### Community 310 - "CanvasExtraState"
-Cohesion: 0.20
-Nodes (3): CanvasExtraState, intersect(), scaleMinMax()
+Cohesion: 0.06
+Nodes (15): applyBoundingBox(), applyInverseTransform(), applyTransform(), BaseShadingPattern, bezierBoundingBox(), CachedCanvases, CanvasExtraState, DummyShadingPattern (+7 more)
+
+### Community 312 - "2. Empirical Verification & Architecture Upgrades"
+Cohesion: 0.13
+Nodes (14): 1. Executive Summary & Updated Audit Scorecard, 2.1 Complete 100% Arabic Localization & Routing, 2.2 Title & Meta Tag Overhaul (High-CTR Intent Targeting), 2.3 High-Intent Content Guides Upgraded, 2.4 Multilingual Prerendering & Hreflang Network, 2.5 Generative Engine Optimization (GEO) & AI Crawlers, 2. Empirical Verification & Architecture Upgrades, 3. High-Priority Keyword Targeting Matrix (+6 more)
 
 ### Community 313 - "otp.service.ts"
 Cohesion: 0.51
@@ -1631,15 +1640,19 @@ Nodes (8): base32toHex(), computeHMACSha1(), generateHOTP(), generateTOTP(), get
 
 ### Community 314 - ".compile"
 Cohesion: 0.09
-Nodes (12): AstArgument, AstBinaryOperation, AstLiteral, AstMin, AstNode, AstVariable, AstVariableDefinition, buildAddOperation() (+4 more)
+Nodes (13): AstArgument, AstBinaryOperation, AstLiteral, AstMin, AstNode, AstVariable, AstVariableDefinition, buildAddOperation() (+5 more)
 
-### Community 315 - "pdf-merge.vue"
-Cohesion: 0.17
-Nodes (6): files, isProcessing, message, resultSize, resultUrl, totalSize
+### Community 315 - ".i"
+Cohesion: 0.04
+Nodes (22): ConnectionSet, ConnectionSetNamespace, EffectiveInputPolicy, EffectiveOutputPolicy, FontInfo, FontSelector, getDefault(), getMeasurement() (+14 more)
 
-### Community 316 - "ipv4-subnet-calculator.vue"
-Cohesion: 0.21
-Nodes (8): netmask, tool, getNetworkInfo(), ip, ipValidationRules, getIPClass(), networkInfo, sections
+### Community 316 - "jp"
+Cohesion: 0.15
+Nodes (17): bp(), Dp(), Ep(), Fp(), Ip(), jp(), Kp(), Lp() (+9 more)
+
+### Community 317 - "Hacker News Launch Guide: "Show HN""
+Cohesion: 0.29
+Nodes (6): 1. Submission Details, 2. Maker's First Comment (Post immediately within 60 seconds of submitting), 3. Hacker News Tactical Guidelines, Hacker News Launch Guide: "Show HN", Target URL:, Title:
 
 ### Community 318 - "PDFImage"
 Cohesion: 0.12
@@ -1649,165 +1662,229 @@ Nodes (5): decodeAndClamp(), Fill, ImageResizer, PDFImage, resizeImageMask()
 Cohesion: 0.43
 Nodes (3): tool, getStringSizeInBytes(), text
 
-### Community 320 - ".onSymbolDictionary"
-Cohesion: 0.16
-Nodes (11): decodeIAID(), decodeInteger(), decodeRefinement(), decodeTextRegion(), getCustomHuffmanTable(), getStandardTable(), HuffmanLine, HuffmanTable (+3 more)
-
-### Community 321 - "Color"
-Cohesion: 0.22
-Nodes (3): Color, makeHexColor(), Stipple
-
-### Community 323 - "list-converter.vue"
-Cohesion: 0.35
-Nodes (7): conversionConfig, convert(), whenever(), sortOrderOptions, transformer(), ConvertOptions, SortOrder
-
-### Community 324 - "Subform"
-Cohesion: 0.08
-Nodes (4): Area, getContainedChildren(), Subform, SubformSet
-
-### Community 325 - "images-to-pdf.vue"
+### Community 320 - "readBit"
 Cohesion: 0.06
-Nodes (16): images, isProcessing, message, resultUrl, activeTab, file, isProcessing, message (+8 more)
+Nodes (33): BitModel, buildComponentData(), ContextCache, copyCoefficients(), decodeBitmap(), decodeIAID(), decodeInteger(), readBits() (+25 more)
 
-### Community 326 - "BaseShadingPattern"
+### Community 321 - "pdf-merge.vue"
+Cohesion: 0.17
+Nodes (6): files, isProcessing, message, resultSize, resultUrl, totalSize
+
+### Community 323 - "Professional YAML Prettifier & Formatter: Syntax Standards, Indentation Normalization & DevOps Pipeline Security"
+Cohesion: 0.15
+Nodes (12): 1. Overview & Operational Significance in Modern DevOps, 2. Technical Indentation Rules & YAML Specifications, 3. Step-by-Step Practical Usage Guide, 4. Security & Zero-Server Transmission Guarantee, 5. Frequently Asked Questions (FAQs), Can DevTol validate Kubernetes manifests and Helm values files?, Does the prettifier preserve YAML comments?, Literal and Folded Block Scalars (`|` and `>`) (+4 more)
+
+### Community 324 - "build-extension.mjs"
 Cohesion: 0.12
-Nodes (7): BaseShadingPattern, CachedCanvases, drawFigure(), drawTriangle(), DummyShadingPattern, MeshShadingPattern, RadialAxialShadingPattern
+Nodes (15): catalog, catalogPath, categorySection, __dirname, distDir, enLocale, enLocalePath, __filename (+7 more)
 
-### Community 327 - ".constructor"
-Cohesion: 0.24
-Nodes (3): FontInfo, FontSelector, getDefault()
+### Community 325 - "pdf-organize.vue"
+Cohesion: 0.14
+Nodes (7): file, isLoading, isProcessing, message, pageCount, pages, resultUrl
+
+### Community 326 - "CollapsibleToolMenu.vue"
+Cohesion: 0.16
+Nodes (11): collapsedCategories, makeIcon(), makeLabel(), menuOptions, props, route, themeVars, { toolsByCategory } (+3 more)
+
+### Community 327 - "3. Supported Languages & Frameworks"
+Cohesion: 0.15
+Nodes (12): 1. How cURL Flags Map to Application Code, 2. Why Client-Side Conversion Is Vital for Security, 3. Supported Languages & Frameworks, 4. Frequently Asked Questions (FAQ), Are my secret API keys safe?, Can it convert multipart/form-data or binary uploads?, cURL to Code Converter: Instant Multi-Language HTTP Client Generation (Python, JavaScript, Go, Rust, PHP, Java), Does this tool support multiline cURL commands? (+4 more)
 
 ### Community 328 - "token-generator.tool.vue"
 Cohesion: 0.21
 Nodes (9): createToken(), { copy }, length, { t }, [token, refreshToken], withLowercase, withNumbers, withSymbols (+1 more)
 
-### Community 329 - "bcrypt.vue"
-Cohesion: 0.20
-Nodes (9): bcryptjs, compareHash, compareMatch, compareString, { copy }, hashed, input, saltCount (+1 more)
+### Community 329 - "images-to-pdf.vue"
+Cohesion: 0.10
+Nodes (9): images, isProcessing, message, resultUrl, file, isProcessing, keywords, message (+1 more)
+
+### Community 330 - "Action Plan & Implementation Roadmap — DevTol SEO & GEO Dominance"
+Cohesion: 0.25
+Nodes (7): 3.1 Google Search Console Verification & Sitemap Submission, 3.2 Cloudflare Pages Deployment & Edge Caching, 3.3 Programmatic Backlink & Authority Strategy, Action Plan & Implementation Roadmap — DevTol SEO & GEO Dominance, Phase 1: Technical SEO & International Architecture (Completed ✅), Phase 2: In-Depth Technical Content Guides (Completed ✅), Phase 3: Post-Deployment & Search Console Roadmap (Ongoing 🚀)
+
+### Community 331 - "Online OTP Code Generator & Validator: RFC 6238 TOTP, HOTP & Two-Factor Authentication"
+Cohesion: 0.10
+Nodes (20): 1. HMAC Generation, 1. Multi-Factor Authentication Verification Endpoints, 1. Quick Overview & Core Advantages, 2. Dynamic Truncation (DT), 2. Guarding Against Replay Attacks, 2. How to Use Step-by-Step Guide, 3. Cryptographic & Algorithmic Deep Dive, 3. Modulo Reduction (+12 more)
 
 ### Community 332 - "qr-code-generator.vue"
 Cohesion: 0.22
 Nodes (9): qrcode, background, { download }, errorCorrectionLevel, errorCorrectionLevels, foreground, { qrcode }, text (+1 more)
 
-### Community 333 - "yaml-validator.vue"
-Cohesion: 0.20
-Nodes (6): input, message, modeOptions, outputMode, result, syncResult
+### Community 334 - "webp-converter.vue"
+Cohesion: 0.15
+Nodes (9): file, isProcessing, message, mode, modeOptions, outFormat, outFormatOptions, quality (+1 more)
 
 ### Community 336 - "image-compressor.vue"
 Cohesion: 0.14
 Nodes (9): compressed, file, format, formatOptions, isProcessing, message, original, quality (+1 more)
 
-### Community 337 - "pdf-organize.vue"
-Cohesion: 0.14
-Nodes (7): file, isLoading, isProcessing, message, pageCount, pages, resultUrl
-
 ### Community 338 - "parseTilePackets"
 Cohesion: 0.15
 Nodes (6): InclusionTree, parseTilePackets(), readCodingpasses(), skipBytes(), skipMarkerIfEqual(), TagTree
 
-### Community 340 - "parse"
+### Community 340 - "AnnotationEditorLayer"
 Cohesion: 0.07
-Nodes (24): accept(), CFFCharset, CFFEncoding, createDict(), emptyPrivateDictionary(), expect(), findNextFileMarker(), _getSequence() (+16 more)
+Nodes (3): AnnotationEditorLayer, getEditableAnnotation(), has()
 
-### Community 341 - "text-sorter.vue"
-Cohesion: 0.22
-Nodes (7): input, message, opOptions, ops, result, sortOptions, sortOrder
+### Community 341 - "rv"
+Cohesion: 0.19
+Nodes (13): Av(), Bv(), Dv(), ev(), Iv(), kv(), Lv(), Mv() (+5 more)
 
 ### Community 342 - "html-entities.vue"
 Cohesion: 0.25
 Nodes (7): { copy: copyEscaped }, { copy: copyUnescaped }, escapeInput, escapeOutput, unescapeInput, unescapeOutput, tool
 
-### Community 345 - "shims.d.ts"
-Cohesion: 0.29
-Nodes (6): emojilib, iarna-toml-esm, *.md, pdf-signature-reader, unicode-emoji-json, *.vue
+### Community 343 - "user-agent-result-cards.vue"
+Cohesion: 0.13
+Nodes (9): ua-parser-js, themeVars, tool, tool, themeVars, tool, UserAgentResultSection, props (+1 more)
+
+### Community 345 - "4. Frequently Asked Questions (FAQ)"
+Cohesion: 0.18
+Nodes (10): 1. What Are Tokens and How Does BPE Tokenization Work?, 2. LLM Pricing Comparison Architecture (2025/2026 Benchmarks), 3. The Power of Prompt Caching in Modern LLM Architectures, 4. Frequently Asked Questions (FAQ), AI Prompt Token Counter & LLM Cost Calculator: Production BPE Estimation, Multi-Model Pricing & Prompt Economics, Does this calculator transmit my prompt or data to any server?, How accurate is the token estimator in this tool?, How do I calculate monthly cost for an AI application? (+2 more)
 
 ### Community 347 - "ContentObject"
 Cohesion: 0.14
 Nodes (4): ContentObject, IntegerObject, OptionObject, StringObject
 
-### Community 348 - "dynamic-values.vue"
-Cohesion: 0.33
-Nodes (6): addValue(), emit, onInputEnter(), props, refs, values
+### Community 348 - "PDFWorkerStreamReader"
+Cohesion: 0.10
+Nodes (8): cancelAllRequests(), DefaultAppearanceEvaluator, getFullReader(), getRangeReader(), PDFWorkerStreamRangeReader, PDFWorkerStreamReader, sendProgressiveData(), getPdfManager()
 
-### Community 351 - "B"
-Cohesion: 0.22
-Nodes (4): B, I, popFont(), pushData()
+### Community 350 - "string-obfuscator.vue"
+Cohesion: 0.24
+Nodes (8): { copy }, keepFirst, keepLast, keepSpace, obfuscateString(), useObfuscateString(), obfuscatedString, str
 
-### Community 353 - "color-palette.vue"
-Cohesion: 0.29
-Nodes (6): analyze(), formats, hex, isLoading, message, rgbToHsv()
+### Community 351 - "XhtmlObject"
+Cohesion: 0.04
+Nodes (18): addPara(), B, Body, Br, Html, I, Li, mapStyle() (+10 more)
 
-### Community 354 - "device-information/index.ts"
-Cohesion: 0.25
-Nodes (5): sections, { width, height }, tool, tool, themeVars
+### Community 353 - ".push"
+Cohesion: 0.04
+Nodes (39): #a(), addChildren(), AppearanceStreamEvaluator, buildHuffmanTable(), sanitizeTTProgram(), compileCharString(), bezierCurveTo(), lineTo() (+31 more)
+
+### Community 354 - ".resolve"
+Cohesion: 0.04
+Nodes (13): #de(), getArrayBuffer(), _onProgress(), _onReceiveData(), PDFDataTransportStreamRangeReader, PDFDataTransportStreamReader, PDFNetworkStreamFullRequestReader, PDFNetworkStreamRangeRequestReader (+5 more)
 
 ### Community 355 - "pdf-split.vue"
 Cohesion: 0.17
 Nodes (9): extractPages(), file, isLoading, isProcessing, message, pageCount, pageRange, parseRanges() (+1 more)
 
-### Community 356 - "encryption.vue"
-Cohesion: 0.18
-Nodes (10): algos, cypherAlgo, cypherInput, cypherOutput, cypherSecret, decryptAlgo, decryptInput, [decryptOutput, decryptError] (+2 more)
+### Community 356 - "_bindElement"
+Cohesion: 0.09
+Nodes (15): bind(), _bindElement(), _bindItems(), _bindOccurrences(), _bindValue(), _createOccurrences(), createText(), _findDataByNameToConsume() (+7 more)
 
-### Community 357 - "http-status-codes/index.ts"
-Cohesion: 0.39
-Nodes (5): codesByCategoryFiltered, codesByCategories, search, { searchResult }, tool
-
-### Community 358 - "pdf-watermark-tool.vue"
+### Community 357 - "pdf-watermark-tool.vue"
 Cohesion: 0.15
 Nodes (9): file, fontSize, isProcessing, message, opacity, position, posOptions, resultUrl (+1 more)
 
-### Community 361 - "naive-ui"
+### Community 358 - "naive-ui"
+Cohesion: 0.17
+Nodes (9): naive-ui, naive, input, message, opOptions, ops, result, sortOptions (+1 more)
+
+### Community 359 - "AnnotationStorage"
 Cohesion: 0.07
-Nodes (23): naive-ui, layout, { locale }, route, styleStore, theme, themeOverrides, useStyleStore (+15 more)
+Nodes (12): AnnotationStorage, CheckboxWidgetAnnotationElement, ChoiceWidgetAnnotationElement, PrintAnnotationStorage, PushButtonWidgetAnnotationElement, RadioButtonWidgetAnnotationElement, render(), setAttributes() (+4 more)
+
+### Community 361 - "PDFWorker"
+Cohesion: 0.11
+Nodes (8): getDataProp(), getDocument(), getUrlProp(), _initialize(), LoopbackPort, PDFDocumentLoadingTask, PDFWorker, send()
 
 ### Community 362 - "sql-prettify.vue"
 Cohesion: 0.25
 Nodes (7): sql-formatter, tool, config, inputElement, prettySQL, rawSQL, styleStore
 
-### Community 363 - "closePath"
-Cohesion: 0.27
-Nodes (6): closeEOFillStroke(), closeFillStroke(), closePath(), closeStroke(), eoFillStroke(), fillStroke()
+### Community 363 - "Article 1: "10 Essential Free Developer Tools for 2026 (That Don't Send Your Data to a Server)""
+Cohesion: 0.33
+Nodes (5): Article 1: "10 Essential Free Developer Tools for 2026 (That Don't Send Your Data to a Server)", High-Authority Guest Articles for Dev.to, Hashnode & Medium (DR 80–90), Markdown Content (Copy-Paste Ready):, Tags:, Where to Publish:
 
-### Community 364 - "vue"
+### Community 364 - "pdf-to-image.vue"
+Cohesion: 0.18
+Nodes (7): downloadAll(), file, format, isProcessing, message, previews, progress
+
+### Community 366 - "Professional XML Formatter & Validator: DOM Tree Prettification, Syntax Verification & Hierarchy Structuring"
+Cohesion: 0.17
+Nodes (11): 1. Overview & Technical Significance, 2. W3C XML Standards & Structural Validation, 3. Formatting Modes & Indentation Customization, 4. Step-by-Step Practical Usage Guide, 5. Enterprise Data Privacy & Client-Side Execution, 6. Frequently Asked Questions (FAQs), Can DevTol validate XML against an external XSD schema?, Does the formatter modify text inside `<script>` or `<style>` tags? (+3 more)
+
+### Community 367 - "parsePrivateDict"
+Cohesion: 0.47
+Nodes (4): createDict(), emptyPrivateDictionary(), parseDict(), parsePrivateDict()
+
+### Community 368 - "ExclGroup"
 Cohesion: 0.10
-Nodes (15): plausible-tracker, vue, vue-i18n, app, createTrackerService(), useTracker(), TrackerService, i18n (+7 more)
+Nodes (3): ExclGroup, Image, Value
 
-### Community 369 - "c-key-value-list.vue"
-Cohesion: 0.24
-Nodes (7): formattedItems, { item }, props, { items }, props, CKeyValueListItem, CKeyValueListItems
+### Community 369 - "CFFStrings"
+Cohesion: 0.20
+Nodes (3): CFF, CFFStrings, parseStringIndex()
 
 ### Community 372 - "Home.page.vue"
-Cohesion: 0.06
-Nodes (25): @tabler/icons-vue, adContainerRef, developerOffers, formatStyles, isAdLoaded, isDark, Props, selectedOffer (+17 more)
+Cohesion: 0.07
+Nodes (23): @tabler/icons-vue, vue-i18n, isAr, { locale }, { isDarkTheme }, styleStore, emit, Props (+15 more)
 
-### Community 376 - "Key Features"
-Cohesion: 0.29
-Nodes (6): 1. Visual Annotations & Signatures, 2. Search & Text Replacement, 3. Multi-Page Navigation & Zoom, Key Features, Overview & Privacy Guarantee, PDF Editor — Edit, Draw, Annotate, Sign & Replace Text in PDF Online
+### Community 375 - "طريقة الاستخدام اليومية (تستغرق 3 دقائق):"
+Cohesion: 0.12
+Nodes (15): 📅 اليوم 10 (10 روابط):, 📅 اليوم 11 (10 روابط):, 📅 اليوم 12 (10 روابط):, 📅 اليوم 13 (4 روابط):, 📅 اليوم 1 (10 روابط):, 📅 اليوم 2 (10 روابط):, 📅 اليوم 3 (10 روابط):, 📅 اليوم 4 (10 روابط): (+7 more)
 
-### Community 377 - "auto-imports.d.ts"
-Cohesion: 0.22
-Nodes (3): ComponentCustomProperties, vue, @vue/runtime-core
+### Community 376 - "Frequently Asked Questions (FAQs)"
+Cohesion: 0.14
+Nodes (13): 1. Freehand Drawing, Annotations & Electronic Signatures, 2. Search, Find & Replace Text with Full Font Matching, 3. Multi-Page Canvas Navigation & Precision Zoom, Core Capabilities & Features, Free Online PDF Editor — Edit, Draw, Sign & Replace Text (100% Private, No Upload), Frequently Asked Questions (FAQs), How to Edit a PDF Online for Free (Step-by-Step), Q1: Is this online PDF editor completely free to use? (+5 more)
+
+### Community 377 - "ipv4-range-expander.vue"
+Cohesion: 0.15
+Nodes (16): { attrs: validationAttrs }, convertedSections, rawIpAddress, ipv4ToInt(), ipv4ToIpv6(), isValidIpv4(), calculatedValues, endIpValidation (+8 more)
 
 ### Community 379 - "git-memo.content.md"
 Cohesion: 0.33
 Nodes (5): Commit, Configuration, Get started, I’ve made a mistake, Miscellaneous
 
-### Community 387 - "getEmbeddedFont"
-Cohesion: 0.32
-Nodes (8): applyDirectTextEdit(), executeFindAndReplace(), getAmiriFontBytes(), getCairoFontBytes(), getEmbeddedFont(), getVisualRuns(), loadPdf(), onFileSelected()
+### Community 380 - "Mastering JSON: Data Interchange Standards, Parsing Performance & Schema Validation"
+Cohesion: 0.15
+Nodes (12): 1. Overview & Deep Dive, 2. Technical Architecture & RFC Specifications, 3. Step-by-Step Practical Usage Guide, 4. Real-World Engineering Use Cases, 5. Security Vulnerabilities & Mitigations, 6. Frequently Asked Questions (FAQs), Crucial Grammar Constraints, Large Numbers and IEEE 754 Precision (+4 more)
 
-### Community 392 - "renderPage"
+### Community 381 - "YAML to JSON Converter: Schema Translation, Data Serialization & DevOps Configuration Interoperability"
+Cohesion: 0.17
+Nodes (11): 1. Overview & Data Engineering Context, 2. Core Translation Mechanics & Advanced YAML Features, 3. Step-by-Step Practical Usage Guide, 4. Privacy, Enterprise Compliance & Client-Side Execution, 5. Frequently Asked Questions (FAQs), Are comments in YAML preserved when converting to JSON?, Can DevTol convert multi-document YAML files into JSON?, Can this converter handle deeply nested Kubernetes manifests? (+3 more)
+
+### Community 382 - "YAML to TOML Converter: Configuration Migration, Syntax Translation & Rust/Python Ecosystem Tooling"
+Cohesion: 0.17
+Nodes (11): 1. Overview & Modern Tooling Ecosystems, 2. Core Translation Rules: YAML to TOML Architecture, 3. Step-by-Step Practical Usage Guide, 4. Privacy, Security & Zero-Server Transmission, 5. Frequently Asked Questions (FAQs), Can TOML represent all YAML data structures?, Date and Timestamp Preservations, Does DevTol support multi-line strings in TOML? (+3 more)
+
+### Community 383 - "Interactive YAML Viewer & Inspector: Tree Navigation, Structural Validation & Syntax Exploration"
+Cohesion: 0.17
+Nodes (11): 1. Overview & Architectural Problem, 2. Key Interactive Features & Visual Navigation, 3. Step-by-Step Practical Usage Guide, 4. Privacy, Security & Enterprise Data Isolation, 5. Frequently Asked Questions (FAQs), Can the YAML Viewer handle multi-document files separated by `---`?, Collapsible Branch Navigation, Interactive YAML Viewer & Inspector: Tree Navigation, Structural Validation & Syntax Exploration (+3 more)
+
+### Community 386 - "json-viewer.vue"
+Cohesion: 0.25
+Nodes (8): formatJson(), sortObjectKeys(), cleanJson, indentSize, inputElement, rawJson, rawJsonValidation, sortKeys
+
+### Community 387 - ".read"
 Cohesion: 0.29
-Nodes (7): goToPage(), renderPage(), restoreCurrentDrawings(), saveAndDownload(), saveCurrentDrawings(), stopDraw(), undoLastAnnotation()
+Nodes (7): ge(), me(), Ne(), qe(), Re(), zg(), zv()
 
-### Community 393 - "ulid-generator.vue"
-Cohesion: 0.29
-Nodes (6): ulid, amount, { copy }, format, formats, [ulids, refreshUlids]
+### Community 389 - "vue"
+Cohesion: 0.05
+Nodes (24): ComponentCustomProperties, vue, @vue/runtime-core, plausible-tracker, vue, { icon, title }, props, app (+16 more)
 
-### Community 394 - "html-wysiwyg-editor.vue"
-Cohesion: 0.22
-Nodes (6): prettier, themeVars, tool, formattedHtml, html, tool
+### Community 390 - "pdf-protect.vue"
+Cohesion: 0.18
+Nodes (7): activeTab, file, isProcessing, message, ownerPwd, resultUrl, userPwd
+
+### Community 391 - "App.vue"
+Cohesion: 0.19
+Nodes (10): layout, { locale }, route, styleStore, theme, themeOverrides, layouts, useStyleStore (+2 more)
+
+### Community 392 - "base64-file-converter.vue"
+Cohesion: 0.17
+Nodes (8): { base64: fileBase64 }, base64Input, base64InputValidation, { copy: copyFileBase64 }, { download }, fileExtension, fileInput, fileName
+
+### Community 393 - "list-converter.vue"
+Cohesion: 0.35
+Nodes (7): conversionConfig, convert(), whenever(), sortOrderOptions, transformer(), ConvertOptions, SortOrder
+
+### Community 394 - "color-converter.vue"
+Cohesion: 0.10
+Nodes (15): colord, activePair, activePairKey, COLOR_PAIRS, formats, buildColorFormat(), removeAlphaChannelWhenOpaque(), route (+7 more)
 
 ### Community 395 - "email-normalizer.vue"
 Cohesion: 0.33
@@ -1817,85 +1894,181 @@ Nodes (5): email-normalizer, { copy }, emails, normalizedEmails, tool
 Cohesion: 0.50
 Nodes (3): tool, input, stats
 
-### Community 397 - "markdown-to-html/index.ts"
-Cohesion: 0.33
-Nodes (4): markdown-it, tool, inputMarkdown, outputHtml
+### Community 397 - "pdf-compress.vue"
+Cohesion: 0.17
+Nodes (7): file, isProcessing, message, original, quality, result, savings
 
-### Community 399 - "safelink-decoder.vue"
-Cohesion: 0.53
-Nodes (3): inputSafeLinkUrl, outputDecodedUrl, decodeSafeLinksURL()
+### Community 399 - "AdSenseUnit.vue"
+Cohesion: 0.20
+Nodes (9): adContainerRef, formatStyles, isAdLoaded, isDark, platformHighlights, Props, selectedHighlight, showFallback (+1 more)
 
-### Community 400 - "c-input-text.demo.vue"
-Cohesion: 0.40
-Nodes (4): validation, validationRules, value, valueLong
+### Community 400 - "DevTol Official Browser Extension (Manifest V3)"
+Cohesion: 0.29
+Nodes (6): DevTol Official Browser Extension (Manifest V3), Features, Google Chrome Web Store, How to Publish to Web Stores, How to Test Locally (Chrome / Edge / Brave), Microsoft Edge Add-ons
+
+### Community 401 - "add"
+Cohesion: 0.26
+Nodes (3): add(), addPdfFont(), CFFOffsetTracker
+
+### Community 402 - "jwt-builder.vue"
+Cohesion: 0.22
+Nodes (6): header, message, parts, payload, secret, token
 
 ### Community 403 - "submit-indexnow.mjs"
 Cohesion: 0.40
 Nodes (5): main(), payload, sitemapContent, submitToEndpoint(), urlList
 
-### Community 404 - "c-tooltip.vue"
-Cohesion: 0.40
-Nodes (4): isTargetHovered, props, targetRef, { tooltip, position }
+### Community 404 - "FavoriteButton.vue"
+Cohesion: 0.20
+Nodes (7): buttonType, isFavorite, props, { tool }, toolStore, props, { tool }
 
-### Community 405 - "c-select.demo.vue"
-Cohesion: 0.40
-Nodes (4): optionsA, optionsBig, sizes, value
+### Community 405 - "lf"
+Cohesion: 0.38
+Nodes (7): af(), ef(), lf(), of(), sf(), tf(), uf()
 
 ### Community 406 - "math-evaluator/index.ts"
 Cohesion: 0.40
 Nodes (4): mathjs, tool, expression, result
 
+### Community 407 - "regex-replace.vue"
+Cohesion: 0.22
+Nodes (7): flagOptions, flags, input, message, pattern, replacement, result
+
+### Community 408 - ".parse"
+Cohesion: 0.07
+Nodes (9): generateImages(), JpegStream, parseCff(), PDFFunction, PostScriptEvaluator, printNewAnnotations(), StampAnnotation, Stream (+1 more)
+
+### Community 409 - "html-wysiwyg-editor.vue"
+Cohesion: 0.40
+Nodes (4): prettier, formattedHtml, html, tool
+
 ### Community 410 - "token-display.vue"
 Cohesion: 0.33
 Nodes (5): { copy: copyCurrent, isJustCopied: currentCopied }, { copy: copyNext, isJustCopied: nextCopied }, { copy: copyPrevious, isJustCopied: previousCopied }, props, { tokens }
 
-### Community 412 - "constructor"
-Cohesion: 0.09
-Nodes (51): a(), ae(), r(), at(), b(), l(), be(), ce() (+43 more)
+### Community 411 - "ulid-generator.vue"
+Cohesion: 0.29
+Nodes (6): ulid, amount, { copy }, format, formats, [ulids, refreshUlids]
 
-### Community 413 - "SpanCopyable.vue"
+### Community 412 - "c-link.vue"
+Cohesion: 0.29
+Nodes (5): { href, to }, props, tag, { useTheme }, theme
+
+### Community 413 - "uc"
 Cohesion: 0.40
-Nodes (4): { copy, isJustCopied }, props, tooltipText, { value }
+Nodes (6): ic(), lc(), oc(), sc(), uc(), zc()
 
-### Community 414 - "getBrowserFontFamily"
+### Community 414 - "P"
 Cohesion: 0.40
-Nodes (5): clearCurrentPageAnnotations(), getBrowserFontFamily(), onDraw(), saveStateToHistory(), startDraw()
+Nodes (5): ey(), P(), ry(), ty(), y()
 
-### Community 420 - "repository"
-Cohesion: 0.67
-Nodes (3): repository, type, url
+### Community 416 - "safelink-decoder.vue"
+Cohesion: 0.53
+Nodes (3): inputSafeLinkUrl, outputDecodedUrl, decodeSafeLinksURL()
+
+### Community 417 - "vitest"
+Cohesion: 0.36
+Nodes (4): pinia, vitest, @vue/test-utils, getErrorMessageIfThrows()
+
+### Community 419 - "device-information/index.ts"
+Cohesion: 0.50
+Nodes (3): sections, { width, height }, tool
 
 ### Community 421 - "text-to-binary.vue"
 Cohesion: 0.26
 Nodes (9): binaryFromText, { copy: copyBinary }, { copy: copyText }, inputBinary, inputBinaryValidationRules, inputText, convertAsciiBinaryToText(), convertTextToAsciiBinary() (+1 more)
 
-### Community 429 - "PartialEvaluator"
-Cohesion: 0.04
-Nodes (22): applyTransform(), BaseLocalCache, BaseShading, _cache(), createFromArray(), DummyShading, EvalState, fetch() (+14 more)
-
-### Community 434 - "result-row.vue"
+### Community 422 - "df"
 Cohesion: 0.50
-Nodes (3): { label, oldValue, newValue }, props, testId
+Nodes (4): df(), ff(), hf(), pf()
+
+### Community 424 - "DevTol Web Utilities Suite — Agent Directives"
+Cohesion: 0.25
+Nodes (7): CRITICAL DIRECTIVE: ADSENSE AUDIT IN PROGRESS, DevTol Web Utilities Suite — Agent Directives, Multi-Language Routing & Localization, Overview, SEO, Robots & Crawlers, Vite Build & Memory Budget, Workspace
+
+### Community 425 - "Og"
+Cohesion: 0.50
+Nodes (4): Eg(), kg(), Og(), Pg()
+
+### Community 426 - "dynamic-values.vue"
+Cohesion: 0.33
+Nodes (6): addValue(), emit, onInputEnter(), props, refs, values
+
+### Community 427 - "Hd"
+Cohesion: 0.67
+Nodes (4): Hd(), Kd(), Xd(), Yd()
+
+### Community 428 - "Bc"
+Cohesion: 0.67
+Nodes (3): Bc(), jc(), tc()
+
+### Community 430 - "ct"
+Cohesion: 0.67
+Nodes (3): ct(), ft(), lt()
+
+### Community 431 - "http-status-codes/index.ts"
+Cohesion: 0.39
+Nodes (5): codesByCategoryFiltered, codesByCategories, search, { searchResult }, tool
+
+### Community 432 - "Fa"
+Cohesion: 0.67
+Nodes (3): Fa(), Na(), Ra()
+
+### Community 433 - "Fc"
+Cohesion: 0.67
+Nodes (3): Fc(), Mc(), Nc()
+
+### Community 434 - "je"
+Cohesion: 0.40
+Nodes (6): et(), it(), je(), nt(), oe(), rt()
+
+### Community 435 - "FormatTransformer.vue"
+Cohesion: 0.33
+Nodes (5): input, inputElement, output, props, { transformer, inputValidationRules, inputLabel, outputLabel, outputLanguage, inputPlaceholder, inputDefault }
+
+### Community 439 - "c-markdown.vue"
+Cohesion: 0.29
+Nodes (5): dompurify, marked, html, { markdown }, props
+
+### Community 440 - "markdown-to-html/index.ts"
+Cohesion: 0.33
+Nodes (4): markdown-it, tool, inputMarkdown, outputHtml
+
+### Community 446 - "c-table.vue"
+Cohesion: 0.40
+Nodes (4): { data, headers: rawHeaders, hideHeaders }, headers, props, HeaderConfiguration
+
+### Community 451 - "SpanCopyable.vue"
+Cohesion: 0.40
+Nodes (4): { copy, isJustCopied }, props, tooltipText, { value }
+
+### Community 452 - "dt"
+Cohesion: 0.67
+Nodes (3): dt(), ht(), pt()
+
+### Community 454 - "Ie"
+Cohesion: 0.67
+Nodes (3): Ie(), ke(), xe()
 
 ## Knowledge Gaps
-- **2711 isolated node(s):** `vue`, `ComponentCustomProperties`, `@vue/runtime-core`, `@vue/runtime-core`, `GlobalComponents` (+2706 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 3989 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **114 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **3143 isolated node(s):** `vue`, `ComponentCustomProperties`, `@vue/runtime-core`, `@vue/runtime-core`, `GlobalComponents` (+3138 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 4453 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **62 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `o()` connect `constructor` to `fontkit.umd.min.js`, `.i`, `.get`, `c`, `readNextChar`, `parse`, `.toString`, `.resolve`?**
-  _High betweenness centrality (0.039) - this node is a cross-community bridge._
+- **Why does `vue` connect `vue` to `tools/index.ts`, `exif-viewer.vue`, `package.json`, `pdf-protect.vue`, `App.vue`, `base64-file-converter.vue`, `date-time-converter.vue`, `validation.ts`, `color-converter.vue`, `text-to-speech.vue`, `pdf-compress.vue`, `word-counter/index.ts`, `AdSenseUnit.vue`, `line-deduplicator.vue`, `src/modules/command-palette/command-palette.vue`, `jwt-builder.vue`, `pdf-editor.vue`, `wifi-qr-code-generator.vue`, `tool.layout.vue`, `regex-replace.vue`, `downloadBase64.ts`, `camera-recorder.vue`, `yaml-validator.vue`, `editor.vue`, `video-to-gif.vue`, `mock-data-generator.vue`, `adsense-revenue-calculator.vue`, `@vueuse/core`, `dynamic-values.vue`, `router.ts`, `curl-to-code-converter.vue`, `queryParams.ts`, `ai-regex-generator-explainer.vue`, `docker-run-to-docker-compose-converter.vue`, `pdf-merge.vue`, `pdf-organize.vue`, `images-to-pdf.vue`, `sql-to-orm-converter.vue`, `qr-code-generator.vue`, `webp-converter.vue`, `c-buttons-select.vue`, `image-compressor.vue`, `ai-token-cost-calculator.vue`, `qr-scanner.vue`, `user-agent-result-cards.vue`, `string-obfuscator.vue`, `pdf-split.vue`, `pdf-watermark-tool.vue`, `naive-ui`, `compound-interest-calculator.vue`, `pdf-to-image.vue`, `mortgage-calculator.vue`, `Home.page.vue`, `favicon-generator.vue`, `image-watermark.vue`, `svg-converter.vue`, `text-encrypt.vue`, `image-resizer.vue`, `image-ocr.vue`?**
+  _High betweenness centrality (0.046) - this node is a cross-community bridge._
+- **Why does `o()` connect `constructor` to `.resolve`, `pdf.worker.min.js`, `create`, `fontkit.umd.min.js`, `c`, `pdf.min.js`, `has`?**
+  _High betweenness centrality (0.033) - this node is a cross-community bridge._
 - **Why does `update()` connect `pdf.min.js` to `constructor`?**
-  _High betweenness centrality (0.036) - this node is a cross-community bridge._
-- **Why does `@vicons/tabler` connect `tools/index.ts` to `package.json`, `toml-to-yaml.vue`, `ipv4-range-expander.vue`, `html-wysiwyg-editor.vue`, `email-normalizer.vue`, `word-counter/index.ts`, `markdown-to-html/index.ts`, `tool.layout.vue`, `math-evaluator/index.ts`, `xml-formatter.vue`, `bip39-generator.vue`, `hmac-generator.vue`, `editor.vue`, `@vueuse/core`, `base64-string-converter.vue`, `benchmark-builder.vue`, `user-agent-parser.vue`, `ipv4-subnet-calculator.vue`, `url-encoder.vue`, `text-statistics/index.ts`, `percentage-calculator.vue`, `text-to-nato-alphabet.vue`, `text-diff/index.ts`, `html-entities.vue`, `dynamic-values.vue`, `InputCopyable.vue`, `json5`, `device-information/index.ts`, `mac-address-lookup.vue`, `encryption.vue`, `sql-prettify.vue`, `random-port-generator/index.ts`, `yaml-to-json-converter/index.ts`?**
-  _High betweenness centrality (0.035) - this node is a cross-community bridge._
+  _High betweenness centrality (0.032) - this node is a cross-community bridge._
 - **Are the 155 inferred relationships involving `c()` (e.g. with `a()` and `r()`) actually correct?**
   _`c()` has 155 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 121 inferred relationships involving `f()` (e.g. with `de()` and `j()`) actually correct?**
   _`f()` has 121 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `vue`, `ComponentCustomProperties`, `@vue/runtime-core` to the rest of the system?**
-  _2711 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _3143 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.02857142857142857 - nodes in this community are weakly interconnected._

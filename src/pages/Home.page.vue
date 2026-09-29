@@ -15,6 +15,7 @@ import { useHead } from '@vueuse/head';
 import { computed, defineAsyncComponent, onMounted, ref } from 'vue';
 import ToolCard from '../components/ToolCard.vue';
 import AdSenseUnit from '../components/AdSenseUnit.vue';
+import HomeEditorialGuide from '../components/HomeEditorialGuide.vue';
 import { useToolStore } from '@/tools/tools.store';
 import { config } from '@/config';
 
@@ -22,17 +23,42 @@ const Draggable = defineAsyncComponent(() => import('vuedraggable'));
 
 const toolStore = useToolStore();
 
-useHead({
-  title: 'DevTol — All-in-One Local Toolbox for Developers & Designers',
-  meta: [
-    {
-      name: 'description',
-      content: '126+ secure, client-side online tools for developers and designers. PDF tools, image converters, cryptography, code formatters, and network utilities running 100% locally in your browser.',
-    },
-  ],
+const { t, locale } = useI18n();
+
+const homeSeoTitle = computed(() => {
+  if (locale.value === 'ar') {
+    return 'DevTol — أكثر من 126 أداة مجانية للمطورين والمصممين (محلي 100%)';
+  }
+  return 'DevTol — 126+ Free Online Developer Tools | 100% Client-Side';
 });
 
-const { t, locale } = useI18n();
+const homeSeoDesc = computed(() => {
+  if (locale.value === 'ar') {
+    return 'منصة أدوات المطورين والمصممين الشاملة: محرر ومحول PDF، ضغط الصور وWebP، أدوات JSON، تشفير النصوص، وتوليد الهاش بأمان وخصوصية تامة داخل المتصفح.';
+  }
+  return '126+ free, private, client-side online tools for developers & designers. PDF editor, JSON, Base64, Regex, WebP converter, hash, and crypto running 100% in your browser.';
+});
+
+const homeCanonical = computed(() => {
+  return locale.value === 'ar' ? 'https://devtol.online/ar' : 'https://devtol.online/';
+});
+
+useHead(computed(() => ({
+  title: homeSeoTitle.value,
+  meta: [
+    { name: 'description', content: homeSeoDesc.value },
+    { property: 'og:title', content: homeSeoTitle.value },
+    { property: 'og:description', content: homeSeoDesc.value },
+    { property: 'og:url', content: homeCanonical.value },
+    { property: 'og:site_name', content: 'DevTol' },
+    { property: 'og:locale', content: locale.value === 'ar' ? 'ar_AR' : 'en_US' },
+    { name: 'twitter:title', content: homeSeoTitle.value },
+    { name: 'twitter:description', content: homeSeoDesc.value },
+  ],
+  link: [
+    { rel: 'canonical', href: homeCanonical.value },
+  ],
+})));
 
 // Category and Search Filtering State
 const searchQuery = ref('');
@@ -342,6 +368,9 @@ const featuredTools = computed(() => {
     <div class="mt-14 pb-4">
       <AdSenseUnit format="horizontal" min-height="110px" />
     </div>
+
+    <!-- Editorial Architecture & Standards Knowledge Base -->
+    <HomeEditorialGuide />
   </div>
 </template>
 

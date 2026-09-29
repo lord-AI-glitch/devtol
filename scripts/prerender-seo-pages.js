@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import YAML from 'yaml';
 import MarkdownIt from 'markdown-it';
+import { getHomePrerenderContent, getLegalPageArticleHtml } from './seo-content-templates.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -132,12 +133,12 @@ function generatePrerenderedHtml({
   const canonicalUrl = isEn ? `${BASE_URL}/${pathSlug}` : `${BASE_URL}/${lang}/${pathSlug}`;
 
   // Localized title & description formatting with high CTR hooks
-  let fullTitle = `${title} Online (Free & Fast) - DevTol`;
-  let fullDesc = `${description}. 100% client-side, free, fast, and secure online developer tool on DevTol.`;
+  let fullTitle = `${title} Online — Free, Fast & Client-Side | DevTol`;
+  let fullDesc = `${description}. 100% free, private, and client-side developer tool running locally on DevTol.`;
 
   if (lang === 'ar') {
     fullTitle = `${title} أونلاين مجاناً (سريع ومحلي 100%) - DevTol`;
-    fullDesc = `${description}. أداة مطورين مجانية 100% تعمل محلياً داخل المتصفح بأمان وخصوصية تامة على DevTol.`;
+    fullDesc = `${description}. أداة مطورين ومصممين مجانية 100% تعمل محلياً داخل المتصفح بأمان وخصوصية تامة على DevTol.`;
   } else if (lang === 'de') {
     fullTitle = `${title} Online Kostenlos (Schnell & Sicher) - DevTol`;
     fullDesc = `${description}. 100% clientseitiges, kostenloses und sicheres Online-Entwicklertool auf DevTol.`;
@@ -301,12 +302,12 @@ for (const varName of registeredToolVars) {
     let description = localeEntry.description;
 
     const literalNameMatch = fileContent.match(/name:\s*['"]([^'"]+)['"]/);
-    if (literalNameMatch) {
+    if (!title && literalNameMatch) {
       title = literalNameMatch[1];
     }
 
     const literalDescMatch = fileContent.match(/description:\s*['"]([^'"]+)['"]/);
-    if (literalDescMatch) {
+    if (!description && literalDescMatch) {
       description = literalDescMatch[1];
     }
 
@@ -380,6 +381,7 @@ for (let i = 0; i < totalTools; i++) {
     fs.mkdirSync(targetDirEn, { recursive: true });
   }
   fs.writeFileSync(path.join(targetDirEn, 'index.html'), enHtml, 'utf8');
+  fs.writeFileSync(path.join(distDir, `${tool.slug}.html`), enHtml, 'utf8');
   generatedCount++;
 
   // 1B. Localized pages for all supported languages
@@ -412,6 +414,7 @@ for (let i = 0; i < totalTools; i++) {
       fs.mkdirSync(targetDirLang, { recursive: true });
     }
     fs.writeFileSync(path.join(targetDirLang, 'index.html'), localizedHtml, 'utf8');
+    fs.writeFileSync(path.join(distDir, lang, `${tool.slug}.html`), localizedHtml, 'utf8');
     generatedCount++;
   }
 }
@@ -445,11 +448,15 @@ for (const lang of supportedLangs) {
   homeHtml = homeHtml.replace(/<link\s+rel="canonical"\s+href=".*?"\s*\/?>/i, `<link rel="canonical" href="${BASE_URL}/${lang}" />`);
   homeHtml = homeHtml.replace('</head>', `\n    <!-- International Hreflangs -->\n    ${homeHreflangs}\n  </head>`);
 
+  const homePrerenderBody = getHomePrerenderContent(lang, toolsList);
+  homeHtml = homeHtml.replace('<div id="app"></div>', homePrerenderBody.trim());
+
   fs.writeFileSync(path.join(homeTargetDir, 'index.html'), homeHtml, 'utf8');
-  generatedCount++;
+  fs.writeFileSync(path.join(distDir, `${lang}.html`), homeHtml, 'utf8');
+  generatedCount += 2;
 }
 
-// 3. Update root dist/index.html with home hreflangs
+// 3. Update root dist/index.html with home hreflangs & rich prerendered home content
 const rootHomeHreflangs = [
   `<link rel="alternate" hreflang="x-default" href="${BASE_URL}/" />`,
   `<link rel="alternate" hreflang="en" href="${BASE_URL}/" />`,
@@ -459,55 +466,99 @@ const rootHomeHreflangs = [
 let rootHomeHtml = fs.readFileSync(templateIndexPath, 'utf8');
 if (!rootHomeHtml.includes('hreflang="x-default"')) {
   rootHomeHtml = rootHomeHtml.replace('</head>', `\n    <!-- International Hreflangs -->\n    ${rootHomeHreflangs}\n  </head>`);
-  fs.writeFileSync(templateIndexPath, rootHomeHtml, 'utf8');
 }
+const enHomePrerenderBody = getHomePrerenderContent('en', toolsList);
+rootHomeHtml = rootHomeHtml.replace('<div id="app"></div>', enHomePrerenderBody.trim());
+fs.writeFileSync(templateIndexPath, rootHomeHtml, 'utf8');
 
-// 4. Prerender Legal pages (English default)
+// 4. Prerender Editorial & Legal pages (English default)
 const legalPages = [
+  {
+    slug: 'guides',
+    title: 'Developer Engineering Guides & Technical Architecture',
+    description: 'In-depth technical guides for software engineers: JWT security, client-side zero-knowledge privacy, WebP compression algorithms, and SQL formatting standards.',
+    titleAr: 'أدلة المطورين الهندسية والمعمارية البرمجية',
+    descAr: 'أدلة تقنية وهندسية معمقة للمطورين: أمان JWT، الحوسبة المحلية صفر-معرفة، خوارزميات ضغط WebP، ومعايير تنسيق SQL.',
+  },
+  {
+    slug: 'deals',
+    title: 'Developer Deals, Cloud Credits & Partner Perks',
+    description: 'Curated developer credits, cloud infrastructure vouchers, and productivity perks for engineering teams.',
+    titleAr: 'عروض المطورين وأرصدة السحابة والمكافآت البرمجية',
+    descAr: 'أرصدة سحابية وقسائم بنية تحتية مجانية للمطورين والفرق الهندسية.',
+  },
   {
     slug: 'about',
     title: 'About Us & Editorial Standards',
     description: 'Learn about the engineering team, mission, privacy-first client-side architecture, and E-E-A-T editorial standards behind DevTol.',
+    titleAr: 'من نحن ومعايير النشر التحريرية',
+    descAr: 'تعرف على الفريق الهندسي ورسالة منصة DevTol ومعايير الحوسبة المحلية الآمنة E-E-A-T.',
   },
   {
     slug: 'privacy-policy',
     title: 'Privacy Policy & Local Data Processing',
     description: 'Read the privacy policy of DevTol. 100% client-side computing guarantees zero transmission or logging of user data.',
+    titleAr: 'سياسة الخصوصية والمعالجة المحلية للبيانات',
+    descAr: 'سياسة خصوصية DevTol. الحوسبة من جانب العميل بنسبة 100% تضمن عدم تخزين أو نقل أي بيانات.',
   },
   {
     slug: 'terms-of-service',
     title: 'Terms of Service',
     description: 'Terms of service and acceptable usage guidelines for DevTol open-source developer utilities.',
+    titleAr: 'شروط الخدمة والاستخدام',
+    descAr: 'شروط استخدام أدوات DevTol البرمجية والمفتوحة المصدر.',
   },
   {
     slug: 'contact',
     title: 'Contact Us & Technical Support',
     description: 'Get in touch with DevTol team for feature suggestions, tool contributions, or technical bug reports.',
+    titleAr: 'اتصل بنا والدعم الفني',
+    descAr: 'تواصل مع فريق DevTol لاقتراح أدوات جديدة أو الإبلاغ عن مشاكل تقنية.',
   },
   {
     slug: 'disclaimer',
     title: 'Disclaimer & RFC Compliance',
     description: 'Disclaimer regarding algorithmic calculations, cryptography tools, and developer utilities on DevTol.',
+    titleAr: 'إخلاء المسؤولية والمعايير التقنية',
+    descAr: 'إخلاء المسؤولية القانونية والتقنية بشأن أدوات الحساب والتشفير في DevTol.',
   },
 ];
 
 for (const page of legalPages) {
-  const pageHtml = generatePrerenderedHtml({
-    pathSlug: page.slug,
-    title: page.title,
-    description: page.description,
-    keywords: ['about', 'privacy', 'terms', 'contact', 'disclaimer', 'devtol'],
-    articleHtml: '',
-    category: 'InformationPage',
-    lang: 'en',
-  });
+  for (const lang of allLangCodes) {
+    const isEn = lang === 'en';
+    const title = (lang === 'ar' && page.titleAr) ? page.titleAr : page.title;
+    const description = (lang === 'ar' && page.descAr) ? page.descAr : page.description;
 
-  const pageDir = path.join(distDir, page.slug);
-  if (!fs.existsSync(pageDir)) {
-    fs.mkdirSync(pageDir, { recursive: true });
+    const pageHtml = generatePrerenderedHtml({
+      pathSlug: page.slug,
+      title,
+      description,
+      keywords: ['about', 'privacy', 'terms', 'contact', 'disclaimer', 'devtol', 'guides', page.slug],
+      articleHtml: getLegalPageArticleHtml(page.slug, lang),
+      category: 'InformationPage',
+      lang,
+    });
+
+    const pageDir = isEn
+      ? path.join(distDir, page.slug)
+      : path.join(distDir, lang, page.slug);
+
+    if (!fs.existsSync(pageDir)) {
+      fs.mkdirSync(pageDir, { recursive: true });
+    }
+    fs.writeFileSync(path.join(pageDir, 'index.html'), pageHtml, 'utf8');
+
+    const flatFile = isEn
+      ? path.join(distDir, `${page.slug}.html`)
+      : path.join(distDir, lang, `${page.slug}.html`);
+    const flatDir = path.dirname(flatFile);
+    if (!fs.existsSync(flatDir)) {
+      fs.mkdirSync(flatDir, { recursive: true });
+    }
+    fs.writeFileSync(flatFile, pageHtml, 'utf8');
+    generatedCount += 2;
   }
-  fs.writeFileSync(path.join(pageDir, 'index.html'), pageHtml, 'utf8');
-  generatedCount++;
 }
 
 // 5. Prerender Programmatic Scenario Landing Pages (Docker presets, Color pairs, Date pairs)
@@ -650,7 +701,16 @@ for (const sc of programmaticScenarios) {
       fs.mkdirSync(targetDir, { recursive: true });
     }
     fs.writeFileSync(path.join(targetDir, 'index.html'), pageHtml, 'utf8');
-    generatedCount++;
+
+    const flatFile = isEn
+      ? path.join(distDir, `${sc.pathSlug}.html`)
+      : path.join(distDir, lang, `${sc.pathSlug}.html`);
+    const flatDir = path.dirname(flatFile);
+    if (!fs.existsSync(flatDir)) {
+      fs.mkdirSync(flatDir, { recursive: true });
+    }
+    fs.writeFileSync(flatFile, pageHtml, 'utf8');
+    generatedCount += 2;
   }
 }
 

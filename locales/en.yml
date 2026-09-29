@@ -36,6 +36,7 @@ home:
     twitterXAccount: 'DevTol X account'
     about: 'About DevTol'
     aboutLabel: 'About'
+    guides: 'Developer Guides'
     deals: 'Developer Deals & Perks'
     darkMode: 'Dark mode'
     lightMode: 'Light mode'
@@ -94,6 +95,8 @@ tools:
     finance: Finance
     pdf tools: 'PDF Tools'
     ai tools: 'AI Tools'
+    text utilities: 'Text Utilities'
+    image & media: 'Image & Media'
 
   ai-token-cost-calculator:
     title: AI token & LLM cost calculator
@@ -444,3 +447,160 @@ tools:
   text-to-binary:
     title: Text to ASCII binary
     description: Convert text to its ASCII binary representation and vice-versa.
+
+  ascii-text-drawer:
+    title: 'ASCII Art Text Generator'
+    description: 'Create ASCII art text with many fonts and styles.'
+
+  color-palette:
+    title: 'Color Palette Generator'
+    description: 'Generate color palettes, convert between HEX/RGB/HSL/CMYK and check WCAG contrast ratios.'
+
+  email-normalizer:
+    title: 'Email normalizer'
+    description: 'Normalize email addresses to a standard format for easier comparison. Useful for deduplication and data cleaning.'
+
+  exif-viewer:
+    title: 'EXIF Metadata Viewer'
+    description: 'View and strip EXIF metadata from photos. See camera settings, GPS location and more.'
+
+  favicon-generator:
+    title: 'Favicon Generator'
+    description: 'Generate all favicon sizes (16x16 to 512x512) and app icons from a single image. Download as ZIP.'
+
+  image-compressor:
+    title: 'Image Compressor'
+    description: 'Compress JPG, PNG, and WebP images up to 90% smaller. Real-time preview, no uploads.'
+
+  image-ocr:
+    title: 'Image OCR Text Extractor'
+    description: 'Extract text from images using OCR. Supports English, Arabic, French, German and more.'
+
+  image-resizer:
+    title: 'Image Resizer & Cropper'
+    description: 'Resize images to exact dimensions or crop to standard aspect ratios. No server uploads.'
+
+  image-watermark:
+    title: 'Image Watermark'
+    description: 'Add text or image watermarks to photos with custom position, opacity and style.'
+
+  images-to-pdf:
+    title: 'Images to PDF'
+    description: 'Convert JPG, PNG, or WebP images into a single PDF document. No server uploads.'
+
+  json-to-xml:
+    title: 'JSON to XML'
+    description: 'Convert JSON to XML'
+
+  jwt-builder:
+    title: 'JWT Builder & Signer'
+    description: 'Build, sign and decode JSON Web Tokens with custom header, payload and HMAC-SHA256 secret.'
+
+  line-deduplicator:
+    title: 'Line Deduplicator'
+    description: 'Remove duplicate lines, sort, trim whitespace and clean text lists instantly.'
+
+  markdown-to-html:
+    title: 'Markdown to HTML'
+    description: 'Convert Markdown to Html and allow to print (as PDF)'
+
+  mock-data-generator:
+    title: 'Mock Data Generator'
+    description: 'Generate realistic dummy data: names, emails, addresses, UUIDs, dates. Export as JSON or CSV.'
+
+  pdf-compress:
+    title: 'Compress PDF'
+    description: 'Reduce PDF file size with adjustable quality. 100% browser-based, no uploads.'
+
+  pdf-editor:
+    title: 'PDF Editor'
+    description: '100% Free Client-Side PDF Editor. Edit PDF text directly, find & replace text with full Arabic support, load system fonts, add signatures, draw, and redact PDFs securely in your browser.'
+
+  pdf-merge:
+    title: 'Merge PDF'
+    description: 'Merge multiple PDF files into one. 100% client-side - files never leave your browser.'
+
+  pdf-ocr:
+    title: 'PDF OCR Text Extractor'
+    description: 'Extract text from scanned PDFs and images using OCR. Supports multiple languages.'
+
+  pdf-organize:
+    title: 'Organize PDF Pages'
+    description: 'Reorder and rotate PDF pages visually. Drag and rearrange pages then download.'
+
+  pdf-protect:
+    title: 'PDF Protect & Unlock'
+    description: 'Password-protect or unlock PDF files directly in your browser. Zero server uploads.'
+
+  pdf-redact:
+    title: 'PDF Redaction Tool'
+    description: 'Permanently redact sensitive text from PDF files. Client-side privacy guaranteed.'
+
+  pdf-split:
+    title: 'Split PDF'
+    description: 'Split or extract specific pages from a PDF file. Client-side processing, total privacy.'
+
+  pdf-to-image:
+    title: 'PDF to Image'
+    description: 'Convert PDF pages to PNG or JPG images. Download all pages as a ZIP. Client-side only.'
+
+  pdf-watermark-tool:
+    title: 'PDF Watermark'
+    description: 'Add text watermarks to all pages of a PDF. Custom position, opacity, and font.'
+
+  qr-scanner:
+    title: 'QR Code Scanner'
+    description: 'Scan QR codes from images or your camera. Detects URLs, WiFi, vCards and plain text.'
+
+  regex-memo:
+    title: 'Regex cheatsheet'
+    description: 'Javascript Regex/Regular Expression cheatsheet'
+
+  regex-replace:
+    title: 'Regex Find & Replace'
+    description: 'Find and replace text using regular expressions with live preview and match highlighting.'
+
+  regex-tester:
+    title: 'Regex Tester'
+    description: 'Test your regular expressions with sample text.'
+
+  safelink-decoder:
+    title: 'Outlook Safelink decoder'
+    description: 'Decode Outlook SafeLink links'
+
+  svg-converter:
+    title: 'SVG to PNG/JPG Converter'
+    description: 'Convert SVG vector files to PNG, JPG at any scale. Upload file or paste SVG code.'
+
+  text-encrypt:
+    title: 'Text Encrypt & Decrypt'
+    description: 'Encrypt and decrypt text with AES-GCM using a password. Runs 100% in your browser.'
+
+  text-sorter:
+    title: 'Text Sorter & Deduplicator'
+    description: 'Sort lines, remove duplicates, trim whitespace and clean text. Multiple sort options.'
+
+  text-to-speech:
+    title: 'Text to Speech'
+    description: 'Convert text to audio with browser-native speech synthesis. Adjust voice, speed, and pitch.'
+
+  video-to-gif:
+    title: 'Video to GIF'
+    description: 'Convert video clips to animated GIF. Set start/end time, size and FPS. Client-side.'
+
+  webp-converter:
+    title: 'WebP Converter'
+    description: 'Convert WebP to PNG/JPG or convert PNG/JPG to WebP format. Client-side processing.'
+
+  word-counter:
+    title: 'Word & Character Counter'
+    description: 'Count words, characters, sentences, paragraphs and estimate reading time in real-time.'
+
+  xml-to-json:
+    title: 'XML to JSON'
+    description: 'Convert XML to JSON'
+
+  yaml-validator:
+    title: 'YAML Validator & Formatter'
+    description: 'Validate, format, and convert YAML to JSON. Get detailed syntax error messages.'
+

@@ -25,7 +25,9 @@ if (fs.existsSync(enLocalePath)) {
 
 // 1. Core static routes
 const staticRoutes = [
-  { path: '/', priority: '1.0', changefreq: 'daily', title: 'Home - Developer Tools Suite' },
+  { path: '/', priority: '1.0', changefreq: 'daily', title: 'DevTol — 126+ Free Online Developer Tools | 100% Client-Side' },
+  { path: '/guides', priority: '0.9', changefreq: 'weekly', title: 'Developer Engineering Guides & Technical Architecture' },
+  { path: '/deals', priority: '0.8', changefreq: 'weekly', title: 'Developer Deals, Cloud Credits & Partner Perks' },
   { path: '/about', priority: '0.8', changefreq: 'monthly', title: 'About Us & Editorial Standards' },
   { path: '/privacy-policy', priority: '0.6', changefreq: 'monthly', title: 'Privacy Policy & Local Processing' },
   { path: '/terms-of-service', priority: '0.6', changefreq: 'monthly', title: 'Terms of Service' },
@@ -123,12 +125,12 @@ for (const varName of registeredToolVars) {
       let description = localeEntry.description;
 
       const literalNameMatch = fileContent.match(/name:\s*['"]([^'"]+)['"]/);
-      if (literalNameMatch) {
+      if (!title && literalNameMatch) {
         title = literalNameMatch[1];
       }
 
       const literalDescMatch = fileContent.match(/description:\s*['"]([^'"]+)['"]/);
-      if (literalDescMatch) {
+      if (!description && literalDescMatch) {
         description = literalDescMatch[1];
       }
 
@@ -355,19 +357,40 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
+User-agent: ChatGPT-User
+Allow: /
+
 User-agent: Claude-Web
 Allow: /
 
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: anthropic-ai
+Allow: /
+
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
 Allow: /
 
 User-agent: CCBot
 Allow: /
 
 User-agent: Cohere-ai
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Amazonbot
 Allow: /
 
 User-agent: meta-externalagent

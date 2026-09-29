@@ -131,6 +131,7 @@ const tools = computed<ToolCategory[]>(() => [
 
             <!-- AdSense Compliance Links Navigation -->
             <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-medium text-slate-600 dark:text-slate-300">
+              <RouterLink to="/guides" class="footer-nav-link font-bold text-indigo-600 dark:text-indigo-400">Developer Guides</RouterLink>
               <RouterLink to="/about" class="footer-nav-link">About Us</RouterLink>
               <RouterLink to="/privacy-policy" class="footer-nav-link">Privacy Policy</RouterLink>
               <RouterLink to="/terms-of-service" class="footer-nav-link">Terms of Service</RouterLink>

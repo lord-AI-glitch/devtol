@@ -10,10 +10,10 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  slotId: '1234567890',
+  slotId: '',
   adClient: 'ca-pub-3672531286921744',
   format: 'horizontal',
-  minHeight: '120px',
+  minHeight: '100px',
 });
 
 const styleStore = useStyleStore();
@@ -23,84 +23,63 @@ const adContainerRef = ref<HTMLElement | null>(null);
 const isAdLoaded = ref(false);
 const showFallback = ref(false);
 
-// Curated high-converting developer partner offers
-const developerOffers = [
+// Platform educational highlights (replaces commercial affiliate ads during review)
+const platformHighlights = [
   {
-    tag: 'Cloud Infrastructure',
-    title: 'DigitalOcean Cloud — $200 Free Credit for Developers',
-    description: 'Deploy Linux droplets, managed databases, and scalable serverless functions in 60 seconds.',
-    cta: 'Claim $200 Credit',
-    link: 'https://m.do.co/c/devtol',
-    badge: 'Popular for DevOps',
+    tag: 'Enterprise Architecture',
+    title: '100% Client-Side Computing & Zero-Knowledge Privacy',
+    description: 'All string transformations, cryptographic hashing, and document conversions execute strictly in your local browser sandbox.',
+    badge: 'Privacy Verified',
   },
   {
-    tag: 'Web Performance & Security',
-    title: 'Cloudflare Pages & Workers — Global Edge Platform',
-    description: 'Ultra-fast global CDN, DDoS mitigation, and serverless edge compute with zero cold starts.',
-    cta: 'Explore Cloudflare',
-    link: 'https://www.cloudflare.com',
-    badge: 'Trusted by DevTol',
+    tag: 'Developer Standards',
+    title: 'RFC-Compliant Specifications & Cryptographic Security',
+    description: 'DevTol algorithms strictly implement official IETF, NIST, and W3C specifications with zero telemetry.',
+    badge: 'Standards Compliant',
   },
   {
-    tag: 'Domain & SSL',
-    title: 'Namecheap — .COM & Developer Domains from $5.98',
-    description: 'Secure your brand with free lifetime WHOIS privacy, DNSSEC, and enterprise-grade DNS.',
-    cta: 'Find Your Domain',
-    link: 'https://www.namecheap.com',
-    badge: 'Best Value',
-  },
-  {
-    tag: 'Privacy & Security',
-    title: 'NordVPN — Encrypted Traffic & Geo-Routing for Developers',
-    description: 'Protect your remote development, test global endpoints, and prevent DNS leaks with zero-logging privacy.',
-    cta: 'Get 70% Off + 3 Mo',
-    link: 'https://nordvpn.com',
-    badge: 'Privacy Choice',
-  },
-  {
-    tag: 'Support Open Source',
-    title: 'Support DevTol — 100% Free, Private Developer Tools',
-    description: 'Help us maintain server infrastructure and add more zero-tracking client-side utilities.',
-    cta: 'Buy Us a Coffee',
-    link: 'https://buymeacoffee.com/lordrealstx',
-    badge: 'Community',
+    tag: 'Cloud-Native Tooling',
+    title: 'Instant Progressive Web App: Offline Capable & Fast',
+    description: 'Engineered as an offline-first PWA with zero latency, client-side memory safety, and sub-millisecond execution.',
+    badge: 'Zero Latency',
   },
 ];
 
-// Pick an offer based on a deterministic random rotation
-const selectedOffer = ref(developerOffers[Math.floor(Math.random() * developerOffers.length)]);
+const selectedHighlight = ref(platformHighlights[Math.floor(Math.random() * platformHighlights.length)]);
 
 onMounted(() => {
-  try {
-    // @ts-expect-error window.adsbygoogle
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
-  } catch (_) {
-    // AdBlock or network block detected immediately
-    showFallback.value = true;
-  }
-
-  // Check if AdSense successfully rendered an iframe within 2.2 seconds
-  setTimeout(() => {
-    if (adContainerRef.value) {
-      const insEl = adContainerRef.value.querySelector('ins.adsbygoogle');
-      const hasIframe = insEl && (insEl.querySelector('iframe') || insEl.getAttribute('data-ad-status') === 'filled');
-      if (hasIframe) {
-        isAdLoaded.value = true;
-      } else {
-        // Either ad blocked or no fill -> seamlessly show developer partner offer
-        showFallback.value = true;
-      }
-    } else {
+  if (props.slotId) {
+    try {
+      // @ts-expect-error window.adsbygoogle
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (_) {
       showFallback.value = true;
     }
-  }, 2200);
+
+    setTimeout(() => {
+      if (adContainerRef.value) {
+        const insEl = adContainerRef.value.querySelector('ins.adsbygoogle');
+        const hasIframe = insEl && (insEl.querySelector('iframe') || insEl.getAttribute('data-ad-status') === 'filled');
+        if (hasIframe) {
+          isAdLoaded.value = true;
+        } else {
+          showFallback.value = true;
+        }
+      } else {
+        showFallback.value = true;
+      }
+    }, 2200);
+  } else {
+    // When no slotId is assigned, rely on Auto Ads in index.html and show clean highlight
+    showFallback.value = true;
+  }
 });
 
 // Preset styles to eliminate Cumulative Layout Shift (CLS = 0)
 const formatStyles = computed(() => {
   switch (props.format) {
     case 'rectangle':
-      return { minHeight: '280px', maxWidth: '336px' };
+      return { minHeight: '250px', maxWidth: '336px' };
     case 'vertical':
       return { minHeight: '600px', maxWidth: '300px' };
     case 'horizontal':
@@ -117,10 +96,10 @@ const formatStyles = computed(() => {
     class="adsense-unit-wrapper relative w-full overflow-hidden my-4 transition-all duration-300"
     :style="formatStyles"
     role="region"
-    aria-label="Sponsored Content"
+    aria-label="Developer Resources"
   >
-    <!-- 1. Google AdSense Unit (Visible when ads load normally) -->
-    <div v-show="!showFallback" class="w-full">
+    <!-- 1. Google AdSense Unit (Visible when a real ad slot is configured and loaded) -->
+    <div v-if="slotId" v-show="!showFallback" class="w-full">
       <ins
         class="adsbygoogle w-full"
         style="display:block"
@@ -131,49 +110,37 @@ const formatStyles = computed(() => {
       ></ins>
     </div>
 
-    <!-- 2. High-Yield Native Developer Partner Card (Fallback for AdBlock / Unfilled) -->
+    <!-- 2. Clean Platform Architecture Notice (Replaces affiliate ads during AdSense review) -->
     <div
       v-if="showFallback"
-      class="fallback-sponsor-card w-full rounded-xl border p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all"
-      :class="isDark ? 'border-emerald-500/20 bg-[#121629] text-slate-200' : 'border-slate-200 bg-slate-50 text-slate-800'"
+      class="platform-notice-card w-full rounded-xl border p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all"
+      :class="isDark ? 'border-indigo-500/20 bg-[#121629] text-slate-200' : 'border-slate-200 bg-slate-50 text-slate-800'"
     >
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 mb-1.5 flex-wrap">
           <span
             class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
-            :class="isDark ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-emerald-50 text-emerald-700 border border-emerald-200'"
+            :class="isDark ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' : 'bg-indigo-50 text-indigo-700 border border-indigo-200'"
           >
-            {{ selectedOffer.badge }}
+            {{ selectedHighlight.badge }}
           </span>
-          <span class="text-xs text-slate-400 font-mono">Sponsored • {{ selectedOffer.tag }}</span>
-          <RouterLink
-            to="/deals"
-            class="text-[11px] font-semibold text-emerald-500 hover:text-emerald-400 ms-auto transition-colors"
-          >
-            All Perks & Deals →
-          </RouterLink>
+          <span class="text-xs text-slate-400 font-mono">{{ selectedHighlight.tag }}</span>
         </div>
         <h4 class="text-sm sm:text-base font-bold tracking-tight mb-1 text-inherit truncate">
-          {{ selectedOffer.title }}
+          {{ selectedHighlight.title }}
         </h4>
         <p class="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">
-          {{ selectedOffer.description }}
+          {{ selectedHighlight.description }}
         </p>
       </div>
 
-      <div class="shrink-0 w-full sm:w-auto">
-        <a
-          :href="selectedOffer.link"
-          target="_blank"
-          rel="noopener sponsored"
-          class="inline-flex items-center justify-center w-full sm:w-auto px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all shadow-sm"
-          :class="isDark ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-emerald-500/20' : 'bg-emerald-600 hover:bg-emerald-700 text-white'"
+      <div class="flex items-center gap-3 shrink-0">
+        <RouterLink
+          to="/about"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors"
         >
-          {{ selectedOffer.cta }}
-          <svg class="w-3.5 h-3.5 ms-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
+          <span>Architecture & Standards →</span>
+        </RouterLink>
       </div>
     </div>
   </div>

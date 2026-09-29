@@ -1,42 +1,60 @@
-﻿# JWT Builder & Signer — Free Online Developer & Privacy Utility
+# Free Online JWT Builder & Signer — Create, Sign & Decode JSON Web Tokens (HMAC-SHA256)
 
-> Craft, configure headers/payloads, and sign JSON Web Tokens with HMAC-SHA256. Built with zero server dependencies, guaranteeing 100% data security and confidentiality.
+DevTol's **Free Online JWT Builder & Signer** is a client-side cryptographic utility designed for software engineers, backend developers, and security analysts. Construct, customize, sign, and verify **JSON Web Tokens (JWT)** conforming to RFC 7519 standards directly in your browser. Configure custom headers, claims payloads, expiration timestamps, and HMAC-SHA256 cryptographic signatures with 100% in-browser privacy.
 
-## Overview & Zero-Knowledge Architecture
-In an era of ubiquitous cloud processing, submitting sensitive intellectual property, operational logs, or personal media to unknown backend servers poses substantial risk. The **JWT Builder & Signer** operates with a zero-transmission model. Every transformation, compilation, cryptographic verification, or rasterization is executed directly on your hardware via JavaScript and WebAssembly sandboxes. 
+---
 
-### Core Benefits
-- **Zero Server Uploads**: Binary streams and raw inputs remain strictly bounded within client memory.
-- **Uncapped Performance**: Execution rates correlate directly with your local CPU/GPU hardware threads rather than constrained server queues.
-- **Offline Reliability**: Once static bundles are cached via Service Workers, operations function without an active internet connection.
+## Why Client-Side JWT Construction is Essential for Security
 
-## Step-by-Step Usage Instructions
-1. **Input Preparation**: Supply raw textual streams, structured schemas, or media payloads via drag-and-drop or explicit selection.
-2. **Configuration & Parameters**: Adjust operational parameters such as quality profiles, bitrates, boundary constraints, or delimiters.
-3. **Execution**: Trigger local processing. Real-time feedback loops provide progression telemetry.
-4. **Export & Verification**: Inspect rendered output, copy formatted strings to the system clipboard, or download synthesized files.
+Pasting proprietary JSON Web Tokens, private secret keys, or authentication claims into public cloud-based JWT debuggers (such as jwt.io) sends your application secrets across third-party networks, risking token interception, secret leakage, and credential abuse.
 
-## Technical Specifications & Standards
-The internal engine enforces compliant standards relevant to its technical domain:
-- Adheres to IEEE / W3C specifications and modern ECMAScript standards.
-- Employs deterministic memory lifecycle management, avoiding memory leakage during repetitive execution cycles.
-- Optimized for modern evergreen browsers (Chromium, Gecko, WebKit engines).
+DevTol executes all cryptographic HMAC-SHA256 signatures locally using standard Web Cryptography APIs (`SubtleCrypto`):
 
-## Practical Real-World Use Cases
-- **Software Engineers**: Debugging production logs, preparing test mocks, or converting assets without violating confidentiality agreements.
-- **Security Professionals**: Sanitizing data, verifying signatures, or analyzing metadata without leaking investigative footprints.
-- **Content Creators & Marketers**: Rapid media adjustments, asset compression for Core Web Vitals optimization, and format standardizations.
+| Security Parameter | DevTol JWT Builder | Typical Cloud JWT Debuggers |
+| :--- | :--- | :--- |
+| **Secret Key Privacy** | **100% Client-Side** (Never leaves RAM) | Frequently sent to remote servers via analytics |
+| **RFC 7519 Compliance** | Fully compliant 3-part Base64URL structure | Variable compliance |
+| **Token Verification** | Real-time HMAC-SHA256 signature checking | Network roundtrip required |
+| **Payload Customization** | Flexible claims (sub, iss, aud, exp, custom JSON) | Clunky text area with formatting errors |
+| **Offline Execution** | Operates offline via Progressive Web App (PWA) | Inoperable without constant internet |
 
-## Frequently Asked Questions (FAQ)
+---
 
-### Is my input data monitored, collected, or logged?
-No. Network inspectors confirm that zero outbound payload traffic occurs during tool operation. 
+## Anatomical Structure of a JSON Web Token (RFC 7519)
 
-### Are there execution limits or usage caps?
-Execution thresholds are solely governed by your workstation's available RAM and thread capacity.
+A JSON Web Token consists of three distinct components joined by periods (`.`):
 
-### Does this utility work offline?
-Yes. The platform's Progressive Web App (PWA) cache facilitates offline execution across all supported modules.
+```
+[Header].[Payload].[Signature]
+```
 
-## E-E-A-T Technical Disclaimer
-This utility is provided under open architectural paradigms. Implementation patterns comply with published RFCs and vendor specifications. Algorithmic fidelity is verified using regression test matrices.
+1. **Header**: Contains the token type (`JWT`) and the signing algorithm (e.g., `HS256` for HMAC using SHA-256).
+2. **Payload (Claims)**: Contains statements about the entity (typically the user) and additional metadata:
+   - `iss` (Issuer): Identifies the principal that issued the JWT.
+   - `sub` (Subject): Identifies the subject of the JWT (e.g., user ID).
+   - `aud` (Audience): Identifies the recipients that the JWT is intended for.
+   - `exp` (Expiration Time): Identifies the expiration time on or after which the JWT must not be accepted.
+   - `iat` (Issued At): Identifies the time at which the JWT was issued.
+3. **Signature**: Computed by encoding the header and payload with Base64URL, concatenating them with a period, and hashing the result with your private secret key using HMAC-SHA256.
+
+---
+
+## How to Build and Sign a JWT Step-by-Step
+
+1. **Set Header**: Confirm the signing algorithm (default: `HS256`) and token type.
+2. **Edit Payload Claims**: Input your JSON payload claims including user IDs, roles, permissions, and expiration times.
+3. **Enter Secret Key**: Supply your HMAC-SHA256 secret passphrase. The signature recalculates reactively in memory.
+4. **Copy Signed Token**: Click **Copy Token** to retrieve your valid, ready-to-test JSON Web Token for API headers (`Authorization: Bearer <token>`).
+
+---
+
+## Frequently Asked Questions (FAQs)
+
+### Q1: Is my secret signing key stored or transmitted anywhere?
+No. DevTol uses the browser's native Web Crypto API (`window.crypto.subtle`). All HMAC key derivation and signature computations occur strictly within your browser's local sandbox memory.
+
+### Q2: What is the difference between JWT encoding and encryption?
+Standard JWTs signed with HMAC-SHA256 are **encoded and signed, not encrypted**. The payload is readable by anyone who decodes the Base64URL string; the signature merely guarantees that the payload has not been tampered with in transit. Never place unencrypted passwords or credit cards in standard JWT claims.
+
+### Q3: Does this tool validate token expiration timestamps (`exp`)?
+Yes. The builder allows you to specify Unix timestamps for `exp` (expiration) and `nbf` (not before) and verifies whether the generated token is currently valid or expired.

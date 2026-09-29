@@ -39,6 +39,13 @@ const localizedDealsRoutes = supportedLangs.map(lang => ({
   meta: { lang },
 }));
 
+const localizedGuidesRoutes = supportedLangs.map(lang => ({
+  path: `/${lang}/guides`,
+  name: `${lang}-guides`,
+  component: () => import('./pages/Guides.page.vue'),
+  meta: { lang },
+}));
+
 const dockerTool = tools.find(t => t.path === '/docker-run-to-docker-compose-converter');
 const colorTool = tools.find(t => t.path === '/color-converter');
 const dateTool = tools.find(t => t.path === '/date-converter');
@@ -130,6 +137,12 @@ const router = createRouter({
       component: () => import('./pages/Deals.page.vue'),
     },
     ...localizedDealsRoutes,
+    {
+      path: '/guides',
+      name: 'guides',
+      component: () => import('./pages/Guides.page.vue'),
+    },
+    ...localizedGuidesRoutes,
     {
       path: '/about',
       name: 'about',
