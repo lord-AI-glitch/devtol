@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { NIcon, useThemeVars } from 'naive-ui';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
 import { Heart, Home2, Menu2, ShieldCheck } from '@vicons/tabler';
 
 import { storeToRefs } from 'pinia';
@@ -25,6 +25,13 @@ const commitSha = config.app.lastCommitSha.slice(0, 7);
 
 const { tracker } = useTracker();
 const { t } = useI18n();
+const route = useRoute();
+
+const currentLangPrefix = computed(() => {
+  const p = route?.path || '';
+  const match = p.match(/^\/(ar|de|es|fr|no|pt|uk|vi|zh)(?:\/|$)/);
+  return match ? `/${match[1]}` : '';
+});
 
 const toolStore = useToolStore();
 const { favoriteTools, toolsByCategory } = storeToRefs(toolStore);
@@ -122,26 +129,38 @@ const tools = computed<ToolCategory[]>(() => [
                 class="security-badge inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium transition-all"
               >
                 <NIcon size="18" :component="ShieldCheck" class="text-emerald-500" />
-                <span>100% Client-Side Processing &bull; No Server Storage &bull; Private & Secure</span>
+                <span>{{ $t('home.footer.securityBadge') }}</span>
               </div>
               <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 max-w-md">
-                All data, keys, and tokens are evaluated solely in your local browser sandbox.
+                {{ $t('home.footer.securitySubtext') }}
               </p>
             </div>
 
             <!-- AdSense Compliance Links Navigation -->
             <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-medium text-slate-600 dark:text-slate-300">
-              <RouterLink to="/guides" class="footer-nav-link font-bold text-indigo-600 dark:text-indigo-400">Developer Guides</RouterLink>
-              <RouterLink to="/about" class="footer-nav-link">About Us</RouterLink>
-              <RouterLink to="/privacy-policy" class="footer-nav-link">Privacy Policy</RouterLink>
-              <RouterLink to="/terms-of-service" class="footer-nav-link">Terms of Service</RouterLink>
-              <RouterLink to="/contact" class="footer-nav-link">Contact</RouterLink>
-              <RouterLink to="/disclaimer" class="footer-nav-link">Disclaimer</RouterLink>
+              <RouterLink :to="`${currentLangPrefix}/guides`" class="footer-nav-link font-bold text-indigo-600 dark:text-indigo-400">
+                {{ $t('home.footer.guides') }}
+              </RouterLink>
+              <RouterLink :to="`${currentLangPrefix}/about`" class="footer-nav-link">
+                {{ $t('home.footer.about') }}
+              </RouterLink>
+              <RouterLink :to="`${currentLangPrefix}/privacy-policy`" class="footer-nav-link">
+                {{ $t('home.footer.privacy') }}
+              </RouterLink>
+              <RouterLink :to="`${currentLangPrefix}/terms-of-service`" class="footer-nav-link">
+                {{ $t('home.footer.terms') }}
+              </RouterLink>
+              <RouterLink :to="`${currentLangPrefix}/contact`" class="footer-nav-link">
+                {{ $t('home.footer.contact') }}
+              </RouterLink>
+              <RouterLink :to="`${currentLangPrefix}/disclaimer`" class="footer-nav-link">
+                {{ $t('home.footer.disclaimer') }}
+              </RouterLink>
             </div>
 
             <!-- Copyright and Open Source Credit -->
             <div class="mt-8 text-center text-xs text-slate-400 dark:text-slate-500">
-              <p>&copy; {{ new Date().getFullYear() }} DevTol. Free and open source under GNU GPLv3 license.</p>
+              <p>&copy; {{ new Date().getFullYear() }} DevTol. {{ $t('home.footer.copyright') }}</p>
             </div>
           </div>
         </footer>

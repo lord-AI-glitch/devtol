@@ -41,6 +41,17 @@ home:
     darkMode: 'Dark mode'
     lightMode: 'Light mode'
     mode: 'Toggle dark/light mode'
+  footer:
+    guides: 'Developer Guides'
+    about: 'About Us'
+    privacy: 'Privacy Policy'
+    terms: 'Terms of Service'
+    contact: 'Contact'
+    disclaimer: 'Disclaimer'
+    deals: 'Developer Deals'
+    securityBadge: '100% Client-Side Processing • No Server Storage • Private & Secure'
+    securitySubtext: 'All data, keys, and tokens are evaluated solely in your local browser sandbox.'
+    copyright: 'Free and open source under MIT license.'
 about:
   content: >
     # About DevTol

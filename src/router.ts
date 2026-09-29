@@ -46,6 +46,63 @@ const localizedGuidesRoutes = supportedLangs.map(lang => ({
   meta: { lang },
 }));
 
+const localizedLegalRoutes = supportedLangs.flatMap(lang => [
+  {
+    path: `/${lang}/about`,
+    name: `${lang}-about`,
+    component: () => import('./pages/legal/AboutUs.vue'),
+    meta: { lang },
+  },
+  {
+    path: `/${lang}/about-us`,
+    name: `${lang}-about-us`,
+    component: () => import('./pages/legal/AboutUs.vue'),
+    meta: { lang },
+  },
+  {
+    path: `/${lang}/privacy-policy`,
+    name: `${lang}-privacy-policy`,
+    component: () => import('./pages/legal/PrivacyPolicy.vue'),
+    meta: { lang },
+  },
+  {
+    path: `/${lang}/privacy`,
+    name: `${lang}-privacy`,
+    component: () => import('./pages/legal/PrivacyPolicy.vue'),
+    meta: { lang },
+  },
+  {
+    path: `/${lang}/terms-of-service`,
+    name: `${lang}-terms-of-service`,
+    component: () => import('./pages/legal/TermsOfService.vue'),
+    meta: { lang },
+  },
+  {
+    path: `/${lang}/terms`,
+    name: `${lang}-terms`,
+    component: () => import('./pages/legal/TermsOfService.vue'),
+    meta: { lang },
+  },
+  {
+    path: `/${lang}/contact`,
+    name: `${lang}-contact`,
+    component: () => import('./pages/legal/ContactUs.vue'),
+    meta: { lang },
+  },
+  {
+    path: `/${lang}/contact-us`,
+    name: `${lang}-contact-us`,
+    component: () => import('./pages/legal/ContactUs.vue'),
+    meta: { lang },
+  },
+  {
+    path: `/${lang}/disclaimer`,
+    name: `${lang}-disclaimer`,
+    component: () => import('./pages/legal/Disclaimer.vue'),
+    meta: { lang },
+  },
+]);
+
 const dockerTool = tools.find(t => t.path === '/docker-run-to-docker-compose-converter');
 const colorTool = tools.find(t => t.path === '/color-converter');
 const dateTool = tools.find(t => t.path === '/date-converter');
@@ -143,6 +200,7 @@ const router = createRouter({
       component: () => import('./pages/Guides.page.vue'),
     },
     ...localizedGuidesRoutes,
+    ...localizedLegalRoutes,
     {
       path: '/about',
       name: 'about',
