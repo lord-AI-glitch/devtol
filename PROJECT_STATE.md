@@ -415,6 +415,19 @@
       - Live custom domain: `https://devtol.online`.
       - Verified live endpoints returning HTTP 200: `/images-to-pdf`, `/text-encrypt`, `/ads.txt`, `/sitemap.xml`.
 
+34. **Deep Interactive Action Suite & OCR / Video-to-GIF Modernization (`2026-10-09`):**
+    - **Diagnosed and Resolved Action Execution Bugs**:
+      1. *Tesseract Module Unwrapping*: Dynamic import in `pdf-ocr.vue` and `image-ocr.vue` exported via `default`, leaving `mod.recognize` undefined. Fixed with `const Tesseract = mod.default || mod`, resolving `t.recognize is not a function`.
+      2. *Gifenc Named Exports*: Switched `video-to-gif.vue` to `cdn.jsdelivr.net/npm/gifenc@1.0.3/dist/gifenc.esm.js` to ensure `{ GIFEncoder, quantize, applyPalette }` named exports are present.
+    - **Interactive Deep Action Suite (`scripts/test-interactive-deep-suite.mjs`)**:
+      - Actually uploaded physical files (PNG images, multi-page PDFs, SVGs, TXT) and clicked action buttons across 19 complex interactive tools (`pdf-ocr`, `image-ocr`, `images-to-pdf`, `pdf-to-image`, `pdf-merge`, `pdf-split`, `pdf-compress`, `pdf-organize`, `pdf-watermark-tool`, `pdf-protect`, `pdf-redact`, `favicon-generator`, `image-compressor`, `image-resizer`, `image-watermark`, `svg-converter`, `webp-converter`, `yaml-validator`, `text-encrypt`).
+      - **Result**: **19/19 PASSED (100% success rate)**.
+    - **Live Production Deployment**:
+      - Deployed 3,727 files to Cloudflare Pages (`https://ceced3a5.devtol.pages.dev` & `https://devtol.online`).
+      - Verified live OCR execution on `https://devtol.online/pdf-ocr`: uploaded image -> clicked "Extract Text" -> verified toast "OCR complete!" and 0 console errors.
+      - Knowledge graph synced: `python -m graphify update .` (3,094 nodes, 4,711 edges, 252 communities).
+
+
 
 
 
