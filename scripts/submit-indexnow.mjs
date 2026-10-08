@@ -4,10 +4,12 @@ import https from 'https';
 const HOST = 'devtol.online';
 const KEY = '63ceff34c1ae6ac3262b428c60f2aadd';
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
-const SITEMAP_PATH = './dist/sitemap.xml';
+const SITEMAP_PATH = fs.existsSync('./public/sitemap.xml') 
+  ? './public/sitemap.xml' 
+  : './dist/sitemap.xml';
 
 if (!fs.existsSync(SITEMAP_PATH)) {
-  console.error('[IndexNow] Error: dist/sitemap.xml not found.');
+  console.error('[IndexNow] Error: sitemap.xml not found in public/ or dist/.');
   process.exit(1);
 }
 

@@ -1,6 +1,7 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useMessage } from 'naive-ui';
+import { PDFDocument } from 'pdf-lib';
 
 const message = useMessage();
 const files = ref<File[]>([]);
@@ -30,7 +31,6 @@ async function mergePDFs() {
   isProcessing.value = true;
   resultUrl.value = null;
   try {
-    const { PDFDocument } = await import('https://cdn.skypack.dev/pdf-lib');
     const merged = await PDFDocument.create();
     for (const file of files.value) {
       const bytes = await file.arrayBuffer();
@@ -77,7 +77,7 @@ function download() {
         <n-list-item v-for="(file, i) in files" :key="i">
           <n-thing :title="file.name" :description="formatBytes(file.size)" />
           <template #suffix>
-            <c-button size="small" variant="ghost" @click="removeFile(i)">Remove</c-button>
+            <c-button size="small" variant="text" @click="removeFile(i)">Remove</c-button>
           </template>
         </n-list-item>
       </n-list>

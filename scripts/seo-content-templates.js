@@ -453,6 +453,123 @@ export function getLegalPageArticleHtml(slug, lang) {
         </article>
       `;
 
+    case 'pdf-tools':
+      return isAr ? `
+        <article class="prose" style="line-height: 1.8; color: #334155;">
+          <h2 style="font-size: 1.8rem; font-weight: 800; color: #0f172a;">مركز أدوات PDF الشامل — معالجة محلية 100% بدون خوادم وبلا قيود</h2>
+          <p>توفر منصة DevTol باقة هندسية متكاملة من أدوات إدارة ومعالجة مستندات PDF الاحترافية، مصممة بالكامل وفق مبدأ <strong>الحوسبة من جانب العميل (Strictly Client-Side Execution)</strong>. بخلاف المواقع السحابية المنافسة (مثل iLovePDF و Smallpdf و Sejda)، فإن مستنداتك لا تُرفع مطلقاً إلى أي خوادم وسيطة، ولا توجد قيود على عدد المهام اليومية أو أحجام الملفات.</p>
+
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-top: 28px;">1. الركائز الهندسية والأمان المحلي (Zero-Knowledge Architecture)</h3>
+          <p>تعتمد أدوات PDF في DevTol على مكتبات WebAssembly الحديثة وخيوط Web Workers المنفصلة لتنفيذ كافة العمليات الحسابية داخل ذاكرة متصفحك العشوائية:</p>
+          <ul>
+            <li><strong>خصوصية مطلقة للبيانات الحساسة:</strong> العقود، والسجلات الطبية، والبيانات المالية، وكشوف الحسابات تبقى في جهازك بنسبة 100%.</li>
+            <li><strong>تشفير وتوقيع رقمي محلي:</strong> حماية مستندات PDF بكلمات مرور وتشفير AES-256 أو فحص التوقيعات الرقمية دون كشف المفاتيح.</li>
+            <li><strong>معالجة فائقة السرعة:</strong> لا داعي لانتظار رفع ملفات بأحجام 50MB أو 100MB عبر الإنترنت البطيء، حيث تتم المعالجة بسرعة معالج جهازك المحلي فوراً.</li>
+            <li><strong>دعم كامل للنصوص العربية وتشكيل الخطوط:</strong> تصحيح اتجاه النصوص ثنائية الاتجاه (BiDi) وتشكيل الحروف العربية في محرر PDF.</li>
+          </ul>
+
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-top: 28px;">2. جدول المقارنة: DevTol مقابل المنصات السحابية التقليدية</h3>
+          <div style="overflow-x: auto; margin: 20px 0;">
+            <table style="width: 100%; border-collapse: collapse; text-align: right; font-size: 0.95rem;">
+              <thead>
+                <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
+                  <th style="padding: 12px; border: 1px solid #cbd5e1;">المعيار</th>
+                  <th style="padding: 12px; border: 1px solid #cbd5e1; color: #059669;">DevTol PDF</th>
+                  <th style="padding: 12px; border: 1px solid #cbd5e1;">iLovePDF</th>
+                  <th style="padding: 12px; border: 1px solid #cbd5e1;">Smallpdf</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: 600;">موقع معالجة الملفات</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; color: #059669; font-weight: 700;">محلي 100% في المتصفح</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">خوادم سحابية خارجية</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">خوادم سحابية خارجية</td>
+                </tr>
+                <tr style="background: #f8fafc;">
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: 600;">حدود الاستخدام المجاني</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; color: #059669; font-weight: 700;">غير محدود نهائياً</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">حدود على الحجم وعدد الملفات</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">مهمتان فقط يومياً</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: 600;">سرية البيانات والامتثال</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; color: #059669; font-weight: 700;">صفر إرسال عبر الشبكة</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">تخزين مؤقت على الخوادم</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">تخزين مؤقت على الخوادم</td>
+                </tr>
+                <tr style="background: #f8fafc;">
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: 600;">العمل بدون إنترنت (PWA)</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; color: #059669; font-weight: 700;">مدعوم بالكامل (Offline)</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">غير مدعوم</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">غير مدعوم (يتطلب إنترنت)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-top: 28px;">3. الأدوات المتاحة في الحزمة</h3>
+          <p>تشمل أدوات PDF في DevTol ما يلي: محرر PDF متقدم، دمج ملفات PDF متعددة، تقسيم واستخراج الصفحات، ضغط وتقليص حجم المستندات، تحويل PDF إلى صور JPG/PNG، تحويل الصور إلى مستندات PDF، إضافة علامة مائية نصية أو مرئية، طمس وحجب النصوص الحساسة (Redact)، التعرف الضوئي على المحارف (OCR)، وتنظيم وإعادة ترتيب وتدوير الصفحات، وفحص التوقيعات الرقمية المشفرة.</p>
+        </article>
+      ` : `
+        <article class="prose" style="line-height: 1.8; color: #334155;">
+          <h2 style="font-size: 1.8rem; font-weight: 800; color: #0f172a;">DevTol PDF Tools Suite — 100% Client-Side, Secure & Unlimited</h2>
+          <p>DevTol delivers an enterprise-grade suite of document utilities designed strictly around <strong>Client-Side Execution</strong>. Unlike legacy cloud converters (such as iLovePDF, Smallpdf, or Sejda), your private files are never transmitted across the wire or stored on remote servers. Enjoy unlimited operations, zero file size paywalls, and uncompromising data security.</p>
+
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-top: 28px;">1. Security Architecture & Zero-Knowledge Processing</h3>
+          <p>By compiling PDF rendering engines to WebAssembly and running memory-heavy transforms inside isolated Web Workers, DevTol ensures high throughput and mathematical zero-knowledge privacy:</p>
+          <ul>
+            <li><strong>Confidentiality for Sensitive Documents:</strong> Legal contracts, NDA-protected agreements, financial balance sheets, and tax filings remain 100% within your local workstation.</li>
+            <li><strong>Sub-Millisecond Execution:</strong> Bypass sluggish upload queues and bandwidth throttles. Local CPU cores compress and convert pages instantly.</li>
+            <li><strong>Air-Gapped PWA Capability:</strong> Once loaded, DevTol PDF tools function entirely offline without an active internet connection.</li>
+            <li><strong>Compliant by Architecture:</strong> Fully aligned with GDPR, HIPAA, and SOC2 confidentiality policies by mathematically eliminating network transfer.</li>
+          </ul>
+
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-top: 28px;">2. Architecture Comparison: DevTol vs Cloud Converters</h3>
+          <div style="overflow-x: auto; margin: 20px 0;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+              <thead>
+                <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
+                  <th style="padding: 12px; border: 1px solid #cbd5e1;">Feature</th>
+                  <th style="padding: 12px; border: 1px solid #cbd5e1; color: #059669;">DevTol PDF</th>
+                  <th style="padding: 12px; border: 1px solid #cbd5e1;">iLovePDF</th>
+                  <th style="padding: 12px; border: 1px solid #cbd5e1;">Smallpdf</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: 600;">Processing Location</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; color: #059669; font-weight: 700;">100% Browser Local Memory</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">Cloud Backend Servers</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">Cloud Backend Servers</td>
+                </tr>
+                <tr style="background: #f8fafc;">
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: 600;">Free Usage Limits</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; color: #059669; font-weight: 700;">Unlimited Free Operations</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">File size & queue throttles</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">Strict 2 tasks per day cap</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: 600;">Data Leakage Risk</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; color: #059669; font-weight: 700;">Zero (0 bytes uploaded)</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">Edge caching & server logging</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">Edge caching & server logging</td>
+                </tr>
+                <tr style="background: #f8fafc;">
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: 600;">Offline Capability</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1; color: #059669; font-weight: 700;">Full PWA Offline Support</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">Requires Internet</td>
+                  <td style="padding: 10px; border: 1px solid #cbd5e1;">Requires Internet</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-top: 28px;">3. Complete Tool Inventory</h3>
+          <p>Explore our 12 specialized client-side PDF utilities: PDF Editor, Merge PDF, Split & Extract PDF, Compress PDF, PDF to Image (JPG/PNG), Images to PDF, Watermark PDF, Redact Sensitive Text, Optical Character Recognition (OCR), Organize & Rotate Pages, Encrypt & Protect PDF, and Digital Signature Validation.</p>
+        </article>
+      `;
+
     default:
       return '';
   }

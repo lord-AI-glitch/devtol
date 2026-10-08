@@ -1,6 +1,7 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
+import { createZipBlob } from "@/utils/zip";
 const message = useMessage();
 const activeTab = ref("upload");
 const file = ref<File|null>(null);
@@ -35,16 +36,25 @@ async function generate(){
 }
 async function downloadAll(){
   if(!previews.value.length)return;
-  const JSZip=(await import("https://cdn.skypack.dev/jszip")).default;
-  const zip=new JSZip();
-  const folder=zip.folder("favicons")!;
-  for(const{size,url}of previews.value){
-    const b64=url.split(",")[1];
-    folder.file(`favicon-${size}x${size}.png`,b64,{base64:true});
-  }
-  folder.file("index.html",`<!-- Add to <head> -->\n<link rel="icon" sizes="32x32" href="favicon-32x32.png">\n<link rel="icon" sizes="16x16" href="favicon-16x16.png">\n<link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">\n<link rel="icon" sizes="192x192" href="favicon-192x192.png">\n<link rel="icon" sizes="512x512" href="favicon-512x512.png">`);
-  const blob=await zip.generateAsync({type:"blob"});
-  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="favicons.zip";a.click();
+  const files = previews.value.map(({size,url}) => {
+    const b64 = url.split(",")[1];
+    const binStr = atob(b64);
+    const u8 = new Uint8Array(binStr.length);
+    for (let j = 0; j < binStr.length; j++) u8[j] = binStr.charCodeAt(j);
+    return {
+      name: `favicons/favicon-${size}x${size}.png`,
+      data: u8
+    };
+  });
+  files.push({
+    name: "favicons/index.html",
+    data: `<!-- Add to <head> -->\n<link rel="icon" sizes="32x32" href="favicon-32x32.png">\n<link rel="icon" sizes="16x16" href="favicon-16x16.png">\n<link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">\n<link rel="icon" sizes="192x192" href="favicon-192x192.png">\n<link rel="icon" sizes="512x512" href="favicon-512x512.png">`
+  });
+  const blob = createZipBlob(files);
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "favicons.zip";
+  a.click();
 }
 </script>
 <template>

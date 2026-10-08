@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
 import { loadPdfJs } from "@/utils/loadPdfJs";
+import { createZipBlob } from "@/utils/zip";
 
 const message = useMessage();
 const file = ref<File|null>(null);
@@ -37,14 +38,21 @@ async function convert(){
 }
 async function downloadAll(){
   if(previews.value.length===0)return;
-  const JSZip=(await import("https://cdn.skypack.dev/jszip")).default;
-  const zip=new JSZip();
-  previews.value.forEach((d,i)=>{
-    const b64=d.split(",")[1];
-    zip.file(`page-${String(i+1).padStart(3,"0")}.${format.value}`,b64,{base64:true});
+  const files = previews.value.map((d, i) => {
+    const b64 = d.split(",")[1];
+    const binStr = atob(b64);
+    const u8 = new Uint8Array(binStr.length);
+    for (let j = 0; j < binStr.length; j++) u8[j] = binStr.charCodeAt(j);
+    return {
+      name: `page-${String(i+1).padStart(3,"0")}.${format.value}`,
+      data: u8
+    };
   });
-  const blob=await zip.generateAsync({type:"blob"});
-  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="pdf-pages.zip";a.click();
+  const blob = createZipBlob(files);
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "pdf-pages.zip";
+  a.click();
 }
 function downloadOne(dataUrl:string,i:number){
   const a=document.createElement("a");a.href=dataUrl;a.download=`page-${i+1}.${format.value}`;a.click();

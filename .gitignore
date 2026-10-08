@@ -34,3 +34,7 @@ coverage
 /playwright/.cache/
 # Webkit with playwright creates a salt file
 salt
+
+# Google Indexing & Cloud API secrets
+service_account*.json
+credentials*.json

@@ -6,7 +6,7 @@ import { useTheme } from './c-button.theme';
 const props = withDefaults(
   defineProps<{
     type?: 'default' | 'primary' | 'warning' | 'error'
-    variant?: 'basic' | 'text'
+    variant?: 'basic' | 'text' | 'ghost'
     disabled?: boolean
     round?: boolean
     circle?: boolean
@@ -36,7 +36,12 @@ function handleClick(event: MouseEvent) {
 }
 
 const theme = useTheme();
-const variantTheme = computed(() => theme.value[variant.value][type.value]);
+const variantTheme = computed(() => {
+  const v = (variant.value === 'ghost' ? 'text' : variant.value) || 'basic';
+  const t = type.value || 'default';
+  const variantGroup = theme.value[v as 'basic' | 'text'] || theme.value.text || theme.value.basic;
+  return variantGroup[t as 'default'] || variantGroup.default;
+});
 const tag = computed(() => {
   if (href.value) {
     return 'a';

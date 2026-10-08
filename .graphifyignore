@@ -1,0 +1,16 @@
+# Exclude minified third-party vendor bundles in public/ from AST extraction
+public/*.min.js
+public/pdf.min.js
+public/pdf.worker.min.js
+public/fontkit.umd.min.js
+
+# Exclude auto-generated TypeScript declaration files
+auto-imports.d.ts
+components.d.ts
+
+# Exclude static SEO markdown content articles and historical changelogs/prompts
+# so the architecture graph stays <5000 nodes (enabling full node-level HTML viz)
+src/content/**
+CHANGELOG.md
+it-tools-30-extra-tools-prompts.md
+it-tools-master-prompts.md

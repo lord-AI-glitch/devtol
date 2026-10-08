@@ -1,6 +1,7 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
+import { PDFDocument, rgb, StandardFonts, degrees } from "pdf-lib";
 const message = useMessage();
 const file = ref<File|null>(null);
 const text = ref("CONFIDENTIAL");
@@ -15,7 +16,6 @@ async function addWatermark(){
   if(!file.value||!text.value){message.warning("Upload PDF and enter watermark text");return;}
   isProcessing.value=true;resultUrl.value=null;
   try{
-    const {PDFDocument,rgb,StandardFonts,degrees}=await import("https://cdn.skypack.dev/pdf-lib");
     const bytes=await file.value.arrayBuffer();
     const doc=await PDFDocument.load(bytes);
     const font=await doc.embedFont(StandardFonts.HelveticaBold);

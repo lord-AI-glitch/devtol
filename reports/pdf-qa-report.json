@@ -1,0 +1,227 @@
+[
+  {
+    "target": {
+      "slug": "pdf-tools",
+      "path": "/pdf-tools",
+      "name": "PDF Tools Hub (EN)"
+    },
+    "url": "https://devtol.online/pdf-tools",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "All-in-One Free Client-Side PDF Tools Suite (No Uploads) - DevTol",
+    "hasH1": true,
+    "h1Text": "All-in-One Free Online PDF Suite",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "ar-pdf-tools",
+      "path": "/ar/pdf-tools",
+      "name": "PDF Tools Hub (AR)"
+    },
+    "url": "https://devtol.online/ar/pdf-tools",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "أدوات PDF أونلاين مجاناً (معالجة محلية 100% بدون خوادم) - DevTol",
+    "hasH1": true,
+    "h1Text": "أدوات PDF الاحترافية والمجانية",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "pdf-editor",
+      "path": "/pdf-editor",
+      "name": "PDF Editor"
+    },
+    "url": "https://devtol.online/pdf-editor",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "Free PDF Editor - Find & Replace, Edit Text, Sign & Markup",
+    "hasH1": true,
+    "h1Text": "محرر نصوص وملفات PDF",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "pdf-merge",
+      "path": "/pdf-merge",
+      "name": "PDF Merge"
+    },
+    "url": "https://devtol.online/pdf-merge",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "دمج ملفات PDF أونلاين مجاناً (سريع ومحلي 100%) - DevTol",
+    "hasH1": true,
+    "h1Text": "دمج ملفات PDF",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "pdf-split",
+      "path": "/pdf-split",
+      "name": "PDF Split"
+    },
+    "url": "https://devtol.online/pdf-split",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "تقسيم واستخراج صفحات PDF أونلاين مجاناً (سريع ومحلي 100%) - DevTol",
+    "hasH1": true,
+    "h1Text": "تقسيم واستخراج صفحات PDF",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "pdf-compress",
+      "path": "/pdf-compress",
+      "name": "PDF Compress"
+    },
+    "url": "https://devtol.online/pdf-compress",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "ضغط ملفات PDF أونلاين مجاناً (سريع ومحلي 100%) - DevTol",
+    "hasH1": true,
+    "h1Text": "ضغط ملفات PDF",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "pdf-to-image",
+      "path": "/pdf-to-image",
+      "name": "PDF to Image"
+    },
+    "url": "https://devtol.online/pdf-to-image",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "تحويل مستندات PDF إلى صور أونلاين مجاناً (سريع ومحلي 100%) - DevTol",
+    "hasH1": true,
+    "h1Text": "تحويل مستندات PDF إلى صور",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "images-to-pdf",
+      "path": "/images-to-pdf",
+      "name": "Images to PDF"
+    },
+    "url": "https://devtol.online/images-to-pdf",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "تحويل الصور إلى ملف PDF أونلاين مجاناً (سريع ومحلي 100%) - DevTol",
+    "hasH1": true,
+    "h1Text": "تحويل الصور إلى ملف PDF",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "pdf-protect",
+      "path": "/pdf-protect",
+      "name": "PDF Protect"
+    },
+    "url": "https://devtol.online/pdf-protect",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "حماية وقفل ملفات PDF بكلمة مرور أونلاين مجاناً (سريع ومحلي 100%) - DevTol",
+    "hasH1": true,
+    "h1Text": "حماية وقفل ملفات PDF بكلمة مرور",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "pdf-organize",
+      "path": "/pdf-organize",
+      "name": "PDF Organize"
+    },
+    "url": "https://devtol.online/pdf-organize",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "ترتيب وتدوير صفحات PDF أونلاين مجاناً (سريع ومحلي 100%) - DevTol",
+    "hasH1": true,
+    "h1Text": "ترتيب وتدوير صفحات PDF",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "pdf-ocr",
+      "path": "/pdf-ocr",
+      "name": "PDF OCR"
+    },
+    "url": "https://devtol.online/pdf-ocr",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "استخراج النصوص من ملفات PDF (OCR) أونلاين مجاناً (سريع ومحلي 100%) - DevTol",
+    "hasH1": true,
+    "h1Text": "استخراج النصوص من ملفات PDF (OCR)",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "pdf-redact",
+      "path": "/pdf-redact",
+      "name": "PDF Redact"
+    },
+    "url": "https://devtol.online/pdf-redact",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "تنقيح وطمس النصوص السرية في PDF أونلاين مجاناً (سريع ومحلي 100%) - DevTol",
+    "hasH1": true,
+    "h1Text": "تنقيح وطمس النصوص السرية في PDF",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "pdf-watermark-tool",
+      "path": "/pdf-watermark-tool",
+      "name": "PDF Watermark"
+    },
+    "url": "https://devtol.online/pdf-watermark-tool",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "إضافة علامة مائية لملف PDF أونلاين مجاناً (سريع ومحلي 100%) - DevTol",
+    "hasH1": true,
+    "h1Text": "إضافة علامة مائية لملف PDF",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "pdf-signature-checker",
+      "path": "/pdf-signature-checker",
+      "name": "PDF Signature Verifier"
+    },
+    "url": "https://devtol.online/pdf-signature-checker",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "فاحص تواقيع مستندات PDF أونلاين مجاناً (سريع ومحلي 100%) - DevTol",
+    "hasH1": true,
+    "h1Text": "فاحص تواقيع مستندات PDF",
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "target": {
+      "slug": "compress-pdf-200kb",
+      "path": "/compress-pdf/200kb",
+      "name": "Programmatic: Compress PDF to 200KB"
+    },
+    "url": "https://devtol.online/compress-pdf/200kb",
+    "responseStatus": 200,
+    "loadSuccess": true,
+    "pageTitle": "ضغط ملفات PDF أونلاين مجاناً (سريع ومحلي 100%) - DevTol",
+    "hasH1": true,
+    "h1Text": "ضغط ملفات PDF",
+    "consoleErrors": [],
+    "failedRequests": []
+  }
+]

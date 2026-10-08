@@ -1,7 +1,7 @@
 {
   ".eslintrc-auto-import.json": {
-    "mtime": 1790640746.6864538,
-    "seen": 1790641427.1983438,
+    "mtime": 1790645872.7502835,
+    "seen": 1790679329.4493806,
     "ast_hash": "85e333e6dd777ee027c49c590250f7df",
     "semantic_hash": ""
   },
@@ -18,15 +18,15 @@
     "semantic_hash": "822f88174871e2c3e1aa8743550074b0"
   },
   "auto-imports.d.ts": {
-    "mtime": 1790640746.6864538,
-    "seen": 1790641427.1983588,
+    "mtime": 1790645872.7502835,
+    "seen": 1790679329.4493968,
     "ast_hash": "3ef35cb46429960a311d734118473713",
     "semantic_hash": ""
   },
   "components.d.ts": {
-    "mtime": 1790640808.744774,
-    "seen": 1790641427.198361,
-    "ast_hash": "23f84b3feb11f91f8bab9e9f23af6118",
+    "mtime": 1790645920.999864,
+    "seen": 1790679329.4493988,
+    "ast_hash": "9ed80e5e118f45d225099ea35f074789",
     "semantic_hash": ""
   },
   "env.d.ts": {
@@ -36,9 +36,9 @@
     "semantic_hash": "e267e4a9558a0878bbd8d1c786b600cc"
   },
   "package.json": {
-    "mtime": 1789948210.8436196,
-    "seen": 1789948387.2509012,
-    "ast_hash": "adec1332af0e1c0483fc0851c98150c3",
+    "mtime": 1790681899.0202062,
+    "seen": 1790681952.525438,
+    "ast_hash": "d9c827f63de7ea5f3f52693a342bb3c0",
     "semantic_hash": ""
   },
   "playwright.config.ts": {
@@ -138,9 +138,9 @@
     "semantic_hash": ""
   },
   "src/components/NavbarButtons.vue": {
-    "mtime": 1790640591.8745198,
-    "seen": 1790641427.198447,
-    "ast_hash": "2df35f938ec5521333c62977566542f4",
+    "mtime": 1790644531.927657,
+    "seen": 1790645552.8314114,
+    "ast_hash": "94818ed2cae7adbedbbc26273077d718",
     "semantic_hash": ""
   },
   "src/components/SpanCopyable.vue": {
@@ -228,9 +228,9 @@
     "semantic_hash": "b04b8437bfcdffcb681213d35dc8f5eb"
   },
   "src/layouts/base.layout.vue": {
-    "mtime": 1790640571.777667,
-    "seen": 1790641427.1984777,
-    "ast_hash": "83dbc099088beeee37d5c3f9ee219829",
+    "mtime": 1790644553.145824,
+    "seen": 1790645552.8314803,
+    "ast_hash": "17ed4f9bbbb86aaae6c9dd47e11e56e5",
     "semantic_hash": ""
   },
   "src/layouts/index.ts": {
@@ -240,9 +240,9 @@
     "semantic_hash": ""
   },
   "src/layouts/tool.layout.vue": {
-    "mtime": 1790033569.1482027,
-    "seen": 1790033848.511364,
-    "ast_hash": "bcce7b9a39ae0c6884c92e528ce60ace",
+    "mtime": 1790645847.7902653,
+    "seen": 1790679329.4495258,
+    "ast_hash": "fb2632bccec1dda241bda0e1430bba94",
     "semantic_hash": ""
   },
   "src/main.ts": {
@@ -342,9 +342,9 @@
     "semantic_hash": "cd6d98d74d6d08e6c8641c2160fa7027"
   },
   "src/router.ts": {
-    "mtime": 1790640559.7709155,
-    "seen": 1790641427.1985297,
-    "ast_hash": "703c7ad3c14a001c2e8c30c310e3d58f",
+    "mtime": 1790644653.4384587,
+    "seen": 1790645552.8316147,
+    "ast_hash": "df74ff0ae93673b91be4dbff140b7d71",
     "semantic_hash": ""
   },
   "src/shims.d.ts": {
@@ -2652,9 +2652,9 @@
     "semantic_hash": ""
   },
   "scripts/generate-seo.js": {
-    "mtime": 1790640624.4415963,
-    "seen": 1790641427.198401,
-    "ast_hash": "edd2026a86bbf4fb98a7f7ef964dccc0",
+    "mtime": 1790644672.4188976,
+    "seen": 1790645552.8313093,
+    "ast_hash": "4fdf527c2b0c89b112d7de509573a43b",
     "semantic_hash": ""
   },
   ".github/FUNDING.yml": {
@@ -2748,9 +2748,9 @@
     "semantic_hash": ""
   },
   "locales/en.yml": {
-    "mtime": 1790640604.3985112,
-    "seen": 1790641427.199472,
-    "ast_hash": "fdad1d1c7dabfc497252a303afcf6bdf",
+    "mtime": 1790644539.3494887,
+    "seen": 1790645552.8339124,
+    "ast_hash": "ef60b4c74a559540918ad17f127d6d36",
     "semantic_hash": ""
   },
   "locales/es.yml": {
@@ -2802,8 +2802,8 @@
     "semantic_hash": ""
   },
   "public/robots.txt": {
-    "mtime": 1790640657.354299,
-    "seen": 1790641427.1994958,
+    "mtime": 1790644802.6701593,
+    "seen": 1790645552.8339696,
     "ast_hash": "e6b1a1e4809078589a196b8ee7f414c6",
     "semantic_hash": ""
   },
@@ -3102,9 +3102,9 @@
     "semantic_hash": ""
   },
   "PROJECT_STATE.md": {
-    "mtime": 1790198257.382602,
-    "seen": 1790198301.2851746,
-    "ast_hash": "26e938e7d835623d7c0117431aa32ef6",
+    "mtime": 1790681944.956885,
+    "seen": 1790681952.5265317,
+    "ast_hash": "d02d774fcd63df8111695ceb012febfd",
     "semantic_hash": ""
   },
   "scripts/test_node.txt": {
@@ -4260,9 +4260,9 @@
     "semantic_hash": ""
   },
   "scripts/prerender-seo-pages.js": {
-    "mtime": 1790641335.4617345,
-    "seen": 1790641427.1984072,
-    "ast_hash": "c97d8fa6b4c82395aa51911aea716ade",
+    "mtime": 1790644725.8781703,
+    "seen": 1790645552.831323,
+    "ast_hash": "ab93b163572c7251ccf46b0e592d2145",
     "semantic_hash": ""
   },
   "scripts/write_any_b64.py": {
@@ -4272,14 +4272,14 @@
     "semantic_hash": ""
   },
   "public/llms-full.txt": {
-    "mtime": 1790640657.3555086,
-    "seen": 1790641427.199493,
+    "mtime": 1790644802.6706934,
+    "seen": 1790645552.833962,
     "ast_hash": "7ea9a4f6d37794b97c6039e2eac0b72c",
     "semantic_hash": ""
   },
   "public/llms.txt": {
-    "mtime": 1790640657.354299,
-    "seen": 1790641427.1994944,
+    "mtime": 1790644802.6706934,
+    "seen": 1790645552.8339658,
     "ast_hash": "312848ae0205142cd9621728d81f8457",
     "semantic_hash": ""
   },
@@ -4368,9 +4368,9 @@
     "semantic_hash": ""
   },
   "locales/ar.yml": {
-    "mtime": 1790640614.6887772,
-    "seen": 1790641427.1994684,
-    "ast_hash": "99fddd5f9b949107237b99d7e676e00b",
+    "mtime": 1790644546.4727497,
+    "seen": 1790645552.833904,
+    "ast_hash": "cdc489cdbe87bceecef8233cbdfa148b",
     "semantic_hash": ""
   },
   "ACTION-PLAN.md": {
@@ -4620,9 +4620,9 @@
     "semantic_hash": ""
   },
   "scripts/seo-content-templates.js": {
-    "mtime": 1790641303.8776252,
-    "seen": 1790641427.1984117,
-    "ast_hash": "fd84865cd9a6901e3fd58832c796a3b4",
+    "mtime": 1790644695.6345677,
+    "seen": 1790645552.8313324,
+    "ast_hash": "61d1db5599ee7ccb822837b87520f1db",
     "semantic_hash": ""
   },
   "src/components/HomeEditorialGuide.vue": {
@@ -4635,6 +4635,144 @@
     "mtime": 1790640523.7864518,
     "seen": 1790641427.1985114,
     "ast_hash": "75e326ed576ca78471fa5bc6e6066d59",
+    "semantic_hash": ""
+  },
+  "scripts/check-links.js": {
+    "mtime": 1790643116.4694397,
+    "seen": 1790643722.9832506,
+    "ast_hash": "006b2f0497dbbecc07837d7beaf1b95f",
+    "semantic_hash": ""
+  },
+  "src/pages/PdfToolsHub.page.vue": {
+    "mtime": 1790645080.5192053,
+    "seen": 1790645552.831574,
+    "ast_hash": "7a86fc3e161c8c8c8932a254a1c5bf8f",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-report.json": {
+    "mtime": 1790679279.0628157,
+    "seen": 1790679329.4494288,
+    "ast_hash": "ad62f53b0b81b53234e7e1a370396b5d",
+    "semantic_hash": ""
+  },
+  "scripts/debug-pdf-editor.cjs": {
+    "mtime": 1790645719.3296344,
+    "seen": 1790679329.4494405,
+    "ast_hash": "9d10b84d7ff5873dba5ca0717a2e7509",
+    "semantic_hash": ""
+  },
+  "scripts/test-pdf-tools-browser.cjs": {
+    "mtime": 1790645738.3741987,
+    "seen": 1790679329.4494622,
+    "ast_hash": "c523e8322de464dfa45af03c02ed59b5",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/ar-pdf-tools.png": {
+    "mtime": 1790679227.7322812,
+    "seen": 1790679329.450909,
+    "ast_hash": "25c9e5308207ef6bd815e03a78fbcf1a",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/compress-pdf-200kb.png": {
+    "mtime": 1790679278.8650033,
+    "seen": 1790679329.4509113,
+    "ast_hash": "cc89ea96c4fa72a87b6088530ba47cbf",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/images-to-pdf.png": {
+    "mtime": 1790679253.028096,
+    "seen": 1790679329.4509132,
+    "ast_hash": "aed44d23b9a6252c9808d28fe8d5b0b7",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-compress.png": {
+    "mtime": 1790679244.7846534,
+    "seen": 1790679329.450915,
+    "ast_hash": "f13443f4c38ffc7f3d116a58f7548c8a",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-editor-networkidle.png": {
+    "mtime": 1790645727.521746,
+    "seen": 1790679329.4509168,
+    "ast_hash": "ef5d0af5e11b5e616dd011413e08f26a",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-editor.png": {
+    "mtime": 1790679231.8905911,
+    "seen": 1790679329.4509184,
+    "ast_hash": "982f2e3123b118abe819c48921658832",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-merge.png": {
+    "mtime": 1790679236.1220305,
+    "seen": 1790679329.4509199,
+    "ast_hash": "f879957f1345863ab401d1771cae2b97",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-ocr.png": {
+    "mtime": 1790679263.7792919,
+    "seen": 1790679329.4509215,
+    "ast_hash": "ee15713cb0ff6b470787bcf3cadb1ae4",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-organize.png": {
+    "mtime": 1790679260.417509,
+    "seen": 1790679329.4509232,
+    "ast_hash": "a4402c08a39948a9f9a51b1242ea3ce2",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-protect.png": {
+    "mtime": 1790679256.6373956,
+    "seen": 1790679329.450925,
+    "ast_hash": "e31cdaf5a58e7df619c371d02680a172",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-redact.png": {
+    "mtime": 1790679266.8702147,
+    "seen": 1790679329.4509265,
+    "ast_hash": "9be0b9f857b313320f6ce38a9e244c5e",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-signature-checker.png": {
+    "mtime": 1790679275.000734,
+    "seen": 1790679329.4509282,
+    "ast_hash": "844842b268f2b7e6175c9c1ca77e5b69",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-split.png": {
+    "mtime": 1790679240.7106552,
+    "seen": 1790679329.4509296,
+    "ast_hash": "32bc631ecc67118330b5aba5f8de9b1d",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-to-image.png": {
+    "mtime": 1790679248.8044128,
+    "seen": 1790679329.4509313,
+    "ast_hash": "4204d9d7162d5c667b04c4e11d01beec",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-tools.png": {
+    "mtime": 1790679222.8248255,
+    "seen": 1790679329.4509327,
+    "ast_hash": "186d9cebd22b8e446c171f079f62606d",
+    "semantic_hash": ""
+  },
+  "reports/pdf-qa-screenshots/pdf-watermark-tool.png": {
+    "mtime": 1790679271.1502435,
+    "seen": 1790679329.4509342,
+    "ast_hash": "e6ea4e4ab81de2661e10c3b0cebee340",
+    "semantic_hash": ""
+  },
+  "scripts/submit-google-indexing.mjs": {
+    "mtime": 1790681862.7069519,
+    "seen": 1790681952.525484,
+    "ast_hash": "c25f8fdee0b54ac1c4aeb8ebbf15e5b1",
+    "semantic_hash": ""
+  },
+  "docs/GOOGLE_INDEXING_API_GUIDE.md": {
+    "mtime": 1790681914.5834453,
+    "seen": 1790681952.5265372,
+    "ast_hash": "2ccc077aee433cbbc4f16fe28d500136",
     "semantic_hash": ""
   }
 }

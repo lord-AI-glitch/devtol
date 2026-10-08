@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
 const message = useMessage();
@@ -40,17 +40,20 @@ async function generate(){
       frames.push(ctx.getImageData(0,0,canvas.width,canvas.height));
       progress.value=Math.round((i+1)/frameCount*80);
     }
-    // Use gif.js for encoding
-    const GIF=(await import("https://cdn.skypack.dev/gif.js.optimized")).default;
-    const gif=new GIF({workers:2,quality:10,width:canvas.width,height:canvas.height});
-    for(const frame of frames){
-      const c=document.createElement("canvas");c.width=canvas.width;c.height=canvas.height;
-      c.getContext("2d")!.putImageData(frame,0,0);
-      gif.addFrame(c,{delay:Math.round(1000/fps.value)});
+    // Use gifenc for fast client-side GIF encoding
+    const { GIFEncoder, quantize, applyPalette } = await import("https://esm.sh/gifenc@1.0.3");
+    const gif = GIFEncoder();
+    const delay = Math.round(1000 / fps.value);
+    for (const frame of frames) {
+      const palette = quantize(frame.data, 256);
+      const index = applyPalette(frame.data, palette);
+      gif.writeFrame(index, canvas.width, canvas.height, { palette, delay });
     }
-    const blob:Blob=await new Promise(r=>gif.on("finished",r).render());
-    resultUrl.value=URL.createObjectURL(blob);
-    progress.value=100;
+    gif.finish();
+    const bytes = gif.bytes();
+    const blob = new Blob([bytes], { type: "image/gif" });
+    resultUrl.value = URL.createObjectURL(blob);
+    progress.value = 100;
     message.success("GIF created!");
   }catch(e:any){message.error(e?.message||"Failed to generate GIF. Try a shorter clip.");}
   finally{isProcessing.value=false;}

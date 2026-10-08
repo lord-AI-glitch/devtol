@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref, computed } from "vue";
 import { useMessage } from "naive-ui";
 const message = useMessage();
@@ -64,7 +64,7 @@ function download(){if(!resultUrl.value)return;const ext=outFormat.value.split("
         <c-card>
           <p mb-2 text-sm style="color:var(--n-text-color-3)">Aspect Ratio Presets:</p>
           <div flex gap-2 mb-3 flex-wrap>
-            <c-button v-for="p in aspectPresets" :key="String(p.value)" size="small" :variant="selectedAspect===p.value?'filled':'ghost'" @click="applyAspect(p.value)">{{ p.label }}</c-button>
+            <c-button v-for="p in aspectPresets" :key="String(p.value)" size="small" :variant="selectedAspect===p.value?'basic':'text'" @click="applyAspect(p.value)">{{ p.label }}</c-button>
           </div>
           <n-grid :cols="2" :x-gap="12">
             <n-gi><n-form-item label="X"><n-input-number v-model:value="cropX" :min="0" :max="origW" style="width:100%"/></n-form-item></n-gi>

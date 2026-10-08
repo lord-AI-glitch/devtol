@@ -1,6 +1,7 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref, computed } from "vue";
 import { useMessage } from "naive-ui";
+import YAML from "yaml";
 const message = useMessage();
 const input = ref('name: John\nage: 30\ncity: "New York"\nhobbies:\n  - reading\n  - coding');
 const outputMode = ref("format");
@@ -9,10 +10,9 @@ const result = computed(async()=>null);
 const syncResult = ref<{text:string;error:string|null;valid:boolean}>({text:"",error:null,valid:true});
 async function process(){
   try{
-    const jsyaml=await import("https://cdn.skypack.dev/js-yaml");
-    const parsed=jsyaml.load(input.value);
+    const parsed = YAML.parse(input.value);
     syncResult.value={
-      text:outputMode.value==="json"?JSON.stringify(parsed,null,2):jsyaml.dump(parsed,{indent:2,lineWidth:80}),
+      text:outputMode.value==="json"?JSON.stringify(parsed,null,2):YAML.stringify(parsed,{indent:2}),
       error:null,valid:true
     };
     message.success("Valid YAML ✓");

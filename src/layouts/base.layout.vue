@@ -138,6 +138,9 @@ const tools = computed<ToolCategory[]>(() => [
 
             <!-- AdSense Compliance Links Navigation -->
             <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-medium text-slate-600 dark:text-slate-300">
+              <RouterLink :to="`${currentLangPrefix}/pdf-tools`" class="footer-nav-link font-bold text-emerald-600 dark:text-emerald-400">
+                {{ $t('home.footer.pdfTools', 'PDF Tools') }}
+              </RouterLink>
               <RouterLink :to="`${currentLangPrefix}/guides`" class="footer-nav-link font-bold text-indigo-600 dark:text-indigo-400">
                 {{ $t('home.footer.guides') }}
               </RouterLink>

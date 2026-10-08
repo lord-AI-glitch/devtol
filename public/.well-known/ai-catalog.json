@@ -1,0 +1,834 @@
+{
+  "schema_version": "2026-10",
+  "name_for_human": "DevTol — Free Client-Side Developer Utilities",
+  "name_for_model": "devtol_developer_tools",
+  "description_for_model": "Comprehensive suite of 126+ free, 100% client-side developer, cryptography, PDF, network, and data conversion utilities running locally in the browser with zero server data transmission.",
+  "base_url": "https://devtol.online",
+  "agentic_browsing": {
+    "llms_txt": "https://devtol.online/llms.txt",
+    "llms_full_txt": "https://devtol.online/llms-full.txt",
+    "sitemap_xml": "https://devtol.online/sitemap.xml",
+    "privacy_guarantee": "100% client-side execution; zero telemetry or server payload storage."
+  },
+  "categories": [
+    {
+      "category": "PDF Tools",
+      "tools": [
+        {
+          "id": "pdf-editor",
+          "title": "PDF Editor",
+          "url": "https://devtol.online/pdf-editor",
+          "description": "100% Free Client-Side PDF Editor. Edit PDF text directly, find & replace text with full Arabic support, load system fonts, add signatures, draw, and redact PDFs securely in your browser."
+        },
+        {
+          "id": "pdf-merge",
+          "title": "Merge PDF",
+          "url": "https://devtol.online/pdf-merge",
+          "description": "Merge multiple PDF files into one. 100% client-side - files never leave your browser."
+        },
+        {
+          "id": "pdf-split",
+          "title": "Split PDF",
+          "url": "https://devtol.online/pdf-split",
+          "description": "Split or extract specific pages from a PDF file. Client-side processing, total privacy."
+        },
+        {
+          "id": "pdf-compress",
+          "title": "Compress PDF",
+          "url": "https://devtol.online/pdf-compress",
+          "description": "Reduce PDF file size with adjustable quality. 100% browser-based, no uploads."
+        },
+        {
+          "id": "pdf-to-image",
+          "title": "PDF to Image",
+          "url": "https://devtol.online/pdf-to-image",
+          "description": "Convert PDF pages to PNG or JPG images. Download all pages as a ZIP. Client-side only."
+        },
+        {
+          "id": "images-to-pdf",
+          "title": "Images to PDF",
+          "url": "https://devtol.online/images-to-pdf",
+          "description": "Convert JPG, PNG, or WebP images into a single PDF document. No server uploads."
+        },
+        {
+          "id": "pdf-protect",
+          "title": "PDF Protect & Unlock",
+          "url": "https://devtol.online/pdf-protect",
+          "description": "Password-protect or unlock PDF files directly in your browser. Zero server uploads."
+        },
+        {
+          "id": "pdf-organize",
+          "title": "Organize PDF Pages",
+          "url": "https://devtol.online/pdf-organize",
+          "description": "Reorder and rotate PDF pages visually. Drag and rearrange pages then download."
+        },
+        {
+          "id": "pdf-ocr",
+          "title": "PDF OCR Text Extractor",
+          "url": "https://devtol.online/pdf-ocr",
+          "description": "Extract text from scanned PDFs and images using OCR. Supports multiple languages."
+        },
+        {
+          "id": "pdf-redact",
+          "title": "PDF Redaction Tool",
+          "url": "https://devtol.online/pdf-redact",
+          "description": "Permanently redact sensitive text from PDF files. Client-side privacy guaranteed."
+        },
+        {
+          "id": "pdf-watermark-tool",
+          "title": "PDF Watermark",
+          "url": "https://devtol.online/pdf-watermark-tool",
+          "description": "Add text watermarks to all pages of a PDF. Custom position, opacity, and font."
+        }
+      ]
+    },
+    {
+      "category": "AI Tools",
+      "tools": [
+        {
+          "id": "ai-token-cost-calculator",
+          "title": "AI token & LLM cost calculator",
+          "url": "https://devtol.online/ai-token-cost-calculator",
+          "description": "Estimate prompt tokens via BPE heuristic and compare live pricing across OpenAI, Anthropic, Gemini, and DeepSeek with prompt caching discounts."
+        },
+        {
+          "id": "ai-regex-generator-explainer",
+          "title": "AI regex generator & structural explainer",
+          "url": "https://devtol.online/ai-regex-generator-explainer",
+          "description": "Generate regular expressions from natural language prompts, disassemble pattern structures, test live strings with capture groups, and export production code."
+        },
+        {
+          "id": "sql-to-orm-converter",
+          "title": "SQL to ORM schema converter",
+          "url": "https://devtol.online/sql-to-orm-converter",
+          "description": "Convert raw SQL CREATE TABLE DDL statements into Prisma schemas, SQLAlchemy 2.0 models, Drizzle ORM, TypeORM, Go GORM, and TypeScript interfaces."
+        }
+      ]
+    },
+    {
+      "category": "Image & Media",
+      "tools": [
+        {
+          "id": "image-compressor",
+          "title": "Image Compressor",
+          "url": "https://devtol.online/image-compressor",
+          "description": "Compress JPG, PNG, and WebP images up to 90% smaller. Real-time preview, no uploads."
+        },
+        {
+          "id": "webp-converter",
+          "title": "WebP Converter",
+          "url": "https://devtol.online/webp-converter",
+          "description": "Convert WebP to PNG/JPG or convert PNG/JPG to WebP format. Client-side processing."
+        },
+        {
+          "id": "image-resizer",
+          "title": "Image Resizer & Cropper",
+          "url": "https://devtol.online/image-resizer",
+          "description": "Resize images to exact dimensions or crop to standard aspect ratios. No server uploads."
+        },
+        {
+          "id": "svg-converter",
+          "title": "SVG to PNG/JPG Converter",
+          "url": "https://devtol.online/svg-converter",
+          "description": "Convert SVG vector files to PNG, JPG at any scale. Upload file or paste SVG code."
+        },
+        {
+          "id": "exif-viewer",
+          "title": "EXIF Metadata Viewer",
+          "url": "https://devtol.online/exif-viewer",
+          "description": "View and strip EXIF metadata from photos. See camera settings, GPS location and more."
+        },
+        {
+          "id": "video-to-gif",
+          "title": "Video to GIF",
+          "url": "https://devtol.online/video-to-gif",
+          "description": "Convert video clips to animated GIF. Set start/end time, size and FPS. Client-side."
+        },
+        {
+          "id": "color-palette",
+          "title": "Color Palette Generator",
+          "url": "https://devtol.online/color-palette",
+          "description": "Generate color palettes, convert between HEX/RGB/HSL/CMYK and check WCAG contrast ratios."
+        },
+        {
+          "id": "favicon-generator",
+          "title": "Favicon Generator",
+          "url": "https://devtol.online/favicon-generator",
+          "description": "Generate all favicon sizes (16x16 to 512x512) and app icons from a single image. Download as ZIP."
+        },
+        {
+          "id": "image-watermark",
+          "title": "Image Watermark",
+          "url": "https://devtol.online/image-watermark",
+          "description": "Add text or image watermarks to photos with custom position, opacity and style."
+        },
+        {
+          "id": "qr-scanner",
+          "title": "QR Code Scanner",
+          "url": "https://devtol.online/qr-scanner",
+          "description": "Scan QR codes from images or your camera. Detects URLs, WiFi, vCards and plain text."
+        }
+      ]
+    },
+    {
+      "category": "Text Utilities",
+      "tools": [
+        {
+          "id": "word-counter",
+          "title": "Word & Character Counter",
+          "url": "https://devtol.online/word-counter",
+          "description": "Count words, characters, sentences, paragraphs and estimate reading time in real-time."
+        },
+        {
+          "id": "regex-replace",
+          "title": "Regex Find & Replace",
+          "url": "https://devtol.online/regex-replace",
+          "description": "Find and replace text using regular expressions with live preview and match highlighting."
+        },
+        {
+          "id": "text-sorter",
+          "title": "Text Sorter & Deduplicator",
+          "url": "https://devtol.online/text-sorter",
+          "description": "Sort lines, remove duplicates, trim whitespace and clean text. Multiple sort options."
+        },
+        {
+          "id": "yaml-validator",
+          "title": "YAML Validator & Formatter",
+          "url": "https://devtol.online/yaml-validator",
+          "description": "Validate, format, and convert YAML to JSON. Get detailed syntax error messages."
+        },
+        {
+          "id": "text-encrypt",
+          "title": "Text Encrypt & Decrypt",
+          "url": "https://devtol.online/text-encrypt",
+          "description": "Encrypt and decrypt text with AES-GCM using a password. Runs 100% in your browser."
+        },
+        {
+          "id": "jwt-builder",
+          "title": "JWT Builder & Signer",
+          "url": "https://devtol.online/jwt-builder",
+          "description": "Build, sign and decode JSON Web Tokens with custom header, payload and HMAC-SHA256 secret."
+        },
+        {
+          "id": "image-ocr",
+          "title": "Image OCR Text Extractor",
+          "url": "https://devtol.online/image-ocr",
+          "description": "Extract text from images using OCR. Supports English, Arabic, French, German and more."
+        },
+        {
+          "id": "mock-data-generator",
+          "title": "Mock Data Generator",
+          "url": "https://devtol.online/mock-data-generator",
+          "description": "Generate realistic dummy data: names, emails, addresses, UUIDs, dates. Export as JSON or CSV."
+        },
+        {
+          "id": "line-deduplicator",
+          "title": "Line Deduplicator",
+          "url": "https://devtol.online/line-deduplicator",
+          "description": "Remove duplicate lines, sort, trim whitespace and clean text lists instantly."
+        },
+        {
+          "id": "text-to-speech",
+          "title": "Text to Speech",
+          "url": "https://devtol.online/text-to-speech",
+          "description": "Convert text to audio with browser-native speech synthesis. Adjust voice, speed, and pitch."
+        }
+      ]
+    },
+    {
+      "category": "Crypto",
+      "tools": [
+        {
+          "id": "token-generator",
+          "title": "Token generator",
+          "url": "https://devtol.online/token-generator",
+          "description": "Generate random string with the chars you want, uppercase or lowercase letters, numbers and/or symbols."
+        },
+        {
+          "id": "hash-text",
+          "title": "Hash text",
+          "url": "https://devtol.online/hash-text",
+          "description": "Hash a text string using the function you need : MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 or RIPEMD160"
+        },
+        {
+          "id": "bcrypt",
+          "title": "Bcrypt",
+          "url": "https://devtol.online/bcrypt",
+          "description": "Hash and compare text string using bcrypt. Bcrypt is a password-hashing function based on the Blowfish cipher."
+        },
+        {
+          "id": "uuid-generator",
+          "title": "UUIDs generator",
+          "url": "https://devtol.online/uuid-generator",
+          "description": "A Universally Unique Identifier (UUID) is a 128-bit number used to identify information in computer systems. The number of possible UUIDs is 16^32, which is 2^128 or about 3.4x10^38 (which is a lot!)."
+        },
+        {
+          "id": "ulid-generator",
+          "title": "ULID generator",
+          "url": "https://devtol.online/ulid-generator",
+          "description": "Generate random Universally Unique Lexicographically Sortable Identifier (ULID)."
+        },
+        {
+          "id": "encryption",
+          "title": "Encrypt / decrypt text",
+          "url": "https://devtol.online/encryption",
+          "description": "Encrypt clear text and decrypt ciphertext using crypto algorithms like AES, TripleDES, Rabbit or RC4."
+        },
+        {
+          "id": "bip39-generator",
+          "title": "BIP39 passphrase generator",
+          "url": "https://devtol.online/bip39-generator",
+          "description": "Generate a BIP39 passphrase from an existing or random mnemonic, or get the mnemonic from the passphrase."
+        },
+        {
+          "id": "hmac-generator",
+          "title": "Hmac generator",
+          "url": "https://devtol.online/hmac-generator",
+          "description": "Computes a hash-based message authentication code (HMAC) using a secret key and your favorite hashing function."
+        },
+        {
+          "id": "rsa-key-pair-generator",
+          "title": "RSA key pair generator",
+          "url": "https://devtol.online/rsa-key-pair-generator",
+          "description": "Generate a new random RSA private and public pem certificate key pair."
+        },
+        {
+          "id": "password-strength-analyser",
+          "title": "Password strength analyser",
+          "url": "https://devtol.online/password-strength-analyser",
+          "description": "Discover the strength of your password with this client-side-only password strength analyser and crack time estimation tool."
+        },
+        {
+          "id": "pdf-signature-checker",
+          "title": "PDF signature checker",
+          "url": "https://devtol.online/pdf-signature-checker",
+          "description": "Verify the signatures of a PDF file. A signed PDF file contains one or more signatures that may be used to determine whether the contents of the file have been altered since the file was signed."
+        }
+      ]
+    },
+    {
+      "category": "Converter",
+      "tools": [
+        {
+          "id": "date-converter",
+          "title": "Date-time converter",
+          "url": "https://devtol.online/date-converter",
+          "description": "Convert date and time into the various different formats"
+        },
+        {
+          "id": "base-converter",
+          "title": "Integer base converter",
+          "url": "https://devtol.online/base-converter",
+          "description": "Convert a number between different bases (decimal, hexadecimal, binary, octal, base64, ...)"
+        },
+        {
+          "id": "roman-numeral-converter",
+          "title": "Roman numeral converter",
+          "url": "https://devtol.online/roman-numeral-converter",
+          "description": "Convert Roman numerals to numbers and convert numbers to Roman numerals."
+        },
+        {
+          "id": "base64-string-converter",
+          "title": "Base64 string encoder/decoder",
+          "url": "https://devtol.online/base64-string-converter",
+          "description": "Simply encode and decode strings into their base64 representation."
+        },
+        {
+          "id": "base64-file-converter",
+          "title": "Base64 file converter",
+          "url": "https://devtol.online/base64-file-converter",
+          "description": "Convert a string, file, or image into its base64 representation."
+        },
+        {
+          "id": "color-converter",
+          "title": "Color converter",
+          "url": "https://devtol.online/color-converter",
+          "description": "Convert color between the different formats (hex, rgb, hsl and css name)"
+        },
+        {
+          "id": "case-converter",
+          "title": "Case converter",
+          "url": "https://devtol.online/case-converter",
+          "description": "Transform the case of a string and choose between different formats"
+        },
+        {
+          "id": "text-to-nato-alphabet",
+          "title": "Text to NATO alphabet",
+          "url": "https://devtol.online/text-to-nato-alphabet",
+          "description": "Transform text into the NATO phonetic alphabet for oral transmission."
+        },
+        {
+          "id": "text-to-binary",
+          "title": "Text to ASCII binary",
+          "url": "https://devtol.online/text-to-binary",
+          "description": "Convert text to its ASCII binary representation and vice-versa."
+        },
+        {
+          "id": "text-to-unicode",
+          "title": "Text to Unicode",
+          "url": "https://devtol.online/text-to-unicode",
+          "description": "Parse and convert text to unicode and vice-versa"
+        },
+        {
+          "id": "yaml-to-json-converter",
+          "title": "YAML to JSON converter",
+          "url": "https://devtol.online/yaml-to-json-converter",
+          "description": "Simply convert YAML to JSON with this online live converter."
+        },
+        {
+          "id": "yaml-to-toml",
+          "title": "YAML to TOML",
+          "url": "https://devtol.online/yaml-to-toml",
+          "description": "Parse and convert YAML to TOML."
+        },
+        {
+          "id": "json-to-yaml-converter",
+          "title": "JSON to YAML converter",
+          "url": "https://devtol.online/json-to-yaml-converter",
+          "description": "Simply convert JSON to YAML with this online live converter."
+        },
+        {
+          "id": "json-to-toml",
+          "title": "JSON to TOML",
+          "url": "https://devtol.online/json-to-toml",
+          "description": "Parse and convert JSON to TOML."
+        },
+        {
+          "id": "list-converter",
+          "title": "List converter",
+          "url": "https://devtol.online/list-converter",
+          "description": "This tool can process column-based data and apply various changes (transpose, add prefix and suffix, reverse list, sort list, lowercase values, truncate values) to each row."
+        },
+        {
+          "id": "toml-to-json",
+          "title": "TOML to JSON",
+          "url": "https://devtol.online/toml-to-json",
+          "description": "Parse and convert TOML to JSON."
+        },
+        {
+          "id": "toml-to-yaml",
+          "title": "TOML to YAML",
+          "url": "https://devtol.online/toml-to-yaml",
+          "description": "Parse and convert TOML to YAML."
+        },
+        {
+          "id": "xml-to-json",
+          "title": "XML to JSON",
+          "url": "https://devtol.online/xml-to-json",
+          "description": "Convert XML to JSON"
+        },
+        {
+          "id": "json-to-xml",
+          "title": "JSON to XML",
+          "url": "https://devtol.online/json-to-xml",
+          "description": "Convert JSON to XML"
+        },
+        {
+          "id": "markdown-to-html",
+          "title": "Markdown to HTML",
+          "url": "https://devtol.online/markdown-to-html",
+          "description": "Convert Markdown to Html and allow to print (as PDF)"
+        }
+      ]
+    },
+    {
+      "category": "Web",
+      "tools": [
+        {
+          "id": "url-encoder",
+          "title": "Encode/decode URL-formatted strings",
+          "url": "https://devtol.online/url-encoder",
+          "description": "Encode text to URL-encoded format (also known as \"percent-encoded\"), or decode from it."
+        },
+        {
+          "id": "html-entities",
+          "title": "Escape HTML entities",
+          "url": "https://devtol.online/html-entities",
+          "description": "Escape or unescape HTML entities (replace characters like <,>, &, \" and \\' with their HTML version)"
+        },
+        {
+          "id": "url-parser",
+          "title": "URL parser",
+          "url": "https://devtol.online/url-parser",
+          "description": "Parse a URL into its separate constituent parts (protocol, origin, params, port, username-password, ...)"
+        },
+        {
+          "id": "device-information",
+          "title": "Device information",
+          "url": "https://devtol.online/device-information",
+          "description": "Get information about your current device (screen size, pixel-ratio, user agent, ...)"
+        },
+        {
+          "id": "basic-auth-generator",
+          "title": "Basic auth generator",
+          "url": "https://devtol.online/basic-auth-generator",
+          "description": "Generate a base64 basic auth header from a username and password."
+        },
+        {
+          "id": "og-meta-generator",
+          "title": "Open graph meta generator",
+          "url": "https://devtol.online/og-meta-generator",
+          "description": "Generate open-graph and socials HTML meta tags for your website."
+        },
+        {
+          "id": "otp-generator",
+          "title": "OTP code generator",
+          "url": "https://devtol.online/otp-generator",
+          "description": "Generate and validate time-based OTP (one time password) for multi-factor authentication."
+        },
+        {
+          "id": "mime-types",
+          "title": "MIME types",
+          "url": "https://devtol.online/mime-types",
+          "description": "Convert MIME types to file extensions and vice-versa."
+        },
+        {
+          "id": "jwt-parser",
+          "title": "JWT parser",
+          "url": "https://devtol.online/jwt-parser",
+          "description": "Parse and decode your JSON Web Token (jwt) and display its content."
+        },
+        {
+          "id": "keycode-info",
+          "title": "Keycode info",
+          "url": "https://devtol.online/keycode-info",
+          "description": "Find the javascript keycode, code, location and modifiers of any pressed key."
+        },
+        {
+          "id": "slugify-string",
+          "title": "Slugify string",
+          "url": "https://devtol.online/slugify-string",
+          "description": "Make a string url, filename and id safe."
+        },
+        {
+          "id": "html-wysiwyg-editor",
+          "title": "HTML WYSIWYG editor",
+          "url": "https://devtol.online/html-wysiwyg-editor",
+          "description": "Online, feature-rich WYSIWYG HTML editor which generates the source code of the content immediately."
+        },
+        {
+          "id": "user-agent-parser",
+          "title": "User-agent parser",
+          "url": "https://devtol.online/user-agent-parser",
+          "description": "Detect and parse Browser, Engine, OS, CPU, and Device type/model from an user-agent string."
+        },
+        {
+          "id": "http-status-codes",
+          "title": "HTTP status codes",
+          "url": "https://devtol.online/http-status-codes",
+          "description": "The list of all HTTP status codes, their name, and their meaning."
+        },
+        {
+          "id": "json-diff",
+          "title": "JSON diff",
+          "url": "https://devtol.online/json-diff",
+          "description": "Compare two JSON objects and get the differences between them."
+        },
+        {
+          "id": "safelink-decoder",
+          "title": "Outlook Safelink decoder",
+          "url": "https://devtol.online/safelink-decoder",
+          "description": "Decode Outlook SafeLink links"
+        }
+      ]
+    },
+    {
+      "category": "Images and videos",
+      "tools": [
+        {
+          "id": "qrcode-generator",
+          "title": "QR Code generator",
+          "url": "https://devtol.online/qrcode-generator",
+          "description": "Generate and download a QR code for a URL (or just plain text), and customize the background and foreground colors."
+        },
+        {
+          "id": "wifi-qrcode-generator",
+          "title": "WiFi QR Code generator",
+          "url": "https://devtol.online/wifi-qrcode-generator",
+          "description": "Generate and download QR codes for quick connections to WiFi networks."
+        },
+        {
+          "id": "svg-placeholder-generator",
+          "title": "SVG placeholder generator",
+          "url": "https://devtol.online/svg-placeholder-generator",
+          "description": "Generate svg images to use as a placeholder in your applications."
+        },
+        {
+          "id": "camera-recorder",
+          "title": "Camera recorder",
+          "url": "https://devtol.online/camera-recorder",
+          "description": "Take a picture or record a video from your webcam or camera."
+        }
+      ]
+    },
+    {
+      "category": "Development",
+      "tools": [
+        {
+          "id": "git-memo",
+          "title": "Git cheatsheet",
+          "url": "https://devtol.online/git-memo",
+          "description": "Git is a decentralized version management software. With this cheatsheet, you will have quick access to the most common git commands."
+        },
+        {
+          "id": "random-port-generator",
+          "title": "Random port generator",
+          "url": "https://devtol.online/random-port-generator",
+          "description": "Generate random port numbers outside of the range of \"known\" ports (0-1023)."
+        },
+        {
+          "id": "crontab-generator",
+          "title": "Crontab generator",
+          "url": "https://devtol.online/crontab-generator",
+          "description": "Validate and generate crontab and get the human-readable description of the cron schedule."
+        },
+        {
+          "id": "json-prettify",
+          "title": "JSON prettify and format",
+          "url": "https://devtol.online/json-prettify",
+          "description": "Prettify your JSON string into a friendly, human-readable format."
+        },
+        {
+          "id": "json-minify",
+          "title": "JSON minify",
+          "url": "https://devtol.online/json-minify",
+          "description": "Minify and compress your JSON by removing unnecessary whitespace."
+        },
+        {
+          "id": "json-to-csv",
+          "title": "JSON to CSV",
+          "url": "https://devtol.online/json-to-csv",
+          "description": "Convert JSON to CSV with automatic header detection."
+        },
+        {
+          "id": "sql-prettify",
+          "title": "SQL prettify and format",
+          "url": "https://devtol.online/sql-prettify",
+          "description": "Format and prettify your SQL queries online (it supports various SQL dialects)."
+        },
+        {
+          "id": "chmod-calculator",
+          "title": "Chmod calculator",
+          "url": "https://devtol.online/chmod-calculator",
+          "description": "Compute your chmod permissions and commands with this online chmod calculator."
+        },
+        {
+          "id": "docker-run-to-docker-compose-converter",
+          "title": "Docker run to Docker compose converter",
+          "url": "https://devtol.online/docker-run-to-docker-compose-converter",
+          "description": "Transforms \"docker run\" commands into docker-compose files!"
+        },
+        {
+          "id": "xml-formatter",
+          "title": "XML formatter",
+          "url": "https://devtol.online/xml-formatter",
+          "description": "Prettify your XML string into a friendly, human-readable format."
+        },
+        {
+          "id": "yaml-prettify",
+          "title": "YAML prettify and format",
+          "url": "https://devtol.online/yaml-prettify",
+          "description": "Prettify your YAML string into a friendly, human-readable format."
+        },
+        {
+          "id": "email-normalizer",
+          "title": "Email normalizer",
+          "url": "https://devtol.online/email-normalizer",
+          "description": "Normalize email addresses to a standard format for easier comparison. Useful for deduplication and data cleaning."
+        },
+        {
+          "id": "regex-tester",
+          "title": "Regex Tester",
+          "url": "https://devtol.online/regex-tester",
+          "description": "Test your regular expressions with sample text."
+        },
+        {
+          "id": "regex-memo",
+          "title": "Regex cheatsheet",
+          "url": "https://devtol.online/regex-memo",
+          "description": "Javascript Regex/Regular Expression cheatsheet"
+        },
+        {
+          "id": "curl-to-code-converter",
+          "title": "cURL to code converter",
+          "url": "https://devtol.online/curl-to-code-converter",
+          "description": "Convert cURL commands into clean, production-ready code in Python, JavaScript, TypeScript, Go, PHP, Rust, and Java with 100% client-side privacy."
+        }
+      ]
+    },
+    {
+      "category": "Network",
+      "tools": [
+        {
+          "id": "ipv4-subnet-calculator",
+          "title": "IPv4 subnet calculator",
+          "url": "https://devtol.online/ipv4-subnet-calculator",
+          "description": "Parse your IPv4 CIDR blocks and get all the info you need about your subnet."
+        },
+        {
+          "id": "ipv4-address-converter",
+          "title": "IPv4 address converter",
+          "url": "https://devtol.online/ipv4-address-converter",
+          "description": "Convert an IP address into decimal, binary, hexadecimal, or even an IPv6 representation of it."
+        },
+        {
+          "id": "ipv4-range-expander",
+          "title": "IPv4 range expander",
+          "url": "https://devtol.online/ipv4-range-expander",
+          "description": "Given a start and an end IPv4 address, this tool calculates a valid IPv4 subnet along with its CIDR notation."
+        },
+        {
+          "id": "mac-address-lookup",
+          "title": "MAC address lookup",
+          "url": "https://devtol.online/mac-address-lookup",
+          "description": "Find the vendor and manufacturer of a device by its MAC address."
+        },
+        {
+          "id": "mac-address-generator",
+          "title": "MAC address generator",
+          "url": "https://devtol.online/mac-address-generator",
+          "description": "Enter the quantity and prefix. MAC addresses will be generated in your chosen case (uppercase or lowercase)"
+        },
+        {
+          "id": "ipv6-ula-generator",
+          "title": "IPv6 ULA generator",
+          "url": "https://devtol.online/ipv6-ula-generator",
+          "description": "Generate your own local, non-routable IP addresses for your network according to RFC4193."
+        }
+      ]
+    },
+    {
+      "category": "Math",
+      "tools": [
+        {
+          "id": "math-evaluator",
+          "title": "Math evaluator",
+          "url": "https://devtol.online/math-evaluator",
+          "description": "A calculator for evaluating mathematical expressions. You can use functions like sqrt, cos, sin, abs, etc."
+        },
+        {
+          "id": "eta-calculator",
+          "title": "ETA calculator",
+          "url": "https://devtol.online/eta-calculator",
+          "description": "An ETA (Estimated Time of Arrival) calculator to determine the approximate end time of a task, for example, the end time and duration of a file download."
+        },
+        {
+          "id": "percentage-calculator",
+          "title": "Percentage calculator",
+          "url": "https://devtol.online/percentage-calculator",
+          "description": "Easily calculate percentages from a value to another value, or from a percentage to a value."
+        }
+      ]
+    },
+    {
+      "category": "Measurement",
+      "tools": [
+        {
+          "id": "chronometer",
+          "title": "Chronometer",
+          "url": "https://devtol.online/chronometer",
+          "description": "Monitor the duration of a thing. Basically a chronometer with simple chronometer features."
+        },
+        {
+          "id": "temperature-converter",
+          "title": "Temperature converter",
+          "url": "https://devtol.online/temperature-converter",
+          "description": "Degrees temperature conversions for Kelvin, Celsius, Fahrenheit, Rankine, Delisle, Newton, Réaumur, and Rømer."
+        },
+        {
+          "id": "benchmark-builder",
+          "title": "Benchmark builder",
+          "url": "https://devtol.online/benchmark-builder",
+          "description": "Easily compare execution time of tasks with this very simple online benchmark builder."
+        }
+      ]
+    },
+    {
+      "category": "Text",
+      "tools": [
+        {
+          "id": "lorem-ipsum-generator",
+          "title": "Lorem ipsum generator",
+          "url": "https://devtol.online/lorem-ipsum-generator",
+          "description": "Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content"
+        },
+        {
+          "id": "text-statistics",
+          "title": "Text statistics",
+          "url": "https://devtol.online/text-statistics",
+          "description": "Get information about a text, the number of characters, the number of words, its size in bytes, ..."
+        },
+        {
+          "id": "emoji-picker",
+          "title": "Emoji picker",
+          "url": "https://devtol.online/emoji-picker",
+          "description": "Copy and paste emojis easily and get the unicode and code points value of each emoji."
+        },
+        {
+          "id": "string-obfuscator",
+          "title": "String obfuscator",
+          "url": "https://devtol.online/string-obfuscator",
+          "description": "Obfuscate a string (like a secret, an IBAN, or a token) to make it shareable and identifiable without revealing its content."
+        },
+        {
+          "id": "text-diff",
+          "title": "Text diff",
+          "url": "https://devtol.online/text-diff",
+          "description": "Compare two texts and see the differences between them."
+        },
+        {
+          "id": "numeronym-generator",
+          "title": "Numeronym generator",
+          "url": "https://devtol.online/numeronym-generator",
+          "description": "A numeronym is a word where a number is used to form an abbreviation. For example, \"i18n\" is a numeronym of \"internationalization\" where 18 stands for the number of letters between the first i and the last n in the word."
+        },
+        {
+          "id": "ascii-text-drawer",
+          "title": "ASCII Art Text Generator",
+          "url": "https://devtol.online/ascii-text-drawer",
+          "description": "Create ASCII art text with many fonts and styles."
+        }
+      ]
+    },
+    {
+      "category": "Data",
+      "tools": [
+        {
+          "id": "phone-parser-and-formatter",
+          "title": "Phone parser and formatter",
+          "url": "https://devtol.online/phone-parser-and-formatter",
+          "description": "Parse, validate and format phone numbers. Get information about the phone number, like the country code, type, etc."
+        },
+        {
+          "id": "iban-validator-and-parser",
+          "title": "IBAN validator and parser",
+          "url": "https://devtol.online/iban-validator-and-parser",
+          "description": "Validate and parse IBAN numbers. Check if an IBAN is valid and get the country, BBAN, if it is a QR-IBAN and the IBAN friendly format."
+        }
+      ]
+    },
+    {
+      "category": "Finance",
+      "tools": [
+        {
+          "id": "mortgage-calculator",
+          "title": "Mortgage calculator",
+          "url": "https://devtol.online/mortgage-calculator",
+          "description": "Calculate your monthly mortgage payment including principal, interest, taxes, and insurance (PITI) with complete amortization schedule."
+        },
+        {
+          "id": "compound-interest-calculator",
+          "title": "Compound interest calculator",
+          "url": "https://devtol.online/compound-interest-calculator",
+          "description": "Calculate compound interest on your investments or savings with regular deposits and detailed yearly breakdown."
+        },
+        {
+          "id": "adsense-revenue-calculator",
+          "title": "AdSense revenue calculator",
+          "url": "https://devtol.online/adsense-revenue-calculator",
+          "description": "Estimate your Google AdSense daily, monthly, and yearly revenue based on pageviews, CTR%, CPC, or RPM across various industry niches."
+        }
+      ]
+    }
+  ]
+}

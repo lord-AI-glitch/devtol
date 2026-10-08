@@ -28,6 +28,7 @@ const staticRoutes = [
   { path: '/', priority: '1.0', changefreq: 'daily', title: 'DevTol — 126+ Free Online Developer Tools | 100% Client-Side' },
   { path: '/guides', priority: '0.9', changefreq: 'weekly', title: 'Developer Engineering Guides & Technical Architecture' },
   { path: '/deals', priority: '0.8', changefreq: 'weekly', title: 'Developer Deals, Cloud Credits & Partner Perks' },
+  { path: '/pdf-tools', priority: '0.9', changefreq: 'weekly', title: 'Free PDF Tools Online — 100% Client-Side & Private' },
   { path: '/about', priority: '0.8', changefreq: 'monthly', title: 'About Us & Editorial Standards' },
   { path: '/privacy-policy', priority: '0.6', changefreq: 'monthly', title: 'Privacy Policy & Local Processing' },
   { path: '/terms-of-service', priority: '0.6', changefreq: 'monthly', title: 'Terms of Service' },
@@ -265,6 +266,146 @@ const programmaticScenarios = [
     title: 'ISO 8601 to Unix Timestamp Converter',
     description: 'Convert ISO 8601 date string to Unix epoch seconds and milliseconds.',
   },
+  {
+    path: '/compress-pdf/100kb',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Compress PDF to 100KB Online Free — 100% Client-Side',
+    description: 'Compress PDF files down to 100KB online for job applications, email attachments, and government portals without uploading files.',
+  },
+  {
+    path: '/compress-pdf/200kb',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Compress PDF to 200KB Online Free — Fast & Private',
+    description: 'Reduce PDF file size to 200KB or less locally in your browser. Fast, free, and completely secure.',
+  },
+  {
+    path: '/compress-pdf/500kb',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Compress PDF to 500KB Online Free — High Quality',
+    description: 'Compress PDF documents to under 500KB with crystal-clear text and image quality preserved.',
+  },
+  {
+    path: '/compress-pdf/1mb',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Compress PDF to 1MB Online Free — Instant Local Compression',
+    description: 'Shrink large PDF documents down to 1MB instantly without file size limits or paywalls.',
+  },
+  {
+    path: '/merge-pdf/combine-two-pdfs',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Combine Two PDF Files Online Free — Instant & Private',
+    description: 'Merge and combine two PDF files into one document in seconds. 100% client-side, zero server storage.',
+  },
+  {
+    path: '/merge-pdf/merge-scanned-documents',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Merge Scanned Documents into One PDF Online',
+    description: 'Combine multiple scanned document pages, receipts, and invoices into a single organized PDF file.',
+  },
+  {
+    path: '/pdf-split/extract-pages',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Extract Pages from PDF Online Free — Fast Page Extractor',
+    description: 'Extract specific single or multiple pages from your PDF document and save as a new PDF file instantly.',
+  },
+  {
+    path: '/pdf-split/split-by-range',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Split PDF by Page Range Online Free — Precision Splitting',
+    description: 'Divide large PDF documents into smaller parts by custom page ranges (e.g. 1-5, 6-10).',
+  },
+  {
+    path: '/pdf-to-image/pdf-to-jpg',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Convert PDF to JPG High Resolution Online Free',
+    description: 'Convert every PDF page into high-quality JPG images. Download individual images or all pages in a ZIP archive.',
+  },
+  {
+    path: '/pdf-to-image/pdf-to-png',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Convert PDF to Transparent PNG Online Free',
+    description: 'Convert PDF documents to crisp, lossless PNG images locally without uploading documents to external servers.',
+  },
+  {
+    path: '/images-to-pdf/jpg-to-pdf',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Convert JPG to PDF Online Free — Combine Photos to PDF',
+    description: 'Convert JPG photos and graphics into a clean, compact PDF document. Reorder pages and adjust margins freely.',
+  },
+  {
+    path: '/images-to-pdf/png-to-pdf',
+    priority: '0.8',
+    changefreq: 'weekly',
+    title: 'Convert PNG to PDF Online Free — High Quality PDF Document',
+    description: 'Convert lossless PNG graphics and illustrations into professional PDF documents instantly.',
+  },
+  {
+    path: '/vs/ilovepdf',
+    priority: '0.9',
+    changefreq: 'weekly',
+    title: 'DevTol vs iLovePDF — 100% Client-Side Private PDF Alternative',
+    description: 'Compare DevTol vs iLovePDF: Merge, split, compress, and convert PDFs locally in your browser via WebAssembly with zero cloud server uploads or daily paywall limits.',
+  },
+  {
+    path: '/vs/smallpdf',
+    priority: '0.9',
+    changefreq: 'weekly',
+    title: 'DevTol vs Smallpdf — Free Unlimited Offline-Capable PDF Suite',
+    description: 'Why engineers and privacy-conscious teams switch from Smallpdf to DevTol for unlimited, zero-upload local PDF compression, OCR, and digital watermarking.',
+  },
+  {
+    path: '/vs/cyberchef',
+    priority: '0.9',
+    changefreq: 'weekly',
+    title: 'DevTol vs CyberChef — Modern Fast Web Cryptography & Encoding Suite',
+    description: 'Compare DevTol vs GCHQ CyberChef: Instant, dedicated UI routes for AES/RSA encryption, hashing, JWT decoding, Base64, and binary inspection with zero UI lag.',
+  },
+  {
+    path: '/vs/devutils',
+    priority: '0.9',
+    changefreq: 'weekly',
+    title: 'DevTol vs DevUtils — Free Cross-Platform Browser Alternative',
+    description: 'Get all the power of macOS DevUtils free in any browser on Windows, Linux, macOS, and mobile with 100% local execution and PWA offline support.',
+  },
+  {
+    path: '/vs/jwt-io',
+    priority: '0.9',
+    changefreq: 'weekly',
+    title: 'DevTol vs JWT.io — Private Client-Side JWT Decoder & Key Generator',
+    description: 'Decode, verify, and inspect JSON Web Tokens (JWT) alongside HMAC/RSA key generation and OAuth debugging in a unified zero-telemetry workspace.',
+  },
+  {
+    path: '/vs/jsonlint',
+    priority: '0.9',
+    changefreq: 'weekly',
+    title: 'DevTol vs JSONLint — Ad-Free JSON Formatter, Diff & TypeScript Generator',
+    description: 'Validate, prettify, minify, diff, and convert JSON to TypeScript, Go, Rust, or CSV locally without intrusive ads or server-side payload logging.',
+  },
+  {
+    path: '/vs/regex101',
+    priority: '0.9',
+    changefreq: 'weekly',
+    title: 'DevTol vs Regex101 — Fast Client-Side Regular Expression Tester & Cheatsheet',
+    description: 'Test JavaScript and PCRE regular expressions with instant match highlighting, capture group extraction, and integrated developer tools in one offline PWA.',
+  },
+  {
+    path: '/vs/base64decode',
+    priority: '0.9',
+    changefreq: 'weekly',
+    title: 'DevTol vs Base64Decode.org — Zero-Upload Base64 String & File Encoder',
+    description: 'Encode and decode Base64 strings, images, and binary files locally in browser RAM without sending sensitive credentials or API payloads to remote servers.',
+  },
 ];
 
 // Combine all routes
@@ -448,5 +589,41 @@ llmsFullContent += `Each utility operates as an independent client-side module a
 const llmsFullPath = path.join(publicDir, 'llms-full.txt');
 fs.writeFileSync(llmsFullPath, llmsFullContent.trim() + '\n', 'utf8');
 console.log(`[SEO Generator] Successfully generated ${llmsFullPath}`);
+
+// 7. Generate .well-known/ai-catalog.json (Lighthouse 13.4.0 Agentic Browsing & WebMCP Standard)
+const wellKnownDir = path.join(publicDir, '.well-known');
+if (!fs.existsSync(wellKnownDir)) {
+  fs.mkdirSync(wellKnownDir, { recursive: true });
+}
+
+const aiCatalog = {
+  schema_version: '2026-10',
+  name_for_human: 'DevTol — Free Client-Side Developer Utilities',
+  name_for_model: 'devtol_developer_tools',
+  description_for_model: 'Comprehensive suite of 126+ free, 100% client-side developer, cryptography, PDF, network, and data conversion utilities running locally in the browser with zero server data transmission.',
+  base_url: BASE_URL,
+  agentic_browsing: {
+    llms_txt: `${BASE_URL}/llms.txt`,
+    llms_full_txt: `${BASE_URL}/llms-full.txt`,
+    sitemap_xml: `${BASE_URL}/sitemap.xml`,
+    privacy_guarantee: '100% client-side execution; zero telemetry or server payload storage.',
+  },
+  categories: categoriesWithTools.map(cat => ({
+    category: cat.name,
+    tools: cat.tools
+      .map(varName => toolDetailMap.get(varName))
+      .filter(Boolean)
+      .map(t => ({
+        id: t.slug,
+        title: t.title,
+        url: `${BASE_URL}${t.path}`,
+        description: t.description,
+      })),
+  })),
+};
+
+const aiCatalogPath = path.join(wellKnownDir, 'ai-catalog.json');
+fs.writeFileSync(aiCatalogPath, JSON.stringify(aiCatalog, null, 2) + '\n', 'utf8');
+console.log(`[SEO Generator] Successfully generated ${aiCatalogPath}`);
 
 console.log('[SEO Generator] All SEO assets generated successfully!');

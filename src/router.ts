@@ -46,6 +46,13 @@ const localizedGuidesRoutes = supportedLangs.map(lang => ({
   meta: { lang },
 }));
 
+const localizedPdfToolsRoutes = supportedLangs.map(lang => ({
+  path: `/${lang}/pdf-tools`,
+  name: `${lang}-pdf-tools`,
+  component: () => import('./pages/PdfToolsHub.page.vue'),
+  meta: { lang },
+}));
+
 const localizedLegalRoutes = supportedLangs.flatMap(lang => [
   {
     path: `/${lang}/about`,
@@ -106,6 +113,11 @@ const localizedLegalRoutes = supportedLangs.flatMap(lang => [
 const dockerTool = tools.find(t => t.path === '/docker-run-to-docker-compose-converter');
 const colorTool = tools.find(t => t.path === '/color-converter');
 const dateTool = tools.find(t => t.path === '/date-converter');
+const pdfCompressTool = tools.find(t => t.path === '/pdf-compress');
+const pdfMergeTool = tools.find(t => t.path === '/pdf-merge');
+const pdfSplitTool = tools.find(t => t.path === '/pdf-split');
+const pdfToImageTool = tools.find(t => t.path === '/pdf-to-image');
+const imagesToPdfTool = tools.find(t => t.path === '/images-to-pdf');
 
 const programmaticRoutes = [
   {
@@ -137,6 +149,48 @@ const programmaticRoutes = [
     name: 'date-time-converter-pair',
     component: dateTool?.component,
     meta: { isTool: true, layout: layouts.toolLayout, name: dateTool?.name },
+  },
+  {
+    path: '/compress-pdf/:preset',
+    name: 'compress-pdf-preset',
+    component: pdfCompressTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: pdfCompressTool?.name },
+  },
+  {
+    path: '/pdf-compress/:preset',
+    name: 'pdf-compress-preset',
+    component: pdfCompressTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: pdfCompressTool?.name },
+  },
+  {
+    path: '/merge-pdf/:preset',
+    name: 'merge-pdf-preset',
+    component: pdfMergeTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: pdfMergeTool?.name },
+  },
+  {
+    path: '/pdf-merge/:preset',
+    name: 'pdf-merge-preset',
+    component: pdfMergeTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: pdfMergeTool?.name },
+  },
+  {
+    path: '/pdf-split/:preset',
+    name: 'pdf-split-preset',
+    component: pdfSplitTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: pdfSplitTool?.name },
+  },
+  {
+    path: '/pdf-to-image/:preset',
+    name: 'pdf-to-image-preset',
+    component: pdfToImageTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: pdfToImageTool?.name },
+  },
+  {
+    path: '/images-to-pdf/:preset',
+    name: 'images-to-pdf-preset',
+    component: imagesToPdfTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: imagesToPdfTool?.name },
   },
 ];
 
@@ -171,6 +225,48 @@ const localizedProgrammaticRoutes = supportedLangs.flatMap(lang => [
     component: dateTool?.component,
     meta: { isTool: true, layout: layouts.toolLayout, name: dateTool?.name, lang },
   },
+  {
+    path: `/${lang}/compress-pdf/:preset`,
+    name: `${lang}-compress-pdf-preset`,
+    component: pdfCompressTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: pdfCompressTool?.name, lang },
+  },
+  {
+    path: `/${lang}/pdf-compress/:preset`,
+    name: `${lang}-pdf-compress-preset`,
+    component: pdfCompressTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: pdfCompressTool?.name, lang },
+  },
+  {
+    path: `/${lang}/merge-pdf/:preset`,
+    name: `${lang}-merge-pdf-preset`,
+    component: pdfMergeTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: pdfMergeTool?.name, lang },
+  },
+  {
+    path: `/${lang}/pdf-merge/:preset`,
+    name: `${lang}-pdf-merge-preset`,
+    component: pdfMergeTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: pdfMergeTool?.name, lang },
+  },
+  {
+    path: `/${lang}/pdf-split/:preset`,
+    name: `${lang}-pdf-split-preset`,
+    component: pdfSplitTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: pdfSplitTool?.name, lang },
+  },
+  {
+    path: `/${lang}/pdf-to-image/:preset`,
+    name: `${lang}-pdf-to-image-preset`,
+    component: pdfToImageTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: pdfToImageTool?.name, lang },
+  },
+  {
+    path: `/${lang}/images-to-pdf/:preset`,
+    name: `${lang}-images-to-pdf-preset`,
+    component: imagesToPdfTool?.component,
+    meta: { isTool: true, layout: layouts.toolLayout, name: imagesToPdfTool?.name, lang },
+  },
 ]);
 
 const toolsRedirectRoutes = tools
@@ -200,6 +296,12 @@ const router = createRouter({
       component: () => import('./pages/Guides.page.vue'),
     },
     ...localizedGuidesRoutes,
+    {
+      path: '/pdf-tools',
+      name: 'pdf-tools',
+      component: () => import('./pages/PdfToolsHub.page.vue'),
+    },
+    ...localizedPdfToolsRoutes,
     ...localizedLegalRoutes,
     {
       path: '/about',

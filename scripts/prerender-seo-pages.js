@@ -40,6 +40,14 @@ if (cssMatch) {
   }
 }
 
+// Clean baseHtmlTemplate so it is an unpolluted blank template for all prerendered pages
+baseHtmlTemplate = baseHtmlTemplate
+  .replace(/\s*<!--\s*International Hreflang[\s\S]*?-->/gi, '')
+  .replace(/\s*<link\s+rel="alternate"\s+hreflang="[^"]*"\s+href="[^"]*"\s*\/?>/gi, '')
+  .replace(/\s*<!--\s*Dynamic Tool Schema[\s\S]*?-->/gi, '')
+  .replace(/\s*<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi, '')
+  .replace(/<div id="app">[\s\S]*?<\/div>/i, '<div id="app"></div>');
+
 // Initialize markdown renderer
 const md = new MarkdownIt({
   html: true,
@@ -162,13 +170,19 @@ function generatePrerenderedHtml({
 
   const graphNodes = [
     {
-      '@type': 'WebApplication',
+      '@type': ['WebApplication', 'SoftwareApplication'],
       '@id': `${canonicalUrl}#webapp`,
       'url': canonicalUrl,
       'name': `${title} Online`,
       'applicationCategory': category || 'DeveloperApplication',
       'operatingSystem': 'All',
       'browserRequirements': 'Requires JavaScript. Requires HTML5.',
+      'isAccessibleForFree': true,
+      'featureList': [
+        '100% Client-Side Local Browser Execution',
+        'Zero Server Data Transmission or Logging',
+        'Offline-Capable Progressive Web App (PWA)',
+      ],
       'description': fullDesc,
       'inLanguage': lang,
       'offers': {
@@ -275,7 +289,7 @@ function generatePrerenderedHtml({
       </main>
     </div>`;
 
-  html = html.replace('<div id="app"></div>', preRenderedContent.trim());
+  html = html.replace(/<div id="app">[\s\S]*?<\/div>/i, preRenderedContent.trim());
 
   return html;
 }
@@ -449,7 +463,7 @@ for (const lang of supportedLangs) {
   homeHtml = homeHtml.replace('</head>', `\n    <!-- International Hreflangs -->\n    ${homeHreflangs}\n  </head>`);
 
   const homePrerenderBody = getHomePrerenderContent(lang, toolsList);
-  homeHtml = homeHtml.replace('<div id="app"></div>', homePrerenderBody.trim());
+  homeHtml = homeHtml.replace(/<div id="app">[\s\S]*?<\/div>/i, homePrerenderBody.trim());
 
   fs.writeFileSync(path.join(homeTargetDir, 'index.html'), homeHtml, 'utf8');
   fs.writeFileSync(path.join(distDir, `${lang}.html`), homeHtml, 'utf8');
@@ -463,12 +477,12 @@ const rootHomeHreflangs = [
   ...supportedLangs.map(l => `<link rel="alternate" hreflang="${l}" href="${BASE_URL}/${l}" />`),
 ].join('\n    ');
 
-let rootHomeHtml = fs.readFileSync(templateIndexPath, 'utf8');
+let rootHomeHtml = baseHtmlTemplate;
 if (!rootHomeHtml.includes('hreflang="x-default"')) {
   rootHomeHtml = rootHomeHtml.replace('</head>', `\n    <!-- International Hreflangs -->\n    ${rootHomeHreflangs}\n  </head>`);
 }
 const enHomePrerenderBody = getHomePrerenderContent('en', toolsList);
-rootHomeHtml = rootHomeHtml.replace('<div id="app"></div>', enHomePrerenderBody.trim());
+rootHomeHtml = rootHomeHtml.replace(/<div id="app">[\s\S]*?<\/div>/i, enHomePrerenderBody.trim());
 fs.writeFileSync(templateIndexPath, rootHomeHtml, 'utf8');
 
 // 4. Prerender Editorial & Legal pages (English default)
@@ -486,6 +500,13 @@ const legalPages = [
     description: 'Curated developer credits, cloud infrastructure vouchers, and productivity perks for engineering teams.',
     titleAr: 'عروض المطورين وأرصدة السحابة والمكافآت البرمجية',
     descAr: 'أرصدة سحابية وقسائم بنية تحتية مجانية للمطورين والفرق الهندسية.',
+  },
+  {
+    slug: 'pdf-tools',
+    title: 'Free PDF Tools Online — 100% Client-Side & Private',
+    description: 'Compress, merge, split, convert, and edit PDF documents locally in your browser. Zero file uploads, unlimited tasks, total privacy.',
+    titleAr: 'أدوات PDF المجانية أونلاين — حوسبة محلية آمنة 100%',
+    descAr: 'ضغط، دمج، تقسيم، تحويل، وتعديل ملفات PDF محلياً داخل متصفحك دون رفع أي ملفات للسيرفر، مجاناً وبلا قيود.',
   },
   {
     slug: 'about',
@@ -675,21 +696,299 @@ const programmaticScenarios = [
     titleAr: 'محول تاريخ ISO 8601 إلى توقيت يونكس (Unix Timestamp)',
     descAr: 'حوّل نصوص تواريخ ISO 8601 إلى ثواني وميلي ثواني Epoch فورياً وبأمان تام داخل المتصفح.',
   },
+  {
+    pathSlug: 'compress-pdf/100kb',
+    title: 'Compress PDF to 100KB Online Free — 100% Client-Side',
+    description: 'Compress PDF files down to 100KB online for job applications, email attachments, and government portals without uploading files.',
+    keywords: ['compress pdf to 100kb', 'reduce pdf size 100kb', 'compress pdf online free'],
+    titleAr: 'ضغط PDF إلى 100 كيلوبايت أونلاين مجاناً وبأمان تام',
+    descAr: 'ضغط ملفات PDF حتى 100 كيلوبايت أونلاين للتقديم على الوظائف والمعاملات الحكومية دون رفع الملفات إلى أي خادم.',
+  },
+  {
+    pathSlug: 'compress-pdf/200kb',
+    title: 'Compress PDF to 200KB Online Free — Fast & Private',
+    description: 'Reduce PDF file size to 200KB or less locally in your browser. Fast, free, and completely secure.',
+    keywords: ['compress pdf to 200kb', 'reduce pdf to 200kb', 'shrink pdf size 200kb'],
+    titleAr: 'ضغط PDF إلى 200 كيلوبايت مجاناً أونلاين',
+    descAr: 'تقليص حجم ملف PDF إلى 200 كيلوبايت أو أقل محلياً داخل متصفحك بسرعة وأمان وسرية تامة.',
+  },
+  {
+    pathSlug: 'compress-pdf/500kb',
+    title: 'Compress PDF to 500KB Online Free — High Quality',
+    description: 'Compress PDF documents to under 500KB with crystal-clear text and image quality preserved.',
+    keywords: ['compress pdf to 500kb', 'pdf compress under 500kb', 'reduce pdf size'],
+    titleAr: 'ضغط ملف PDF إلى 500 كيلوبايت بجودة عالية',
+    descAr: 'ضغط مستندات PDF إلى أقل من 500 كيلوبايت مع الحفاظ على وضوح النصوص والصور.',
+  },
+  {
+    pathSlug: 'compress-pdf/1mb',
+    title: 'Compress PDF to 1MB Online Free — Instant Local Compression',
+    description: 'Shrink large PDF documents down to 1MB instantly without file size limits or paywalls.',
+    keywords: ['compress pdf to 1mb', 'reduce pdf to 1mb online', 'shrink large pdf'],
+    titleAr: 'ضغط ملفات PDF إلى 1 ميجابايت أونلاين بدون سيرفر',
+    descAr: 'تصغير ملفات PDF الكبيرة إلى 1 ميجابايت فورياً دون قيود على الحجم أو اشتراكات مدفوعة.',
+  },
+  {
+    pathSlug: 'merge-pdf/combine-two-pdfs',
+    title: 'Combine Two PDF Files Online Free — Instant & Private',
+    description: 'Merge and combine two PDF files into one document in seconds. 100% client-side, zero server storage.',
+    keywords: ['combine two pdfs', 'merge 2 pdf files', 'join two pdfs online'],
+    titleAr: 'دمج ملفين PDF معاً أونلاين مجاناً بخصوصية تامة',
+    descAr: 'دمج وتجميع ملفين PDF في مستند واحد خلال ثوانٍ معدودة. معالجة محلية 100% دون تخزين على أي خوادم.',
+  },
+  {
+    pathSlug: 'merge-pdf/merge-scanned-documents',
+    title: 'Merge Scanned Documents into One PDF Online',
+    description: 'Combine multiple scanned document pages, receipts, and invoices into a single organized PDF file.',
+    keywords: ['merge scanned documents', 'combine scanned pdfs', 'merge receipts into pdf'],
+    titleAr: 'دمج المستندات والأوراق الممسوحة ضوئياً في ملف PDF واحد',
+    descAr: 'تجميع أوراق المستندات الممسوحة ضوئياً والفواتير في ملف PDF واحد منظم وسريع المشاركة.',
+  },
+  {
+    pathSlug: 'pdf-split/extract-pages',
+    title: 'Extract Pages from PDF Online Free — Fast Page Extractor',
+    description: 'Extract specific single or multiple pages from your PDF document and save as a new PDF file instantly.',
+    keywords: ['extract pages from pdf', 'extract pdf page free', 'save single page pdf'],
+    titleAr: 'استخراج صفحات محددة من ملف PDF مجاناً أونلاين',
+    descAr: 'استخراج صفحة واحدة أو عدة صفحات معينة من ملف PDF وحفظها كمستند جديد فورياً وبأمان.',
+  },
+  {
+    pathSlug: 'pdf-split/split-by-range',
+    title: 'Split PDF by Page Range Online Free — Precision Splitting',
+    description: 'Divide large PDF documents into smaller parts by custom page ranges (e.g. 1-5, 6-10).',
+    keywords: ['split pdf by range', 'split pdf pages range', 'divide pdf into parts'],
+    titleAr: 'تقسيم ملف PDF حسب نطاق الصفحات محلياً',
+    descAr: 'تقسيم مستندات PDF الكبيرة إلى أجزاء صغيرة وفق نطاقات محددة للصفحات مثل 1-5 و 6-10 بسهولة.',
+  },
+  {
+    pathSlug: 'pdf-to-image/pdf-to-jpg',
+    title: 'Convert PDF to JPG High Resolution Online Free',
+    description: 'Convert every PDF page into high-quality JPG images. Download individual images or all pages in a ZIP archive.',
+    keywords: ['pdf to jpg', 'convert pdf to jpg online', 'export pdf pages as jpg'],
+    titleAr: 'تحويل PDF إلى صور JPG عالية الدقة أونلاين مجاناً',
+    descAr: 'تحويل صفحات ملف PDF إلى صور JPG عالية الجودة مع إمكانية تنزيل كل صفحة منفردة أو ملف ZIP شامل.',
+  },
+  {
+    pathSlug: 'pdf-to-image/pdf-to-png',
+    title: 'Convert PDF to Transparent PNG Online Free',
+    description: 'Convert PDF documents to crisp, lossless PNG images locally without uploading documents to external servers.',
+    keywords: ['pdf to png', 'convert pdf to png online', 'extract png from pdf'],
+    titleAr: 'تحويل صفحات PDF إلى صور PNG عالية الجودة محلياً',
+    descAr: 'تحويل صفحات مستند PDF إلى صور بصيغة PNG النقية غير المضغوطة محلياً دون رفع الملفات لخوادم خارجية.',
+  },
+  {
+    pathSlug: 'images-to-pdf/jpg-to-pdf',
+    title: 'Convert JPG to PDF Online Free — Combine Photos to PDF',
+    description: 'Convert JPG photos and graphics into a clean, compact PDF document. Reorder pages and adjust margins freely.',
+    keywords: ['jpg to pdf', 'convert jpg to pdf online', 'combine photos to pdf'],
+    titleAr: 'تحويل صور JPG إلى ملف PDF مجاناً أونلاين',
+    descAr: 'تحويل الصور الفوتوغرافية JPG إلى مستند PDF احترافي مع إمكانية ترتيب الصفحات وضبط الهوامش بحرية.',
+  },
+  {
+    pathSlug: 'images-to-pdf/png-to-pdf',
+    title: 'Convert PNG to PDF Online Free — High Quality PDF Document',
+    description: 'Convert lossless PNG graphics and illustrations into professional PDF documents instantly.',
+    keywords: ['png to pdf', 'convert png to pdf free', 'make pdf from png images'],
+    titleAr: 'تحويل صور PNG إلى مستند PDF عالي الجودة وبلا قيود',
+    descAr: 'تحويل صور PNG عالية الدقة والرسومات إلى ملف PDF متكامل فورياً وبدون حدود للاستخدام.',
+  },
+  {
+    pathSlug: 'vs/ilovepdf',
+    competitor: 'iLovePDF',
+    focusArea: 'PDF Merging, Splitting, Compression & Conversion',
+    title: 'DevTol vs iLovePDF — 100% Client-Side Private PDF Alternative',
+    description: 'Compare DevTol vs iLovePDF: Process confidential PDFs locally in your browser via WebAssembly with zero server uploads, no file queues, and no daily paywalls.',
+    keywords: ['ilovepdf alternative', 'devtol vs ilovepdf', 'private pdf tools no upload', 'client side pdf compressor'],
+    titleAr: 'مقارنة DevTol مع iLovePDF — البديل المجاني والآمن 100% بدون رفع ملفات',
+    descAr: 'قارن بين DevTol و iLovePDF: دمج وتقسيم وضغط ملفات PDF السرية محلياً داخل متصفحك بدون رفعها لأي سيرفر خارجي وبلا حدود يومية.',
+  },
+  {
+    pathSlug: 'vs/smallpdf',
+    competitor: 'Smallpdf',
+    focusArea: 'Unlimited Local PDF Processing & Document Security',
+    title: 'DevTol vs Smallpdf — Free Unlimited Offline-Capable PDF Suite',
+    description: 'Switch from Smallpdf to DevTol for unlimited, zero-upload local PDF compression, splitting, watermarking, and image conversion with zero subscription fees.',
+    keywords: ['smallpdf alternative free', 'devtol vs smallpdf', 'unlimited pdf tools no sign up', 'offline pdf converter'],
+    titleAr: 'مقارنة DevTol مع Smallpdf — بديل مجاني بلا حدود لمعالجة ملفات PDF محلياً',
+    descAr: 'لماذا ينتقل المهندسون والشركات من Smallpdf إلى DevTol لمعالجة وضغط ملفات PDF محلياً في المتصفح مجاناً وبدون قيود يومية.',
+  },
+  {
+    pathSlug: 'vs/cyberchef',
+    competitor: 'CyberChef',
+    focusArea: 'Web Cryptography, Hashing, Encoding & Security Analysis',
+    title: 'DevTol vs CyberChef — Modern Fast Web Cryptography & Encoding Suite',
+    description: 'Compare DevTol vs GCHQ CyberChef: Instant, dedicated modular routes for AES/RSA encryption, SHA/Bcrypt hashing, JWT inspection, and Base64 encoding.',
+    keywords: ['cyberchef alternative', 'devtol vs cyberchef', 'fast online crypto tools', 'client side hashing tool'],
+    titleAr: 'مقارنة DevTol مع CyberChef — أدوات تشفير وتحليل أمني فائقة السرعة',
+    descAr: 'مقارنة شاملة بين DevTol و CyberChef في أدوات التشفير وفك الترميز وتحليل الـ JWT محلياً بواجهة عصرية سريعة.',
+  },
+  {
+    pathSlug: 'vs/devutils',
+    competitor: 'DevUtils',
+    focusArea: 'Cross-Platform Developer Utilities & Offline PWA Execution',
+    title: 'DevTol vs DevUtils — Free Cross-Platform Browser Alternative',
+    description: 'Experience all the capabilities of macOS DevUtils free in any browser across Windows, Linux, macOS, and mobile with 100% client-side execution.',
+    keywords: ['devutils alternative', 'free devutils for windows linux', 'devtol vs devutils', 'offline developer tools pwa'],
+    titleAr: 'مقارنة DevTol مع DevUtils — البديل المجاني الشامل لجميع أنظمة التشغيل',
+    descAr: 'احصل على جميع مميزات DevUtils مجاناً على ويندوز ولينكس وماك والموبايل عبر المتصفح مع دعم العمل بدون إنترنت.',
+  },
+  {
+    pathSlug: 'vs/jwt-io',
+    competitor: 'JWT.io',
+    focusArea: 'JSON Web Token Debugging, Key Generation & Auth Security',
+    title: 'DevTol vs JWT.io — Private Client-Side JWT Decoder & Key Suite',
+    description: 'Decode and inspect JSON Web Tokens (JWT) alongside RSA/HMAC key generation, hash verification, and payload formatting in one zero-telemetry workspace.',
+    keywords: ['jwt.io alternative', 'devtol vs jwt.io', 'offline jwt decoder', 'private jwt parser'],
+    titleAr: 'مقارنة DevTol مع JWT.io — فحص وتحليل توكن JWT بخصوصية محلية تامة',
+    descAr: 'فك تشفير وفحص JSON Web Tokens محلياً مع أكثر من 120 أداة للمطورين في مكان واحد بدون تتبع.',
+  },
+  {
+    pathSlug: 'vs/jsonlint',
+    competitor: 'JSONLint',
+    focusArea: 'JSON Validation, Formatting, Diffing & Code Generation',
+    title: 'DevTol vs JSONLint — Ad-Free JSON Formatter, Diff & TypeScript Generator',
+    description: 'Validate, format, minify, compare, and convert JSON into TypeScript interfaces, SQL, YAML, or CSV locally in browser RAM without intrusive ad clutter.',
+    keywords: ['jsonlint alternative', 'devtol vs jsonlint', 'private json formatter no upload', 'json to typescript converter'],
+    titleAr: 'مقارنة DevTol مع JSONLint — تنسيق وفحص وتحويل JSON بدون إعلانات مزعجة',
+    descAr: 'افحص ونسّق وحوّل ملفات JSON الضخمة محلياً إلى TypeScript أو YAML أو CSV بسرعة فائقة وخصوصية تامة.',
+  },
+  {
+    pathSlug: 'vs/regex101',
+    competitor: 'Regex101',
+    focusArea: 'Regular Expression Testing, Capture Groups & Text Processing',
+    title: 'DevTol vs Regex101 — Fast Client-Side Regex Tester & Developer Suite',
+    description: 'Test regular expressions locally with real-time match highlighting, capture group inspection, and seamless integration with 120+ text and data utilities.',
+    keywords: ['regex101 alternative', 'devtol vs regex101', 'offline regex tester', 'client side regex debugger'],
+    titleAr: 'مقارنة DevTol مع Regex101 — اختبار التعبيرات النمطية Regex محلياً وبسرعة',
+    descAr: 'اختبر التعبيرات النمطية Regex مع تظليل فوري للنتائج وأدوات معالجة النصوص المدمجة في منصة واحدة.',
+  },
+  {
+    pathSlug: 'vs/base64decode',
+    competitor: 'Base64Decode.org',
+    focusArea: 'Zero-Upload Base64 String & Binary File Encoding',
+    title: 'DevTol vs Base64Decode.org — Private Client-Side Base64 Encoder',
+    description: 'Encode and decode Base64 strings, credentials, and binary images strictly inside browser memory without transmitting sensitive production secrets over the network.',
+    keywords: ['base64decode alternative', 'devtol vs base64decode', 'private base64 decoder no server', 'client side base64 tool'],
+    titleAr: 'مقارنة DevTol مع Base64Decode — تشفير وفك Base64 محلياً بدون سيرفر',
+    descAr: 'قم بترميز وفك ترميز نصوص وملفات Base64 الحساسة داخل ذاكرة المتصفح مباشرة دون إرسال بياناتك لأي خادم خارجي.',
+  },
 ];
+
+function buildComparisonArticleHtml(sc, isAr = false) {
+  if (!sc.competitor) return '';
+  const comp = escapeHtml(sc.competitor);
+  const focus = escapeHtml(sc.focusArea || 'Developer & Document Workflows');
+  if (isAr) {
+    return `
+      <section class="seo-comparison-section">
+        <h2>لماذا يُعد DevTol البديل الأقوى والأكثر أماناً لـ ${comp}؟</h2>
+        <p>عند مقارنة <strong>DevTol</strong> مع <strong>${comp}</strong> في مجال ${focus}، يبرز الفرق الجوهري في المعمارية الأمنية: يعمل DevTol بنسبة 100% داخل متصفحك عبر تقنيات WebAssembly و Web Crypto API دون رفع أي ملف أو كود إلى خوادم خارجية، بينما تعتمد المنصات التقليدية غالباً على المعالجة السحابية أو تفرض قيوداً يومية واشتراكات مدفوعة.</p>
+        <table class="seo-comparison-table" border="1" cellpadding="10" cellspacing="0" style="width:100%;border-collapse:collapse;margin:1.5rem 0;">
+          <thead>
+            <tr>
+              <th>المعيار التقني</th>
+              <th>DevTol (devtol.online)</th>
+              <th>${comp}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>خصوصية البيانات ومعالجة الملفات</strong></td>
+              <td>معالجة محلية 100% داخل ذاكرة المتصفح (Zero Server Upload)</td>
+              <td>قد يتطلب رفع الملفات أو مشاركة البيانات عبر السحابة</td>
+            </tr>
+            <tr>
+              <td><strong>التكلفة والحدود اليومية</strong></td>
+              <td>مجاني بالكامل 100% وبلا حدود لعدد العمليات أو حجم الملفات</td>
+              <td>نسخة مجانية محدودة أو تتطلب اشتراكاً شهرياً للمميزات المتقدمة</td>
+            </tr>
+            <tr>
+              <td><strong>العمل بدون إنترنت (Offline PWA)</strong></td>
+              <td>يدعم العمل الكامل بدون اتصال بالإنترنت بعد التحميل الأول</td>
+              <td>يتطلب اتصالاً مستمراً بالخادم في معظم العمليات</td>
+            </tr>
+            <tr>
+              <td><strong>عدد الأدوات المدمجة</strong></td>
+              <td>أكثر من 124 أداة للمطورين وملفات PDF والتشفير في مكان واحد</td>
+              <td>يركز على فئة محدودة من الأدوات</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    `;
+  }
+  return `
+    <section class="seo-comparison-section">
+      <h2>Why Engineers Choose DevTol Over ${comp} for ${focus}</h2>
+      <p><strong>DevTol</strong> is a free, open, 100% client-side alternative to <strong>${comp}</strong> designed for software engineers, DevOps teams, and privacy-conscious organizations. While traditional utilities often upload documents to remote cloud buckets, enforce strict daily task limits, or require paid subscriptions, DevTol executes every transformation locally inside your browser using native WebAssembly (WASM), HTML5 Canvas, and the Web Crypto API. Your source code, JWT tokens, production credentials, and confidential PDF contracts never leave your device.</p>
+      <table class="seo-comparison-table" border="1" cellpadding="10" cellspacing="0" style="width:100%;border-collapse:collapse;margin:1.5rem 0;">
+        <thead>
+          <tr>
+            <th>Capability &amp; Security Metric</th>
+            <th>DevTol (devtol.online)</th>
+            <th>${comp}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Data Privacy &amp; Execution Model</strong></td>
+            <td>100% Client-Side in Browser RAM (Zero Server Uploads)</td>
+            <td>Cloud upload or external third-party processing common</td>
+          </tr>
+          <tr>
+            <td><strong>Pricing &amp; Daily Task Quotas</strong></td>
+            <td>100% Free Forever — Unlimited tasks &amp; batch processing</td>
+            <td>Freemium paywalls, task timers, or paid desktop licenses</td>
+          </tr>
+          <tr>
+            <td><strong>Offline Air-Gapped Support (PWA)</strong></td>
+            <td>Full Offline Progressive Web App support</td>
+            <td>Typically requires active internet or OS-specific binary</td>
+          </tr>
+          <tr>
+            <td><strong>Unified Toolchain Breadth</strong></td>
+            <td>124+ Developer, Crypto, Network, Data &amp; PDF Tools</td>
+            <td>Single-domain utility focus</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  `;
+}
 
 for (const sc of programmaticScenarios) {
   for (const lang of allLangCodes) {
     const isEn = lang === 'en';
     const title = (lang === 'ar' && sc.titleAr) ? sc.titleAr : sc.title;
     const description = (lang === 'ar' && sc.descAr) ? sc.descAr : sc.description;
+    const compArticle = buildComparisonArticleHtml(sc, lang === 'ar');
+    const compFaqs = sc.competitor ? [
+      {
+        question: lang === 'ar'
+          ? `هل يعتبر DevTol بديلاً مجانياً وآمناً لـ ${sc.competitor}؟`
+          : `Is DevTol a completely free and private alternative to ${sc.competitor}?`,
+        answer: lang === 'ar'
+          ? `نعم، يعمل DevTol مجاناً بنسبة 100% داخل متصفحك عبر تقنية WebAssembly دون رفع أي ملفات أو بيانات إلى أي خادم خارجي.`
+          : `Yes. DevTol is 100% free with no daily limits, sign-ups, or paywalls, and runs entirely inside your browser via WebAssembly so your data never leaves your device.`,
+      },
+      {
+        question: lang === 'ar'
+          ? `ما الفرق الأمني بين DevTol و ${sc.competitor}؟`
+          : `How does DevTol protect sensitive files compared to ${sc.competitor}?`,
+        answer: lang === 'ar'
+          ? `لا يقوم DevTol بإرسال ملفات PDF أو أكواد البرمجة أو مفاتيح التشفير عبر الشبكة إطلاقاً، بل تتم المعالجة محلياً في الذاكرة العشوائية للمتصفح.`
+          : `Unlike cloud-based tools that upload documents to remote servers for processing, DevTol processes all files and tokens locally in browser RAM with zero server telemetry.`,
+      },
+    ] : [];
 
     const pageHtml = generatePrerenderedHtml({
       pathSlug: sc.pathSlug,
       title,
       description,
       keywords: sc.keywords,
-      articleHtml: '',
+      articleHtml: compArticle,
       category: 'DeveloperTools',
+      faqs: compFaqs,
       lang,
     });
 

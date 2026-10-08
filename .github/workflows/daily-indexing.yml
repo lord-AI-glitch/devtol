@@ -1,0 +1,34 @@
+name: Daily Search Engine Indexing (Google & Bing)
+
+on:
+  schedule:
+    # Runs every day at 03:00 UTC (06:00 Cairo time)
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    # Allows manual execution at any time from GitHub UI
+
+concurrency:
+  group: daily-indexing
+  cancel-in-progress: true
+
+jobs:
+  indexing:
+    name: Automated Daily Indexing Push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Push to Google Indexing API (Daily Dynamic Rotation)
+        run: node scripts/submit-google-indexing.mjs --daily --limit=200
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+
+      - name: Push to Bing & Global IndexNow Engines (All 1,590 URLs)
+        run: node scripts/submit-indexnow.mjs

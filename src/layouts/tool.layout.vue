@@ -18,13 +18,29 @@ const route = useRoute();
 const styleStore = useStyleStore();
 const isDark = computed(() => styleStore.isDarkTheme);
 
-const { t, locale } = useI18n();
+const { t, te, locale } = useI18n();
 
-const i18nKey = computed<string>(() =>
-  route.path.replace(/^\/(?:ar|de|es|fr|no|pt|uk|vi|zh)(?=\/|$)/, '').replace(/^\/+/, '').split('/')[0] || '',
-);
-const toolTitle = computed<string>(() => t(`tools.${i18nKey.value}.title`, String(route.meta.name || 'Tool')));
-const rawDescription = computed<string>(() => t(`tools.${i18nKey.value}.description`, String(route.meta.description || '')));
+const i18nKey = computed<string>(() => {
+  const metaSlug = route.meta.toolSlug as string;
+  if (metaSlug) return metaSlug;
+  const pathSlug = route.path.replace(/^\/(?:ar|de|es|fr|no|pt|uk|vi|zh)(?=\/|$)/, '').replace(/^\/+/, '').split('/')[0] || '';
+  if (pathSlug === 'compress-pdf') return 'pdf-compress';
+  if (pathSlug === 'merge-pdf') return 'pdf-merge';
+  if (pathSlug === 'docker-run-to-compose') return 'docker-run-to-docker-compose-converter';
+  return pathSlug;
+});
+
+const toolTitle = computed<string>(() => {
+  const key = `tools.${i18nKey.value}.title`;
+  if (te(key)) return t(key);
+  return String(route.meta.name || 'Tool');
+});
+
+const rawDescription = computed<string>(() => {
+  const key = `tools.${i18nKey.value}.description`;
+  if (te(key)) return t(key);
+  return String(route.meta.description || '');
+});
 const toolDescription = computed<string>(() => rawDescription.value);
 
 const capturedError = ref<Error | null>(null);

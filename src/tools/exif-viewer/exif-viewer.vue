@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
 const message = useMessage();
@@ -10,8 +10,8 @@ function onFile(e:Event){const f=(e.target as HTMLInputElement).files?.[0];if(f)
 async function readExif(f:File){
   isLoading.value=true;
   try{
-    const exifr=await import("https://cdn.skypack.dev/exifr");
-    const data=await exifr.parse(f,{gps:true,tiff:true,exif:true});
+    const exifr = await import("https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.esm.mjs");
+    const data = await exifr.parse(f, { gps: true, tiff: true, exif: true });
     metadata.value=data||{};
     if(!data||Object.keys(data).length===0)message.info("No EXIF metadata found in this image.");
     else message.success(`Found ${Object.keys(data).length} metadata fields`);
@@ -55,7 +55,7 @@ const gpsLink = ()=>metadata.value?.latitude&&metadata.value?.longitude?`https:/
       <p mb-3 text-sm style="color:var(--n-text-color-3)">Strip all EXIF data by re-encoding the image on canvas:</p>
       <div flex gap-2>
         <c-button @click="stripExif">Strip EXIF & Download</c-button>
-        <c-button v-if="strippedUrl" variant="ghost" @click="download">Download Clean Image</c-button>
+        <c-button v-if="strippedUrl" variant="text" @click="download">Download Clean Image</c-button>
       </div>
     </c-card>
   </div>

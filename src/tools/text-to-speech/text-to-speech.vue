@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { useMessage } from "naive-ui";
 const message = useMessage();
@@ -47,9 +47,9 @@ const voiceOptions = ()=>voices.value.map(v=>({label:`${v.name} (${v.lang})`,val
     </c-card>
     <div flex gap-3>
       <c-button v-if="!isSpeaking" @click="speak">▶ Speak</c-button>
-      <c-button v-if="isSpeaking&&!isPaused" variant="ghost" @click="pause">⏸ Pause</c-button>
+      <c-button v-if="isSpeaking&&!isPaused" variant="text" @click="pause">⏸ Pause</c-button>
       <c-button v-if="isPaused" @click="resume">▶ Resume</c-button>
-      <c-button v-if="isSpeaking||isPaused" variant="ghost" @click="stop">⏹ Stop</c-button>
+      <c-button v-if="isSpeaking||isPaused" variant="text" @click="stop">⏹ Stop</c-button>
     </div>
     <n-alert v-if="voices.length===0" type="warning" mt-4>No voices available. Please check your browser and system TTS settings.</n-alert>
   </div>

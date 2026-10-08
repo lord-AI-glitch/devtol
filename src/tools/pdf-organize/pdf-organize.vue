@@ -1,6 +1,7 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
+import { PDFDocument, degrees } from "pdf-lib";
 const message = useMessage();
 const file = ref<File|null>(null);
 const pageCount = ref(0);
@@ -12,7 +13,6 @@ async function onFile(e:Event){
   const f=(e.target as HTMLInputElement).files?.[0];if(!f)return;
   file.value=f;isLoading.value=true;pages.value=[];
   try{
-    const {PDFDocument}=await import("https://cdn.skypack.dev/pdf-lib");
     const bytes=await f.arrayBuffer();
     const doc=await PDFDocument.load(bytes);
     pageCount.value=doc.getPageCount();
@@ -27,7 +27,6 @@ async function apply(){
   if(!file.value)return;
   isProcessing.value=true;resultUrl.value=null;
   try{
-    const {PDFDocument,degrees}=await import("https://cdn.skypack.dev/pdf-lib");
     const bytes=await file.value.arrayBuffer();
     const srcDoc=await PDFDocument.load(bytes);
     const newDoc=await PDFDocument.create();
@@ -61,10 +60,10 @@ function download(){if(!resultUrl.value)return;const a=document.createElement("a
           <div flex items-center gap-2>
             <span style="min-width:24px;font-weight:600">{{ i+1 }}</span>
             <span flex-1 text-sm>Page {{ pg.index+1 }} · {{ pg.rotation }}° rotation</span>
-            <c-button size="small" variant="ghost" @click="rotate(i,-90)">↺</c-button>
-            <c-button size="small" variant="ghost" @click="rotate(i,90)">↻</c-button>
-            <c-button size="small" variant="ghost" :disabled="i===0" @click="moveUp(i)">↑</c-button>
-            <c-button size="small" variant="ghost" :disabled="i===pages.length-1" @click="moveDown(i)">↓</c-button>
+            <c-button size="small" variant="text" @click="rotate(i,-90)">↺</c-button>
+            <c-button size="small" variant="text" @click="rotate(i,90)">↻</c-button>
+            <c-button size="small" variant="text" :disabled="i===0" @click="moveUp(i)">↑</c-button>
+            <c-button size="small" variant="text" :disabled="i===pages.length-1" @click="moveDown(i)">↓</c-button>
           </div>
         </n-list-item>
       </n-list>

@@ -106,7 +106,7 @@ function copy(v: string) {
           <c-card>
             <div flex justify-between items-center>
               <div><p text-xs style="color:var(--n-text-color-3)">{{ key }}</p><p font-mono font-semibold>{{ val }}</p></div>
-              <c-button size="small" variant="ghost" @click="copy(val as string)">Copy</c-button>
+              <c-button size="small" variant="text" @click="copy(val as string)">Copy</c-button>
             </div>
           </c-card>
         </n-gi>

@@ -17,7 +17,12 @@ async function runOCR(){
   if(!file.value)return;
   isProcessing.value=true;result.value="";progress.value=0;
   try{
-    const Tesseract=await import("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js");
+    let Tesseract: any;
+    try {
+      Tesseract = await import("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js");
+    } catch {
+      Tesseract = await import("https://esm.sh/tesseract.js@5");
+    }
     let text="";
     if(file.value.type==="application/pdf"){
       const pdfjsLib = await loadPdfJs();

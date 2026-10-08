@@ -1,38 +1,72 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
+import { PDFDocument } from "pdf-lib";
+
 const message = useMessage();
 const images = ref<{file:File;url:string}[]>([]);
 const isProcessing = ref(false);
 const resultUrl = ref<string|null>(null);
+
 function onFile(e:Event){
   const files=(e.target as HTMLInputElement).files;
   if(!files)return;
   for(const f of Array.from(files)){
-    if(!f.type.startsWith("image/"))continue;
+    const isImage = (f.type && f.type.startsWith("image/")) || /\.(jpe?g|png|webp|gif|bmp|tiff|svg|avif|ico)$/i.test(f.name);
+    if(!isImage) continue;
     images.value.push({file:f,url:URL.createObjectURL(f)});
   }
 }
 function remove(i:number){images.value.splice(i,1);}
 function moveUp(i:number){if(i>0){const t=images.value[i];images.value[i]=images.value[i-1];images.value[i-1]=t;}}
 function moveDown(i:number){if(i<images.value.length-1){const t=images.value[i];images.value[i]=images.value[i+1];images.value[i+1]=t;}}
+
+async function embedViaCanvas(file: File, pdf: InstanceType<typeof PDFDocument>) {
+  const imgElement = new Image();
+  const objUrl = URL.createObjectURL(file);
+  imgElement.src = objUrl;
+  await new Promise((resolve, reject) => {
+    imgElement.onload = resolve;
+    imgElement.onerror = () => reject(new Error("Failed to load image into canvas"));
+  });
+  URL.revokeObjectURL(objUrl);
+  const canvas = document.createElement("canvas");
+  canvas.width = imgElement.naturalWidth || imgElement.width;
+  canvas.height = imgElement.naturalHeight || imgElement.height;
+  const ctx = canvas.getContext("2d")!;
+  ctx.drawImage(imgElement, 0, 0);
+  const jpgDataUrl = canvas.toDataURL("image/jpeg", 0.95);
+  const binaryString = atob(jpgDataUrl.split(",")[1]);
+  const len = binaryString.length;
+  const jpgBytes = new Uint8Array(len);
+  for (let i = 0; i < len; i++) {
+    jpgBytes[i] = binaryString.charCodeAt(i);
+  }
+  return await pdf.embedJpg(jpgBytes);
+}
+
 async function convert(){
   if(images.value.length===0){message.warning("Add at least 1 image");return;}
   isProcessing.value=true; resultUrl.value=null;
   try{
-    const {PDFDocument}=await import("https://cdn.skypack.dev/pdf-lib");
     const pdf=await PDFDocument.create();
-    for(const {file}of images.value){
+    for(const {file} of images.value){
       const bytes=await file.arrayBuffer();
       let img;
-      if(file.type==="image/png")img=await pdf.embedPng(bytes);
-      else{
-        const canvas=document.createElement("canvas");
-        const bmp=await createImageBitmap(file);
-        canvas.width=bmp.width;canvas.height=bmp.height;
-        canvas.getContext("2d")!.drawImage(bmp,0,0);
-        const jpgData=Uint8Array.from(atob(canvas.toDataURL("image/jpeg",0.92).split(",")[1]),c=>c.charCodeAt(0));
-        img=await pdf.embedJpg(jpgData);
+      if(file.type==="image/png"){
+        try {
+          img=await pdf.embedPng(bytes);
+        } catch {
+          img = await embedViaCanvas(file, pdf);
+        }
+      } else if(file.type==="image/jpeg" || file.type==="image/jpg") {
+        try {
+          img=await pdf.embedJpg(bytes);
+        } catch {
+          img = await embedViaCanvas(file, pdf);
+        }
+      } else {
+        img = await embedViaCanvas(file, pdf);
       }
       const page=pdf.addPage([img.width,img.height]);
       page.drawImage(img,{x:0,y:0,width:img.width,height:img.height});
@@ -63,9 +97,9 @@ function download(){
           <div flex items-center gap-3>
             <img :src="img.url" style="width:60px;height:60px;object-fit:cover;border-radius:4px"/>
             <span flex-1 text-sm>{{ img.file.name }}</span>
-            <c-button size="small" variant="ghost" :disabled="i===0" @click="moveUp(i)">↑</c-button>
-            <c-button size="small" variant="ghost" :disabled="i===images.length-1" @click="moveDown(i)">↓</c-button>
-            <c-button size="small" variant="ghost" @click="remove(i)">✕</c-button>
+            <c-button size="small" variant="text" :disabled="i===0" @click="moveUp(i)">↑</c-button>
+            <c-button size="small" variant="text" :disabled="i===images.length-1" @click="moveDown(i)">↓</c-button>
+            <c-button size="small" variant="text" @click="remove(i)">✕</c-button>
           </div>
         </n-list-item>
       </n-list>

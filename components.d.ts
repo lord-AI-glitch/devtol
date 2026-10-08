@@ -236,6 +236,7 @@ declare module '@vue/runtime-core' {
     PdfSignatureDetails: typeof import('./src/tools/pdf-signature-checker/components/pdf-signature-details.vue')['default']
     PdfSplit: typeof import('./src/content/tools/pdf-split.md')['default']
     PdfToImage: typeof import('./src/content/tools/pdf-to-image.md')['default']
+    'PdfToolsHub.page': typeof import('./src/pages/PdfToolsHub.page.vue')['default']
     PdfWatermarkTool: typeof import('./src/content/tools/pdf-watermark-tool.md')['default']
     PercentageCalculator: typeof import('./src/content/tools/percentage-calculator.md')['default']
     PhoneParserAndFormatter: typeof import('./src/content/tools/phone-parser-and-formatter.md')['default']

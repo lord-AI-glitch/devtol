@@ -1,6 +1,7 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
+import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 const message = useMessage();
 const file = ref<File|null>(null);
 const keywords = ref("");
@@ -13,7 +14,6 @@ async function redact(){
   if(!words.length){message.warning("Enter at least one word to redact");return;}
   isProcessing.value=true;resultUrl.value=null;
   try{
-    const {PDFDocument,rgb,StandardFonts}=await import("https://cdn.skypack.dev/pdf-lib");
     const bytes=await file.value.arrayBuffer();
     const doc=await PDFDocument.load(bytes);
     const font=await doc.embedFont(StandardFonts.Helvetica);

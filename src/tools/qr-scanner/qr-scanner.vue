@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref, onUnmounted } from "vue";
 import { useMessage } from "naive-ui";
 const message = useMessage();
@@ -25,7 +25,8 @@ function onFile(e:Event){
 async function decodeFromFile(f:File){
   isProcessing.value=true;
   try{
-    const jsQR=((await import("https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"))).default||((await import("https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js")));
+    const mod = await import("https://esm.sh/jsqr@1.4.0");
+    const jsQR = (mod as any).default || mod;
     const img=new Image();img.src=URL.createObjectURL(f);await new Promise(r=>img.onload=r);
     const c=document.createElement("canvas");c.width=img.naturalWidth;c.height=img.naturalHeight;
     const ctx=c.getContext("2d")!;ctx.drawImage(img,0,0);
@@ -41,7 +42,8 @@ async function startCamera(){
     stream.value=await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"}});
     if(videoRef.value){videoRef.value.srcObject=stream.value;await videoRef.value.play();}
     isScanning.value=true;
-    const jsQR=((await import("https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"))).default;
+    const mod = await import("https://esm.sh/jsqr@1.4.0");
+    const jsQR = (mod as any).default || mod;
     const c=document.createElement("canvas");
     scanInterval=setInterval(()=>{
       if(!videoRef.value||videoRef.value.readyState!==4)return;
@@ -80,7 +82,7 @@ function copy(){if(result.value){navigator.clipboard.writeText(result.value);mes
           </div>
           <div v-else>
             <video ref="videoRef" style="width:100%;border-radius:8px;background:#000" playsinline/>
-            <div mt-3 text-center><c-button variant="ghost" @click="stopCamera">Stop Camera</c-button></div>
+            <div mt-3 text-center><c-button variant="text" @click="stopCamera">Stop Camera</c-button></div>
             <p mt-2 text-sm text-center style="color:var(--n-text-color-3)">Scanning for QR codes...</p>
           </div>
         </c-card>

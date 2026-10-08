@@ -1,6 +1,7 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
+import { PDFDocument } from "pdf-lib";
 const message = useMessage();
 const activeTab = ref("protect");
 const file = ref<File|null>(null);
@@ -12,7 +13,6 @@ async function protect(){
   if(!file.value){message.warning("Upload a PDF first");return;}
   isProcessing.value=true;resultUrl.value=null;
   try{
-    const {PDFDocument}=await import("https://cdn.skypack.dev/pdf-lib");
     const bytes=await file.value.arrayBuffer();
     const doc=await PDFDocument.load(bytes);
     // Note: pdf-lib basic encryption

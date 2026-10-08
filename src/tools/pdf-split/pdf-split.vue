@@ -1,6 +1,7 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue';
 import { useMessage } from 'naive-ui';
+import { PDFDocument } from 'pdf-lib';
 
 const message = useMessage();
 const file = ref<File | null>(null);
@@ -21,7 +22,6 @@ async function onFileChange(e: Event) {
   file.value = input.files[0];
   isLoading.value = true;
   try {
-    const { PDFDocument } = await import('https://cdn.skypack.dev/pdf-lib');
     const bytes = await file.value.arrayBuffer();
     const doc = await PDFDocument.load(bytes);
     pageCount.value = doc.getPageCount();
@@ -54,7 +54,6 @@ async function extractPages() {
   isProcessing.value = true;
   resultUrl.value = null;
   try {
-    const { PDFDocument } = await import('https://cdn.skypack.dev/pdf-lib');
     const bytes = await file.value.arrayBuffer();
     const srcDoc = await PDFDocument.load(bytes);
     const newDoc = await PDFDocument.create();

@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
 const message = useMessage();
@@ -15,7 +15,12 @@ async function runOCR(){
   if(!file.value)return;
   isProcessing.value=true;result.value="";progress.value=0;
   try{
-    const Tesseract=await import("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js");
+    let Tesseract: any;
+    try {
+      Tesseract = await import("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js");
+    } catch {
+      Tesseract = await import("https://esm.sh/tesseract.js@5");
+    }
     const r=await Tesseract.recognize(file.value,lang.value,{logger:(m:any)=>{if(m.status==="recognizing text")progress.value=Math.round(m.progress*100);}});
     result.value=r.data.text.trim();
     confidence.value=Math.round(r.data.confidence);

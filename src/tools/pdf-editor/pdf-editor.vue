@@ -716,7 +716,6 @@ async function executeFindAndReplace() {
   }
   isReplacing.value = true;
   try {
-    const { PDFDocument, rgb } = await import('https://cdn.skypack.dev/pdf-lib');
     const bytes = await file.value.arrayBuffer();
     const pdfLibDoc = await PDFDocument.load(bytes);
     
@@ -815,7 +814,6 @@ async function saveAndDownload() {
   saveCurrentDrawings();
   isSaving.value = true;
   try {
-    const { PDFDocument } = await import('https://cdn.skypack.dev/pdf-lib');
     const fileBytes = await file.value.arrayBuffer();
     const pdfLibDoc = await PDFDocument.load(fileBytes);
 

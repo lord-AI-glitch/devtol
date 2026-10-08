@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useMessage } from "naive-ui";
+import { PDFDocument } from "pdf-lib";
 import { loadPdfJs } from "@/utils/loadPdfJs";
 const message = useMessage();
 const file = ref<File|null>(null);
@@ -24,7 +25,6 @@ async function compress(){
   if(!file.value)return;
   isProcessing.value=true;
   try{
-    const {PDFDocument,rgb}=await import('https://cdn.skypack.dev/pdf-lib');
     // Load pdfjs to render pages to canvas at lower quality
     const pdfjsLib = await loadPdfJs();
     const bytes=await file.value.arrayBuffer();
