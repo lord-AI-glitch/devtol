@@ -17,9 +17,11 @@ async function runOCR(){
   try{
     let Tesseract: any;
     try {
-      Tesseract = await import("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js");
+      const mod = await import("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js");
+      Tesseract = mod.default || mod;
     } catch {
-      Tesseract = await import("https://esm.sh/tesseract.js@5");
+      const mod = await import("https://esm.sh/tesseract.js@5");
+      Tesseract = mod.default || mod;
     }
     const r=await Tesseract.recognize(file.value,lang.value,{logger:(m:any)=>{if(m.status==="recognizing text")progress.value=Math.round(m.progress*100);}});
     result.value=r.data.text.trim();

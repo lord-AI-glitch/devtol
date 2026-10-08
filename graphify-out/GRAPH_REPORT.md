@@ -1,16 +1,16 @@
 # Graph Report - devtol  (2026-10-08)
 
 ## Corpus Check
-- 595 files · ~265,543 words
+- 592 files · ~265,038 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 3091 nodes · 4707 edges · 250 communities (197 shown, 31 thin omitted)
+- 3084 nodes · 4699 edges · 241 communities (196 shown, 24 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 36 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `97bf2ce2`
+- Built from commit: `0b3dbd46`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,7 +31,7 @@
 - diff-viewer.vue
 - locale-selector.vue
 - @playwright/test
-- pdf-lib
+- verify-all-tools.mjs
 - src/modules/command-palette/command-palette.vue
 - wifi-qr-code-generator.vue
 - pdf-editor.vue
@@ -87,8 +87,8 @@
 - c-button.vue
 - c-button.theme.ts
 - c-file-upload.vue
-- vue
-- json-to-toml.vue
+- plausible.plugin.ts
+- ulid-generator.vue
 - rsa-key-pair-generator.vue
 - sql-to-orm-converter.vue
 - text-to-nato-alphabet.vue
@@ -110,7 +110,7 @@
 - DevTol — Handy Online Developer Utilities
 - c-alert.vue
 - Reddit Viral Launch Playbook for DevTol
-- toml.services.ts
+- dynamic-values.vue
 - mac-address-lookup.vue
 - c-card.vue
 - c-modal-value.vue
@@ -123,15 +123,13 @@
 - pdf-to-image.vue
 - @vicons/material
 - case-converter.vue
-- hmac-generator.vue
+- encryption.vue
 - renovate.json
-- git-memo/index.ts
+- Deals.page.vue
 - c-link.vue
 - audit-every-tool.mjs
-- regex-memo/index.ts
 - pdf-compress.vue
 - c-tooltip.vue
-- slugify-string.vue
 - env.d.ts
 - c-buttons-select.demo.vue
 - image-resizer.vue
@@ -144,22 +142,17 @@
 - stringify
 - regex-memo.content.md
 - base64.ts
-- keycode-info/index.ts
 - 1. High-Engagement Twitter / X Thread
 - vitest
-- queryParams.ts
-- vuedraggable
+- vue
 - pdf-redact.vue
 - test-pdf-tools-browser.cjs
-- macAddress.ts
 - text-statistics/index.ts
 - e2e-browser-test.mjs
-- check-http-status-text.mjs
 - pull_request_template.md
 - copilot-directory-submit.mjs
 - c-collapse.vue
 - test-images-to-pdf-debug.mjs
-- debug-http-status.mjs
 - debug-pdf-editor.cjs
 - https://cdn.skypack.dev/exifr
 - https://cdn.skypack.dev/gif.js.optimized
@@ -190,7 +183,7 @@
 - popup.js
 - prerender-seo-pages.js
 - 2. Empirical Verification & Architecture Upgrades
-- convertArrayToCsv
+- json-to-csv.vue
 - App.vue
 - Hacker News Launch Guide: "Show HN"
 - ipv4-subnet-calculator.vue
@@ -241,7 +234,6 @@
 - c-select.demo.vue
 - SpanCopyable.vue
 - c-diff-editor.vue
-- c-table.vue
 - normalizeExtractedText
 
 ## God Nodes (most connected - your core abstractions)
@@ -252,13 +244,11 @@
 5. `vitest` - 42 edges
 6. `lodash` - 41 edges
 7. `@vueuse/core` - 37 edges
-8. `@playwright/test` - 36 edges
+8. `@playwright/test` - 34 edges
 9. `scripts` - 21 edges
 10. `@vueuse/head` - 17 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `transformer()` --calls--> `convertArrayToCsv()`  [EXTRACTED]
-  src/tools/json-to-csv/json-to-csv.vue → src/tools/json-to-csv/json-to-csv.service.ts
 - `patternExplanations` --calls--> `explainRegexPattern()`  [EXTRACTED]
   src/tools/ai-regex-generator-explainer/ai-regex-generator-explainer.vue → src/tools/ai-regex-generator-explainer/ai-regex-generator-explainer.service.ts
 - `result` --calls--> `calculateCompoundInterest()`  [EXTRACTED]
@@ -267,19 +257,21 @@
   src/tools/curl-to-code-converter/curl-to-code-converter.vue → src/tools/curl-to-code-converter/curl-to-code-converter.service.ts
 - `error` --calls--> `convertBase()`  [EXTRACTED]
   src/tools/integer-base-converter/integer-base-converter.vue → src/tools/integer-base-converter/integer-base-converter.model.ts
+- `errorlessConvert()` --calls--> `convertBase()`  [EXTRACTED]
+  src/tools/integer-base-converter/integer-base-converter.vue → src/tools/integer-base-converter/integer-base-converter.model.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (250 total, 31 thin omitted)
+## Communities (241 total, 24 thin omitted)
 
 ### Community 0 - "dependencies"
 Cohesion: 0.03
 Nodes (70): dependencies, arabic-persian-reshaper, bcryptjs, bidi-js, change-case, colord, composerize-ts, country-code-lookup (+62 more)
 
 ### Community 1 - "tools/index.ts"
-Cohesion: 0.06
-Nodes (53): @vicons/tabler, toolsByCategory, toolsWithCategory, tool, tool, tool, tool, tool (+45 more)
+Cohesion: 0.05
+Nodes (62): @vicons/tabler, themeVars, tool, toolsByCategory, toolsWithCategory, tool, event, fields (+54 more)
 
 ### Community 2 - "regex-tester.vue"
 Cohesion: 0.10
@@ -287,7 +279,7 @@ Nodes (20): randexp, @regexper/render, dotAll, global, ignoreCase, multiline, re
 
 ### Community 3 - "otp-code-generator-and-validator.vue"
 Cohesion: 0.06
-Nodes (45): qrcode, tool, interval, keyUri, now, { qrcode }, refreshSecret(), secret (+37 more)
+Nodes (44): qrcode, tool, interval, keyUri, now, { qrcode }, refreshSecret(), secret (+36 more)
 
 ### Community 4 - "devDependencies"
 Cohesion: 0.04
@@ -298,8 +290,8 @@ Cohesion: 0.04
 Nodes (51): author, description, keywords, license, name, packageManager, type, version (+43 more)
 
 ### Community 6 - "toml-to-yaml.vue"
-Cohesion: 0.18
-Nodes (11): iarna-toml-esm, tool, rules, transformer(), tool, rules, transformer(), convertYamlToToml() (+3 more)
+Cohesion: 0.12
+Nodes (18): iarna-toml-esm, tool, convertJsonToToml(), rules, transformer(), tool, isValidToml(), rules (+10 more)
 
 ### Community 7 - "og-schemas/index.ts"
 Cohesion: 0.11
@@ -318,8 +310,8 @@ Cohesion: 0.09
 Nodes (20): appTheme, elementRef, emits, focusIndex, handleKeydown(), isOpen, keys, options (+12 more)
 
 ### Community 11 - "chmod-calculator.vue"
-Cohesion: 0.10
-Nodes (22): { copy, isJustCopied }, emit, props, tooltipText, value, groups, octal, permissions (+14 more)
+Cohesion: 0.05
+Nodes (39): { copy, isJustCopied }, emit, props, tooltipText, value, groups, octal, permissions (+31 more)
 
 ### Community 12 - "docker-run-to-docker-compose-converter.vue"
 Cohesion: 0.12
@@ -333,9 +325,9 @@ Nodes (13): appTheme, jsonAreTheSame, { leftJson, rightJson }, onlyShowDifferenc
 Cohesion: 0.50
 Nodes (3): { availableLocales, locale }, localeOptions, localesLong
 
-### Community 16 - "pdf-lib"
-Cohesion: 0.19
-Nodes (11): pdf-lib, assert(), createTestPngBuffer(), __dirname, __filename, rootDir, runTests(), computeCrc32() (+3 more)
+### Community 16 - "verify-all-tools.mjs"
+Cohesion: 0.21
+Nodes (10): assert(), createTestPngBuffer(), __dirname, __filename, rootDir, runTests(), computeCrc32(), crcTable (+2 more)
 
 ### Community 17 - "src/modules/command-palette/command-palette.vue"
 Cohesion: 0.11
@@ -427,12 +419,12 @@ Cohesion: 0.16
 Nodes (10): pdf-signature-reader, certs, props, { signature }, tableHeaders, tool, file, signatures (+2 more)
 
 ### Community 36 - "Guides.page.vue"
-Cohesion: 0.25
-Nodes (6): activeGuideId, Guide, guides, isAr, { locale }, localizedGuidesRoutes
+Cohesion: 0.09
+Nodes (18): @tabler/icons-vue, vue-i18n, isAr, { locale }, currentLangPrefix, { isDarkTheme }, route, styleStore (+10 more)
 
 ### Community 37 - "json5"
-Cohesion: 0.11
-Nodes (10): json5, tool, rules, tool, rules, transformer(), tool, rules (+2 more)
+Cohesion: 0.10
+Nodes (13): json5, tool, jsonValidationRules, leftJson, rawLeftJson, rawRightJson, rightJson, tool (+5 more)
 
 ### Community 38 - "scripts"
 Cohesion: 0.10
@@ -459,8 +451,8 @@ Cohesion: 0.17
 Nodes (12): tool, amount, casesTransformers, caseTransformer, { copy }, [macAddresses, refreshMacAddresses], macAddressPrefix, prefixValidation (+4 more)
 
 ### Community 44 - "router.ts"
-Cohesion: 0.08
-Nodes (26): figue, @vueuse/head, config, pillars, teamMembers, form, isSubmitted, isSubmitting (+18 more)
+Cohesion: 0.07
+Nodes (30): figue, vue-shadow-dom, @vueuse/head, config, app, pillars, teamMembers, form (+22 more)
 
 ### Community 45 - "curl-to-code-converter.vue"
 Cohesion: 0.08
@@ -471,8 +463,8 @@ Cohesion: 0.17
 Nodes (11): b64ValidationRules, b64ValidationWatch, base64Input, base64Output, { copy: copyText }, { copy: copyTextBase64 }, decodeUrlSafe, encodeUrlSafe (+3 more)
 
 ### Community 47 - "benchmark-builder.vue"
-Cohesion: 0.14
-Nodes (15): { copy }, copyAsMarkdown(), header, arrayToMarkdownTable(), computeAverage(), computeVariance(), results, suites (+7 more)
+Cohesion: 0.24
+Nodes (9): { copy }, copyAsMarkdown(), header, arrayToMarkdownTable(), computeAverage(), computeVariance(), results, suites (+1 more)
 
 ### Community 48 - "PdfToolsHub.page.vue"
 Cohesion: 0.17
@@ -527,24 +519,24 @@ Cohesion: 0.29
 Nodes (8): { copy: copyText }, { copy: copyUnicode }, inputText, inputUnicode, convertTextToUnicode(), convertUnicodeToText(), textFromUnicode, unicodeFromText
 
 ### Community 61 - "url-encoder.vue"
-Cohesion: 0.20
-Nodes (9): tool, { copy: copyDecoded }, { copy: copyEncoded }, decodeInput, decodeOutput, decodeValidation, encodedValidation, encodeInput (+1 more)
+Cohesion: 0.22
+Nodes (8): { copy: copyDecoded }, { copy: copyEncoded }, decodeInput, decodeOutput, decodeValidation, encodedValidation, encodeInput, encodeOutput
 
 ### Community 62 - "c-modal.vue"
 Cohesion: 0.18
 Nodes (7): { centered }, emit, isOpen, modal, props, { useTheme }, theme
 
 ### Community 63 - "base.layout.vue"
-Cohesion: 0.11
-Nodes (15): { isMenuCollapsed, isSmallScreen }, siderPosition, styleStore, CommandPalette, commitSha, currentLangPrefix, { favoriteTools, toolsByCategory }, route (+7 more)
+Cohesion: 0.12
+Nodes (14): { isMenuCollapsed, isSmallScreen }, siderPosition, styleStore, CommandPalette, commitSha, currentLangPrefix, { favoriteTools, toolsByCategory }, route (+6 more)
 
 ### Community 64 - "iban-validator-and-parser.vue"
 Cohesion: 0.29
 Nodes (7): ibantools, ibanExamples, ibanInfo, rawIban, getFriendlyErrors(), ibanErrorToMessage, tool
 
 ### Community 65 - "lodash"
-Cohesion: 0.10
-Nodes (13): lodash, ulid, createMissingLocaleFile(), getPathsFromGlobs(), amount, { copy }, format, formats (+5 more)
+Cohesion: 0.13
+Nodes (10): lodash, createMissingLocaleFile(), getPathsFromGlobs(), buttonSizes, buttonTypes, buttonVariants, { data, headers: rawHeaders, hideHeaders }, headers (+2 more)
 
 ### Community 66 - "test-all-124-tools.mjs"
 Cohesion: 0.31
@@ -570,13 +562,13 @@ Nodes (7): createState(), createTheme(), { useTheme }, clampHex(), darken(), lig
 Cohesion: 0.27
 Nodes (8): emit, fileInput, handleDrop(), handleFileInput(), handleUpload(), isOverDropZone, { multiple }, props
 
-### Community 72 - "vue"
-Cohesion: 0.09
-Nodes (19): plausible-tracker, vue, vue-i18n, vue-shadow-dom, { icon, title }, props, emit, Props (+11 more)
+### Community 72 - "plausible.plugin.ts"
+Cohesion: 0.27
+Nodes (7): plausible-tracker, createTrackerService(), useTracker(), TrackerService, createFakePlausibleInstance(), createPlausibleInstance(), plausible
 
-### Community 73 - "json-to-toml.vue"
-Cohesion: 0.47
-Nodes (4): tool, convertJsonToToml(), rules, transformer()
+### Community 73 - "ulid-generator.vue"
+Cohesion: 0.29
+Nodes (6): ulid, amount, { copy }, format, formats, [ulids, refreshUlids]
 
 ### Community 74 - "rsa-key-pair-generator.vue"
 Cohesion: 0.31
@@ -646,9 +638,9 @@ Nodes (5): props, { useTheme }, { type, title }, variantTheme, theme
 Cohesion: 0.15
 Nodes (12): 1. Post for `r/webdev` (2.2 Million Members), 2. Post for `r/InternetIsBeautiful` (16 Million Members), 3. Post for `r/Frontend` (350,000 Members), 4. Engagement & Upvote Strategy (How to hit the Front Page), First Comment (Immediately after submitting):, Post Body:, Post Body:, Reddit Viral Launch Playbook for DevTol (+4 more)
 
-### Community 97 - "toml.services.ts"
-Cohesion: 0.60
-Nodes (3): isValidToml(), booleanToHumanReadable(), isNotThrowing()
+### Community 97 - "dynamic-values.vue"
+Cohesion: 0.33
+Nodes (6): addValue(), emit, onInputEnter(), props, refs, values
 
 ### Community 98 - "mac-address-lookup.vue"
 Cohesion: 0.32
@@ -663,8 +655,8 @@ Cohesion: 0.33
 Nodes (5): { copy, isJustCopied }, isModalOpen, props, toggleModal, { value, label }
 
 ### Community 104 - "vue-router"
-Cohesion: 0.16
-Nodes (10): vue-router, currentLangPrefix, { isDarkTheme }, route, styleStore, demoPages, demoRoutes, routes (+2 more)
+Cohesion: 0.28
+Nodes (6): vue-router, demoPages, demoRoutes, routes, componentName, route
 
 ### Community 105 - "compound-interest-calculator.vue"
 Cohesion: 0.12
@@ -691,20 +683,24 @@ Cohesion: 0.18
 Nodes (6): file, format, isProcessing, message, previews, progress
 
 ### Community 112 - "@vicons/material"
-Cohesion: 0.10
-Nodes (15): @vicons/material, { copy }, header, password, username, tool, tool, tool (+7 more)
+Cohesion: 0.12
+Nodes (13): @sindresorhus/slugify, @vicons/material, { copy }, header, password, username, tool, tool (+5 more)
 
 ### Community 113 - "case-converter.vue"
 Cohesion: 0.29
 Nodes (6): change-case, baseConfig, formats, input, inputLabelAlignmentConfig, tool
 
-### Community 114 - "hmac-generator.vue"
-Cohesion: 0.06
-Nodes (32): crypto-js, algos, cypherAlgo, cypherInput, cypherOutput, cypherSecret, decryptAlgo, decryptInput (+24 more)
+### Community 114 - "encryption.vue"
+Cohesion: 0.12
+Nodes (15): crypto-js, algos, cypherAlgo, cypherInput, cypherOutput, cypherSecret, decryptAlgo, decryptInput (+7 more)
 
 ### Community 115 - "renovate.json"
 Cohesion: 0.50
 Nodes (3): config:base, extends, $schema
+
+### Community 116 - "Deals.page.vue"
+Cohesion: 0.33
+Nodes (5): Deal, deals, isDark, styleStore, localizedDealsRoutes
 
 ### Community 117 - "c-link.vue"
 Cohesion: 0.29
@@ -721,10 +717,6 @@ Nodes (8): tool, file, isProcessing, message, original, quality, result, savings
 ### Community 121 - "c-tooltip.vue"
 Cohesion: 0.40
 Nodes (4): isTargetHovered, props, targetRef, { tooltip, position }
-
-### Community 122 - "slugify-string.vue"
-Cohesion: 0.40
-Nodes (4): @sindresorhus/slugify, { copy }, input, slug
 
 ### Community 124 - "c-buttons-select.demo.vue"
 Cohesion: 0.50
@@ -746,21 +738,21 @@ Nodes (11): Boundaries, Character set, Characters that require escaping, Groupin
 Cohesion: 0.44
 Nodes (8): js-base64, base64ToText(), isValidBase64(), makeUriSafe(), removePotentialDataAndMimePrefix(), removePotentialPadding(), textToBase64(), unURI()
 
-### Community 139 - "keycode-info/index.ts"
-Cohesion: 0.50
-Nodes (3): tool, event, fields
-
 ### Community 140 - "1. High-Engagement Twitter / X Thread"
 Cohesion: 0.17
 Nodes (11): 1. High-Engagement Twitter / X Thread, 2. LinkedIn Engineering Post, 3. منشور مجتمعات المطورين بالعربية (LinkedIn / Facebook / Telegram), Social Media Launch Kit: Twitter/X & LinkedIn, Tweet 1 (The Hook):, Tweet 2 (cURL to Code):, Tweet 3 (AI Token Cost Calculator):, Tweet 4 (SQL to ORM): (+3 more)
 
 ### Community 141 - "vitest"
-Cohesion: 0.36
-Nodes (4): pinia, vitest, @vue/test-utils, getStringSizeInBytes()
+Cohesion: 0.25
+Nodes (5): pinia, vitest, @vue/test-utils, getStringSizeInBytes(), getErrorMessageIfThrows()
+
+### Community 142 - "vue"
+Cohesion: 0.12
+Nodes (7): vue, @vueuse/router, { icon, title }, props, transformers, macAddressValidationRules, partialMacAddressValidationRules
 
 ### Community 144 - "pdf-redact.vue"
-Cohesion: 0.22
-Nodes (5): file, isProcessing, keywords, message, resultUrl
+Cohesion: 0.20
+Nodes (6): pdf-lib, file, isProcessing, keywords, message, resultUrl
 
 ### Community 145 - "test-pdf-tools-browser.cjs"
 Cohesion: 0.29
@@ -870,13 +862,13 @@ Nodes (26): allLangCodes, allLocales, baseHtmlTemplate, buildComparisonArticleHt
 Cohesion: 0.13
 Nodes (14): 1. Executive Summary & Updated Audit Scorecard, 2.1 Complete 100% Arabic Localization & Routing, 2.2 Title & Meta Tag Overhaul (High-CTR Intent Targeting), 2.3 High-Intent Content Guides Upgraded, 2.4 Multilingual Prerendering & Hreflang Network, 2.5 Generative Engine Optimization (GEO) & AI Crawlers, 2. Empirical Verification & Architecture Upgrades, 3. High-Priority Keyword Targeting Matrix (+6 more)
 
-### Community 313 - "convertArrayToCsv"
-Cohesion: 0.80
-Nodes (3): convertArrayToCsv(), getHeaders(), serializeValue()
+### Community 313 - "json-to-csv.vue"
+Cohesion: 0.36
+Nodes (6): tool, rules, convertArrayToCsv(), getHeaders(), serializeValue(), transformer()
 
 ### Community 316 - "App.vue"
-Cohesion: 0.21
-Nodes (9): layout, { locale }, route, styleStore, theme, themeOverrides, useStyleStore, darkThemeOverrides (+1 more)
+Cohesion: 0.19
+Nodes (10): layout, { locale }, route, styleStore, theme, themeOverrides, layouts, useStyleStore (+2 more)
 
 ### Community 317 - "Hacker News Launch Guide: "Show HN""
 Cohesion: 0.29
@@ -963,8 +955,8 @@ Cohesion: 0.22
 Nodes (8): tool, input, message, opOptions, ops, result, sort, sortOpts
 
 ### Community 372 - "Home.page.vue"
-Cohesion: 0.08
-Nodes (21): @tabler/icons-vue, isAr, { locale }, Deal, deals, isDark, styleStore, activeCategory (+13 more)
+Cohesion: 0.11
+Nodes (15): vuedraggable, activeCategory, availableCategories, displayedTools, Draggable, favoriteTools, featuredTools, filteredTools (+7 more)
 
 ### Community 375 - "طريقة الاستخدام اليومية (تستغرق 3 دقائق):"
 Cohesion: 0.12
@@ -1070,29 +1062,25 @@ Nodes (4): { copy, isJustCopied }, props, tooltipText, { value }
 Cohesion: 0.33
 Nodes (5): monaco-editor, editorContainer, { options }, props, styleStore
 
-### Community 446 - "c-table.vue"
-Cohesion: 0.40
-Nodes (4): { data, headers: rawHeaders, hideHeaders }, headers, props, HeaderConfiguration
-
 ## Knowledge Gaps
 - **1569 isolated node(s):** `ImportMetaEnv`, `ImportMeta`, `manifest_version`, `name`, `short_name` (+1564 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1843 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1842 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **24 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `vue` connect `vue` to `tools/index.ts`, `exif-viewer.vue`, `otp-code-generator-and-validator.vue`, `package.json`, `@vueuse/core`, `text-to-speech.vue`, `date-time-converter.vue`, `validation.ts`, `color-converter.vue`, `docker-run-to-docker-compose-converter.vue`, `queryParams.ts`, `pdf-redact.vue`, `src/modules/command-palette/command-palette.vue`, `wifi-qr-code-generator.vue`, `pdf-editor.vue`, `AdSenseUnit.vue`, `tool.layout.vue`, `macAddress.ts`, `downloadBase64.ts`, `camera-recorder.vue`, `text-sorter.vue`, `editor.vue`, `video-to-gif.vue`, `Guides.page.vue`, `mock-data-generator.vue`, `adsense-revenue-calculator.vue`, `router.ts`, `curl-to-code-converter.vue`, `benchmark-builder.vue`, `PdfToolsHub.page.vue`, `shims.d.ts`, `word-counter/index.ts`, `ai-regex-generator-explainer.vue`, `pdf-protect.vue`, `App.vue`, `base.layout.vue`, `pdf-organize.vue`, `jwt-builder.vue`, `images-to-pdf.vue`, `sql-to-orm-converter.vue`, `webp-converter.vue`, `c-buttons-select.vue`, `image-compressor.vue`, `ai-token-cost-calculator.vue`, `qr-scanner.vue`, `user-agent-parser.vue`, `regex-replace.vue`, `string-obfuscator.vue`, `svg-converter.vue`, `pdf-split.vue`, `pdf-watermark-tool.vue`, `pdf-merge.vue`, `vue-router`, `compound-interest-calculator.vue`, `base64-file-converter.vue`, `mortgage-calculator.vue`, `pdf-to-image.vue`, `line-deduplicator.vue`, `Home.page.vue`, `favicon-generator.vue`, `image-watermark.vue`, `pdf-compress.vue`, `text-encrypt.vue`, `yaml-validator.vue`, `image-resizer.vue`, `image-ocr.vue`?**
-  _High betweenness centrality (0.157) - this node is a cross-community bridge._
-- **Why does `@vicons/tabler` connect `tools/index.ts` to `exif-viewer.vue`, `otp-code-generator-and-validator.vue`, `package.json`, `@vueuse/core`, `markdown-to-html/index.ts`, `og-schemas/index.ts`, `date-time-converter.vue`, `color-converter.vue`, `chmod-calculator.vue`, `docker-run-to-docker-compose-converter.vue`, `email-normalizer.vue`, `keycode-info/index.ts`, `list-converter.vue`, `text-statistics/index.ts`, `math-evaluator/index.ts`, `bip39-generator.vue`, `camera-recorder.vue`, `html-wysiwyg-editor.vue`, `emoji-picker.vue`, `downloadBase64.ts`, `editor.vue`, `jwt-parser.service.ts`, `json5`, `bcrypt.vue`, `mock-data-generator.vue`, `adsense-revenue-calculator.vue`, `mac-address-generator.vue`, `curl-to-code-converter.vue`, `base64-string-converter.vue`, `benchmark-builder.vue`, `PdfToolsHub.page.vue`, `crontab-generator.vue`, `lorem-ipsum-generator.vue`, `device-information/index.ts`, `ascii-text-drawer.vue`, `word-counter/index.ts`, `ai-regex-generator-explainer.vue`, `url-encoder.vue`, `base.layout.vue`, `ipv4-subnet-calculator.vue`, `jwt-builder.vue`, `images-to-pdf.vue`, `json-to-toml.vue`, `sql-to-orm-converter.vue`, `image-compressor.vue`, `ai-token-cost-calculator.vue`, `regex-memo/index.ts`, `html-entities.vue`, `user-agent-parser.vue`, `json-viewer.vue`, `mac-address-lookup.vue`, `compound-interest-calculator.vue`, `base64-file-converter.vue`, `mortgage-calculator.vue`, `case-converter.vue`, `hmac-generator.vue`, `line-deduplicator.vue`, `git-memo/index.ts`, `favicon-generator.vue`, `image-watermark.vue`, `pdf-compress.vue`, `ipv4-range-expander.vue`, `image-resizer.vue`, `image-ocr.vue`?**
-  _High betweenness centrality (0.117) - this node is a cross-community bridge._
-- **Why does `lodash` connect `lodash` to `otp-code-generator-and-validator.vue`, `package.json`, `og-schemas/index.ts`, `date-time-converter.vue`, `validation.ts`, `chmod-calculator.vue`, `color-converter.vue`, `diff-viewer.vue`, `list-converter.vue`, `vitest`, `temperature-converter.vue`, `downloadBase64.ts`, `camera-recorder.vue`, `emoji-picker.vue`, `release.mjs`, `jwt-parser.service.ts`, `diff-viewer.models.tsx`, `mac-address-generator.vue`, `benchmark-builder.vue`, `password-strength-analyser.vue`, `c-table.vue`, `c-file-upload.vue`, `vue`, `c-buttons-select.vue`, `c-key-value-list.vue`, `html-entities.vue`, `toml.services.ts`, `vue-router`, `FormatTransformer.vue`, `ipv4-range-expander.vue`?**
-  _High betweenness centrality (0.092) - this node is a cross-community bridge._
+- **Why does `vue` connect `vue` to `tools/index.ts`, `exif-viewer.vue`, `otp-code-generator-and-validator.vue`, `package.json`, `@vueuse/core`, `text-to-speech.vue`, `date-time-converter.vue`, `validation.ts`, `color-converter.vue`, `docker-run-to-docker-compose-converter.vue`, `pdf-redact.vue`, `src/modules/command-palette/command-palette.vue`, `wifi-qr-code-generator.vue`, `pdf-editor.vue`, `AdSenseUnit.vue`, `tool.layout.vue`, `downloadBase64.ts`, `camera-recorder.vue`, `text-sorter.vue`, `editor.vue`, `video-to-gif.vue`, `Guides.page.vue`, `mock-data-generator.vue`, `adsense-revenue-calculator.vue`, `router.ts`, `curl-to-code-converter.vue`, `PdfToolsHub.page.vue`, `shims.d.ts`, `word-counter/index.ts`, `ai-regex-generator-explainer.vue`, `pdf-protect.vue`, `App.vue`, `base.layout.vue`, `pdf-organize.vue`, `plausible.plugin.ts`, `images-to-pdf.vue`, `jwt-builder.vue`, `sql-to-orm-converter.vue`, `webp-converter.vue`, `c-buttons-select.vue`, `image-compressor.vue`, `ai-token-cost-calculator.vue`, `qr-scanner.vue`, `user-agent-parser.vue`, `regex-replace.vue`, `string-obfuscator.vue`, `svg-converter.vue`, `dynamic-values.vue`, `pdf-split.vue`, `pdf-watermark-tool.vue`, `pdf-merge.vue`, `compound-interest-calculator.vue`, `base64-file-converter.vue`, `mortgage-calculator.vue`, `pdf-to-image.vue`, `line-deduplicator.vue`, `Deals.page.vue`, `Home.page.vue`, `favicon-generator.vue`, `image-watermark.vue`, `pdf-compress.vue`, `text-encrypt.vue`, `yaml-validator.vue`, `image-resizer.vue`, `image-ocr.vue`?**
+  _High betweenness centrality (0.156) - this node is a cross-community bridge._
+- **Why does `@vicons/tabler` connect `tools/index.ts` to `exif-viewer.vue`, `otp-code-generator-and-validator.vue`, `package.json`, `@vueuse/core`, `toml-to-yaml.vue`, `markdown-to-html/index.ts`, `date-time-converter.vue`, `color-converter.vue`, `chmod-calculator.vue`, `docker-run-to-docker-compose-converter.vue`, `email-normalizer.vue`, `list-converter.vue`, `og-schemas/index.ts`, `text-statistics/index.ts`, `math-evaluator/index.ts`, `bip39-generator.vue`, `camera-recorder.vue`, `html-wysiwyg-editor.vue`, `emoji-picker.vue`, `downloadBase64.ts`, `editor.vue`, `jwt-parser.service.ts`, `json5`, `bcrypt.vue`, `mock-data-generator.vue`, `adsense-revenue-calculator.vue`, `mac-address-generator.vue`, `curl-to-code-converter.vue`, `base64-string-converter.vue`, `benchmark-builder.vue`, `PdfToolsHub.page.vue`, `crontab-generator.vue`, `lorem-ipsum-generator.vue`, `device-information/index.ts`, `ascii-text-drawer.vue`, `json-to-csv.vue`, `ai-regex-generator-explainer.vue`, `word-counter/index.ts`, `base.layout.vue`, `ipv4-subnet-calculator.vue`, `jwt-builder.vue`, `images-to-pdf.vue`, `sql-to-orm-converter.vue`, `image-compressor.vue`, `ai-token-cost-calculator.vue`, `user-agent-parser.vue`, `html-entities.vue`, `json-viewer.vue`, `dynamic-values.vue`, `mac-address-lookup.vue`, `compound-interest-calculator.vue`, `base64-file-converter.vue`, `mortgage-calculator.vue`, `case-converter.vue`, `encryption.vue`, `line-deduplicator.vue`, `favicon-generator.vue`, `image-watermark.vue`, `pdf-compress.vue`, `ipv4-range-expander.vue`, `image-resizer.vue`, `image-ocr.vue`?**
+  _High betweenness centrality (0.105) - this node is a cross-community bridge._
+- **Why does `lodash` connect `lodash` to `otp-code-generator-and-validator.vue`, `package.json`, `toml-to-yaml.vue`, `og-schemas/index.ts`, `date-time-converter.vue`, `validation.ts`, `chmod-calculator.vue`, `color-converter.vue`, `diff-viewer.vue`, `list-converter.vue`, `vitest`, `temperature-converter.vue`, `downloadBase64.ts`, `camera-recorder.vue`, `emoji-picker.vue`, `release.mjs`, `jwt-parser.service.ts`, `diff-viewer.models.tsx`, `mac-address-generator.vue`, `benchmark-builder.vue`, `password-strength-analyser.vue`, `c-file-upload.vue`, `plausible.plugin.ts`, `ulid-generator.vue`, `c-buttons-select.vue`, `c-key-value-list.vue`, `html-entities.vue`, `vue-router`, `FormatTransformer.vue`, `ipv4-range-expander.vue`?**
+  _High betweenness centrality (0.103) - this node is a cross-community bridge._
 - **What connects `ImportMetaEnv`, `ImportMeta`, `manifest_version` to the rest of the system?**
   _1569 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.02857142857142857 - nodes in this community are weakly interconnected._
 - **Should `tools/index.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.0553290623179965 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.04628970232160661 - nodes in this community are weakly interconnected._
 - **Should `regex-tester.vue` be split into smaller, more focused modules?**
   _Cohesion score 0.09881422924901186 - nodes in this community are weakly interconnected._
