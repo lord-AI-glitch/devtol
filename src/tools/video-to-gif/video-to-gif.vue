@@ -41,7 +41,14 @@ async function generate(){
       progress.value=Math.round((i+1)/frameCount*80);
     }
     // Use gifenc for fast client-side GIF encoding
-    const { GIFEncoder, quantize, applyPalette } = await import("https://esm.sh/gifenc@1.0.3");
+    let GIFEncoder: any, quantize: any, applyPalette: any;
+    try {
+      const mod = await import("https://cdn.jsdelivr.net/npm/gifenc@1.0.3/dist/gifenc.esm.js");
+      GIFEncoder = mod.GIFEncoder; quantize = mod.quantize; applyPalette = mod.applyPalette;
+    } catch {
+      const mod = await import("https://esm.sh/gifenc@1.0.3?bundle");
+      GIFEncoder = mod.GIFEncoder || mod.default; quantize = mod.quantize; applyPalette = mod.applyPalette;
+    }
     const gif = GIFEncoder();
     const delay = Math.round(1000 / fps.value);
     for (const frame of frames) {
