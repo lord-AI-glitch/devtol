@@ -297,7 +297,7 @@ export function getLegalPageArticleHtml(slug, lang) {
 
           <div style="margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid #e2e8f0;">
             <h2 style="font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 8px;">2. Client-Side Zero-Knowledge Architecture: Why Modern Engineering Teams Avoid Cloud Converters</h2>
-            <p style="color: #64748b; font-size: 0.9rem;">By Corentin Thomasset & DevTol Architecture Board — September 2026</p>
+            <p style="color: #64748b; font-size: 0.9rem;">By DevTol Systems Architecture & Security Guild — September 2026</p>
             <p>Modern engineering teams handle sensitive tokens, production database dumps, and API keys daily. Cloud-based converters expose this data to third-party network surveillance, edge caching, and server logging. DevTol leverages WebAssembly and isolated Web Workers to keep 100% of data transformations inside the browser sandbox.</p>
           </div>
 
@@ -324,21 +324,25 @@ export function getLegalPageArticleHtml(slug, lang) {
     case 'about':
       return isAr ? `
         <article class="prose" style="line-height: 1.8; color: #334155;">
-          <h2 style="font-size: 1.6rem; font-weight: 800; color: #0f172a;">من نحن — منصة DevTol ومعايير النشر التحريرية E-E-A-T</h2>
-          <p>منصة DevTol هي بيئة عمل برمجية ومفتوحة المصدر للمطورين والمصممين حول العالم، تم إطلاقها لتوفير بديل آمن وسريع للأدوات السحابية التقليدية التي تنتهك خصوصية البيانات.</p>
-          <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-top: 20px;">فلسفتنا الهندسية</h3>
-          <p>نؤمن بأن كل عملية تحويل نصوص، أو فك تشفير، أو تنسيق أكواد يجب أن تتم محلياً 100% داخل المتصفح. لا نستخدم خوادم وسيطة لمعالجة المدخلات، ولا نسجل بيانات المستخدمين بأي شكل من الأشكال.</p>
-          <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-top: 20px;">فريق العمل والاعتماد</h3>
-          <p>يتم الإشراف على المنصة وتطويرها بواسطة مهندسي برمجيات متخصصين في أمن النظم وهندسة الويب، مع الالتزام التام بالمعايير العالمية IETF RFC و W3C لضمان أعلى مستويات الدقة والاعتمادية.</p>
+          <h2 style="font-size: 1.6rem; font-weight: 800; color: #0f172a;">من نحن — منصة DevTol والمعايير الهندسية التحريرية E-E-A-T</h2>
+          <p>تأسست <strong>منصة DevTol</strong> لتكون بيئة العمل البرمجية والإنتاجية الرائدة للمطورين، ومهندسي النظم، ومصممي واجهات المستخدم حول العالم. تقدم المنصة بديلاً هندسياً آمناً وسريعاً للمحولات السحابية التقليدية التي تنتهك خصوصية الشفرات وقواعد البيانات.</p>
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-top: 20px;">رسالتنا الهندسية والحوسبة المحلية 100%</h3>
+          <p>نؤمن بأن كل عملية تحويل نصوص، أو فك تشفير، أو تنسيق أكواد يجب أن تتم محلياً 100% داخل ذاكرة جهازك عبر Web Workers و WebAssembly و Web Crypto API دون إرسال أي بايت لخوادم وسيطة، وبما يتوافق مع معايير GDPR و HIPAA.</p>
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-top: 20px;">الريادة وتطوير الأدوات الحصرية</h3>
+          <p>انطلاقاً من الاحترام لأسس البرمجيات المفتوحة المصدر (بما فيها مشروع it-tools تحت رخصة MIT)، قام الفريق الهندسي في DevTol بإعادة تطوير المنصة وتوسيعها بأكثر من 30 أداة حصرية، من ضمنها حاسبات تكاليف نماذج الذكاء الاصطناعي، ونماذج تقدير عوائد أدسنس، ومحللات استعلامات SQL، وأدوات معالجة PDF المحلية.</p>
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-top: 20px;">معايير الجودة والشفافية التحريرية E-E-A-T</h3>
+          <p>يشرف على المنصة فريق هندسي متخصص في أمن النظم، مع الامتثال الصارم للمواصفات الرسمية الصادرة عن IETF RFC و W3C و NIST لضمان أعلى معايير الموثوقية والدقة.</p>
         </article>
       ` : `
         <article class="prose" style="line-height: 1.8; color: #334155;">
           <h2 style="font-size: 1.6rem; font-weight: 800; color: #0f172a;">About DevTol — Editorial Standards & Engineering Mission</h2>
-          <p>DevTol is an open-source, client-side developer toolbox designed for software engineers, DevOps professionals, sysadmins, and UI/UX designers worldwide.</p>
-          <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-top: 20px;">Our Engineering Philosophy</h3>
-          <p>We firmly believe that formatting code, decoding cryptographic tokens, and converting data should never compromise proprietary or sensitive information. That is why DevTol enforces 100% local client-side processing using WebAssembly, Web Workers, and the Web Crypto API.</p>
-          <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-top: 20px;">Open-Source Pedigree & Maintenance</h3>
-          <p>Originally derived and expanded from the open-source it-tools ecosystem, DevTol is actively maintained by an engineering board dedicated to performance, absolute zero-data retention, and strict adherence to IETF RFC standards.</p>
+          <p><strong>DevTol</strong> is an enterprise-grade, client-side developer toolbox designed for software engineers, DevOps professionals, sysadmins, and UI/UX designers worldwide.</p>
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-top: 20px;">Our Zero-Knowledge Engineering Philosophy</h3>
+          <p>We firmly believe that formatting proprietary code, decoding cryptographic tokens, and converting data structures should never compromise security. DevTol enforces 100% local client-side computation using WebAssembly, Web Workers, and the native Web Crypto API—ensuring zero data transmission across the network.</p>
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-top: 20px;">Open-Source Pedigree & Custom Innovation</h3>
+          <p>Proudly respecting open-source foundations (including foundational concepts from the it-tools MIT project), DevTol has been completely re-architected and expanded with over 30 bespoke developer utilities—including AI token pricing calculators, programmatic AdSense revenue estimation, offline PDF processing suites, and multi-dialect SQL analyzers.</p>
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-top: 20px;">E-E-A-T Quality & Cryptographic Standards</h3>
+          <p>DevTol technical documentation and algorithmic implementations are authored and reviewed by practicing systems engineers, adhering strictly to official IETF RFC (RFC 7519, RFC 4648, RFC 4122/9562) and NIST standards.</p>
         </article>
       `;
 

@@ -4,7 +4,7 @@
   "version": "2024.10.22-7ca5933",
   "packageManager": "pnpm@9.11.0",
   "description": "DevTol - Handy, secure, client-side online tools for developers.",
-  "author": "Corentin Th <corentin.thomasset74+it-tools@gmail.com> (https://corentin.tech)",
+  "author": "DevTol Engineering <support@devtol.online> (https://devtol.online)",
   "license": "GNU GPLv3",
   "repository": {
     "type": "git",

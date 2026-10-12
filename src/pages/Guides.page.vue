@@ -114,7 +114,7 @@ JSON Web Tokens (JWT), standardized under IETF RFC 7519, are compact, URL-safe r
     color: 'indigo',
     readTime: '7 min read',
     date: 'September 2026',
-    author: 'Corentin Thomasset & DevTol Architecture Board',
+    author: 'DevTol Systems Architecture & Security Guild',
     titleEn: 'Client-Side Zero-Knowledge Architecture: Why Modern Engineering Teams Avoid Cloud Converters',
     titleAr: 'هندسة الحوسبة المحلية صفرية المعرفة: لماذا تتجنب الفرق الهندسية المحولات السحابية',
     excerptEn: 'An architectural deep-dive into how WebAssembly, the Web Crypto API, and browser sandboxes allow developers to execute data transformations with zero server exposure.',
