@@ -115,7 +115,7 @@ function extractFaqsFromMarkdown(rawMd) {
   while ((match = regex.exec(rawMd)) !== null) {
     const q = match[1].trim();
     let a = match[2].trim();
-    a = a.replace(/```[\s\S]*?```/g, '').replace(/[*_#`]/g, '').replace(/\s+/g, ' ').trim();
+    a = a.replace(/```[\s\S]*?```/g, '').replace(/<[^>]*>/g, '').replace(/[*_#`]/g, '').replace(/\s+/g, ' ').trim();
     if (q && a) {
       faqs.push({
         question: q,
@@ -276,7 +276,7 @@ function generatePrerenderedHtml({
   html = html.replace(/<meta\s+name="twitter:description"\s+content=".*?"\s*\/?>/i, `<meta name="twitter:description" content="${escapeHtml(fullDesc)}" />`);
 
   // Inject hreflangs & dynamic tool JSON-LD schema into head
-  const headInjection = `\n    <!-- International Hreflang Network -->\n    ${hreflangTags}\n    <!-- Dynamic Tool Schema.org Structured Data -->\n    <script type="application/ld+json">\n    ${schemaJson}\n    </script>\n  </head>`;
+  const headInjection = `\n    <!-- International Hreflang Network -->\n    ${hreflangTags}\n    <!-- Dynamic Tool Schema.org Structured Data -->\n    <script type="application/ld+json">\n    ${schemaJson.replace(/<\/script/gi, '<\\/script')}\n    </script>\n  </head>`;
   html = html.replace('</head>', headInjection);
 
   // Related tools navigation for internal link graph & topic clusters

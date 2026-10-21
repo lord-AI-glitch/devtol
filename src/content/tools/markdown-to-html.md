@@ -131,7 +131,7 @@ export function convertMarkdownToHtml(
 CommonMark is the base formal specification that standardizes core Markdown grammar (headings, lists, code spans, emphasis). GFM is a strict superset of CommonMark created by GitHub that adds critical developer features, including pipe tables, task lists (`- [x]`), autolinking URLs, and strikethrough (`~~text~~`).
 
 ### How does this converter prevent XSS attacks?
-If Markdown allows raw HTML (e.g., `<script>alert(1)</script>` or `<img src=x onerror=stealCookies()>`), malicious users can execute arbitrary scripts in the reader's browser. Our converter runs all output through DOMPurify, an industry-standard XSS sanitizer that strips executable tags and dangerous event handlers while preserving safe HTML structure.
+If Markdown allows raw HTML (such as executable JavaScript tags or malicious event handlers), unauthorized actors could execute scripts in the reader's browser. Our converter runs all output through DOMPurify, an industry-standard XSS sanitizer that strips executable script tags and dangerous attributes while preserving clean, semantic HTML structure.
 
 ### Why do consecutive single newlines not create a line break?
 Under CommonMark rules, soft line breaks within a paragraph are treated as spaces. To trigger an explicit hard line break (`<br>`), you must either end the line with two trailing spaces or enable the GFM `breaks: true` configuration option.
