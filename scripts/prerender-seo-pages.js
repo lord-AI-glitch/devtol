@@ -168,29 +168,48 @@ function generatePrerenderedHtml({
     ...supportedLangs.map(l => `<link rel="alternate" hreflang="${l}" href="${BASE_URL}/${l}/${pathSlug}" />`),
   ].join('\n    ');
 
+  const isLegalOrEditorial = category === 'InformationPage' || ['about', 'privacy-policy', 'terms-of-service', 'contact', 'disclaimer', 'guides', 'deals', 'pdf-tools'].includes(pathSlug);
+
+  const mainEntityNode = isLegalOrEditorial
+    ? {
+        '@type': pathSlug === 'about' ? 'AboutPage' : pathSlug === 'contact' ? 'ContactPage' : 'WebPage',
+        '@id': `${canonicalUrl}#webpage`,
+        'url': canonicalUrl,
+        'name': `${title} — DevTol`,
+        'description': fullDesc,
+        'inLanguage': lang,
+        'isPartOf': {
+          '@type': 'WebSite',
+          '@id': `${BASE_URL}/#website`,
+          'name': 'DevTol',
+          'url': `${BASE_URL}/`,
+        },
+      }
+    : {
+        '@type': 'WebApplication',
+        '@id': `${canonicalUrl}#webapp`,
+        'url': canonicalUrl,
+        'name': `${title} Online`,
+        'applicationCategory': 'DeveloperApplication',
+        'operatingSystem': 'All',
+        'browserRequirements': 'Requires JavaScript. Requires HTML5.',
+        'isAccessibleForFree': true,
+        'featureList': [
+          '100% Client-Side Local Browser Execution',
+          'Zero Server Data Transmission or Logging',
+          'Offline-Capable Progressive Web App (PWA)',
+        ],
+        'description': fullDesc,
+        'inLanguage': lang,
+        'offers': {
+          '@type': 'Offer',
+          'price': '0',
+          'priceCurrency': 'USD',
+        },
+      };
+
   const graphNodes = [
-    {
-      '@type': ['WebApplication', 'SoftwareApplication'],
-      '@id': `${canonicalUrl}#webapp`,
-      'url': canonicalUrl,
-      'name': `${title} Online`,
-      'applicationCategory': category || 'DeveloperApplication',
-      'operatingSystem': 'All',
-      'browserRequirements': 'Requires JavaScript. Requires HTML5.',
-      'isAccessibleForFree': true,
-      'featureList': [
-        '100% Client-Side Local Browser Execution',
-        'Zero Server Data Transmission or Logging',
-        'Offline-Capable Progressive Web App (PWA)',
-      ],
-      'description': fullDesc,
-      'inLanguage': lang,
-      'offers': {
-        '@type': 'Offer',
-        'price': '0',
-        'priceCurrency': 'USD',
-      },
-    },
+    mainEntityNode,
     {
       '@type': 'BreadcrumbList',
       '@id': `${canonicalUrl}#breadcrumb`,
@@ -478,8 +497,36 @@ const rootHomeHreflangs = [
 ].join('\n    ');
 
 let rootHomeHtml = baseHtmlTemplate;
+const homeSchemaJson = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${BASE_URL}/#website`,
+      'url': `${BASE_URL}/`,
+      'name': 'DevTol',
+      'description': '126+ free, private, client-side online tools for developers & designers.',
+      'inLanguage': 'en',
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': `${BASE_URL}/#webapp`,
+      'name': 'DevTol Suite',
+      'url': `${BASE_URL}/`,
+      'applicationCategory': 'DeveloperApplication',
+      'operatingSystem': 'All',
+      'browserRequirements': 'Requires JavaScript. Requires HTML5.',
+      'isAccessibleForFree': true,
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+      },
+    },
+  ],
+});
 if (!rootHomeHtml.includes('hreflang="x-default"')) {
-  rootHomeHtml = rootHomeHtml.replace('</head>', `\n    <!-- International Hreflangs -->\n    ${rootHomeHreflangs}\n  </head>`);
+  rootHomeHtml = rootHomeHtml.replace('</head>', `\n    <!-- International Hreflangs -->\n    ${rootHomeHreflangs}\n    <!-- Homepage Schema.org Structured Data -->\n    <script type="application/ld+json">\n    ${homeSchemaJson}\n    </script>\n  </head>`);
 }
 const enHomePrerenderBody = getHomePrerenderContent('en', toolsList);
 rootHomeHtml = rootHomeHtml.replace(/<div id="app">[\s\S]*?<\/div>/i, enHomePrerenderBody.trim());
