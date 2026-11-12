@@ -348,7 +348,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "zipfileinput",
       "source_file": "src/utils/zip.ts",
@@ -919,8 +919,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 49,
-      "community_name": "tracker.services.ts",
+      "community": 57,
+      "community_name": "vue",
       "file_type": "code",
       "norm_label": "trackerservice",
       "source_file": "src/modules/tracker/tracker.types.ts",
@@ -1220,6 +1220,42 @@
       "source_location": "L92"
     },
     {
+      "id": "src_tools_pdf_ocr_pdf_ocr_copy",
+      "label": "copy()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 104,
+      "community_name": "pdf-ocr.vue",
+      "file_type": "code",
+      "norm_label": "copy()",
+      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
+      "source_location": "L52"
+    },
+    {
+      "id": "src_tools_pdf_ocr_pdf_ocr_onfile",
+      "label": "onFile()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 104,
+      "community_name": "pdf-ocr.vue",
+      "file_type": "code",
+      "norm_label": "onfile()",
+      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
+      "source_location": "L15"
+    },
+    {
+      "id": "src_tools_pdf_ocr_pdf_ocr_runocr",
+      "label": "runOCR()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 104,
+      "community_name": "pdf-ocr.vue",
+      "file_type": "code",
+      "norm_label": "runocr()",
+      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
+      "source_location": "L16"
+    },
+    {
       "id": "src_tools_compound_interest_calculator_compound_interest_calculator_formatcurrency",
       "label": "formatCurrency()",
       "_callable": true,
@@ -1436,12 +1472,36 @@
       "source_location": "L13"
     },
     {
+      "id": "src_tools_benchmark_builder_dynamic_values_addvalue",
+      "label": "addValue()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 116,
+      "community_name": "dynamic-values.vue",
+      "file_type": "code",
+      "norm_label": "addvalue()",
+      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
+      "source_location": "L15"
+    },
+    {
+      "id": "src_tools_benchmark_builder_dynamic_values_oninputenter",
+      "label": "onInputEnter()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 116,
+      "community_name": "dynamic-values.vue",
+      "file_type": "code",
+      "norm_label": "oninputenter()",
+      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
+      "source_location": "L21"
+    },
+    {
       "id": "scripts_test_interactive_deep_suite_preparetestassets",
       "label": "prepareTestAssets()",
       "_callable": true,
       "_origin": "ast",
       "community": 119,
-      "community_name": "test-interactive-deep-suite.mjs",
+      "community_name": "pdf-lib",
       "file_type": "code",
       "norm_label": "preparetestassets()",
       "source_file": "scripts/test-interactive-deep-suite.mjs",
@@ -1453,7 +1513,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 119,
-      "community_name": "test-interactive-deep-suite.mjs",
+      "community_name": "pdf-lib",
       "file_type": "code",
       "norm_label": "runinteractivedeepsuite()",
       "source_file": "scripts/test-interactive-deep-suite.mjs",
@@ -1465,7 +1525,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 119,
-      "community_name": "test-interactive-deep-suite.mjs",
+      "community_name": "pdf-lib",
       "file_type": "code",
       "norm_label": "wait()",
       "source_file": "scripts/test-interactive-deep-suite.mjs",
@@ -1892,52 +1952,16 @@
       "source_location": "L1"
     },
     {
-      "id": "src_composable_computed_catchedcomputed_computedcatch",
-      "label": "computedCatch()",
+      "id": "scripts_populate_all_locales_translate_fallback",
+      "label": "translate_fallback()",
       "_callable": true,
       "_origin": "ast",
-      "community": 142,
-      "community_name": "vue",
+      "community": 143,
+      "community_name": "populate_all_locales.py",
       "file_type": "code",
-      "norm_label": "computedcatch()",
-      "source_file": "src/composable/computed/catchedComputed.ts",
-      "source_location": "L6"
-    },
-    {
-      "id": "src_composable_fuzzysearch_usefuzzysearch",
-      "label": "useFuzzySearch()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 142,
-      "community_name": "vue",
-      "file_type": "code",
-      "norm_label": "usefuzzysearch()",
-      "source_file": "src/composable/fuzzySearch.ts",
-      "source_location": "L7"
-    },
-    {
-      "id": "src_utils_macaddress_macaddressvalidation",
-      "label": "macAddressValidation()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 142,
-      "community_name": "vue",
-      "file_type": "code",
-      "norm_label": "macaddressvalidation()",
-      "source_file": "src/utils/macAddress.ts",
-      "source_location": "L11"
-    },
-    {
-      "id": "src_utils_macaddress_usepartialmacaddressvalidation",
-      "label": "usePartialMacAddressValidation()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 142,
-      "community_name": "vue",
-      "file_type": "code",
-      "norm_label": "usepartialmacaddressvalidation()",
-      "source_file": "src/utils/macAddress.ts",
-      "source_location": "L25"
+      "norm_label": "translate_fallback()",
+      "source_file": "scripts/populate_all_locales.py",
+      "source_location": "L140"
     },
     {
       "id": "src_tools_pdf_redact_pdf_redact_download",
@@ -2065,7 +2089,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "assert()",
       "source_file": "scripts/verify-all-tools.mjs",
@@ -2077,7 +2101,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "createtestjpgbuffer()",
       "source_file": "scripts/verify-all-tools.mjs",
@@ -2089,7 +2113,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "createtestpngbuffer()",
       "source_file": "scripts/verify-all-tools.mjs",
@@ -2101,7 +2125,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "runtests()",
       "source_file": "scripts/verify-all-tools.mjs",
@@ -2113,7 +2137,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "computecrc32()",
       "source_file": "src/utils/zip.ts",
@@ -2125,7 +2149,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "createzipblob()",
       "source_file": "src/utils/zip.ts",
@@ -2478,6 +2502,18 @@
       "norm_label": "transformer()",
       "source_file": "src/tools/xml-formatter/xml-formatter.vue",
       "source_location": "L9"
+    },
+    {
+      "id": "src_tools_xml_to_json_xml_to_json_transformer",
+      "label": "transformer()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "xml-formatter.vue",
+      "file_type": "code",
+      "norm_label": "transformer()",
+      "source_file": "src/tools/xml-to-json/xml-to-json.vue",
+      "source_location": "L8"
     },
     {
       "id": "src_tools_json_viewer_json_models_formatjson",
@@ -2856,8 +2892,8 @@
       "label": "convert()",
       "_callable": true,
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "convert()",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -2868,8 +2904,8 @@
       "label": "download()",
       "_callable": true,
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "download()",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -2880,8 +2916,8 @@
       "label": "onFile()",
       "_callable": true,
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "onfile()",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -3042,42 +3078,6 @@
       "norm_label": "runocr()",
       "source_file": "src/tools/image-ocr/image-ocr.vue",
       "source_location": "L14"
-    },
-    {
-      "id": "src_tools_pdf_ocr_pdf_ocr_copy",
-      "label": "copy()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "copy()",
-      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
-      "source_location": "L52"
-    },
-    {
-      "id": "src_tools_pdf_ocr_pdf_ocr_onfile",
-      "label": "onFile()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "onfile()",
-      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
-      "source_location": "L15"
-    },
-    {
-      "id": "src_tools_pdf_ocr_pdf_ocr_runocr",
-      "label": "runOCR()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "runocr()",
-      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
-      "source_location": "L16"
     },
     {
       "id": "src_tools_exif_viewer_exif_viewer_download",
@@ -3797,7 +3797,7 @@
       "file_type": "code",
       "norm_label": "buildcomparisonarticlehtml()",
       "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L924"
+      "source_location": "L1309"
     },
     {
       "id": "scripts_prerender_seo_pages_escapehtml",
@@ -3832,6 +3832,18 @@
       "community_name": "prerender-seo-pages.js",
       "file_type": "code",
       "norm_label": "generateprerenderedhtml()",
+      "source_file": "scripts/prerender-seo-pages.js",
+      "source_location": "L512"
+    },
+    {
+      "id": "scripts_prerender_seo_pages_getlocalizedtoolarticleandfaqs",
+      "label": "getLocalizedToolArticleAndFaqs()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 306,
+      "community_name": "prerender-seo-pages.js",
+      "file_type": "code",
+      "norm_label": "getlocalizedtoolarticleandfaqs()",
       "source_file": "scripts/prerender-seo-pages.js",
       "source_location": "L129"
     },
@@ -4688,18 +4700,6 @@
       "source_location": "L8"
     },
     {
-      "id": "src_tools_xml_to_json_xml_to_json_transformer",
-      "label": "transformer()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 37,
-      "community_name": "json5",
-      "file_type": "code",
-      "norm_label": "transformer()",
-      "source_file": "src/tools/xml-to-json/xml-to-json.vue",
-      "source_location": "L8"
-    },
-    {
       "id": "src_pages_home_page_onupdatefavoritetools",
       "label": "onUpdateFavoriteTools()",
       "_callable": true,
@@ -4986,6 +4986,18 @@
       "norm_label": "usecopy()",
       "source_file": "src/composable/copy.ts",
       "source_location": "L6"
+    },
+    {
+      "id": "src_composable_fuzzysearch_usefuzzysearch",
+      "label": "useFuzzySearch()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 389,
+      "community_name": "@vueuse/core",
+      "file_type": "code",
+      "norm_label": "usefuzzysearch()",
+      "source_file": "src/composable/fuzzySearch.ts",
+      "source_location": "L7"
     },
     {
       "id": "src_composable_queryparams_usequeryparam",
@@ -5768,30 +5780,6 @@
       "source_location": "L17"
     },
     {
-      "id": "src_modules_tracker_tracker_services_createtrackerservice",
-      "label": "createTrackerService()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 49,
-      "community_name": "tracker.services.ts",
-      "file_type": "code",
-      "norm_label": "createtrackerservice()",
-      "source_file": "src/modules/tracker/tracker.services.ts",
-      "source_location": "L7"
-    },
-    {
-      "id": "src_modules_tracker_tracker_services_usetracker",
-      "label": "useTracker()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 49,
-      "community_name": "tracker.services.ts",
-      "file_type": "code",
-      "norm_label": "usetracker()",
-      "source_file": "src/modules/tracker/tracker.services.ts",
-      "source_location": "L15"
-    },
-    {
       "id": "src_tools_pdf_editor_pdf_editor_normalizeextractedtext",
       "label": "normalizeExtractedText()",
       "_callable": true,
@@ -5972,12 +5960,48 @@
       "source_location": "L5"
     },
     {
+      "id": "src_composable_computed_catchedcomputed_computedcatch",
+      "label": "computedCatch()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "computedcatch()",
+      "source_file": "src/composable/computed/catchedComputed.ts",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_modules_tracker_tracker_services_createtrackerservice",
+      "label": "createTrackerService()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "createtrackerservice()",
+      "source_file": "src/modules/tracker/tracker.services.ts",
+      "source_location": "L7"
+    },
+    {
+      "id": "src_modules_tracker_tracker_services_usetracker",
+      "label": "useTracker()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "usetracker()",
+      "source_file": "src/modules/tracker/tracker.services.ts",
+      "source_location": "L15"
+    },
+    {
       "id": "src_plugins_i18n_plugin_translate",
       "label": "translate()",
       "_callable": true,
       "_origin": "ast",
       "community": 57,
-      "community_name": "main.ts",
+      "community_name": "vue",
       "file_type": "code",
       "norm_label": "translate()",
       "source_file": "src/plugins/i18n.plugin.ts",
@@ -5989,7 +6013,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 57,
-      "community_name": "main.ts",
+      "community_name": "vue",
       "file_type": "code",
       "norm_label": "createfakeplausibleinstance()",
       "source_file": "src/plugins/plausible.plugin.ts",
@@ -6001,11 +6025,35 @@
       "_callable": true,
       "_origin": "ast",
       "community": 57,
-      "community_name": "main.ts",
+      "community_name": "vue",
       "file_type": "code",
       "norm_label": "createplausibleinstance()",
       "source_file": "src/plugins/plausible.plugin.ts",
       "source_location": "L14"
+    },
+    {
+      "id": "src_utils_macaddress_macaddressvalidation",
+      "label": "macAddressValidation()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "macaddressvalidation()",
+      "source_file": "src/utils/macAddress.ts",
+      "source_location": "L11"
+    },
+    {
+      "id": "src_utils_macaddress_usepartialmacaddressvalidation",
+      "label": "usePartialMacAddressValidation()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "usepartialmacaddressvalidation()",
+      "source_file": "src/utils/macAddress.ts",
+      "source_location": "L25"
     },
     {
       "id": "src_tools_ai_regex_generator_explainer_ai_regex_generator_explainer_applypreset",
@@ -6392,18 +6440,6 @@
       "source_location": "L3"
     },
     {
-      "id": "src_utils_error_geterrormessageifthrows",
-      "label": "getErrorMessageIfThrows()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 65,
-      "community_name": "lodash",
-      "file_type": "code",
-      "norm_label": "geterrormessageifthrows()",
-      "source_file": "src/utils/error.ts",
-      "source_location": "L5"
-    },
-    {
       "id": "scripts_test_all_124_tools_gettoolroutes",
       "label": "getToolRoutes()",
       "_callable": true,
@@ -6582,30 +6618,6 @@
       "norm_label": "triggerfileinput()",
       "source_file": "src/ui/c-file-upload/c-file-upload.vue",
       "source_location": "L25"
-    },
-    {
-      "id": "src_tools_benchmark_builder_dynamic_values_addvalue",
-      "label": "addValue()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 72,
-      "community_name": "dynamic-values.vue",
-      "file_type": "code",
-      "norm_label": "addvalue()",
-      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
-      "source_location": "L15"
-    },
-    {
-      "id": "src_tools_benchmark_builder_dynamic_values_oninputenter",
-      "label": "onInputEnter()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 72,
-      "community_name": "dynamic-values.vue",
-      "file_type": "code",
-      "norm_label": "oninputenter()",
-      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
-      "source_location": "L21"
     },
     {
       "id": "src_tools_rsa_key_pair_generator_rsa_key_pair_generator_service_generatekeypair",
@@ -7278,6 +7290,18 @@
       "norm_label": "copy()",
       "source_file": "src/tools/regex-replace/regex-replace.vue",
       "source_location": "L18"
+    },
+    {
+      "id": "src_utils_error_geterrormessageifthrows",
+      "label": "getErrorMessageIfThrows()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 97,
+      "community_name": "error.ts",
+      "file_type": "code",
+      "norm_label": "geterrormessageifthrows()",
+      "source_file": "src/utils/error.ts",
+      "source_location": "L5"
     },
     {
       "id": "src_tools_mac_address_lookup_mac_address_lookup_getvendorvalue",
@@ -8062,61 +8086,6 @@
       "source_location": "L115"
     },
     {
-      "id": "src_tools_device_information_device_information",
-      "label": "device-information.vue",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "tools/index.ts",
-      "file_type": "code",
-      "norm_label": "device-information.vue",
-      "source_file": "src/tools/device-information/device-information.vue",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_device_information_device_information_sections",
-      "label": "sections",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "tools/index.ts",
-      "file_type": "code",
-      "norm_label": "sections",
-      "source_file": "src/tools/device-information/device-information.vue",
-      "source_location": "L6"
-    },
-    {
-      "id": "src_tools_device_information_device_information_width_height",
-      "label": "{ width, height }",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "tools/index.ts",
-      "file_type": "code",
-      "norm_label": "{ width, height }",
-      "source_file": "src/tools/device-information/device-information.vue",
-      "source_location": "L4"
-    },
-    {
-      "id": "src_tools_device_information_index",
-      "label": "device-information/index.ts",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "tools/index.ts",
-      "file_type": "code",
-      "norm_label": "device-information/index.ts",
-      "source_file": "src/tools/device-information/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_device_information_index_tool",
-      "label": "tool",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "tools/index.ts",
-      "file_type": "code",
-      "norm_label": "tool",
-      "source_file": "src/tools/device-information/index.ts",
-      "source_location": "L5"
-    },
-    {
       "id": "src_tools_index",
       "label": "tools/index.ts",
       "_origin": "ast",
@@ -8192,6 +8161,28 @@
       "norm_label": "tool",
       "source_file": "src/tools/pdf-merge/index.ts",
       "source_location": "L4"
+    },
+    {
+      "id": "src_tools_pdf_ocr_index",
+      "label": "pdf-ocr/index.ts",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "pdf-ocr/index.ts",
+      "source_file": "src/tools/pdf-ocr/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_pdf_ocr_index_tool",
+      "label": "tool",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "tool",
+      "source_file": "src/tools/pdf-ocr/index.ts",
+      "source_location": "L3"
     },
     {
       "id": "src_tools_pdf_organize_index",
@@ -8436,6 +8427,50 @@
       "source_location": "L5"
     },
     {
+      "id": "src_tools_regex_memo_index",
+      "label": "regex-memo/index.ts",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "regex-memo/index.ts",
+      "source_file": "src/tools/regex-memo/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_regex_memo_index_tool",
+      "label": "tool",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "tool",
+      "source_file": "src/tools/regex-memo/index.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "src_tools_regex_memo_regex_memo",
+      "label": "regex-memo.vue",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "regex-memo.vue",
+      "source_file": "src/tools/regex-memo/regex-memo.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_regex_memo_regex_memo_themevars",
+      "label": "themeVars",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "themevars",
+      "source_file": "src/tools/regex-memo/regex-memo.vue",
+      "source_location": "L5"
+    },
+    {
       "id": "src_tools_regex_replace_index",
       "label": "regex-replace/index.ts",
       "_origin": "ast",
@@ -8546,28 +8581,6 @@
       "source_location": "L4"
     },
     {
-      "id": "src_tools_sql_prettify_index",
-      "label": "sql-prettify/index.ts",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "tools/index.ts",
-      "file_type": "code",
-      "norm_label": "sql-prettify/index.ts",
-      "source_file": "src/tools/sql-prettify/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_sql_prettify_index_tool",
-      "label": "tool",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "tools/index.ts",
-      "file_type": "code",
-      "norm_label": "tool",
-      "source_file": "src/tools/sql-prettify/index.ts",
-      "source_location": "L5"
-    },
-    {
       "id": "src_tools_sql_to_orm_converter_index",
       "label": "sql-to-orm-converter/index.ts",
       "_origin": "ast",
@@ -8656,39 +8669,6 @@
       "source_location": "L5"
     },
     {
-      "id": "src_tools_text_diff_index",
-      "label": "text-diff/index.ts",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "tools/index.ts",
-      "file_type": "code",
-      "norm_label": "text-diff/index.ts",
-      "source_file": "src/tools/text-diff/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_text_diff_index_tool",
-      "label": "tool",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "tools/index.ts",
-      "file_type": "code",
-      "norm_label": "tool",
-      "source_file": "src/tools/text-diff/index.ts",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_tools_text_diff_text_diff",
-      "label": "text-diff.vue",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "tools/index.ts",
-      "file_type": "code",
-      "norm_label": "text-diff.vue",
-      "source_file": "src/tools/text-diff/text-diff.vue",
-      "source_location": "L1"
-    },
-    {
       "id": "src_tools_text_encrypt_index",
       "label": "text-encrypt/index.ts",
       "_origin": "ast",
@@ -8731,6 +8711,50 @@
       "norm_label": "tool",
       "source_file": "src/tools/text-sorter/index.ts",
       "source_location": "L3"
+    },
+    {
+      "id": "src_tools_text_statistics_index",
+      "label": "text-statistics/index.ts",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "text-statistics/index.ts",
+      "source_file": "src/tools/text-statistics/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_text_statistics_index_tool",
+      "label": "tool",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "tool",
+      "source_file": "src/tools/text-statistics/index.ts",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_tools_text_statistics_text_statistics",
+      "label": "text-statistics.vue",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "text-statistics.vue",
+      "source_file": "src/tools/text-statistics/text-statistics.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_text_statistics_text_statistics_text",
+      "label": "text",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "text",
+      "source_file": "src/tools/text-statistics/text-statistics.vue",
+      "source_location": "L5"
     },
     {
       "id": "src_tools_text_to_binary_index",
@@ -8909,6 +8933,28 @@
       "source_location": "L5"
     },
     {
+      "id": "src_tools_url_encoder_index",
+      "label": "url-encoder/index.ts",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "url-encoder/index.ts",
+      "source_file": "src/tools/url-encoder/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_url_encoder_index_tool",
+      "label": "tool",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "tool",
+      "source_file": "src/tools/url-encoder/index.ts",
+      "source_location": "L5"
+    },
+    {
       "id": "src_tools_url_parser_index",
       "label": "url-parser/index.ts",
       "_origin": "ast",
@@ -9041,6 +9087,61 @@
       "source_location": "L5"
     },
     {
+      "id": "src_tools_word_counter_index",
+      "label": "word-counter/index.ts",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "word-counter/index.ts",
+      "source_file": "src/tools/word-counter/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_word_counter_index_tool",
+      "label": "tool",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "tool",
+      "source_file": "src/tools/word-counter/index.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_tools_word_counter_word_counter",
+      "label": "word-counter.vue",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "word-counter.vue",
+      "source_file": "src/tools/word-counter/word-counter.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_word_counter_word_counter_input",
+      "label": "input",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "input",
+      "source_file": "src/tools/word-counter/word-counter.vue",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_tools_word_counter_word_counter_stats",
+      "label": "stats",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "stats",
+      "source_file": "src/tools/word-counter/word-counter.vue",
+      "source_location": "L4"
+    },
+    {
       "id": "src_tools_xml_formatter_index",
       "label": "xml-formatter/index.ts",
       "_origin": "ast",
@@ -9063,6 +9164,28 @@
       "source_location": "L5"
     },
     {
+      "id": "src_tools_xml_to_json_index",
+      "label": "xml-to-json/index.ts",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "xml-to-json/index.ts",
+      "source_file": "src/tools/xml-to-json/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_xml_to_json_index_tool",
+      "label": "tool",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "tool",
+      "source_file": "src/tools/xml-to-json/index.ts",
+      "source_location": "L4"
+    },
+    {
       "id": "src_tools_yaml_to_json_converter_index",
       "label": "yaml-to-json-converter/index.ts",
       "_origin": "ast",
@@ -9082,6 +9205,28 @@
       "file_type": "code",
       "norm_label": "tool",
       "source_file": "src/tools/yaml-to-json-converter/index.ts",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_tools_yaml_to_toml_index",
+      "label": "yaml-to-toml/index.ts",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "yaml-to-toml/index.ts",
+      "source_file": "src/tools/yaml-to-toml/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_yaml_to_toml_index_tool",
+      "label": "tool",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "tools/index.ts",
+      "file_type": "code",
+      "norm_label": "tool",
+      "source_file": "src/tools/yaml-to-toml/index.ts",
       "source_location": "L5"
     },
     {
@@ -9492,180 +9637,114 @@
       "source_location": "L1"
     },
     {
-      "id": "src_ui_c_link_c_link",
-      "label": "c-link.vue",
+      "id": "tesseract_esm_min_js",
+      "label": "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js",
       "_origin": "ast",
       "community": 104,
-      "community_name": "vue-router",
+      "community_name": "pdf-ocr.vue",
+      "confidence": "EXTRACTED",
       "file_type": "code",
-      "norm_label": "c-link.vue",
-      "source_file": "src/ui/c-link/c-link.vue",
+      "norm_label": "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js",
+      "source_file": "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js"
+    },
+    {
+      "id": "tesseract_js_5",
+      "label": "https://esm.sh/tesseract.js@5",
+      "_origin": "ast",
+      "community": 104,
+      "community_name": "pdf-ocr.vue",
+      "confidence": "EXTRACTED",
+      "file_type": "code",
+      "norm_label": "https://esm.sh/tesseract.js@5",
+      "source_file": "https://esm.sh/tesseract.js@5"
+    },
+    {
+      "id": "src_tools_pdf_ocr_pdf_ocr",
+      "label": "pdf-ocr.vue",
+      "_origin": "ast",
+      "community": 104,
+      "community_name": "pdf-ocr.vue",
+      "file_type": "code",
+      "norm_label": "pdf-ocr.vue",
+      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
       "source_location": "L1"
     },
     {
-      "id": "src_ui_c_link_c_link_demo",
-      "label": "c-link.demo.vue",
+      "id": "src_tools_pdf_ocr_pdf_ocr_file",
+      "label": "file",
       "_origin": "ast",
       "community": 104,
-      "community_name": "vue-router",
+      "community_name": "pdf-ocr.vue",
       "file_type": "code",
-      "norm_label": "c-link.demo.vue",
-      "source_file": "src/ui/c-link/c-link.demo.vue",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_ui_c_link_c_link_href_to",
-      "label": "{ href, to }",
-      "_origin": "ast",
-      "community": 104,
-      "community_name": "vue-router",
-      "file_type": "code",
-      "norm_label": "{ href, to }",
-      "source_file": "src/ui/c-link/c-link.vue",
-      "source_location": "L10"
-    },
-    {
-      "id": "src_ui_c_link_c_link_props",
-      "label": "props",
-      "_origin": "ast",
-      "community": 104,
-      "community_name": "vue-router",
-      "file_type": "code",
-      "norm_label": "props",
-      "source_file": "src/ui/c-link/c-link.vue",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_ui_c_link_c_link_tag",
-      "label": "tag",
-      "_origin": "ast",
-      "community": 104,
-      "community_name": "vue-router",
-      "file_type": "code",
-      "norm_label": "tag",
-      "source_file": "src/ui/c-link/c-link.vue",
-      "source_location": "L13"
-    },
-    {
-      "id": "src_ui_c_link_c_link_theme_usetheme",
-      "label": "{ useTheme }",
-      "_origin": "ast",
-      "community": 104,
-      "community_name": "vue-router",
-      "file_type": "code",
-      "norm_label": "{ usetheme }",
-      "source_file": "src/ui/c-link/c-link.theme.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "src_ui_c_link_c_link_vue_src_ui_c_link_c_link_theme",
-      "label": "theme",
-      "_origin": "ast",
-      "community": 104,
-      "community_name": "vue-router",
-      "file_type": "code",
-      "norm_label": "theme",
-      "source_file": "src/ui/c-link/c-link.vue",
-      "source_location": "L12"
-    },
-    {
-      "id": "src_ui_demo_demo_home_page",
-      "label": "demo-home.page.vue",
-      "_origin": "ast",
-      "community": 104,
-      "community_name": "vue-router",
-      "file_type": "code",
-      "norm_label": "demo-home.page.vue",
-      "source_file": "src/ui/demo/demo-home.page.vue",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_ui_demo_demo_routes",
-      "label": "demo.routes.ts",
-      "_origin": "ast",
-      "community": 104,
-      "community_name": "vue-router",
-      "file_type": "code",
-      "norm_label": "demo.routes.ts",
-      "source_file": "src/ui/demo/demo.routes.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_ui_demo_demo_routes_demopages",
-      "label": "demoPages",
-      "_origin": "ast",
-      "community": 104,
-      "community_name": "vue-router",
-      "file_type": "code",
-      "norm_label": "demopages",
-      "source_file": "src/ui/demo/demo.routes.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "src_ui_demo_demo_routes_demoroutes",
-      "label": "demoRoutes",
-      "_origin": "ast",
-      "community": 104,
-      "community_name": "vue-router",
-      "file_type": "code",
-      "norm_label": "demoroutes",
-      "source_file": "src/ui/demo/demo.routes.ts",
+      "norm_label": "file",
+      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
       "source_location": "L6"
     },
     {
-      "id": "src_ui_demo_demo_routes_routes",
-      "label": "routes",
+      "id": "src_tools_pdf_ocr_pdf_ocr_isprocessing",
+      "label": "isProcessing",
       "_origin": "ast",
       "community": 104,
-      "community_name": "vue-router",
+      "community_name": "pdf-ocr.vue",
       "file_type": "code",
-      "norm_label": "routes",
-      "source_file": "src/ui/demo/demo.routes.ts",
-      "source_location": "L17"
+      "norm_label": "isprocessing",
+      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
+      "source_location": "L8"
     },
     {
-      "id": "src_ui_demo_demo_wrapper",
-      "label": "demo-wrapper.vue",
+      "id": "src_tools_pdf_ocr_pdf_ocr_lang",
+      "label": "lang",
       "_origin": "ast",
       "community": 104,
-      "community_name": "vue-router",
+      "community_name": "pdf-ocr.vue",
       "file_type": "code",
-      "norm_label": "demo-wrapper.vue",
-      "source_file": "src/ui/demo/demo-wrapper.vue",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_ui_demo_demo_wrapper_componentname",
-      "label": "componentName",
-      "_origin": "ast",
-      "community": 104,
-      "community_name": "vue-router",
-      "file_type": "code",
-      "norm_label": "componentname",
-      "source_file": "src/ui/demo/demo-wrapper.vue",
+      "norm_label": "lang",
+      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
       "source_location": "L7"
     },
     {
-      "id": "src_ui_demo_demo_wrapper_route",
-      "label": "route",
+      "id": "src_tools_pdf_ocr_pdf_ocr_langoptions",
+      "label": "langOptions",
       "_origin": "ast",
       "community": 104,
-      "community_name": "vue-router",
+      "community_name": "pdf-ocr.vue",
       "file_type": "code",
-      "norm_label": "route",
-      "source_file": "src/ui/demo/demo-wrapper.vue",
+      "norm_label": "langoptions",
+      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
+      "source_location": "L11"
+    },
+    {
+      "id": "src_tools_pdf_ocr_pdf_ocr_message",
+      "label": "message",
+      "_origin": "ast",
+      "community": 104,
+      "community_name": "pdf-ocr.vue",
+      "file_type": "code",
+      "norm_label": "message",
+      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
       "source_location": "L5"
     },
     {
-      "id": "ref_vue_router",
-      "label": "vue-router",
+      "id": "src_tools_pdf_ocr_pdf_ocr_progress",
+      "label": "progress",
       "_origin": "ast",
       "community": 104,
-      "community_name": "vue-router",
-      "file_type": "concept",
-      "norm_label": "vue-router",
-      "source_file": "package.json",
-      "source_location": "L109"
+      "community_name": "pdf-ocr.vue",
+      "file_type": "code",
+      "norm_label": "progress",
+      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
+      "source_location": "L9"
+    },
+    {
+      "id": "src_tools_pdf_ocr_pdf_ocr_result",
+      "label": "result",
+      "_origin": "ast",
+      "community": 104,
+      "community_name": "pdf-ocr.vue",
+      "file_type": "code",
+      "norm_label": "result",
+      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
+      "source_location": "L10"
     },
     {
       "id": "src_tools_compound_interest_calculator_compound_interest_calculator",
@@ -10801,92 +10880,92 @@
       "source_location": "L5"
     },
     {
-      "id": "src_tools_http_status_codes_http_status_codes",
-      "label": "http-status-codes.vue",
+      "id": "src_tools_json_diff_index",
+      "label": "json-diff/index.ts",
       "_origin": "ast",
       "community": 112,
       "community_name": "@vicons/material",
       "file_type": "code",
-      "norm_label": "http-status-codes.vue",
-      "source_file": "src/tools/http-status-codes/http-status-codes.vue",
+      "norm_label": "json-diff/index.ts",
+      "source_file": "src/tools/json-diff/index.ts",
       "source_location": "L1"
     },
     {
-      "id": "src_tools_http_status_codes_http_status_codes_codesbycategoryfiltered",
-      "label": "codesByCategoryFiltered",
-      "_origin": "ast",
-      "community": 112,
-      "community_name": "@vicons/material",
-      "file_type": "code",
-      "norm_label": "codesbycategoryfiltered",
-      "source_file": "src/tools/http-status-codes/http-status-codes.vue",
-      "source_location": "L15"
-    },
-    {
-      "id": "src_tools_http_status_codes_http_status_codes_constants",
-      "label": "http-status-codes.constants.ts",
-      "_origin": "ast",
-      "community": 112,
-      "community_name": "@vicons/material",
-      "file_type": "code",
-      "norm_label": "http-status-codes.constants.ts",
-      "source_file": "src/tools/http-status-codes/http-status-codes.constants.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_http_status_codes_http_status_codes_constants_codesbycategories",
-      "label": "codesByCategories",
-      "_origin": "ast",
-      "community": 112,
-      "community_name": "@vicons/material",
-      "file_type": "code",
-      "norm_label": "codesbycategories",
-      "source_file": "src/tools/http-status-codes/http-status-codes.constants.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_http_status_codes_http_status_codes_search",
-      "label": "search",
-      "_origin": "ast",
-      "community": 112,
-      "community_name": "@vicons/material",
-      "file_type": "code",
-      "norm_label": "search",
-      "source_file": "src/tools/http-status-codes/http-status-codes.vue",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_tools_http_status_codes_http_status_codes_searchresult",
-      "label": "{ searchResult }",
-      "_origin": "ast",
-      "community": 112,
-      "community_name": "@vicons/material",
-      "file_type": "code",
-      "norm_label": "{ searchresult }",
-      "source_file": "src/tools/http-status-codes/http-status-codes.vue",
-      "source_location": "L7"
-    },
-    {
-      "id": "src_tools_http_status_codes_index",
-      "label": "http-status-codes/index.ts",
-      "_origin": "ast",
-      "community": 112,
-      "community_name": "@vicons/material",
-      "file_type": "code",
-      "norm_label": "http-status-codes/index.ts",
-      "source_file": "src/tools/http-status-codes/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_http_status_codes_index_tool",
+      "id": "src_tools_json_diff_index_tool",
       "label": "tool",
       "_origin": "ast",
       "community": 112,
       "community_name": "@vicons/material",
       "file_type": "code",
       "norm_label": "tool",
-      "source_file": "src/tools/http-status-codes/index.ts",
-      "source_location": "L7"
+      "source_file": "src/tools/json-diff/index.ts",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_tools_json_diff_json_diff",
+      "label": "json-diff.vue",
+      "_origin": "ast",
+      "community": 112,
+      "community_name": "@vicons/material",
+      "file_type": "code",
+      "norm_label": "json-diff.vue",
+      "source_file": "src/tools/json-diff/json-diff.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_json_diff_json_diff_jsonvalidationrules",
+      "label": "jsonValidationRules",
+      "_origin": "ast",
+      "community": 112,
+      "community_name": "@vicons/material",
+      "file_type": "code",
+      "norm_label": "jsonvalidationrules",
+      "source_file": "src/tools/json-diff/json-diff.vue",
+      "source_location": "L14"
+    },
+    {
+      "id": "src_tools_json_diff_json_diff_leftjson",
+      "label": "leftJson",
+      "_origin": "ast",
+      "community": 112,
+      "community_name": "@vicons/material",
+      "file_type": "code",
+      "norm_label": "leftjson",
+      "source_file": "src/tools/json-diff/json-diff.vue",
+      "source_location": "L11"
+    },
+    {
+      "id": "src_tools_json_diff_json_diff_rawleftjson",
+      "label": "rawLeftJson",
+      "_origin": "ast",
+      "community": 112,
+      "community_name": "@vicons/material",
+      "file_type": "code",
+      "norm_label": "rawleftjson",
+      "source_file": "src/tools/json-diff/json-diff.vue",
+      "source_location": "L8"
+    },
+    {
+      "id": "src_tools_json_diff_json_diff_rawrightjson",
+      "label": "rawRightJson",
+      "_origin": "ast",
+      "community": 112,
+      "community_name": "@vicons/material",
+      "file_type": "code",
+      "norm_label": "rawrightjson",
+      "source_file": "src/tools/json-diff/json-diff.vue",
+      "source_location": "L9"
+    },
+    {
+      "id": "src_tools_json_diff_json_diff_rightjson",
+      "label": "rightJson",
+      "_origin": "ast",
+      "community": 112,
+      "community_name": "@vicons/material",
+      "file_type": "code",
+      "norm_label": "rightjson",
+      "source_file": "src/tools/json-diff/json-diff.vue",
+      "source_location": "L12"
     },
     {
       "id": "src_tools_slugify_string_index",
@@ -11285,91 +11364,113 @@
       "source_location": "L3"
     },
     {
-      "id": "src_tools_text_statistics_index",
-      "label": "text-statistics/index.ts",
+      "id": "src_tools_benchmark_builder_dynamic_values",
+      "label": "dynamic-values.vue",
       "_origin": "ast",
       "community": 116,
-      "community_name": "text-statistics/index.ts",
+      "community_name": "dynamic-values.vue",
       "file_type": "code",
-      "norm_label": "text-statistics/index.ts",
-      "source_file": "src/tools/text-statistics/index.ts",
+      "norm_label": "dynamic-values.vue",
+      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
       "source_location": "L1"
     },
     {
-      "id": "src_tools_text_statistics_index_tool",
+      "id": "src_tools_benchmark_builder_dynamic_values_emit",
+      "label": "emit",
+      "_origin": "ast",
+      "community": 116,
+      "community_name": "dynamic-values.vue",
+      "file_type": "code",
+      "norm_label": "emit",
+      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
+      "source_location": "L9"
+    },
+    {
+      "id": "src_tools_benchmark_builder_dynamic_values_props",
+      "label": "props",
+      "_origin": "ast",
+      "community": 116,
+      "community_name": "dynamic-values.vue",
+      "file_type": "code",
+      "norm_label": "props",
+      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
+      "source_location": "L7"
+    },
+    {
+      "id": "src_tools_benchmark_builder_dynamic_values_refs",
+      "label": "refs",
+      "_origin": "ast",
+      "community": 116,
+      "community_name": "dynamic-values.vue",
+      "file_type": "code",
+      "norm_label": "refs",
+      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
+      "source_location": "L11"
+    },
+    {
+      "id": "src_tools_benchmark_builder_dynamic_values_values",
+      "label": "values",
+      "_origin": "ast",
+      "community": 116,
+      "community_name": "dynamic-values.vue",
+      "file_type": "code",
+      "norm_label": "values",
+      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
+      "source_location": "L13"
+    },
+    {
+      "id": "src_tools_device_information_device_information",
+      "label": "device-information.vue",
+      "_origin": "ast",
+      "community": 117,
+      "community_name": "device-information/index.ts",
+      "file_type": "code",
+      "norm_label": "device-information.vue",
+      "source_file": "src/tools/device-information/device-information.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_device_information_device_information_sections",
+      "label": "sections",
+      "_origin": "ast",
+      "community": 117,
+      "community_name": "device-information/index.ts",
+      "file_type": "code",
+      "norm_label": "sections",
+      "source_file": "src/tools/device-information/device-information.vue",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_tools_device_information_device_information_width_height",
+      "label": "{ width, height }",
+      "_origin": "ast",
+      "community": 117,
+      "community_name": "device-information/index.ts",
+      "file_type": "code",
+      "norm_label": "{ width, height }",
+      "source_file": "src/tools/device-information/device-information.vue",
+      "source_location": "L4"
+    },
+    {
+      "id": "src_tools_device_information_index",
+      "label": "device-information/index.ts",
+      "_origin": "ast",
+      "community": 117,
+      "community_name": "device-information/index.ts",
+      "file_type": "code",
+      "norm_label": "device-information/index.ts",
+      "source_file": "src/tools/device-information/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_device_information_index_tool",
       "label": "tool",
       "_origin": "ast",
-      "community": 116,
-      "community_name": "text-statistics/index.ts",
+      "community": 117,
+      "community_name": "device-information/index.ts",
       "file_type": "code",
       "norm_label": "tool",
-      "source_file": "src/tools/text-statistics/index.ts",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_tools_text_statistics_text_statistics",
-      "label": "text-statistics.vue",
-      "_origin": "ast",
-      "community": 116,
-      "community_name": "text-statistics/index.ts",
-      "file_type": "code",
-      "norm_label": "text-statistics.vue",
-      "source_file": "src/tools/text-statistics/text-statistics.vue",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_text_statistics_text_statistics_text",
-      "label": "text",
-      "_origin": "ast",
-      "community": 116,
-      "community_name": "text-statistics/index.ts",
-      "file_type": "code",
-      "norm_label": "text",
-      "source_file": "src/tools/text-statistics/text-statistics.vue",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_tools_git_memo_git_memo",
-      "label": "git-memo.vue",
-      "_origin": "ast",
-      "community": 117,
-      "community_name": "git-memo/index.ts",
-      "file_type": "code",
-      "norm_label": "git-memo.vue",
-      "source_file": "src/tools/git-memo/git-memo.vue",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_git_memo_git_memo_themevars",
-      "label": "themeVars",
-      "_origin": "ast",
-      "community": 117,
-      "community_name": "git-memo/index.ts",
-      "file_type": "code",
-      "norm_label": "themevars",
-      "source_file": "src/tools/git-memo/git-memo.vue",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_tools_git_memo_index",
-      "label": "git-memo/index.ts",
-      "_origin": "ast",
-      "community": 117,
-      "community_name": "git-memo/index.ts",
-      "file_type": "code",
-      "norm_label": "git-memo/index.ts",
-      "source_file": "src/tools/git-memo/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_git_memo_index_tool",
-      "label": "tool",
-      "_origin": "ast",
-      "community": 117,
-      "community_name": "git-memo/index.ts",
-      "file_type": "code",
-      "norm_label": "tool",
-      "source_file": "src/tools/git-memo/index.ts",
+      "source_file": "src/tools/device-information/index.ts",
       "source_location": "L5"
     },
     {
@@ -11476,7 +11577,7 @@
       "label": "test-interactive-deep-suite.mjs",
       "_origin": "ast",
       "community": 119,
-      "community_name": "test-interactive-deep-suite.mjs",
+      "community_name": "pdf-lib",
       "file_type": "code",
       "norm_label": "test-interactive-deep-suite.mjs",
       "source_file": "scripts/test-interactive-deep-suite.mjs",
@@ -11487,7 +11588,7 @@
       "label": "__dirname",
       "_origin": "ast",
       "community": 119,
-      "community_name": "test-interactive-deep-suite.mjs",
+      "community_name": "pdf-lib",
       "file_type": "code",
       "norm_label": "__dirname",
       "source_file": "scripts/test-interactive-deep-suite.mjs",
@@ -11498,7 +11599,7 @@
       "label": "__filename",
       "_origin": "ast",
       "community": 119,
-      "community_name": "test-interactive-deep-suite.mjs",
+      "community_name": "pdf-lib",
       "file_type": "code",
       "norm_label": "__filename",
       "source_file": "scripts/test-interactive-deep-suite.mjs",
@@ -11509,7 +11610,7 @@
       "label": "rootDir",
       "_origin": "ast",
       "community": 119,
-      "community_name": "test-interactive-deep-suite.mjs",
+      "community_name": "pdf-lib",
       "file_type": "code",
       "norm_label": "rootdir",
       "source_file": "scripts/test-interactive-deep-suite.mjs",
@@ -11520,11 +11621,22 @@
       "label": "testAssetsDir",
       "_origin": "ast",
       "community": 119,
-      "community_name": "test-interactive-deep-suite.mjs",
+      "community_name": "pdf-lib",
       "file_type": "code",
       "norm_label": "testassetsdir",
       "source_file": "scripts/test-interactive-deep-suite.mjs",
       "source_location": "L11"
+    },
+    {
+      "id": "ref_pdf_lib",
+      "label": "pdf-lib",
+      "_origin": "ast",
+      "community": 119,
+      "community_name": "pdf-lib",
+      "file_type": "concept",
+      "norm_label": "pdf-lib",
+      "source_file": "package.json",
+      "source_location": "L95"
     },
     {
       "id": "src_tools_docker_run_to_docker_compose_converter_docker_run_to_docker_compose_converter",
@@ -11877,6 +11989,61 @@
       "norm_label": "{ tooltip, position }",
       "source_file": "src/ui/c-tooltip/c-tooltip.vue",
       "source_location": "L6"
+    },
+    {
+      "id": "src_tools_keycode_info_index",
+      "label": "keycode-info/index.ts",
+      "_origin": "ast",
+      "community": 122,
+      "community_name": "keycode-info/index.ts",
+      "file_type": "code",
+      "norm_label": "keycode-info/index.ts",
+      "source_file": "src/tools/keycode-info/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_keycode_info_index_tool",
+      "label": "tool",
+      "_origin": "ast",
+      "community": 122,
+      "community_name": "keycode-info/index.ts",
+      "file_type": "code",
+      "norm_label": "tool",
+      "source_file": "src/tools/keycode-info/index.ts",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_tools_keycode_info_keycode_info",
+      "label": "keycode-info.vue",
+      "_origin": "ast",
+      "community": 122,
+      "community_name": "keycode-info/index.ts",
+      "file_type": "code",
+      "norm_label": "keycode-info.vue",
+      "source_file": "src/tools/keycode-info/keycode-info.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_keycode_info_keycode_info_event",
+      "label": "event",
+      "_origin": "ast",
+      "community": 122,
+      "community_name": "keycode-info/index.ts",
+      "file_type": "code",
+      "norm_label": "event",
+      "source_file": "src/tools/keycode-info/keycode-info.vue",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_tools_keycode_info_keycode_info_fields",
+      "label": "fields",
+      "_origin": "ast",
+      "community": 122,
+      "community_name": "keycode-info/index.ts",
+      "file_type": "code",
+      "norm_label": "fields",
+      "source_file": "src/tools/keycode-info/keycode-info.vue",
+      "source_location": "L12"
     },
     {
       "id": "env_d",
@@ -12418,37 +12585,48 @@
       "source_location": "L1"
     },
     {
-      "id": "unocss_config",
-      "label": "unocss.config.ts",
+      "id": "src_tools_git_memo_git_memo",
+      "label": "git-memo.vue",
       "_origin": "ast",
       "community": 131,
-      "community_name": "unocss",
+      "community_name": "git-memo/index.ts",
       "file_type": "code",
-      "norm_label": "unocss.config.ts",
-      "source_file": "unocss.config.ts",
+      "norm_label": "git-memo.vue",
+      "source_file": "src/tools/git-memo/git-memo.vue",
       "source_location": "L1"
     },
     {
-      "id": "ref_unocss",
-      "label": "unocss",
+      "id": "src_tools_git_memo_git_memo_themevars",
+      "label": "themeVars",
       "_origin": "ast",
       "community": 131,
-      "community_name": "unocss",
-      "file_type": "concept",
-      "norm_label": "unocss",
-      "source_file": "package.json",
-      "source_location": "L154"
+      "community_name": "git-memo/index.ts",
+      "file_type": "code",
+      "norm_label": "themevars",
+      "source_file": "src/tools/git-memo/git-memo.vue",
+      "source_location": "L5"
     },
     {
-      "id": "ref_unocss_preset_scrollbar",
-      "label": "unocss-preset-scrollbar",
+      "id": "src_tools_git_memo_index",
+      "label": "git-memo/index.ts",
       "_origin": "ast",
       "community": 131,
-      "community_name": "unocss",
-      "file_type": "concept",
-      "norm_label": "unocss-preset-scrollbar",
-      "source_file": "package.json",
-      "source_location": "L155"
+      "community_name": "git-memo/index.ts",
+      "file_type": "code",
+      "norm_label": "git-memo/index.ts",
+      "source_file": "src/tools/git-memo/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_git_memo_index_tool",
+      "label": "tool",
+      "_origin": "ast",
+      "community": 131,
+      "community_name": "git-memo/index.ts",
+      "file_type": "code",
+      "norm_label": "tool",
+      "source_file": "src/tools/git-memo/index.ts",
+      "source_location": "L5"
     },
     {
       "id": "src_utils_array",
@@ -12738,6 +12916,50 @@
       "source_location": "L82"
     },
     {
+      "id": "src_tools_ipv4_range_expander_result_row",
+      "label": "result-row.vue",
+      "_origin": "ast",
+      "community": 139,
+      "community_name": "result-row.vue",
+      "file_type": "code",
+      "norm_label": "result-row.vue",
+      "source_file": "src/tools/ipv4-range-expander/result-row.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_ipv4_range_expander_result_row_label_oldvalue_newvalue",
+      "label": "{ label, oldValue, newValue }",
+      "_origin": "ast",
+      "community": 139,
+      "community_name": "result-row.vue",
+      "file_type": "code",
+      "norm_label": "{ label, oldvalue, newvalue }",
+      "source_file": "src/tools/ipv4-range-expander/result-row.vue",
+      "source_location": "L10"
+    },
+    {
+      "id": "src_tools_ipv4_range_expander_result_row_props",
+      "label": "props",
+      "_origin": "ast",
+      "community": 139,
+      "community_name": "result-row.vue",
+      "file_type": "code",
+      "norm_label": "props",
+      "source_file": "src/tools/ipv4-range-expander/result-row.vue",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_tools_ipv4_range_expander_result_row_testid",
+      "label": "testId",
+      "_origin": "ast",
+      "community": 139,
+      "community_name": "result-row.vue",
+      "file_type": "code",
+      "norm_label": "testid",
+      "source_file": "src/tools/ipv4-range-expander/result-row.vue",
+      "source_location": "L12"
+    },
+    {
       "id": "src_modules_i18n_components_locale_selector",
       "label": "locale-selector.vue",
       "_origin": "ast",
@@ -13003,114 +13225,92 @@
       "source_location": "L142"
     },
     {
-      "id": "src_components_coloredcard",
-      "label": "ColoredCard.vue",
+      "id": "src_shims_d",
+      "label": "shims.d.ts",
       "_origin": "ast",
       "community": 142,
-      "community_name": "vue",
+      "community_name": "shims.d.ts",
       "file_type": "code",
-      "norm_label": "coloredcard.vue",
-      "source_file": "src/components/ColoredCard.vue",
+      "norm_label": "shims.d.ts",
+      "source_file": "src/shims.d.ts",
       "source_location": "L1"
     },
     {
-      "id": "src_components_coloredcard_icon_title",
-      "label": "{ icon, title }",
+      "id": "src_shims_d_emojilib",
+      "label": "emojilib",
       "_origin": "ast",
       "community": 142,
-      "community_name": "vue",
+      "community_name": "shims.d.ts",
       "file_type": "code",
-      "norm_label": "{ icon, title }",
-      "source_file": "src/components/ColoredCard.vue",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_components_coloredcard_props",
-      "label": "props",
-      "_origin": "ast",
-      "community": 142,
-      "community_name": "vue",
-      "file_type": "code",
-      "norm_label": "props",
-      "source_file": "src/components/ColoredCard.vue",
-      "source_location": "L4"
-    },
-    {
-      "id": "src_composable_computed_catchedcomputed",
-      "label": "catchedComputed.ts",
-      "_origin": "ast",
-      "community": 142,
-      "community_name": "vue",
-      "file_type": "code",
-      "norm_label": "catchedcomputed.ts",
-      "source_file": "src/composable/computed/catchedComputed.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_composable_fuzzysearch",
-      "label": "fuzzySearch.ts",
-      "_origin": "ast",
-      "community": 142,
-      "community_name": "vue",
-      "file_type": "code",
-      "norm_label": "fuzzysearch.ts",
-      "source_file": "src/composable/fuzzySearch.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_utils_macaddress",
-      "label": "macAddress.ts",
-      "_origin": "ast",
-      "community": 142,
-      "community_name": "vue",
-      "file_type": "code",
-      "norm_label": "macaddress.ts",
-      "source_file": "src/utils/macAddress.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_utils_macaddress_macaddressvalidationrules",
-      "label": "macAddressValidationRules",
-      "_origin": "ast",
-      "community": 142,
-      "community_name": "vue",
-      "file_type": "code",
-      "norm_label": "macaddressvalidationrules",
-      "source_file": "src/utils/macAddress.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "src_utils_macaddress_partialmacaddressvalidationrules",
-      "label": "partialMacAddressValidationRules",
-      "_origin": "ast",
-      "community": 142,
-      "community_name": "vue",
-      "file_type": "code",
-      "norm_label": "partialmacaddressvalidationrules",
-      "source_file": "src/utils/macAddress.ts",
+      "norm_label": "emojilib",
+      "source_file": "src/shims.d.ts",
       "source_location": "L18"
     },
     {
-      "id": "ref_fuse_js",
-      "label": "fuse.js",
+      "id": "src_shims_d_iarna_toml_esm",
+      "label": "iarna-toml-esm",
       "_origin": "ast",
       "community": 142,
-      "community_name": "vue",
-      "file_type": "concept",
-      "norm_label": "fuse.js",
-      "source_file": "package.json",
-      "source_location": "L79"
+      "community_name": "shims.d.ts",
+      "file_type": "code",
+      "norm_label": "iarna-toml-esm",
+      "source_file": "src/shims.d.ts",
+      "source_location": "L13"
     },
     {
-      "id": "ref_vue",
-      "label": "vue",
+      "id": "src_shims_d_md",
+      "label": "*.md",
       "_origin": "ast",
       "community": 142,
-      "community_name": "vue",
-      "file_type": "concept",
-      "norm_label": "vue",
-      "source_file": "package.json",
-      "source_location": "L107"
+      "community_name": "shims.d.ts",
+      "file_type": "code",
+      "norm_label": "*.md",
+      "source_file": "src/shims.d.ts",
+      "source_location": "L7"
+    },
+    {
+      "id": "src_shims_d_pdf_signature_reader",
+      "label": "pdf-signature-reader",
+      "_origin": "ast",
+      "community": 142,
+      "community_name": "shims.d.ts",
+      "file_type": "code",
+      "norm_label": "pdf-signature-reader",
+      "source_file": "src/shims.d.ts",
+      "source_location": "L37"
+    },
+    {
+      "id": "src_shims_d_unicode_emoji_json",
+      "label": "unicode-emoji-json",
+      "_origin": "ast",
+      "community": 142,
+      "community_name": "shims.d.ts",
+      "file_type": "code",
+      "norm_label": "unicode-emoji-json",
+      "source_file": "src/shims.d.ts",
+      "source_location": "L23"
+    },
+    {
+      "id": "src_shims_d_vue",
+      "label": "*.vue",
+      "_origin": "ast",
+      "community": 142,
+      "community_name": "shims.d.ts",
+      "file_type": "code",
+      "norm_label": "*.vue",
+      "source_file": "src/shims.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_populate_all_locales",
+      "label": "populate_all_locales.py",
+      "_origin": "ast",
+      "community": 143,
+      "community_name": "populate_all_locales.py",
+      "file_type": "code",
+      "norm_label": "populate_all_locales.py",
+      "source_file": "scripts/populate_all_locales.py",
+      "source_location": "L1"
     },
     {
       "id": "src_tools_pdf_redact_pdf_redact",
@@ -13298,50 +13498,6 @@
       "norm_label": "c-table.types.ts",
       "source_file": "src/ui/c-table/c-table.types.ts",
       "source_location": "L1"
-    },
-    {
-      "id": "src_tools_regex_memo_index",
-      "label": "regex-memo/index.ts",
-      "_origin": "ast",
-      "community": 147,
-      "community_name": "regex-memo/index.ts",
-      "file_type": "code",
-      "norm_label": "regex-memo/index.ts",
-      "source_file": "src/tools/regex-memo/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_regex_memo_index_tool",
-      "label": "tool",
-      "_origin": "ast",
-      "community": 147,
-      "community_name": "regex-memo/index.ts",
-      "file_type": "code",
-      "norm_label": "tool",
-      "source_file": "src/tools/regex-memo/index.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "src_tools_regex_memo_regex_memo",
-      "label": "regex-memo.vue",
-      "_origin": "ast",
-      "community": 147,
-      "community_name": "regex-memo/index.ts",
-      "file_type": "code",
-      "norm_label": "regex-memo.vue",
-      "source_file": "src/tools/regex-memo/regex-memo.vue",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_regex_memo_regex_memo_themevars",
-      "label": "themeVars",
-      "_origin": "ast",
-      "community": 147,
-      "community_name": "regex-memo/index.ts",
-      "file_type": "code",
-      "norm_label": "themevars",
-      "source_file": "src/tools/regex-memo/regex-memo.vue",
-      "source_location": "L5"
     },
     {
       "id": "scripts_e2e_browser_test",
@@ -13991,7 +14147,7 @@
       "label": "verify-all-tools.mjs",
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "verify-all-tools.mjs",
       "source_file": "scripts/verify-all-tools.mjs",
@@ -14002,7 +14158,7 @@
       "label": "__dirname",
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "__dirname",
       "source_file": "scripts/verify-all-tools.mjs",
@@ -14013,7 +14169,7 @@
       "label": "__filename",
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "__filename",
       "source_file": "scripts/verify-all-tools.mjs",
@@ -14024,7 +14180,7 @@
       "label": "rootDir",
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "rootdir",
       "source_file": "scripts/verify-all-tools.mjs",
@@ -14035,7 +14191,7 @@
       "label": "zip.ts",
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "zip.ts",
       "source_file": "src/utils/zip.ts",
@@ -14046,22 +14202,11 @@
       "label": "crcTable",
       "_origin": "ast",
       "community": 16,
-      "community_name": "pdf-lib",
+      "community_name": "verify-all-tools.mjs",
       "file_type": "code",
       "norm_label": "crctable",
       "source_file": "src/utils/zip.ts",
       "source_location": "L3"
-    },
-    {
-      "id": "ref_pdf_lib",
-      "label": "pdf-lib",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "pdf-lib",
-      "file_type": "concept",
-      "norm_label": "pdf-lib",
-      "source_file": "package.json",
-      "source_location": "L95"
     },
     {
       "id": "jsqr_js",
@@ -14095,116 +14240,6 @@
       "file_type": "code",
       "norm_label": "https://cdn.skypack.dev/pdf-lib",
       "source_file": "https:/cdn.skypack.dev/pdf-lib"
-    },
-    {
-      "id": "src_tools_keycode_info_index",
-      "label": "keycode-info/index.ts",
-      "_origin": "ast",
-      "community": 163,
-      "community_name": "keycode-info/index.ts",
-      "file_type": "code",
-      "norm_label": "keycode-info/index.ts",
-      "source_file": "src/tools/keycode-info/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_keycode_info_index_tool",
-      "label": "tool",
-      "_origin": "ast",
-      "community": 163,
-      "community_name": "keycode-info/index.ts",
-      "file_type": "code",
-      "norm_label": "tool",
-      "source_file": "src/tools/keycode-info/index.ts",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_tools_keycode_info_keycode_info",
-      "label": "keycode-info.vue",
-      "_origin": "ast",
-      "community": 163,
-      "community_name": "keycode-info/index.ts",
-      "file_type": "code",
-      "norm_label": "keycode-info.vue",
-      "source_file": "src/tools/keycode-info/keycode-info.vue",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_keycode_info_keycode_info_event",
-      "label": "event",
-      "_origin": "ast",
-      "community": 163,
-      "community_name": "keycode-info/index.ts",
-      "file_type": "code",
-      "norm_label": "event",
-      "source_file": "src/tools/keycode-info/keycode-info.vue",
-      "source_location": "L6"
-    },
-    {
-      "id": "src_tools_keycode_info_keycode_info_fields",
-      "label": "fields",
-      "_origin": "ast",
-      "community": 163,
-      "community_name": "keycode-info/index.ts",
-      "file_type": "code",
-      "norm_label": "fields",
-      "source_file": "src/tools/keycode-info/keycode-info.vue",
-      "source_location": "L12"
-    },
-    {
-      "id": "src_tools_word_counter_index",
-      "label": "word-counter/index.ts",
-      "_origin": "ast",
-      "community": 164,
-      "community_name": "word-counter/index.ts",
-      "file_type": "code",
-      "norm_label": "word-counter/index.ts",
-      "source_file": "src/tools/word-counter/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_word_counter_index_tool",
-      "label": "tool",
-      "_origin": "ast",
-      "community": 164,
-      "community_name": "word-counter/index.ts",
-      "file_type": "code",
-      "norm_label": "tool",
-      "source_file": "src/tools/word-counter/index.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "src_tools_word_counter_word_counter",
-      "label": "word-counter.vue",
-      "_origin": "ast",
-      "community": 164,
-      "community_name": "word-counter/index.ts",
-      "file_type": "code",
-      "norm_label": "word-counter.vue",
-      "source_file": "src/tools/word-counter/word-counter.vue",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_word_counter_word_counter_input",
-      "label": "input",
-      "_origin": "ast",
-      "community": 164,
-      "community_name": "word-counter/index.ts",
-      "file_type": "code",
-      "norm_label": "input",
-      "source_file": "src/tools/word-counter/word-counter.vue",
-      "source_location": "L3"
-    },
-    {
-      "id": "src_tools_word_counter_word_counter_stats",
-      "label": "stats",
-      "_origin": "ast",
-      "community": 164,
-      "community_name": "word-counter/index.ts",
-      "file_type": "code",
-      "norm_label": "stats",
-      "source_file": "src/tools/word-counter/word-counter.vue",
-      "source_location": "L4"
     },
     {
       "id": "gifenc_1_0_3",
@@ -15494,6 +15529,17 @@
       "source_location": "L50"
     },
     {
+      "id": "ref_vue_shadow_dom",
+      "label": "vue-shadow-dom",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "regex-tester.vue",
+      "file_type": "concept",
+      "norm_label": "vue-shadow-dom",
+      "source_file": "package.json",
+      "source_location": "L110"
+    },
+    {
       "id": "src_components_adsenseunit",
       "label": "AdSenseUnit.vue",
       "_origin": "ast",
@@ -16256,6 +16302,28 @@
       "source_location": "L1"
     },
     {
+      "id": "src_tools_xml_to_json_xml_to_json",
+      "label": "xml-to-json.vue",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "xml-formatter.vue",
+      "file_type": "code",
+      "norm_label": "xml-to-json.vue",
+      "source_file": "src/tools/xml-to-json/xml-to-json.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_xml_to_json_xml_to_json_rules",
+      "label": "rules",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "xml-formatter.vue",
+      "file_type": "code",
+      "norm_label": "rules",
+      "source_file": "src/tools/xml-to-json/xml-to-json.vue",
+      "source_location": "L14"
+    },
+    {
       "id": "ref_xml_formatter",
       "label": "xml-formatter",
       "_origin": "ast",
@@ -16265,6 +16333,17 @@
       "norm_label": "xml-formatter",
       "source_file": "package.json",
       "source_location": "L113"
+    },
+    {
+      "id": "ref_xml_js",
+      "label": "xml-js",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "xml-formatter.vue",
+      "file_type": "concept",
+      "norm_label": "xml-js",
+      "source_file": "package.json",
+      "source_location": "L114"
     },
     {
       "id": "scripts_hello",
@@ -16897,8 +16976,8 @@
       "id": "src_tools_svg_converter_svg_converter",
       "label": "svg-converter.vue",
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "svg-converter.vue",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -16908,8 +16987,8 @@
       "id": "src_tools_svg_converter_svg_converter_activetab",
       "label": "activeTab",
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "activetab",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -16919,8 +16998,8 @@
       "id": "src_tools_svg_converter_svg_converter_bgcolor",
       "label": "bgColor",
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "bgcolor",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -16930,8 +17009,8 @@
       "id": "src_tools_svg_converter_svg_converter_file",
       "label": "file",
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "file",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -16941,8 +17020,8 @@
       "id": "src_tools_svg_converter_svg_converter_formatoptions",
       "label": "formatOptions",
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "formatoptions",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -16952,8 +17031,8 @@
       "id": "src_tools_svg_converter_svg_converter_isprocessing",
       "label": "isProcessing",
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "isprocessing",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -16963,8 +17042,8 @@
       "id": "src_tools_svg_converter_svg_converter_message",
       "label": "message",
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "message",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -16974,8 +17053,8 @@
       "id": "src_tools_svg_converter_svg_converter_outformat",
       "label": "outFormat",
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "outformat",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -16985,8 +17064,8 @@
       "id": "src_tools_svg_converter_svg_converter_resulturl",
       "label": "resultUrl",
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "resulturl",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -16996,8 +17075,8 @@
       "id": "src_tools_svg_converter_svg_converter_scale",
       "label": "scale",
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "scale",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -17007,8 +17086,8 @@
       "id": "src_tools_svg_converter_svg_converter_scaleoptions",
       "label": "scaleOptions",
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "scaleoptions",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -17018,8 +17097,8 @@
       "id": "src_tools_svg_converter_svg_converter_svgcode",
       "label": "svgCode",
       "_origin": "ast",
-      "community": 248,
-      "community_name": "svg-converter.vue",
+      "community": 247,
+      "community_name": "image-watermark.vue",
       "file_type": "code",
       "norm_label": "svgcode",
       "source_file": "src/tools/svg-converter/svg-converter.vue",
@@ -17411,28 +17490,6 @@
       "source_location": "L6"
     },
     {
-      "id": "tesseract_esm_min_js",
-      "label": "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js",
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "confidence": "EXTRACTED",
-      "file_type": "code",
-      "norm_label": "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js",
-      "source_file": "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js"
-    },
-    {
-      "id": "tesseract_js_5",
-      "label": "https://esm.sh/tesseract.js@5",
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "confidence": "EXTRACTED",
-      "file_type": "code",
-      "norm_label": "https://esm.sh/tesseract.js@5",
-      "source_file": "https://esm.sh/tesseract.js@5"
-    },
-    {
       "id": "src_tools_image_ocr_image_ocr",
       "label": "image-ocr.vue",
       "_origin": "ast",
@@ -17552,116 +17609,6 @@
       "norm_label": "tool",
       "source_file": "src/tools/image-ocr/index.ts",
       "source_location": "L3"
-    },
-    {
-      "id": "src_tools_pdf_ocr_index",
-      "label": "pdf-ocr/index.ts",
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "pdf-ocr/index.ts",
-      "source_file": "src/tools/pdf-ocr/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_pdf_ocr_index_tool",
-      "label": "tool",
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "tool",
-      "source_file": "src/tools/pdf-ocr/index.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "src_tools_pdf_ocr_pdf_ocr",
-      "label": "pdf-ocr.vue",
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "pdf-ocr.vue",
-      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_pdf_ocr_pdf_ocr_file",
-      "label": "file",
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "file",
-      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
-      "source_location": "L6"
-    },
-    {
-      "id": "src_tools_pdf_ocr_pdf_ocr_isprocessing",
-      "label": "isProcessing",
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "isprocessing",
-      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
-      "source_location": "L8"
-    },
-    {
-      "id": "src_tools_pdf_ocr_pdf_ocr_lang",
-      "label": "lang",
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "lang",
-      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
-      "source_location": "L7"
-    },
-    {
-      "id": "src_tools_pdf_ocr_pdf_ocr_langoptions",
-      "label": "langOptions",
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "langoptions",
-      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
-      "source_location": "L11"
-    },
-    {
-      "id": "src_tools_pdf_ocr_pdf_ocr_message",
-      "label": "message",
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "message",
-      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_tools_pdf_ocr_pdf_ocr_progress",
-      "label": "progress",
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "progress",
-      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
-      "source_location": "L9"
-    },
-    {
-      "id": "src_tools_pdf_ocr_pdf_ocr_result",
-      "label": "result",
-      "_origin": "ast",
-      "community": 255,
-      "community_name": "image-ocr.vue",
-      "file_type": "code",
-      "norm_label": "result",
-      "source_file": "src/tools/pdf-ocr/pdf-ocr.vue",
-      "source_location": "L10"
     },
     {
       "id": "extension_manifest",
@@ -19744,7 +19691,7 @@
       "file_type": "code",
       "norm_label": "enhomeprerenderbody",
       "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L531"
+      "source_location": "L916"
     },
     {
       "id": "scripts_prerender_seo_pages_filename",
@@ -19766,7 +19713,7 @@
       "file_type": "code",
       "norm_label": "homeschemajson",
       "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L500"
+      "source_location": "L885"
     },
     {
       "id": "scripts_prerender_seo_pages_importedmodules",
@@ -19788,7 +19735,7 @@
       "file_type": "code",
       "norm_label": "legalpages",
       "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L536"
+      "source_location": "L921"
     },
     {
       "id": "scripts_prerender_seo_pages_md",
@@ -19810,7 +19757,18 @@
       "file_type": "code",
       "norm_label": "programmaticscenarios",
       "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L633"
+      "source_location": "L1018"
+    },
+    {
+      "id": "scripts_prerender_seo_pages_publicdir",
+      "label": "publicDir",
+      "_origin": "ast",
+      "community": 306,
+      "community_name": "prerender-seo-pages.js",
+      "file_type": "code",
+      "norm_label": "publicdir",
+      "source_file": "scripts/prerender-seo-pages.js",
+      "source_location": "L1451"
     },
     {
       "id": "scripts_prerender_seo_pages_registeredtoolvars",
@@ -19843,7 +19801,7 @@
       "file_type": "code",
       "norm_label": "roothomehreflangs",
       "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L493"
+      "source_location": "L878"
     },
     {
       "id": "scripts_prerender_seo_pages_supportedlangs",
@@ -19898,7 +19856,7 @@
       "file_type": "code",
       "norm_label": "toolslist",
       "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L316"
+      "source_location": "L699"
     },
     {
       "id": "scripts_seo_content_templates",
@@ -22901,6 +22859,28 @@
       "source_location": "L108"
     },
     {
+      "id": "src_tools_sql_prettify_index",
+      "label": "sql-prettify/index.ts",
+      "_origin": "ast",
+      "community": 362,
+      "community_name": "sql-prettify.vue",
+      "file_type": "code",
+      "norm_label": "sql-prettify/index.ts",
+      "source_file": "src/tools/sql-prettify/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_sql_prettify_index_tool",
+      "label": "tool",
+      "_origin": "ast",
+      "community": 362,
+      "community_name": "sql-prettify.vue",
+      "file_type": "code",
+      "norm_label": "tool",
+      "source_file": "src/tools/sql-prettify/index.ts",
+      "source_location": "L5"
+    },
+    {
       "id": "src_tools_sql_prettify_sql_prettify",
       "label": "sql-prettify.vue",
       "_origin": "ast",
@@ -23413,50 +23393,6 @@
       "source_location": "L10"
     },
     {
-      "id": "src_tools_xml_to_json_index",
-      "label": "xml-to-json/index.ts",
-      "_origin": "ast",
-      "community": 37,
-      "community_name": "json5",
-      "file_type": "code",
-      "norm_label": "xml-to-json/index.ts",
-      "source_file": "src/tools/xml-to-json/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_xml_to_json_index_tool",
-      "label": "tool",
-      "_origin": "ast",
-      "community": 37,
-      "community_name": "json5",
-      "file_type": "code",
-      "norm_label": "tool",
-      "source_file": "src/tools/xml-to-json/index.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "src_tools_xml_to_json_xml_to_json",
-      "label": "xml-to-json.vue",
-      "_origin": "ast",
-      "community": 37,
-      "community_name": "json5",
-      "file_type": "code",
-      "norm_label": "xml-to-json.vue",
-      "source_file": "src/tools/xml-to-json/xml-to-json.vue",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_xml_to_json_xml_to_json_rules",
-      "label": "rules",
-      "_origin": "ast",
-      "community": 37,
-      "community_name": "json5",
-      "file_type": "code",
-      "norm_label": "rules",
-      "source_file": "src/tools/xml-to-json/xml-to-json.vue",
-      "source_location": "L14"
-    },
-    {
       "id": "ref_json5",
       "label": "json5",
       "_origin": "ast",
@@ -23466,17 +23402,6 @@
       "norm_label": "json5",
       "source_file": "package.json",
       "source_location": "L83"
-    },
-    {
-      "id": "ref_xml_js",
-      "label": "xml-js",
-      "_origin": "ast",
-      "community": 37,
-      "community_name": "json5",
-      "file_type": "concept",
-      "norm_label": "xml-js",
-      "source_file": "package.json",
-      "source_location": "L114"
     },
     {
       "id": "vuedraggable",
@@ -23532,17 +23457,6 @@
       "norm_label": "displayedtools",
       "source_file": "src/pages/Home.page.vue",
       "source_location": "L121"
-    },
-    {
-      "id": "src_pages_home_page_draggable",
-      "label": "Draggable",
-      "_origin": "ast",
-      "community": 372,
-      "community_name": "Home.page.vue",
-      "file_type": "code",
-      "norm_label": "draggable",
-      "source_file": "src/pages/Home.page.vue",
-      "source_location": "L22"
     },
     {
       "id": "src_pages_home_page_favoritetools",
@@ -23653,17 +23567,6 @@
       "norm_label": "visiblecount",
       "source_file": "src/pages/Home.page.vue",
       "source_location": "L106"
-    },
-    {
-      "id": "ref_vuedraggable",
-      "label": "vuedraggable",
-      "_origin": "ast",
-      "community": 372,
-      "community_name": "Home.page.vue",
-      "file_type": "concept",
-      "norm_label": "vuedraggable",
-      "source_file": "package.json",
-      "source_location": "L112"
     },
     {
       "id": "docs_daily_indexing_schedule",
@@ -24199,50 +24102,6 @@
       "source_location": "L1"
     },
     {
-      "id": "src_tools_ipv4_range_expander_result_row",
-      "label": "result-row.vue",
-      "_origin": "ast",
-      "community": 377,
-      "community_name": "ipv4-range-expander.vue",
-      "file_type": "code",
-      "norm_label": "result-row.vue",
-      "source_file": "src/tools/ipv4-range-expander/result-row.vue",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_ipv4_range_expander_result_row_label_oldvalue_newvalue",
-      "label": "{ label, oldValue, newValue }",
-      "_origin": "ast",
-      "community": 377,
-      "community_name": "ipv4-range-expander.vue",
-      "file_type": "code",
-      "norm_label": "{ label, oldvalue, newvalue }",
-      "source_file": "src/tools/ipv4-range-expander/result-row.vue",
-      "source_location": "L10"
-    },
-    {
-      "id": "src_tools_ipv4_range_expander_result_row_props",
-      "label": "props",
-      "_origin": "ast",
-      "community": 377,
-      "community_name": "ipv4-range-expander.vue",
-      "file_type": "code",
-      "norm_label": "props",
-      "source_file": "src/tools/ipv4-range-expander/result-row.vue",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_tools_ipv4_range_expander_result_row_testid",
-      "label": "testId",
-      "_origin": "ast",
-      "community": 377,
-      "community_name": "ipv4-range-expander.vue",
-      "file_type": "code",
-      "norm_label": "testid",
-      "source_file": "src/tools/ipv4-range-expander/result-row.vue",
-      "source_location": "L12"
-    },
-    {
       "id": "src_tools_yaml_validator_yaml_validator",
       "label": "yaml-validator.vue",
       "_origin": "ast",
@@ -24700,6 +24559,17 @@
       "source_location": "L1"
     },
     {
+      "id": "src_composable_fuzzysearch",
+      "label": "fuzzySearch.ts",
+      "_origin": "ast",
+      "community": 389,
+      "community_name": "@vueuse/core",
+      "file_type": "code",
+      "norm_label": "fuzzysearch.ts",
+      "source_file": "src/composable/fuzzySearch.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "src_composable_queryparams",
       "label": "queryParams.ts",
       "_origin": "ast",
@@ -24720,6 +24590,17 @@
       "norm_label": "transformers",
       "source_file": "src/composable/queryParams.ts",
       "source_location": "L7"
+    },
+    {
+      "id": "ref_fuse_js",
+      "label": "fuse.js",
+      "_origin": "ast",
+      "community": 389,
+      "community_name": "@vueuse/core",
+      "file_type": "concept",
+      "norm_label": "fuse.js",
+      "source_file": "package.json",
+      "source_location": "L79"
     },
     {
       "id": "ref_vueuse_core",
@@ -28026,147 +27907,92 @@
       "source_location": "L1"
     },
     {
-      "id": "src_tools_base64_string_converter_base64_string_converter",
-      "label": "base64-string-converter.vue",
+      "id": "src_tools_http_status_codes_http_status_codes",
+      "label": "http-status-codes.vue",
       "_origin": "ast",
       "community": 46,
-      "community_name": "base64-string-converter.vue",
+      "community_name": "http-status-codes/index.ts",
       "file_type": "code",
-      "norm_label": "base64-string-converter.vue",
-      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
+      "norm_label": "http-status-codes.vue",
+      "source_file": "src/tools/http-status-codes/http-status-codes.vue",
       "source_location": "L1"
     },
     {
-      "id": "src_tools_base64_string_converter_base64_string_converter_b64validationrules",
-      "label": "b64ValidationRules",
+      "id": "src_tools_http_status_codes_http_status_codes_codesbycategoryfiltered",
+      "label": "codesByCategoryFiltered",
       "_origin": "ast",
       "community": 46,
-      "community_name": "base64-string-converter.vue",
+      "community_name": "http-status-codes/index.ts",
       "file_type": "code",
-      "norm_label": "b64validationrules",
-      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
-      "source_location": "L18"
+      "norm_label": "codesbycategoryfiltered",
+      "source_file": "src/tools/http-status-codes/http-status-codes.vue",
+      "source_location": "L15"
     },
     {
-      "id": "src_tools_base64_string_converter_base64_string_converter_b64validationwatch",
-      "label": "b64ValidationWatch",
+      "id": "src_tools_http_status_codes_http_status_codes_constants",
+      "label": "http-status-codes.constants.ts",
       "_origin": "ast",
       "community": 46,
-      "community_name": "base64-string-converter.vue",
+      "community_name": "http-status-codes/index.ts",
       "file_type": "code",
-      "norm_label": "b64validationwatch",
-      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
-      "source_location": "L24"
+      "norm_label": "http-status-codes.constants.ts",
+      "source_file": "src/tools/http-status-codes/http-status-codes.constants.ts",
+      "source_location": "L1"
     },
     {
-      "id": "src_tools_base64_string_converter_base64_string_converter_base64input",
-      "label": "base64Input",
+      "id": "src_tools_http_status_codes_http_status_codes_constants_codesbycategories",
+      "label": "codesByCategories",
       "_origin": "ast",
       "community": 46,
-      "community_name": "base64-string-converter.vue",
+      "community_name": "http-status-codes/index.ts",
       "file_type": "code",
-      "norm_label": "base64input",
-      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
-      "source_location": "L13"
+      "norm_label": "codesbycategories",
+      "source_file": "src/tools/http-status-codes/http-status-codes.constants.ts",
+      "source_location": "L1"
     },
     {
-      "id": "src_tools_base64_string_converter_base64_string_converter_base64output",
-      "label": "base64Output",
+      "id": "src_tools_http_status_codes_http_status_codes_search",
+      "label": "search",
       "_origin": "ast",
       "community": 46,
-      "community_name": "base64-string-converter.vue",
+      "community_name": "http-status-codes/index.ts",
       "file_type": "code",
-      "norm_label": "base64output",
-      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
-      "source_location": "L10"
+      "norm_label": "search",
+      "source_file": "src/tools/http-status-codes/http-status-codes.vue",
+      "source_location": "L5"
     },
     {
-      "id": "src_tools_base64_string_converter_base64_string_converter_copy_copytext",
-      "label": "{ copy: copyText }",
+      "id": "src_tools_http_status_codes_http_status_codes_searchresult",
+      "label": "{ searchResult }",
       "_origin": "ast",
       "community": 46,
-      "community_name": "base64-string-converter.vue",
+      "community_name": "http-status-codes/index.ts",
       "file_type": "code",
-      "norm_label": "{ copy: copytext }",
-      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
-      "source_location": "L17"
-    },
-    {
-      "id": "src_tools_base64_string_converter_base64_string_converter_copy_copytextbase64",
-      "label": "{ copy: copyTextBase64 }",
-      "_origin": "ast",
-      "community": 46,
-      "community_name": "base64-string-converter.vue",
-      "file_type": "code",
-      "norm_label": "{ copy: copytextbase64 }",
-      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
-      "source_location": "L11"
-    },
-    {
-      "id": "src_tools_base64_string_converter_base64_string_converter_decodeurlsafe",
-      "label": "decodeUrlSafe",
-      "_origin": "ast",
-      "community": 46,
-      "community_name": "base64-string-converter.vue",
-      "file_type": "code",
-      "norm_label": "decodeurlsafe",
-      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
+      "norm_label": "{ searchresult }",
+      "source_file": "src/tools/http-status-codes/http-status-codes.vue",
       "source_location": "L7"
     },
     {
-      "id": "src_tools_base64_string_converter_base64_string_converter_encodeurlsafe",
-      "label": "encodeUrlSafe",
+      "id": "src_tools_http_status_codes_index",
+      "label": "http-status-codes/index.ts",
       "_origin": "ast",
       "community": 46,
-      "community_name": "base64-string-converter.vue",
+      "community_name": "http-status-codes/index.ts",
       "file_type": "code",
-      "norm_label": "encodeurlsafe",
-      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
-      "source_location": "L6"
-    },
-    {
-      "id": "src_tools_base64_string_converter_base64_string_converter_textinput",
-      "label": "textInput",
-      "_origin": "ast",
-      "community": 46,
-      "community_name": "base64-string-converter.vue",
-      "file_type": "code",
-      "norm_label": "textinput",
-      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
-      "source_location": "L9"
-    },
-    {
-      "id": "src_tools_base64_string_converter_base64_string_converter_textoutput",
-      "label": "textOutput",
-      "_origin": "ast",
-      "community": 46,
-      "community_name": "base64-string-converter.vue",
-      "file_type": "code",
-      "norm_label": "textoutput",
-      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
-      "source_location": "L14"
-    },
-    {
-      "id": "src_tools_base64_string_converter_index",
-      "label": "base64-string-converter/index.ts",
-      "_origin": "ast",
-      "community": 46,
-      "community_name": "base64-string-converter.vue",
-      "file_type": "code",
-      "norm_label": "base64-string-converter/index.ts",
-      "source_file": "src/tools/base64-string-converter/index.ts",
+      "norm_label": "http-status-codes/index.ts",
+      "source_file": "src/tools/http-status-codes/index.ts",
       "source_location": "L1"
     },
     {
-      "id": "src_tools_base64_string_converter_index_tool",
+      "id": "src_tools_http_status_codes_index_tool",
       "label": "tool",
       "_origin": "ast",
       "community": 46,
-      "community_name": "base64-string-converter.vue",
+      "community_name": "http-status-codes/index.ts",
       "file_type": "code",
       "norm_label": "tool",
-      "source_file": "src/tools/base64-string-converter/index.ts",
-      "source_location": "L5"
+      "source_file": "src/tools/http-status-codes/index.ts",
+      "source_location": "L7"
     },
     {
       "id": "src_tools_benchmark_builder_benchmark_builder",
@@ -28367,26 +28193,180 @@
       "source_location": "L49"
     },
     {
-      "id": "src_modules_tracker_tracker_services",
-      "label": "tracker.services.ts",
+      "id": "src_ui_demo_demo_home_page",
+      "label": "demo-home.page.vue",
       "_origin": "ast",
-      "community": 49,
-      "community_name": "tracker.services.ts",
+      "community": 48,
+      "community_name": "PdfToolsHub.page.vue",
       "file_type": "code",
-      "norm_label": "tracker.services.ts",
-      "source_file": "src/modules/tracker/tracker.services.ts",
+      "norm_label": "demo-home.page.vue",
+      "source_file": "src/ui/demo/demo-home.page.vue",
       "source_location": "L1"
     },
     {
-      "id": "src_modules_tracker_tracker_types",
-      "label": "tracker.types.ts",
+      "id": "src_ui_demo_demo_routes",
+      "label": "demo.routes.ts",
+      "_origin": "ast",
+      "community": 48,
+      "community_name": "PdfToolsHub.page.vue",
+      "file_type": "code",
+      "norm_label": "demo.routes.ts",
+      "source_file": "src/ui/demo/demo.routes.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_ui_demo_demo_routes_demopages",
+      "label": "demoPages",
+      "_origin": "ast",
+      "community": 48,
+      "community_name": "PdfToolsHub.page.vue",
+      "file_type": "code",
+      "norm_label": "demopages",
+      "source_file": "src/ui/demo/demo.routes.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "src_ui_demo_demo_routes_demoroutes",
+      "label": "demoRoutes",
+      "_origin": "ast",
+      "community": 48,
+      "community_name": "PdfToolsHub.page.vue",
+      "file_type": "code",
+      "norm_label": "demoroutes",
+      "source_file": "src/ui/demo/demo.routes.ts",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_ui_demo_demo_routes_routes",
+      "label": "routes",
+      "_origin": "ast",
+      "community": 48,
+      "community_name": "PdfToolsHub.page.vue",
+      "file_type": "code",
+      "norm_label": "routes",
+      "source_file": "src/ui/demo/demo.routes.ts",
+      "source_location": "L17"
+    },
+    {
+      "id": "src_ui_demo_demo_wrapper",
+      "label": "demo-wrapper.vue",
+      "_origin": "ast",
+      "community": 48,
+      "community_name": "PdfToolsHub.page.vue",
+      "file_type": "code",
+      "norm_label": "demo-wrapper.vue",
+      "source_file": "src/ui/demo/demo-wrapper.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_ui_demo_demo_wrapper_componentname",
+      "label": "componentName",
+      "_origin": "ast",
+      "community": 48,
+      "community_name": "PdfToolsHub.page.vue",
+      "file_type": "code",
+      "norm_label": "componentname",
+      "source_file": "src/ui/demo/demo-wrapper.vue",
+      "source_location": "L7"
+    },
+    {
+      "id": "src_ui_demo_demo_wrapper_route",
+      "label": "route",
+      "_origin": "ast",
+      "community": 48,
+      "community_name": "PdfToolsHub.page.vue",
+      "file_type": "code",
+      "norm_label": "route",
+      "source_file": "src/ui/demo/demo-wrapper.vue",
+      "source_location": "L5"
+    },
+    {
+      "id": "ref_vue_router",
+      "label": "vue-router",
+      "_origin": "ast",
+      "community": 48,
+      "community_name": "PdfToolsHub.page.vue",
+      "file_type": "concept",
+      "norm_label": "vue-router",
+      "source_file": "package.json",
+      "source_location": "L109"
+    },
+    {
+      "id": "src_ui_c_link_c_link",
+      "label": "c-link.vue",
       "_origin": "ast",
       "community": 49,
-      "community_name": "tracker.services.ts",
+      "community_name": "c-link.vue",
       "file_type": "code",
-      "norm_label": "tracker.types.ts",
-      "source_file": "src/modules/tracker/tracker.types.ts",
+      "norm_label": "c-link.vue",
+      "source_file": "src/ui/c-link/c-link.vue",
       "source_location": "L1"
+    },
+    {
+      "id": "src_ui_c_link_c_link_demo",
+      "label": "c-link.demo.vue",
+      "_origin": "ast",
+      "community": 49,
+      "community_name": "c-link.vue",
+      "file_type": "code",
+      "norm_label": "c-link.demo.vue",
+      "source_file": "src/ui/c-link/c-link.demo.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_ui_c_link_c_link_href_to",
+      "label": "{ href, to }",
+      "_origin": "ast",
+      "community": 49,
+      "community_name": "c-link.vue",
+      "file_type": "code",
+      "norm_label": "{ href, to }",
+      "source_file": "src/ui/c-link/c-link.vue",
+      "source_location": "L10"
+    },
+    {
+      "id": "src_ui_c_link_c_link_props",
+      "label": "props",
+      "_origin": "ast",
+      "community": 49,
+      "community_name": "c-link.vue",
+      "file_type": "code",
+      "norm_label": "props",
+      "source_file": "src/ui/c-link/c-link.vue",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_ui_c_link_c_link_tag",
+      "label": "tag",
+      "_origin": "ast",
+      "community": 49,
+      "community_name": "c-link.vue",
+      "file_type": "code",
+      "norm_label": "tag",
+      "source_file": "src/ui/c-link/c-link.vue",
+      "source_location": "L13"
+    },
+    {
+      "id": "src_ui_c_link_c_link_theme_usetheme",
+      "label": "{ useTheme }",
+      "_origin": "ast",
+      "community": 49,
+      "community_name": "c-link.vue",
+      "file_type": "code",
+      "norm_label": "{ usetheme }",
+      "source_file": "src/ui/c-link/c-link.theme.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "src_ui_c_link_c_link_vue_src_ui_c_link_c_link_theme",
+      "label": "theme",
+      "_origin": "ast",
+      "community": 49,
+      "community_name": "c-link.vue",
+      "file_type": "code",
+      "norm_label": "theme",
+      "source_file": "src/ui/c-link/c-link.vue",
+      "source_location": "L12"
     },
     {
       "id": "package",
@@ -28486,6 +28466,28 @@
       "norm_label": "version",
       "source_file": "package.json",
       "source_location": "L4"
+    },
+    {
+      "id": "src_pages_home_page_draggable",
+      "label": "Draggable",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "draggable",
+      "source_file": "src/pages/Home.page.vue",
+      "source_location": "L22"
+    },
+    {
+      "id": "unocss_config",
+      "label": "unocss.config.ts",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "unocss.config.ts",
+      "source_file": "unocss.config.ts",
+      "source_location": "L1"
     },
     {
       "id": "vite_config",
@@ -28807,6 +28809,17 @@
       "source_location": "L153"
     },
     {
+      "id": "ref_unocss",
+      "label": "unocss",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "package.json",
+      "file_type": "concept",
+      "norm_label": "unocss",
+      "source_file": "package.json",
+      "source_location": "L154"
+    },
+    {
       "id": "ref_unocss_eslint_config",
       "label": "@unocss/eslint-config",
       "_origin": "ast",
@@ -28816,6 +28829,17 @@
       "norm_label": "@unocss/eslint-config",
       "source_file": "package.json",
       "source_location": "L137"
+    },
+    {
+      "id": "ref_unocss_preset_scrollbar",
+      "label": "unocss-preset-scrollbar",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "package.json",
+      "file_type": "concept",
+      "norm_label": "unocss-preset-scrollbar",
+      "source_file": "package.json",
+      "source_location": "L155"
     },
     {
       "id": "ref_unplugin_auto_import",
@@ -28959,6 +28983,17 @@
       "norm_label": "@vue/tsconfig",
       "source_file": "package.json",
       "source_location": "L143"
+    },
+    {
+      "id": "ref_vuedraggable",
+      "label": "vuedraggable",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "package.json",
+      "file_type": "concept",
+      "norm_label": "vuedraggable",
+      "source_file": "package.json",
+      "source_location": "L112"
     },
     {
       "id": "ref_workbox_window",
@@ -29511,92 +29546,147 @@
       "source_location": "L1"
     },
     {
-      "id": "src_tools_json_diff_index",
-      "label": "json-diff/index.ts",
+      "id": "src_tools_base64_string_converter_base64_string_converter",
+      "label": "base64-string-converter.vue",
       "_origin": "ast",
       "community": 55,
-      "community_name": "json-diff.vue",
+      "community_name": "base64-string-converter.vue",
       "file_type": "code",
-      "norm_label": "json-diff/index.ts",
-      "source_file": "src/tools/json-diff/index.ts",
+      "norm_label": "base64-string-converter.vue",
+      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
       "source_location": "L1"
     },
     {
-      "id": "src_tools_json_diff_index_tool",
-      "label": "tool",
+      "id": "src_tools_base64_string_converter_base64_string_converter_b64validationrules",
+      "label": "b64ValidationRules",
       "_origin": "ast",
       "community": 55,
-      "community_name": "json-diff.vue",
+      "community_name": "base64-string-converter.vue",
       "file_type": "code",
-      "norm_label": "tool",
-      "source_file": "src/tools/json-diff/index.ts",
-      "source_location": "L5"
+      "norm_label": "b64validationrules",
+      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
+      "source_location": "L18"
     },
     {
-      "id": "src_tools_json_diff_json_diff",
-      "label": "json-diff.vue",
+      "id": "src_tools_base64_string_converter_base64_string_converter_b64validationwatch",
+      "label": "b64ValidationWatch",
       "_origin": "ast",
       "community": 55,
-      "community_name": "json-diff.vue",
+      "community_name": "base64-string-converter.vue",
       "file_type": "code",
-      "norm_label": "json-diff.vue",
-      "source_file": "src/tools/json-diff/json-diff.vue",
-      "source_location": "L1"
+      "norm_label": "b64validationwatch",
+      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
+      "source_location": "L24"
     },
     {
-      "id": "src_tools_json_diff_json_diff_jsonvalidationrules",
-      "label": "jsonValidationRules",
+      "id": "src_tools_base64_string_converter_base64_string_converter_base64input",
+      "label": "base64Input",
       "_origin": "ast",
       "community": 55,
-      "community_name": "json-diff.vue",
+      "community_name": "base64-string-converter.vue",
       "file_type": "code",
-      "norm_label": "jsonvalidationrules",
-      "source_file": "src/tools/json-diff/json-diff.vue",
-      "source_location": "L14"
+      "norm_label": "base64input",
+      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
+      "source_location": "L13"
     },
     {
-      "id": "src_tools_json_diff_json_diff_leftjson",
-      "label": "leftJson",
+      "id": "src_tools_base64_string_converter_base64_string_converter_base64output",
+      "label": "base64Output",
       "_origin": "ast",
       "community": 55,
-      "community_name": "json-diff.vue",
+      "community_name": "base64-string-converter.vue",
       "file_type": "code",
-      "norm_label": "leftjson",
-      "source_file": "src/tools/json-diff/json-diff.vue",
+      "norm_label": "base64output",
+      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
+      "source_location": "L10"
+    },
+    {
+      "id": "src_tools_base64_string_converter_base64_string_converter_copy_copytext",
+      "label": "{ copy: copyText }",
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "base64-string-converter.vue",
+      "file_type": "code",
+      "norm_label": "{ copy: copytext }",
+      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
+      "source_location": "L17"
+    },
+    {
+      "id": "src_tools_base64_string_converter_base64_string_converter_copy_copytextbase64",
+      "label": "{ copy: copyTextBase64 }",
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "base64-string-converter.vue",
+      "file_type": "code",
+      "norm_label": "{ copy: copytextbase64 }",
+      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
       "source_location": "L11"
     },
     {
-      "id": "src_tools_json_diff_json_diff_rawleftjson",
-      "label": "rawLeftJson",
+      "id": "src_tools_base64_string_converter_base64_string_converter_decodeurlsafe",
+      "label": "decodeUrlSafe",
       "_origin": "ast",
       "community": 55,
-      "community_name": "json-diff.vue",
+      "community_name": "base64-string-converter.vue",
       "file_type": "code",
-      "norm_label": "rawleftjson",
-      "source_file": "src/tools/json-diff/json-diff.vue",
-      "source_location": "L8"
+      "norm_label": "decodeurlsafe",
+      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
+      "source_location": "L7"
     },
     {
-      "id": "src_tools_json_diff_json_diff_rawrightjson",
-      "label": "rawRightJson",
+      "id": "src_tools_base64_string_converter_base64_string_converter_encodeurlsafe",
+      "label": "encodeUrlSafe",
       "_origin": "ast",
       "community": 55,
-      "community_name": "json-diff.vue",
+      "community_name": "base64-string-converter.vue",
       "file_type": "code",
-      "norm_label": "rawrightjson",
-      "source_file": "src/tools/json-diff/json-diff.vue",
+      "norm_label": "encodeurlsafe",
+      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_tools_base64_string_converter_base64_string_converter_textinput",
+      "label": "textInput",
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "base64-string-converter.vue",
+      "file_type": "code",
+      "norm_label": "textinput",
+      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
       "source_location": "L9"
     },
     {
-      "id": "src_tools_json_diff_json_diff_rightjson",
-      "label": "rightJson",
+      "id": "src_tools_base64_string_converter_base64_string_converter_textoutput",
+      "label": "textOutput",
       "_origin": "ast",
       "community": 55,
-      "community_name": "json-diff.vue",
+      "community_name": "base64-string-converter.vue",
       "file_type": "code",
-      "norm_label": "rightjson",
-      "source_file": "src/tools/json-diff/json-diff.vue",
-      "source_location": "L12"
+      "norm_label": "textoutput",
+      "source_file": "src/tools/base64-string-converter/base64-string-converter.vue",
+      "source_location": "L14"
+    },
+    {
+      "id": "src_tools_base64_string_converter_index",
+      "label": "base64-string-converter/index.ts",
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "base64-string-converter.vue",
+      "file_type": "code",
+      "norm_label": "base64-string-converter/index.ts",
+      "source_file": "src/tools/base64-string-converter/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tools_base64_string_converter_index_tool",
+      "label": "tool",
+      "_origin": "ast",
+      "community": 55,
+      "community_name": "base64-string-converter.vue",
+      "file_type": "code",
+      "norm_label": "tool",
+      "source_file": "src/tools/base64-string-converter/index.ts",
+      "source_location": "L5"
     },
     {
       "id": "src_tools_ascii_text_drawer_ascii_text_drawer",
@@ -29720,11 +29810,55 @@
       "source_location": "L77"
     },
     {
+      "id": "src_components_coloredcard",
+      "label": "ColoredCard.vue",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "coloredcard.vue",
+      "source_file": "src/components/ColoredCard.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_coloredcard_icon_title",
+      "label": "{ icon, title }",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "{ icon, title }",
+      "source_file": "src/components/ColoredCard.vue",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_components_coloredcard_props",
+      "label": "props",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "props",
+      "source_file": "src/components/ColoredCard.vue",
+      "source_location": "L4"
+    },
+    {
+      "id": "src_composable_computed_catchedcomputed",
+      "label": "catchedComputed.ts",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "catchedcomputed.ts",
+      "source_file": "src/composable/computed/catchedComputed.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "src_main",
       "label": "main.ts",
       "_origin": "ast",
       "community": 57,
-      "community_name": "main.ts",
+      "community_name": "vue",
       "file_type": "code",
       "norm_label": "main.ts",
       "source_file": "src/main.ts",
@@ -29735,18 +29869,40 @@
       "label": "app",
       "_origin": "ast",
       "community": 57,
-      "community_name": "main.ts",
+      "community_name": "vue",
       "file_type": "code",
       "norm_label": "app",
       "source_file": "src/main.ts",
       "source_location": "L17"
     },
     {
+      "id": "src_modules_tracker_tracker_services",
+      "label": "tracker.services.ts",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "tracker.services.ts",
+      "source_file": "src/modules/tracker/tracker.services.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_modules_tracker_tracker_types",
+      "label": "tracker.types.ts",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "tracker.types.ts",
+      "source_file": "src/modules/tracker/tracker.types.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "src_plugins_i18n_plugin",
       "label": "i18n.plugin.ts",
       "_origin": "ast",
       "community": 57,
-      "community_name": "main.ts",
+      "community_name": "vue",
       "file_type": "code",
       "norm_label": "i18n.plugin.ts",
       "source_file": "src/plugins/i18n.plugin.ts",
@@ -29757,7 +29913,7 @@
       "label": "i18n",
       "_origin": "ast",
       "community": 57,
-      "community_name": "main.ts",
+      "community_name": "vue",
       "file_type": "code",
       "norm_label": "i18n",
       "source_file": "src/plugins/i18n.plugin.ts",
@@ -29768,7 +29924,7 @@
       "label": "i18nPlugin",
       "_origin": "ast",
       "community": 57,
-      "community_name": "main.ts",
+      "community_name": "vue",
       "file_type": "code",
       "norm_label": "i18nplugin",
       "source_file": "src/plugins/i18n.plugin.ts",
@@ -29779,7 +29935,7 @@
       "label": "plausible.plugin.ts",
       "_origin": "ast",
       "community": 57,
-      "community_name": "main.ts",
+      "community_name": "vue",
       "file_type": "code",
       "norm_label": "plausible.plugin.ts",
       "source_file": "src/plugins/plausible.plugin.ts",
@@ -29790,33 +29946,66 @@
       "label": "plausible",
       "_origin": "ast",
       "community": 57,
-      "community_name": "main.ts",
+      "community_name": "vue",
       "file_type": "code",
       "norm_label": "plausible",
       "source_file": "src/plugins/plausible.plugin.ts",
       "source_location": "L31"
     },
     {
+      "id": "src_utils_macaddress",
+      "label": "macAddress.ts",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "macaddress.ts",
+      "source_file": "src/utils/macAddress.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_utils_macaddress_macaddressvalidationrules",
+      "label": "macAddressValidationRules",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "macaddressvalidationrules",
+      "source_file": "src/utils/macAddress.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "src_utils_macaddress_partialmacaddressvalidationrules",
+      "label": "partialMacAddressValidationRules",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "vue",
+      "file_type": "code",
+      "norm_label": "partialmacaddressvalidationrules",
+      "source_file": "src/utils/macAddress.ts",
+      "source_location": "L18"
+    },
+    {
       "id": "ref_plausible_tracker",
       "label": "plausible-tracker",
       "_origin": "ast",
       "community": 57,
-      "community_name": "main.ts",
+      "community_name": "vue",
       "file_type": "concept",
       "norm_label": "plausible-tracker",
       "source_file": "package.json",
       "source_location": "L98"
     },
     {
-      "id": "ref_vue_shadow_dom",
-      "label": "vue-shadow-dom",
+      "id": "ref_vue",
+      "label": "vue",
       "_origin": "ast",
       "community": 57,
-      "community_name": "main.ts",
+      "community_name": "vue",
       "file_type": "concept",
-      "norm_label": "vue-shadow-dom",
+      "norm_label": "vue",
       "source_file": "package.json",
-      "source_location": "L110"
+      "source_location": "L107"
     },
     {
       "id": "src_tools_ai_regex_generator_explainer_ai_regex_generator_explainer",
@@ -30336,28 +30525,6 @@
       "source_location": "L10"
     },
     {
-      "id": "src_tools_yaml_to_toml_index",
-      "label": "yaml-to-toml/index.ts",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "toml-to-yaml.vue",
-      "file_type": "code",
-      "norm_label": "yaml-to-toml/index.ts",
-      "source_file": "src/tools/yaml-to-toml/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_yaml_to_toml_index_tool",
-      "label": "tool",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "toml-to-yaml.vue",
-      "file_type": "code",
-      "norm_label": "tool",
-      "source_file": "src/tools/yaml-to-toml/index.ts",
-      "source_location": "L5"
-    },
-    {
       "id": "src_tools_yaml_to_toml_yaml_to_toml",
       "label": "yaml-to-toml.vue",
       "_origin": "ast",
@@ -30532,28 +30699,6 @@
       "norm_label": "unicodefromtext",
       "source_file": "src/tools/text-to-unicode/text-to-unicode.vue",
       "source_location": "L6"
-    },
-    {
-      "id": "src_tools_url_encoder_index",
-      "label": "url-encoder/index.ts",
-      "_origin": "ast",
-      "community": 61,
-      "community_name": "url-encoder.vue",
-      "file_type": "code",
-      "norm_label": "url-encoder/index.ts",
-      "source_file": "src/tools/url-encoder/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_tools_url_encoder_index_tool",
-      "label": "tool",
-      "_origin": "ast",
-      "community": 61,
-      "community_name": "url-encoder.vue",
-      "file_type": "code",
-      "norm_label": "tool",
-      "source_file": "src/tools/url-encoder/index.ts",
-      "source_location": "L5"
     },
     {
       "id": "src_tools_url_encoder_url_encoder",
@@ -31106,70 +31251,70 @@
       "source_location": "L1"
     },
     {
-      "id": "src_ui_c_button_c_button_demo",
-      "label": "c-button.demo.vue",
+      "id": "src_tools_ulid_generator_ulid_generator",
+      "label": "ulid-generator.vue",
       "_origin": "ast",
       "community": 65,
       "community_name": "lodash",
       "file_type": "code",
-      "norm_label": "c-button.demo.vue",
-      "source_file": "src/ui/c-button/c-button.demo.vue",
+      "norm_label": "ulid-generator.vue",
+      "source_file": "src/tools/ulid-generator/ulid-generator.vue",
       "source_location": "L1"
     },
     {
-      "id": "src_ui_c_button_c_button_demo_buttonsizes",
-      "label": "buttonSizes",
+      "id": "src_tools_ulid_generator_ulid_generator_amount",
+      "label": "amount",
       "_origin": "ast",
       "community": 65,
       "community_name": "lodash",
       "file_type": "code",
-      "norm_label": "buttonsizes",
-      "source_file": "src/ui/c-button/c-button.demo.vue",
-      "source_location": "L6"
+      "norm_label": "amount",
+      "source_file": "src/tools/ulid-generator/ulid-generator.vue",
+      "source_location": "L7"
     },
     {
-      "id": "src_ui_c_button_c_button_demo_buttontypes",
-      "label": "buttonTypes",
+      "id": "src_tools_ulid_generator_ulid_generator_copy",
+      "label": "{ copy }",
       "_origin": "ast",
       "community": 65,
       "community_name": "lodash",
       "file_type": "code",
-      "norm_label": "buttontypes",
-      "source_file": "src/ui/c-button/c-button.demo.vue",
-      "source_location": "L5"
+      "norm_label": "{ copy }",
+      "source_file": "src/tools/ulid-generator/ulid-generator.vue",
+      "source_location": "L21"
     },
     {
-      "id": "src_ui_c_button_c_button_demo_buttonvariants",
-      "label": "buttonVariants",
+      "id": "src_tools_ulid_generator_ulid_generator_format",
+      "label": "format",
       "_origin": "ast",
       "community": 65,
       "community_name": "lodash",
       "file_type": "code",
-      "norm_label": "buttonvariants",
-      "source_file": "src/ui/c-button/c-button.demo.vue",
-      "source_location": "L4"
+      "norm_label": "format",
+      "source_file": "src/tools/ulid-generator/ulid-generator.vue",
+      "source_location": "L9"
     },
     {
-      "id": "src_utils_error",
-      "label": "error.ts",
+      "id": "src_tools_ulid_generator_ulid_generator_formats",
+      "label": "formats",
       "_origin": "ast",
       "community": 65,
       "community_name": "lodash",
       "file_type": "code",
-      "norm_label": "error.ts",
-      "source_file": "src/utils/error.ts",
-      "source_location": "L1"
+      "norm_label": "formats",
+      "source_file": "src/tools/ulid-generator/ulid-generator.vue",
+      "source_location": "L8"
     },
     {
-      "id": "src_utils_error_test",
-      "label": "error.test.ts",
+      "id": "src_tools_ulid_generator_ulid_generator_ulids_refreshulids",
+      "label": "[ulids, refreshUlids]",
       "_origin": "ast",
       "community": 65,
       "community_name": "lodash",
       "file_type": "code",
-      "norm_label": "error.test.ts",
-      "source_file": "src/utils/error.test.ts",
-      "source_location": "L1"
+      "norm_label": "[ulids, refreshulids]",
+      "source_file": "src/tools/ulid-generator/ulid-generator.vue",
+      "source_location": "L11"
     },
     {
       "id": "ref_lodash",
@@ -31181,6 +31326,17 @@
       "norm_label": "lodash",
       "source_file": "package.json",
       "source_location": "L86"
+    },
+    {
+      "id": "ref_ulid",
+      "label": "ulid",
+      "_origin": "ast",
+      "community": 65,
+      "community_name": "lodash",
+      "file_type": "concept",
+      "norm_label": "ulid",
+      "source_file": "package.json",
+      "source_location": "L103"
     },
     {
       "id": "scripts_test_all_124_tools",
@@ -32096,136 +32252,81 @@
       "source_location": "L4"
     },
     {
-      "id": "src_tools_benchmark_builder_dynamic_values",
-      "label": "dynamic-values.vue",
+      "id": "src_ui_c_button_c_button_demo",
+      "label": "c-button.demo.vue",
       "_origin": "ast",
       "community": 72,
-      "community_name": "dynamic-values.vue",
+      "community_name": "c-button.demo.vue",
       "file_type": "code",
-      "norm_label": "dynamic-values.vue",
-      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
+      "norm_label": "c-button.demo.vue",
+      "source_file": "src/ui/c-button/c-button.demo.vue",
       "source_location": "L1"
     },
     {
-      "id": "src_tools_benchmark_builder_dynamic_values_emit",
-      "label": "emit",
+      "id": "src_ui_c_button_c_button_demo_buttonsizes",
+      "label": "buttonSizes",
       "_origin": "ast",
       "community": 72,
-      "community_name": "dynamic-values.vue",
+      "community_name": "c-button.demo.vue",
       "file_type": "code",
-      "norm_label": "emit",
-      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
-      "source_location": "L9"
+      "norm_label": "buttonsizes",
+      "source_file": "src/ui/c-button/c-button.demo.vue",
+      "source_location": "L6"
     },
     {
-      "id": "src_tools_benchmark_builder_dynamic_values_props",
-      "label": "props",
+      "id": "src_ui_c_button_c_button_demo_buttontypes",
+      "label": "buttonTypes",
       "_origin": "ast",
       "community": 72,
-      "community_name": "dynamic-values.vue",
+      "community_name": "c-button.demo.vue",
       "file_type": "code",
-      "norm_label": "props",
-      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
-      "source_location": "L7"
+      "norm_label": "buttontypes",
+      "source_file": "src/ui/c-button/c-button.demo.vue",
+      "source_location": "L5"
     },
     {
-      "id": "src_tools_benchmark_builder_dynamic_values_refs",
-      "label": "refs",
+      "id": "src_ui_c_button_c_button_demo_buttonvariants",
+      "label": "buttonVariants",
       "_origin": "ast",
       "community": 72,
-      "community_name": "dynamic-values.vue",
+      "community_name": "c-button.demo.vue",
       "file_type": "code",
-      "norm_label": "refs",
-      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
-      "source_location": "L11"
+      "norm_label": "buttonvariants",
+      "source_file": "src/ui/c-button/c-button.demo.vue",
+      "source_location": "L4"
     },
     {
-      "id": "src_tools_benchmark_builder_dynamic_values_values",
-      "label": "values",
-      "_origin": "ast",
-      "community": 72,
-      "community_name": "dynamic-values.vue",
-      "file_type": "code",
-      "norm_label": "values",
-      "source_file": "src/tools/benchmark-builder/dynamic-values.vue",
-      "source_location": "L13"
-    },
-    {
-      "id": "src_tools_ulid_generator_ulid_generator",
-      "label": "ulid-generator.vue",
+      "id": "src_tools_text_diff_index",
+      "label": "text-diff/index.ts",
       "_origin": "ast",
       "community": 73,
-      "community_name": "ulid-generator.vue",
+      "community_name": "text-diff/index.ts",
       "file_type": "code",
-      "norm_label": "ulid-generator.vue",
-      "source_file": "src/tools/ulid-generator/ulid-generator.vue",
+      "norm_label": "text-diff/index.ts",
+      "source_file": "src/tools/text-diff/index.ts",
       "source_location": "L1"
     },
     {
-      "id": "src_tools_ulid_generator_ulid_generator_amount",
-      "label": "amount",
+      "id": "src_tools_text_diff_index_tool",
+      "label": "tool",
       "_origin": "ast",
       "community": 73,
-      "community_name": "ulid-generator.vue",
+      "community_name": "text-diff/index.ts",
       "file_type": "code",
-      "norm_label": "amount",
-      "source_file": "src/tools/ulid-generator/ulid-generator.vue",
-      "source_location": "L7"
+      "norm_label": "tool",
+      "source_file": "src/tools/text-diff/index.ts",
+      "source_location": "L5"
     },
     {
-      "id": "src_tools_ulid_generator_ulid_generator_copy",
-      "label": "{ copy }",
+      "id": "src_tools_text_diff_text_diff",
+      "label": "text-diff.vue",
       "_origin": "ast",
       "community": 73,
-      "community_name": "ulid-generator.vue",
+      "community_name": "text-diff/index.ts",
       "file_type": "code",
-      "norm_label": "{ copy }",
-      "source_file": "src/tools/ulid-generator/ulid-generator.vue",
-      "source_location": "L21"
-    },
-    {
-      "id": "src_tools_ulid_generator_ulid_generator_format",
-      "label": "format",
-      "_origin": "ast",
-      "community": 73,
-      "community_name": "ulid-generator.vue",
-      "file_type": "code",
-      "norm_label": "format",
-      "source_file": "src/tools/ulid-generator/ulid-generator.vue",
-      "source_location": "L9"
-    },
-    {
-      "id": "src_tools_ulid_generator_ulid_generator_formats",
-      "label": "formats",
-      "_origin": "ast",
-      "community": 73,
-      "community_name": "ulid-generator.vue",
-      "file_type": "code",
-      "norm_label": "formats",
-      "source_file": "src/tools/ulid-generator/ulid-generator.vue",
-      "source_location": "L8"
-    },
-    {
-      "id": "src_tools_ulid_generator_ulid_generator_ulids_refreshulids",
-      "label": "[ulids, refreshUlids]",
-      "_origin": "ast",
-      "community": 73,
-      "community_name": "ulid-generator.vue",
-      "file_type": "code",
-      "norm_label": "[ulids, refreshulids]",
-      "source_file": "src/tools/ulid-generator/ulid-generator.vue",
-      "source_location": "L11"
-    },
-    {
-      "id": "ref_ulid",
-      "label": "ulid",
-      "_origin": "ast",
-      "community": 73,
-      "community_name": "ulid-generator.vue",
-      "file_type": "concept",
-      "norm_label": "ulid",
-      "source_file": "package.json",
-      "source_location": "L103"
+      "norm_label": "text-diff.vue",
+      "source_file": "src/tools/text-diff/text-diff.vue",
+      "source_location": "L1"
     },
     {
       "id": "src_tools_rsa_key_pair_generator_rsa_key_pair_generator",
@@ -34042,7 +34143,7 @@
       "file_type": "code",
       "norm_label": "aicatalog",
       "source_file": "scripts/generate-seo.js",
-      "source_location": "L599"
+      "source_location": "L606"
     },
     {
       "id": "scripts_generate_seo_aicatalogpath",
@@ -34053,7 +34154,7 @@
       "file_type": "code",
       "norm_label": "aicatalogpath",
       "source_file": "scripts/generate-seo.js",
-      "source_location": "L625"
+      "source_location": "L632"
     },
     {
       "id": "scripts_generate_seo_allroutes",
@@ -34163,7 +34264,7 @@
       "file_type": "code",
       "norm_label": "llmsfullpath",
       "source_file": "scripts/generate-seo.js",
-      "source_location": "L589"
+      "source_location": "L596"
     },
     {
       "id": "scripts_generate_seo_llmspath",
@@ -34174,7 +34275,7 @@
       "file_type": "code",
       "norm_label": "llmspath",
       "source_file": "scripts/generate-seo.js",
-      "source_location": "L581"
+      "source_location": "L588"
     },
     {
       "id": "scripts_generate_seo_programmaticscenarios",
@@ -34218,7 +34319,7 @@
       "file_type": "code",
       "norm_label": "robotspath",
       "source_file": "scripts/generate-seo.js",
-      "source_location": "L545"
+      "source_location": "L552"
     },
     {
       "id": "scripts_generate_seo_rootdir",
@@ -34284,7 +34385,7 @@
       "file_type": "code",
       "norm_label": "tooldetailmap",
       "source_file": "scripts/generate-seo.js",
-      "source_location": "L550"
+      "source_location": "L557"
     },
     {
       "id": "scripts_generate_seo_tooldetails",
@@ -34350,7 +34451,7 @@
       "file_type": "code",
       "norm_label": "wellknowndir",
       "source_file": "scripts/generate-seo.js",
-      "source_location": "L594"
+      "source_location": "L601"
     },
     {
       "id": "src_tools_regex_replace_regex_replace",
@@ -34770,80 +34871,25 @@
       "source_location": "L71"
     },
     {
-      "id": "src_shims_d",
-      "label": "shims.d.ts",
+      "id": "src_utils_error",
+      "label": "error.ts",
       "_origin": "ast",
       "community": 97,
-      "community_name": "shims.d.ts",
+      "community_name": "error.ts",
       "file_type": "code",
-      "norm_label": "shims.d.ts",
-      "source_file": "src/shims.d.ts",
+      "norm_label": "error.ts",
+      "source_file": "src/utils/error.ts",
       "source_location": "L1"
     },
     {
-      "id": "src_shims_d_emojilib",
-      "label": "emojilib",
+      "id": "src_utils_error_test",
+      "label": "error.test.ts",
       "_origin": "ast",
       "community": 97,
-      "community_name": "shims.d.ts",
+      "community_name": "error.ts",
       "file_type": "code",
-      "norm_label": "emojilib",
-      "source_file": "src/shims.d.ts",
-      "source_location": "L18"
-    },
-    {
-      "id": "src_shims_d_iarna_toml_esm",
-      "label": "iarna-toml-esm",
-      "_origin": "ast",
-      "community": 97,
-      "community_name": "shims.d.ts",
-      "file_type": "code",
-      "norm_label": "iarna-toml-esm",
-      "source_file": "src/shims.d.ts",
-      "source_location": "L13"
-    },
-    {
-      "id": "src_shims_d_md",
-      "label": "*.md",
-      "_origin": "ast",
-      "community": 97,
-      "community_name": "shims.d.ts",
-      "file_type": "code",
-      "norm_label": "*.md",
-      "source_file": "src/shims.d.ts",
-      "source_location": "L7"
-    },
-    {
-      "id": "src_shims_d_pdf_signature_reader",
-      "label": "pdf-signature-reader",
-      "_origin": "ast",
-      "community": 97,
-      "community_name": "shims.d.ts",
-      "file_type": "code",
-      "norm_label": "pdf-signature-reader",
-      "source_file": "src/shims.d.ts",
-      "source_location": "L37"
-    },
-    {
-      "id": "src_shims_d_unicode_emoji_json",
-      "label": "unicode-emoji-json",
-      "_origin": "ast",
-      "community": 97,
-      "community_name": "shims.d.ts",
-      "file_type": "code",
-      "norm_label": "unicode-emoji-json",
-      "source_file": "src/shims.d.ts",
-      "source_location": "L23"
-    },
-    {
-      "id": "src_shims_d_vue",
-      "label": "*.vue",
-      "_origin": "ast",
-      "community": 97,
-      "community_name": "shims.d.ts",
-      "file_type": "code",
-      "norm_label": "*.vue",
-      "source_file": "src/shims.d.ts",
+      "norm_label": "error.test.ts",
+      "source_file": "src/utils/error.test.ts",
       "source_location": "L1"
     },
     {
@@ -35137,7 +35183,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L926",
+      "source_location": "L1311",
       "weight": 1.0
     },
     {
@@ -35149,7 +35195,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L259",
+      "source_location": "L642",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_prerender_seo_pages_getlocalizedtoolarticleandfaqs",
+      "target": "scripts_prerender_seo_pages_extractfaqsfrommarkdown",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "scripts/prerender-seo-pages.js",
+      "source_location": "L136",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_prerender_seo_pages_getlocalizedtoolarticleandfaqs",
+      "target": "scripts_prerender_seo_pages_escapehtml",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "scripts/prerender-seo-pages.js",
+      "source_location": "L150",
       "weight": 1.0
     },
     {
@@ -65571,7 +65641,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/generate-seo.js",
-      "source_location": "L545",
+      "source_location": "L552",
       "weight": 1.0
     },
     {
@@ -65582,7 +65652,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/generate-seo.js",
-      "source_location": "L550",
+      "source_location": "L557",
       "weight": 1.0
     },
     {
@@ -65593,18 +65663,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/generate-seo.js",
-      "source_location": "L581",
-      "weight": 1.0
-    },
-    {
-      "source": "scripts_generate_seo",
-      "target": "scripts_generate_seo_llmsfullpath",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "scripts/generate-seo.js",
-      "source_location": "L589",
+      "source_location": "L588",
       "weight": 1.0
     },
     {
@@ -65620,24 +65679,13 @@
     },
     {
       "source": "scripts_generate_seo",
-      "target": "scripts_generate_seo_wellknowndir",
+      "target": "scripts_generate_seo_llmsfullpath",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/generate-seo.js",
-      "source_location": "L594",
-      "weight": 1.0
-    },
-    {
-      "source": "scripts_generate_seo",
-      "target": "scripts_generate_seo_aicatalog",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "scripts/generate-seo.js",
-      "source_location": "L599",
+      "source_location": "L596",
       "weight": 1.0
     },
     {
@@ -65653,13 +65701,24 @@
     },
     {
       "source": "scripts_generate_seo",
-      "target": "scripts_generate_seo_aicatalogpath",
+      "target": "scripts_generate_seo_wellknowndir",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/generate-seo.js",
-      "source_location": "L625",
+      "source_location": "L601",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_seo",
+      "target": "scripts_generate_seo_aicatalog",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/generate-seo.js",
+      "source_location": "L606",
       "weight": 1.0
     },
     {
@@ -65671,6 +65730,17 @@
       "confidence_score": 1.0,
       "source_file": "scripts/generate-seo.js",
       "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_seo",
+      "target": "scripts_generate_seo_aicatalogpath",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/generate-seo.js",
+      "source_location": "L632",
       "weight": 1.0
     },
     {
@@ -65740,6 +65810,17 @@
       "weight": 1.0
     },
     {
+      "source": "scripts_populate_all_locales",
+      "target": "scripts_populate_all_locales_translate_fallback",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/populate_all_locales.py",
+      "source_location": "L140",
+      "weight": 1.0
+    },
+    {
       "source": "scripts_prerender_seo_pages",
       "target": "scripts_prerender_seo_pages_rootdir",
       "relation": "contains",
@@ -65759,6 +65840,17 @@
       "confidence_score": 1.0,
       "source_file": "scripts/prerender-seo-pages.js",
       "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_prerender_seo_pages",
+      "target": "scripts_prerender_seo_pages_programmaticscenarios",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/prerender-seo-pages.js",
+      "source_location": "L1018",
       "weight": 1.0
     },
     {
@@ -65785,13 +65877,35 @@
     },
     {
       "source": "scripts_prerender_seo_pages",
-      "target": "scripts_prerender_seo_pages_generateprerenderedhtml",
+      "target": "scripts_prerender_seo_pages_getlocalizedtoolarticleandfaqs",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/prerender-seo-pages.js",
       "source_location": "L129",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_prerender_seo_pages",
+      "target": "scripts_prerender_seo_pages_buildcomparisonarticlehtml",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/prerender-seo-pages.js",
+      "source_location": "L1309",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_prerender_seo_pages",
+      "target": "scripts_prerender_seo_pages_publicdir",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/prerender-seo-pages.js",
+      "source_location": "L1451",
       "weight": 1.0
     },
     {
@@ -65829,35 +65943,13 @@
     },
     {
       "source": "scripts_prerender_seo_pages",
-      "target": "scripts_prerender_seo_pages_toolslist",
+      "target": "scripts_prerender_seo_pages_generateprerenderedhtml",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L316",
-      "weight": 1.0
-    },
-    {
-      "source": "scripts_prerender_seo_pages",
-      "target": "scripts_prerender_seo_pages_roothomehreflangs",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L493",
-      "weight": 1.0
-    },
-    {
-      "source": "scripts_prerender_seo_pages",
-      "target": "scripts_prerender_seo_pages_homeschemajson",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L500",
+      "source_location": "L512",
       "weight": 1.0
     },
     {
@@ -65869,28 +65961,6 @@
       "confidence_score": 1.0,
       "source_file": "scripts/prerender-seo-pages.js",
       "source_location": "L52",
-      "weight": 1.0
-    },
-    {
-      "source": "scripts_prerender_seo_pages",
-      "target": "scripts_prerender_seo_pages_enhomeprerenderbody",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L531",
-      "weight": 1.0
-    },
-    {
-      "source": "scripts_prerender_seo_pages",
-      "target": "scripts_prerender_seo_pages_legalpages",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L536",
       "weight": 1.0
     },
     {
@@ -65928,13 +65998,13 @@
     },
     {
       "source": "scripts_prerender_seo_pages",
-      "target": "scripts_prerender_seo_pages_programmaticscenarios",
+      "target": "scripts_prerender_seo_pages_toolslist",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L633",
+      "source_location": "L699",
       "weight": 1.0
     },
     {
@@ -65983,6 +66053,28 @@
     },
     {
       "source": "scripts_prerender_seo_pages",
+      "target": "scripts_prerender_seo_pages_roothomehreflangs",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/prerender-seo-pages.js",
+      "source_location": "L878",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_prerender_seo_pages",
+      "target": "scripts_prerender_seo_pages_homeschemajson",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/prerender-seo-pages.js",
+      "source_location": "L885",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_prerender_seo_pages",
       "target": "scripts_prerender_seo_pages_categorysection",
       "relation": "contains",
       "_origin": "ast",
@@ -66016,13 +66108,24 @@
     },
     {
       "source": "scripts_prerender_seo_pages",
-      "target": "scripts_prerender_seo_pages_buildcomparisonarticlehtml",
+      "target": "scripts_prerender_seo_pages_enhomeprerenderbody",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/prerender-seo-pages.js",
-      "source_location": "L924",
+      "source_location": "L916",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_prerender_seo_pages",
+      "target": "scripts_prerender_seo_pages_legalpages",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/prerender-seo-pages.js",
+      "source_location": "L921",
       "weight": 1.0
     },
     {
@@ -88981,5 +89084,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ffcc156d346563494d80226abfe8435c8e9dd430"
+  "built_at_commit": "5cf95eb406ee5b48c9259951929877d413afb567"
 }

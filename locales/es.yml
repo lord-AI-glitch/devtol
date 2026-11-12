@@ -1,70 +1,510 @@
 home:
   categories:
     newestTools: Nuevas herramientas
-    favoriteTools: 'Tus herramientas favoritas'
-    allTools: 'Todas las herramientas'
-    favoritesDndToolTip: 'Arrastra y suelta para reordenar favoritos'
-  subtitle: 'Herramientas prácticas para todos'
-  toggleMenu: 'Toggle menu'
+    favoriteTools: Tus herramientas favoritas
+    allTools: Todas las herramientas
+    favoritesDndToolTip: Arrastra y suelta para reordenar favoritos
+  subtitle: Herramientas prácticas para todos
+  toggleMenu: Toggle menu
   home: Home
-  uiLib: 'UI Lib'
-  support: 'Apoyar el desarrollo de DevTol'
-  buyMeACoffee: 'Buy me a coffee'
+  uiLib: UI Lib
+  support: Apoyar el desarrollo de DevTol
+  buyMeACoffee: Buy me a coffee
   follow:
-    title: 'Te gustan las DevTol?'
-    p1: 'Danos una estrella en'
-    githubRepository: 'Repositorio de DevTol en GitHub'
-    p2: 'o síguenos en'
-    twitterXAccount: 'Cuenta de X de DevTol'
-    thankYou: 'Muchas gracias!'
+    title: Te gustan las DevTol?
+    p1: Danos una estrella en
+    githubRepository: Repositorio de DevTol en GitHub
+    p2: o síguenos en
+    twitterXAccount: Cuenta de X de DevTol
+    thankYou: Muchas gracias!
   nav:
-    github: 'Repositorio en github'
-    githubRepository: 'DevTol GitHub repository'
-    twitterX: 'Cuenta de X'
-    twitterXAccount: 'Cuenta de X de DevTol'
-    about: 'Sobre  DevTol'
-    aboutLabel: 'Sobre'
-    darkMode: 'Modo obscuro'
-    lightMode: 'Modo claro'
-    mode: 'Alternar modo oscuro/claro'
+    github: Repositorio en github
+    githubRepository: DevTol GitHub repository
+    twitterX: Cuenta de X
+    twitterXAccount: Cuenta de X de DevTol
+    about: Sobre  DevTol
+    aboutLabel: Sobre
+    darkMode: Modo obscuro
+    lightMode: Modo claro
+    mode: Alternar modo oscuro/claro
 about:
-  content: >
-    # Sobre DevTol
+  content: '# Sobre DevTol
 
-    Esta maravillosa plataforma reúne herramientas útiles para desarrolladores, diseñadores y profesionales de TI. Si la encuentra útil, ¡no dude en compartirla con sus colegas y agregarla a sus favoritos!
+    Esta maravillosa plataforma reúne herramientas útiles para desarrolladores, diseñadores
+    y profesionales de TI. Si la encuentra útil, ¡no dude en compartirla con sus colegas
+    y agregarla a sus favoritos!
 
-    DevTol funciona en el lado del cliente, prioriza la privacidad y es 100% gratuito. Si desea apoyar el desarrollo y fomentar la incorporación de más herramientas, considere [apoyarnos](https://buymeacoffee.com/lordrealstx).
+    DevTol funciona en el lado del cliente, prioriza la privacidad y es 100% gratuito.
+    Si desea apoyar el desarrollo y fomentar la incorporación de más herramientas,
+    considere [apoyarnos](https://buymeacoffee.com/lordrealstx).
 
     ## Tecnologías
 
-    DevTol está desarrollado con Vue 3, TypeScript y Naive UI. Todas las herramientas se ejecutan localmente en su navegador para garantizar la máxima privacidad y seguridad.
+    DevTol está desarrollado con Vue 3, TypeScript y Naive UI. Todas las herramientas
+    se ejecutan localmente en su navegador para garantizar la máxima privacidad y
+    seguridad.
 
     ## ¿Encontró un error? ¿Falta una herramienta?
 
-    Si necesita una herramienta que actualmente no esté disponible o desea informar un problema, no dude en comunicarse con nuestro equipo.
+    Si necesita una herramienta que actualmente no esté disponible o desea informar
+    un problema, no dude en comunicarse con nuestro equipo.
 
+    '
 404:
-  notFound: '404 Not Found'
-  sorry: 'Lo sentimos, esta página no parece existir'
-  maybe: 'Tal vez el caché esté haciendo cosas raras, ¿probamos a refrescar forzosamente?'
-  backHome: 'Back home'
+  notFound: 404 Not Found
+  sorry: Lo sentimos, esta página no parece existir
+  maybe: Tal vez el caché esté haciendo cosas raras, ¿probamos a refrescar forzosamente?
+  backHome: Back home
 favoriteButton:
-  remove: 'Quitar de favoritos'
-  add: 'Añadir a favoritos'
+  remove: Quitar de favoritos
+  add: Añadir a favoritos
 toolCard:
   new: Nuevo
 search:
   label: Buscar
 tools:
   categories:
-    favorite-tools: 'Tus herramientas favoritas'
+    favorite-tools: Tus herramientas favoritas
     crypto: Crypto
     converter: Converter
     web: Web
-    images and videos: 'Images & Videos'
+    images and videos: Images & Videos
     development: Development
     network: Network
     math: Math
     measurement: Measurement
     text: Text
     data: Data
+  ai-token-cost-calculator:
+    title: Calculadora de costo de tokens de IA y LLM
+    description: Estime tokens y compare precios en tiempo real para OpenAI, Anthropic,
+      Gemini y DeepSeek.
+  curl-to-code-converter:
+    title: Conversor de cURL a código
+    description: Convierta comandos cURL en código limpio para Python, JavaScript,
+      TypeScript, Go, PHP y Rust.
+  ai-regex-generator-explainer:
+    title: Generador y explicador de Regex con IA
+    description: Genere expresiones regulares con lenguaje natural y analice su estructura
+      en tiempo real.
+  sql-to-orm-converter:
+    title: Conversor de SQL to ORM schema
+    description: Herramienta online para convertir SQL to ORM schema de forma rápida
+      y segura en el navegador.
+  mortgage-calculator:
+    title: Calculadora de Mortgage
+    description: Calcule Mortgage con total precisión y rapidez en su navegador.
+  compound-interest-calculator:
+    title: Calculadora de Compound interest
+    description: Calcule Compound interest con total precisión y rapidez en su navegador.
+  adsense-revenue-calculator:
+    title: Calculadora de AdSense revenue
+    description: Calcule AdSense revenue con total precisión y rapidez en su navegador.
+  password-strength-analyser:
+    title: Herramienta Password strength analyser
+    description: Utilidad profesional de Password strength analyser para desarrolladores
+      y diseñadores.
+  chronometer:
+    title: Herramienta Chronometer
+    description: Utilidad profesional de Chronometer para desarrolladores y diseñadores.
+  token-generator:
+    title: Generador de Token
+    description: Genere Token al instante con privacidad 100% del lado del cliente.
+  percentage-calculator:
+    title: Calculadora de Percentage
+    description: Calcule Percentage con total precisión y rapidez en su navegador.
+  svg-placeholder-generator:
+    title: Generador de SVG placeholder
+    description: Genere SVG placeholder al instante con privacidad 100% del lado del
+      cliente.
+  json-to-csv:
+    title: Herramienta JSON to CSV
+    description: Utilidad profesional de JSON to CSV para desarrolladores y diseñadores.
+  camera-recorder:
+    title: Herramienta Camera recorder
+    description: Utilidad profesional de Camera recorder para desarrolladores y diseñadores.
+  keycode-info:
+    title: Herramienta Keycode info
+    description: Utilidad profesional de Keycode info para desarrolladores y diseñadores.
+  emoji-picker:
+    title: Herramienta Emoji picker
+    description: Utilidad profesional de Emoji picker para desarrolladores y diseñadores.
+  color-converter:
+    title: Conversor de Color
+    description: Herramienta online para convertir Color de forma rápida y segura
+      en el navegador.
+  bcrypt:
+    title: Herramienta Bcrypt
+    description: Utilidad profesional de Bcrypt para desarrolladores y diseñadores.
+  crontab-generator:
+    title: Generador de Crontab
+    description: Genere Crontab al instante con privacidad 100% del lado del cliente.
+  http-status-codes:
+    title: Herramienta HTTP status codes
+    description: Utilidad profesional de HTTP status codes para desarrolladores y
+      diseñadores.
+  sql-prettify:
+    title: Formateador de SQL prettify and format
+    description: Formatee y ordene SQL prettify and format de manera clara y profesional.
+  benchmark-builder:
+    title: Herramienta Benchmark builder
+    description: Utilidad profesional de Benchmark builder para desarrolladores y
+      diseñadores.
+  git-memo:
+    title: Herramienta Git cheatsheet
+    description: Utilidad profesional de Git cheatsheet para desarrolladores y diseñadores.
+  slugify-string:
+    title: Herramienta Slugify string
+    description: Utilidad profesional de Slugify string para desarrolladores y diseñadores.
+  encryption:
+    title: Herramienta Encrypt / decrypt text
+    description: Utilidad profesional de Encrypt / decrypt text para desarrolladores
+      y diseñadores.
+  random-port-generator:
+    title: Generador de Random port
+    description: Genere Random port al instante con privacidad 100% del lado del cliente.
+  yaml-prettify:
+    title: Formateador de YAML prettify and format
+    description: Formatee y ordene YAML prettify and format de manera clara y profesional.
+  eta-calculator:
+    title: Calculadora de ETA
+    description: Calcule ETA con total precisión y rapidez en su navegador.
+  roman-numeral-converter:
+    title: Conversor de Roman numeral
+    description: Herramienta online para convertir Roman numeral de forma rápida y
+      segura en el navegador.
+  hmac-generator:
+    title: Generador de Hmac
+    description: Genere Hmac al instante con privacidad 100% del lado del cliente.
+  bip39-generator:
+    title: Generador de BIP39 passphrase
+    description: Genere BIP39 passphrase al instante con privacidad 100% del lado
+      del cliente.
+  base64-file-converter:
+    title: Conversor de Base64 file
+    description: Herramienta online para convertir Base64 file de forma rápida y segura
+      en el navegador.
+  list-converter:
+    title: Conversor de List
+    description: Herramienta online para convertir List de forma rápida y segura en
+      el navegador.
+  base64-string-converter:
+    title: Herramienta Base64 string encoder/decoder
+    description: Utilidad profesional de Base64 string encoder/decoder para desarrolladores
+      y diseñadores.
+  toml-to-yaml:
+    title: Herramienta TOML to YAML
+    description: Utilidad profesional de TOML to YAML para desarrolladores y diseñadores.
+  math-evaluator:
+    title: Herramienta Math evaluator
+    description: Utilidad profesional de Math evaluator para desarrolladores y diseñadores.
+  json-to-yaml-converter:
+    title: Conversor de JSON to YAML
+    description: Herramienta online para convertir JSON to YAML de forma rápida y
+      segura en el navegador.
+  url-parser:
+    title: Herramienta URL
+    description: Utilidad profesional de URL para desarrolladores y diseñadores.
+  iban-validator-and-parser:
+    title: Herramienta IBAN validator and
+    description: Utilidad profesional de IBAN validator and para desarrolladores y
+      diseñadores.
+  user-agent-parser:
+    title: Herramienta User-agent
+    description: Utilidad profesional de User-agent para desarrolladores y diseñadores.
+  numeronym-generator:
+    title: Generador de Numeronym
+    description: Genere Numeronym al instante con privacidad 100% del lado del cliente.
+  case-converter:
+    title: Conversor de Case
+    description: Herramienta online para convertir Case de forma rápida y segura en
+      el navegador.
+  html-entities:
+    title: Herramienta Escape HTML entities
+    description: Utilidad profesional de Escape HTML entities para desarrolladores
+      y diseñadores.
+  json-prettify:
+    title: Formateador de JSON prettify and format
+    description: Formatee y ordene JSON prettify and format de manera clara y profesional.
+  docker-run-to-docker-compose-converter:
+    title: Conversor de Docker run to Docker compose
+    description: Herramienta online para convertir Docker run to Docker compose de
+      forma rápida y segura en el navegador.
+  mac-address-lookup:
+    title: Herramienta MAC address lookup
+    description: Utilidad profesional de MAC address lookup para desarrolladores y
+      diseñadores.
+  mime-types:
+    title: Herramienta MIME types
+    description: Utilidad profesional de MIME types para desarrolladores y diseñadores.
+  toml-to-json:
+    title: Herramienta TOML to JSON
+    description: Utilidad profesional de TOML to JSON para desarrolladores y diseñadores.
+  lorem-ipsum-generator:
+    title: Generador de Lorem ipsum
+    description: Genere Lorem ipsum al instante con privacidad 100% del lado del cliente.
+  qrcode-generator:
+    title: Generador de QR Code
+    description: Genere QR Code al instante con privacidad 100% del lado del cliente.
+  wifi-qrcode-generator:
+    title: Generador de WiFi QR Code
+    description: Genere WiFi QR Code al instante con privacidad 100% del lado del
+      cliente.
+  xml-formatter:
+    title: Formateador de XML formatter
+    description: Formatee y ordene XML formatter de manera clara y profesional.
+  temperature-converter:
+    title: Conversor de Temperature
+    description: Herramienta online para convertir Temperature de forma rápida y segura
+      en el navegador.
+  chmod-calculator:
+    title: Calculadora de Chmod
+    description: Calcule Chmod con total precisión y rapidez en su navegador.
+  rsa-key-pair-generator:
+    title: Generador de RSA key pair
+    description: Genere RSA key pair al instante con privacidad 100% del lado del
+      cliente.
+  html-wysiwyg-editor:
+    title: Herramienta HTML WYSIWYG editor
+    description: Utilidad profesional de HTML WYSIWYG editor para desarrolladores
+      y diseñadores.
+  yaml-to-toml:
+    title: Herramienta YAML to TOML
+    description: Utilidad profesional de YAML to TOML para desarrolladores y diseñadores.
+  mac-address-generator:
+    title: Generador de MAC address
+    description: Genere MAC address al instante con privacidad 100% del lado del cliente.
+  json-diff:
+    title: Herramienta JSON diff
+    description: Utilidad profesional de JSON diff para desarrolladores y diseñadores.
+  jwt-parser:
+    title: Herramienta JWT
+    description: Utilidad profesional de JWT para desarrolladores y diseñadores.
+  date-converter:
+    title: Conversor de Date-time
+    description: Herramienta online para convertir Date-time de forma rápida y segura
+      en el navegador.
+  phone-parser-and-formatter:
+    title: Formateador de Phone and formatter
+    description: Formatee y ordene Phone and formatter de manera clara y profesional.
+  ipv4-subnet-calculator:
+    title: Calculadora de IPv4 subnet
+    description: Calcule IPv4 subnet con total precisión y rapidez en su navegador.
+  og-meta-generator:
+    title: Generador de Open graph meta
+    description: Genere Open graph meta al instante con privacidad 100% del lado del
+      cliente.
+  ipv6-ula-generator:
+    title: Generador de IPv6 ULA
+    description: Genere IPv6 ULA al instante con privacidad 100% del lado del cliente.
+  hash-text:
+    title: Herramienta Hash text
+    description: Utilidad profesional de Hash text para desarrolladores y diseñadores.
+  json-to-toml:
+    title: Herramienta JSON to TOML
+    description: Utilidad profesional de JSON to TOML para desarrolladores y diseñadores.
+  device-information:
+    title: Formateador de Device information
+    description: Formatee y ordene Device information de manera clara y profesional.
+  pdf-signature-checker:
+    title: Herramienta PDF signature checker
+    description: Utilidad profesional de PDF signature checker para desarrolladores
+      y diseñadores.
+  json-minify:
+    title: Herramienta JSON minify
+    description: Utilidad profesional de JSON minify para desarrolladores y diseñadores.
+  ulid-generator:
+    title: Generador de ULID
+    description: Genere ULID al instante con privacidad 100% del lado del cliente.
+  string-obfuscator:
+    title: Herramienta String obfuscator
+    description: Utilidad profesional de String obfuscator para desarrolladores y
+      diseñadores.
+  base-converter:
+    title: Conversor de Integer base
+    description: Herramienta online para convertir Integer base de forma rápida y
+      segura en el navegador.
+  yaml-to-json-converter:
+    title: Conversor de YAML to JSON
+    description: Herramienta online para convertir YAML to JSON de forma rápida y
+      segura en el navegador.
+  uuid-generator:
+    title: Generador de UUIDs
+    description: Genere UUIDs al instante con privacidad 100% del lado del cliente.
+  ipv4-address-converter:
+    title: Conversor de IPv4 address
+    description: Herramienta online para convertir IPv4 address de forma rápida y
+      segura en el navegador.
+  text-statistics:
+    title: Herramienta Text statistics
+    description: Utilidad profesional de Text statistics para desarrolladores y diseñadores.
+  text-to-nato-alphabet:
+    title: Herramienta Text to NATO alphabet
+    description: Utilidad profesional de Text to NATO alphabet para desarrolladores
+      y diseñadores.
+  basic-auth-generator:
+    title: Generador de Basic auth
+    description: Genere Basic auth al instante con privacidad 100% del lado del cliente.
+  text-to-unicode:
+    title: Herramienta Text to Unicode
+    description: Utilidad profesional de Text to Unicode para desarrolladores y diseñadores.
+  ipv4-range-expander:
+    title: Herramienta IPv4 range expander
+    description: Utilidad profesional de IPv4 range expander para desarrolladores
+      y diseñadores.
+  text-diff:
+    title: Herramienta Text diff
+    description: Utilidad profesional de Text diff para desarrolladores y diseñadores.
+  otp-generator:
+    title: Generador de OTP code
+    description: Genere OTP code al instante con privacidad 100% del lado del cliente.
+  url-encoder:
+    title: Formateador de Encode/decode URL-formatted strings
+    description: Formatee y ordene Encode/decode URL-formatted strings de manera clara
+      y profesional.
+  text-to-binary:
+    title: Herramienta Text to ASCII binary
+    description: Utilidad profesional de Text to ASCII binary para desarrolladores
+      y diseñadores.
+  ascii-text-drawer:
+    title: Generador de ASCII Art Text Generator
+    description: Genere ASCII Art Text Generator al instante con privacidad 100% del
+      lado del cliente.
+  color-palette:
+    title: Generador de Color Palette Generator
+    description: Genere Color Palette Generator al instante con privacidad 100% del
+      lado del cliente.
+  email-normalizer:
+    title: Herramienta Email normalizer
+    description: Utilidad profesional de Email normalizer para desarrolladores y diseñadores.
+  exif-viewer:
+    title: Herramienta EXIF Metadata Viewer
+    description: Utilidad profesional de EXIF Metadata Viewer para desarrolladores
+      y diseñadores.
+  favicon-generator:
+    title: Generador de Favicon Generator
+    description: Genere Favicon Generator al instante con privacidad 100% del lado
+      del cliente.
+  image-compressor:
+    title: Compresor de imágenes
+    description: Comprima imágenes JPG, PNG y WebP reduciendo el peso sin perder nitidez.
+  image-ocr:
+    title: Herramienta Image OCR Text Extractor
+    description: Utilidad profesional de Image OCR Text Extractor para desarrolladores
+      y diseñadores.
+  image-resizer:
+    title: Herramienta Image Resizer & Cropper
+    description: Utilidad profesional de Image Resizer & Cropper para desarrolladores
+      y diseñadores.
+  image-watermark:
+    title: Herramienta Image Watermark
+    description: Utilidad profesional de Image Watermark para desarrolladores y diseñadores.
+  images-to-pdf:
+    title: Imágenes a PDF
+    description: Convierta imágenes JPG, PNG y WebP en un documento PDF limpio y ordenado.
+  json-to-xml:
+    title: Herramienta JSON to XML
+    description: Utilidad profesional de JSON to XML para desarrolladores y diseñadores.
+  jwt-builder:
+    title: Herramienta JWT Builder & Signer
+    description: Utilidad profesional de JWT Builder & Signer para desarrolladores
+      y diseñadores.
+  line-deduplicator:
+    title: Herramienta Line Deduplicator
+    description: Utilidad profesional de Line Deduplicator para desarrolladores y
+      diseñadores.
+  markdown-to-html:
+    title: Markdown a HTML
+    description: Convierta texto Markdown en código HTML limpio y estructurado al
+      instante.
+  mock-data-generator:
+    title: Generador de Mock Data Generator
+    description: Genere Mock Data Generator al instante con privacidad 100% del lado
+      del cliente.
+  pdf-compress:
+    title: Comprimir PDF
+    description: Reduzca el tamaño de sus archivos PDF localmente en su navegador
+      manteniendo la máxima calidad.
+  pdf-editor:
+    title: Editor de PDF
+    description: Edite texto, agregue anotaciones y dibuje en documentos PDF directamente
+      en su navegador.
+  pdf-merge:
+    title: Unir PDF
+    description: Combine múltiples documentos PDF en un solo archivo de forma rápida
+      y segura.
+  pdf-ocr:
+    title: Herramienta PDF OCR Text Extractor
+    description: Utilidad profesional de PDF OCR Text Extractor para desarrolladores
+      y diseñadores.
+  pdf-organize:
+    title: Herramienta Organize PDF Pages
+    description: Utilidad profesional de Organize PDF Pages para desarrolladores y
+      diseñadores.
+  pdf-protect:
+    title: Herramienta PDF Protect & Unlock
+    description: Utilidad profesional de PDF Protect & Unlock para desarrolladores
+      y diseñadores.
+  pdf-redact:
+    title: Herramienta PDF Redaction Tool
+    description: Utilidad profesional de PDF Redaction Tool para desarrolladores y
+      diseñadores.
+  pdf-split:
+    title: Dividir PDF
+    description: Extraiga páginas o rangos de páginas de su documento PDF de forma
+      independiente.
+  pdf-to-image:
+    title: PDF a imagen
+    description: Convierta páginas de PDF en imágenes JPG o PNG de alta resolución.
+  pdf-watermark-tool:
+    title: Herramienta PDF Watermark
+    description: Utilidad profesional de PDF Watermark para desarrolladores y diseñadores.
+  qr-scanner:
+    title: Herramienta QR Code Scanner
+    description: Utilidad profesional de QR Code Scanner para desarrolladores y diseñadores.
+  regex-memo:
+    title: Herramienta Regex cheatsheet
+    description: Utilidad profesional de Regex cheatsheet para desarrolladores y diseñadores.
+  regex-replace:
+    title: Herramienta Regex Find & Replace
+    description: Utilidad profesional de Regex Find & Replace para desarrolladores
+      y diseñadores.
+  regex-tester:
+    title: Herramienta Regex Tester
+    description: Utilidad profesional de Regex Tester para desarrolladores y diseñadores.
+  safelink-decoder:
+    title: Herramienta Outlook Safelink decoder
+    description: Utilidad profesional de Outlook Safelink decoder para desarrolladores
+      y diseñadores.
+  svg-converter:
+    title: Conversor de SVG to PNG/JPG Converter
+    description: Herramienta online para convertir SVG to PNG/JPG Converter de forma
+      rápida y segura en el navegador.
+  text-encrypt:
+    title: Herramienta Text Encrypt & Decrypt
+    description: Utilidad profesional de Text Encrypt & Decrypt para desarrolladores
+      y diseñadores.
+  text-sorter:
+    title: Herramienta Text Sorter & Deduplicator
+    description: Utilidad profesional de Text Sorter & Deduplicator para desarrolladores
+      y diseñadores.
+  text-to-speech:
+    title: Herramienta Text to Speech
+    description: Utilidad profesional de Text to Speech para desarrolladores y diseñadores.
+  video-to-gif:
+    title: Herramienta Video to GIF
+    description: Utilidad profesional de Video to GIF para desarrolladores y diseñadores.
+  webp-converter:
+    title: Conversor WebP
+    description: Convierta imágenes hacia y desde el formato moderno WebP para acelerar
+      su sitio web.
+  word-counter:
+    title: Herramienta Word & Character Counter
+    description: Utilidad profesional de Word & Character Counter para desarrolladores
+      y diseñadores.
+  xml-to-json:
+    title: Herramienta XML to JSON
+    description: Utilidad profesional de XML to JSON para desarrolladores y diseñadores.
+  yaml-validator:
+    title: Formateador de YAML Validator & Formatter
+    description: Formatee y ordene YAML Validator & Formatter de manera clara y profesional.

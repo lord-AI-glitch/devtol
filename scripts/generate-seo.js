@@ -475,6 +475,13 @@ const robotsTxt = `# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 
+# Google AdSense Review & Ad Crawlers
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: Google-AdSense-Bot
+Allow: /
+
 # Search Crawlers
 User-agent: Googlebot
 Allow: /

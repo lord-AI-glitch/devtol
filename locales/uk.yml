@@ -1,70 +1,489 @@
 home:
   categories:
     newestTools: Найновіші інструменти
-    favoriteTools: 'Ваші улюблені інструменти'
-    allTools: 'Усі інструменти'
-    favoritesDndToolTip: 'Перетягніть і відпустіть, щоб змінити порядок улюблених'
-  subtitle: 'Зручні інструменти для кожного'
-  toggleMenu: 'Перемикання меню'
+    favoriteTools: Ваші улюблені інструменти
+    allTools: Усі інструменти
+    favoritesDndToolTip: Перетягніть і відпустіть, щоб змінити порядок улюблених
+  subtitle: Зручні інструменти для кожного
+  toggleMenu: Перемикання меню
   home: Головна
-  uiLib: 'UI Бібліотека'
-  support: 'Підтримка розробки DevTol'
-  buyMeACoffee: 'Купи мені каву'
+  uiLib: UI Бібліотека
+  support: Підтримка розробки DevTol
+  buyMeACoffee: Купи мені каву
   follow:
-    title: 'Вам подобаються інструменти IT?'
-    p1: 'Додайте нам зірку на'
-    githubRepository: 'GitHub-репозиторій DevTol'
-    p2: 'або слідкуйте за нами на'
-    twitterXAccount: 'X-акаунт DevTol'
-    thankYou: 'Дякуємо!'
+    title: Вам подобаються інструменти IT?
+    p1: Додайте нам зірку на
+    githubRepository: GitHub-репозиторій DevTol
+    p2: або слідкуйте за нами на
+    twitterXAccount: X-акаунт DevTol
+    thankYou: Дякуємо!
   nav:
-    github: 'GitHub-репозиторій'
-    githubRepository: 'GitHub-репозиторій DevTol'
-    twitterX: 'X'
-    twitterXAccount: 'X-акаунт DevTol'
-    about: 'Про DevTol'
-    aboutLabel: 'Про нас'
-    darkMode: 'Темний режим'
-    lightMode: 'Світлий режим'
-    mode: 'Перемикання темного/світлого режиму'
+    github: GitHub-репозиторій
+    githubRepository: GitHub-репозиторій DevTol
+    twitterX: X
+    twitterXAccount: X-акаунт DevTol
+    about: Про DevTol
+    aboutLabel: Про нас
+    darkMode: Темний режим
+    lightMode: Світлий режим
+    mode: Перемикання темного/світлого режиму
 about:
-  content: >
-    # Про DevTol
+  content: '# Про DevTol
 
-    Ця чудова платформа об'єднує корисні інструменти для розробників, дизайнерів та ІТ-фахівців. Якщо вона для вас корисна, поділіться нею з колегами та збережіть у закладках!
+    Ця чудова платформа об''єднує корисні інструменти для розробників, дизайнерів
+    та ІТ-фахівців. Якщо вона для вас корисна, поділіться нею з колегами та збережіть
+    у закладках!
 
-    DevTol працює на стороні клієнта, ставить конфіденційність на перше місце та є на 100% безкоштовним. Якщо ви хочете підтримати розробку та стимулювати додавання нових інструментів, підтримайте нас [тут](https://buymeacoffee.com/lordrealstx).
+    DevTol працює на стороні клієнта, ставить конфіденційність на перше місце та є
+    на 100% безкоштовним. Якщо ви хочете підтримати розробку та стимулювати додавання
+    нових інструментів, підтримайте нас [тут](https://buymeacoffee.com/lordrealstx).
 
     ## Технології
 
-    DevTol створений за допомогою Vue 3, TypeScript і Naive UI. Усі інструменти працюють на 100% локально у вашому браузері для максимальної приватності та безпеки.
+    DevTol створений за допомогою Vue 3, TypeScript і Naive UI. Усі інструменти працюють
+    на 100% локально у вашому браузері для максимальної приватності та безпеки.
 
     ## Знайшли баг? Відсутній інструмент?
 
-    Якщо вам потрібен інструмент, якого наразі немає, або ви хочете повідомити про проблему, зв'яжіться з нашою командою.
+    Якщо вам потрібен інструмент, якого наразі немає, або ви хочете повідомити про
+    проблему, зв''яжіться з нашою командою.
 
+    '
 404:
-  notFound: '404 Сторінка не знайдена'
-  sorry: 'Вибачте, ця сторінка, схоже, не існує'
-  maybe: 'Можливо, кеш робить хитрощі, спробуйте примусово оновити сторінку?'
-  backHome: 'Повернутися на головну'
+  notFound: 404 Сторінка не знайдена
+  sorry: Вибачте, ця сторінка, схоже, не існує
+  maybe: Можливо, кеш робить хитрощі, спробуйте примусово оновити сторінку?
+  backHome: Повернутися на головну
 favoriteButton:
-  remove: 'Вилучити з обраних'
-  add: 'Додати до обраних'
+  remove: Вилучити з обраних
+  add: Додати до обраних
 toolCard:
   new: Новий
 search:
   label: Пошук
 tools:
   categories:
-    favorite-tools: 'Ваші улюблені інструменти'
+    favorite-tools: Ваші улюблені інструменти
     crypto: Крипта
     converter: Конвертер
     web: Веб
-    images and videos: 'Зображення та відео'
+    images and videos: Зображення та відео
     development: Розробка
     network: Мережа
     math: Математика
     measurement: Вимірювання
     text: Текст
     data: Дані
+  ai-token-cost-calculator:
+    title: Калькулятор вартості токенів ШІ та LLM
+    description: Оцінюйте токени та порівнюйте ціни в реальному часі для OpenAI, Anthropic,
+      Gemini та DeepSeek.
+  curl-to-code-converter:
+    title: Конвертер cURL у код
+    description: Перетворюйте команди cURL на чистий код для Python, JavaScript, Go,
+      PHP та Rust.
+  ai-regex-generator-explainer:
+    title: Генератор і пояснювач Regex на основі ШІ
+    description: Створюйте регулярні вирази за допомогою природної мови та аналізуйте
+      їх структуру.
+  sql-to-orm-converter:
+    title: Конвертер SQL to ORM schema
+    description: Онлайн-інструмент для швидкого та безпечного перетворення SQL to
+      ORM schema у браузері.
+  mortgage-calculator:
+    title: Калькулятор Mortgage
+    description: Обчислюйте Mortgage точно та швидко прямо у браузері.
+  compound-interest-calculator:
+    title: Калькулятор Compound interest
+    description: Обчислюйте Compound interest точно та швидко прямо у браузері.
+  adsense-revenue-calculator:
+    title: Калькулятор AdSense revenue
+    description: Обчислюйте AdSense revenue точно та швидко прямо у браузері.
+  password-strength-analyser:
+    title: Інструмент Password strength analyser
+    description: Професійний інструмент Password strength analyser для розробників
+      і дизайнерів.
+  chronometer:
+    title: Інструмент Chronometer
+    description: Професійний інструмент Chronometer для розробників і дизайнерів.
+  token-generator:
+    title: Генератор Token
+    description: Створюйте Token миттєво зі 100% конфіденційністю на стороні клієнта.
+  percentage-calculator:
+    title: Калькулятор Percentage
+    description: Обчислюйте Percentage точно та швидко прямо у браузері.
+  svg-placeholder-generator:
+    title: Генератор SVG placeholder
+    description: Створюйте SVG placeholder миттєво зі 100% конфіденційністю на стороні
+      клієнта.
+  json-to-csv:
+    title: Інструмент JSON to CSV
+    description: Професійний інструмент JSON to CSV для розробників і дизайнерів.
+  camera-recorder:
+    title: Інструмент Camera recorder
+    description: Професійний інструмент Camera recorder для розробників і дизайнерів.
+  keycode-info:
+    title: Інструмент Keycode info
+    description: Професійний інструмент Keycode info для розробників і дизайнерів.
+  emoji-picker:
+    title: Інструмент Emoji picker
+    description: Професійний інструмент Emoji picker для розробників і дизайнерів.
+  color-converter:
+    title: Конвертер Color
+    description: Онлайн-інструмент для швидкого та безпечного перетворення Color у
+      браузері.
+  bcrypt:
+    title: Інструмент Bcrypt
+    description: Професійний інструмент Bcrypt для розробників і дизайнерів.
+  crontab-generator:
+    title: Генератор Crontab
+    description: Створюйте Crontab миттєво зі 100% конфіденційністю на стороні клієнта.
+  http-status-codes:
+    title: Інструмент HTTP status codes
+    description: Професійний інструмент HTTP status codes для розробників і дизайнерів.
+  sql-prettify:
+    title: Форматувальник SQL prettify and format
+    description: Форматуйте та впорядковуйте SQL prettify and format чисто та зручно.
+  benchmark-builder:
+    title: Інструмент Benchmark builder
+    description: Професійний інструмент Benchmark builder для розробників і дизайнерів.
+  git-memo:
+    title: Інструмент Git cheatsheet
+    description: Професійний інструмент Git cheatsheet для розробників і дизайнерів.
+  slugify-string:
+    title: Інструмент Slugify string
+    description: Професійний інструмент Slugify string для розробників і дизайнерів.
+  encryption:
+    title: Інструмент Encrypt / decrypt text
+    description: Професійний інструмент Encrypt / decrypt text для розробників і дизайнерів.
+  random-port-generator:
+    title: Генератор Random port
+    description: Створюйте Random port миттєво зі 100% конфіденційністю на стороні
+      клієнта.
+  yaml-prettify:
+    title: Форматувальник YAML prettify and format
+    description: Форматуйте та впорядковуйте YAML prettify and format чисто та зручно.
+  eta-calculator:
+    title: Калькулятор ETA
+    description: Обчислюйте ETA точно та швидко прямо у браузері.
+  roman-numeral-converter:
+    title: Конвертер Roman numeral
+    description: Онлайн-інструмент для швидкого та безпечного перетворення Roman numeral
+      у браузері.
+  hmac-generator:
+    title: Генератор Hmac
+    description: Створюйте Hmac миттєво зі 100% конфіденційністю на стороні клієнта.
+  bip39-generator:
+    title: Генератор BIP39 passphrase
+    description: Створюйте BIP39 passphrase миттєво зі 100% конфіденційністю на стороні
+      клієнта.
+  base64-file-converter:
+    title: Конвертер Base64 file
+    description: Онлайн-інструмент для швидкого та безпечного перетворення Base64
+      file у браузері.
+  list-converter:
+    title: Конвертер List
+    description: Онлайн-інструмент для швидкого та безпечного перетворення List у
+      браузері.
+  base64-string-converter:
+    title: Інструмент Base64 string encoder/decoder
+    description: Професійний інструмент Base64 string encoder/decoder для розробників
+      і дизайнерів.
+  toml-to-yaml:
+    title: Інструмент TOML to YAML
+    description: Професійний інструмент TOML to YAML для розробників і дизайнерів.
+  math-evaluator:
+    title: Інструмент Math evaluator
+    description: Професійний інструмент Math evaluator для розробників і дизайнерів.
+  json-to-yaml-converter:
+    title: Конвертер JSON to YAML
+    description: Онлайн-інструмент для швидкого та безпечного перетворення JSON to
+      YAML у браузері.
+  url-parser:
+    title: Інструмент URL
+    description: Професійний інструмент URL для розробників і дизайнерів.
+  iban-validator-and-parser:
+    title: Інструмент IBAN validator and
+    description: Професійний інструмент IBAN validator and для розробників і дизайнерів.
+  user-agent-parser:
+    title: Інструмент User-agent
+    description: Професійний інструмент User-agent для розробників і дизайнерів.
+  numeronym-generator:
+    title: Генератор Numeronym
+    description: Створюйте Numeronym миттєво зі 100% конфіденційністю на стороні клієнта.
+  case-converter:
+    title: Конвертер Case
+    description: Онлайн-інструмент для швидкого та безпечного перетворення Case у
+      браузері.
+  html-entities:
+    title: Інструмент Escape HTML entities
+    description: Професійний інструмент Escape HTML entities для розробників і дизайнерів.
+  json-prettify:
+    title: Форматувальник JSON prettify and format
+    description: Форматуйте та впорядковуйте JSON prettify and format чисто та зручно.
+  docker-run-to-docker-compose-converter:
+    title: Конвертер Docker run to Docker compose
+    description: Онлайн-інструмент для швидкого та безпечного перетворення Docker
+      run to Docker compose у браузері.
+  mac-address-lookup:
+    title: Інструмент MAC address lookup
+    description: Професійний інструмент MAC address lookup для розробників і дизайнерів.
+  mime-types:
+    title: Інструмент MIME types
+    description: Професійний інструмент MIME types для розробників і дизайнерів.
+  toml-to-json:
+    title: Інструмент TOML to JSON
+    description: Професійний інструмент TOML to JSON для розробників і дизайнерів.
+  lorem-ipsum-generator:
+    title: Генератор Lorem ipsum
+    description: Створюйте Lorem ipsum миттєво зі 100% конфіденційністю на стороні
+      клієнта.
+  qrcode-generator:
+    title: Генератор QR Code
+    description: Створюйте QR Code миттєво зі 100% конфіденційністю на стороні клієнта.
+  wifi-qrcode-generator:
+    title: Генератор WiFi QR Code
+    description: Створюйте WiFi QR Code миттєво зі 100% конфіденційністю на стороні
+      клієнта.
+  xml-formatter:
+    title: Форматувальник XML formatter
+    description: Форматуйте та впорядковуйте XML formatter чисто та зручно.
+  temperature-converter:
+    title: Конвертер Temperature
+    description: Онлайн-інструмент для швидкого та безпечного перетворення Temperature
+      у браузері.
+  chmod-calculator:
+    title: Калькулятор Chmod
+    description: Обчислюйте Chmod точно та швидко прямо у браузері.
+  rsa-key-pair-generator:
+    title: Генератор RSA key pair
+    description: Створюйте RSA key pair миттєво зі 100% конфіденційністю на стороні
+      клієнта.
+  html-wysiwyg-editor:
+    title: Інструмент HTML WYSIWYG editor
+    description: Професійний інструмент HTML WYSIWYG editor для розробників і дизайнерів.
+  yaml-to-toml:
+    title: Інструмент YAML to TOML
+    description: Професійний інструмент YAML to TOML для розробників і дизайнерів.
+  mac-address-generator:
+    title: Генератор MAC address
+    description: Створюйте MAC address миттєво зі 100% конфіденційністю на стороні
+      клієнта.
+  json-diff:
+    title: Інструмент JSON diff
+    description: Професійний інструмент JSON diff для розробників і дизайнерів.
+  jwt-parser:
+    title: Інструмент JWT
+    description: Професійний інструмент JWT для розробників і дизайнерів.
+  date-converter:
+    title: Конвертер Date-time
+    description: Онлайн-інструмент для швидкого та безпечного перетворення Date-time
+      у браузері.
+  phone-parser-and-formatter:
+    title: Форматувальник Phone and formatter
+    description: Форматуйте та впорядковуйте Phone and formatter чисто та зручно.
+  ipv4-subnet-calculator:
+    title: Калькулятор IPv4 subnet
+    description: Обчислюйте IPv4 subnet точно та швидко прямо у браузері.
+  og-meta-generator:
+    title: Генератор Open graph meta
+    description: Створюйте Open graph meta миттєво зі 100% конфіденційністю на стороні
+      клієнта.
+  ipv6-ula-generator:
+    title: Генератор IPv6 ULA
+    description: Створюйте IPv6 ULA миттєво зі 100% конфіденційністю на стороні клієнта.
+  hash-text:
+    title: Інструмент Hash text
+    description: Професійний інструмент Hash text для розробників і дизайнерів.
+  json-to-toml:
+    title: Інструмент JSON to TOML
+    description: Професійний інструмент JSON to TOML для розробників і дизайнерів.
+  device-information:
+    title: Форматувальник Device information
+    description: Форматуйте та впорядковуйте Device information чисто та зручно.
+  pdf-signature-checker:
+    title: Інструмент PDF signature checker
+    description: Професійний інструмент PDF signature checker для розробників і дизайнерів.
+  json-minify:
+    title: Інструмент JSON minify
+    description: Професійний інструмент JSON minify для розробників і дизайнерів.
+  ulid-generator:
+    title: Генератор ULID
+    description: Створюйте ULID миттєво зі 100% конфіденційністю на стороні клієнта.
+  string-obfuscator:
+    title: Інструмент String obfuscator
+    description: Професійний інструмент String obfuscator для розробників і дизайнерів.
+  base-converter:
+    title: Конвертер Integer base
+    description: Онлайн-інструмент для швидкого та безпечного перетворення Integer
+      base у браузері.
+  yaml-to-json-converter:
+    title: Конвертер YAML to JSON
+    description: Онлайн-інструмент для швидкого та безпечного перетворення YAML to
+      JSON у браузері.
+  uuid-generator:
+    title: Генератор UUIDs
+    description: Створюйте UUIDs миттєво зі 100% конфіденційністю на стороні клієнта.
+  ipv4-address-converter:
+    title: Конвертер IPv4 address
+    description: Онлайн-інструмент для швидкого та безпечного перетворення IPv4 address
+      у браузері.
+  text-statistics:
+    title: Інструмент Text statistics
+    description: Професійний інструмент Text statistics для розробників і дизайнерів.
+  text-to-nato-alphabet:
+    title: Інструмент Text to NATO alphabet
+    description: Професійний інструмент Text to NATO alphabet для розробників і дизайнерів.
+  basic-auth-generator:
+    title: Генератор Basic auth
+    description: Створюйте Basic auth миттєво зі 100% конфіденційністю на стороні
+      клієнта.
+  text-to-unicode:
+    title: Інструмент Text to Unicode
+    description: Професійний інструмент Text to Unicode для розробників і дизайнерів.
+  ipv4-range-expander:
+    title: Інструмент IPv4 range expander
+    description: Професійний інструмент IPv4 range expander для розробників і дизайнерів.
+  text-diff:
+    title: Інструмент Text diff
+    description: Професійний інструмент Text diff для розробників і дизайнерів.
+  otp-generator:
+    title: Генератор OTP code
+    description: Створюйте OTP code миттєво зі 100% конфіденційністю на стороні клієнта.
+  url-encoder:
+    title: Форматувальник Encode/decode URL-formatted strings
+    description: Форматуйте та впорядковуйте Encode/decode URL-formatted strings чисто
+      та зручно.
+  text-to-binary:
+    title: Інструмент Text to ASCII binary
+    description: Професійний інструмент Text to ASCII binary для розробників і дизайнерів.
+  ascii-text-drawer:
+    title: Генератор ASCII Art Text Generator
+    description: Створюйте ASCII Art Text Generator миттєво зі 100% конфіденційністю
+      на стороні клієнта.
+  color-palette:
+    title: Генератор Color Palette Generator
+    description: Створюйте Color Palette Generator миттєво зі 100% конфіденційністю
+      на стороні клієнта.
+  email-normalizer:
+    title: Інструмент Email normalizer
+    description: Професійний інструмент Email normalizer для розробників і дизайнерів.
+  exif-viewer:
+    title: Інструмент EXIF Metadata Viewer
+    description: Професійний інструмент EXIF Metadata Viewer для розробників і дизайнерів.
+  favicon-generator:
+    title: Генератор Favicon Generator
+    description: Створюйте Favicon Generator миттєво зі 100% конфіденційністю на стороні
+      клієнта.
+  image-compressor:
+    title: Компресор зображень
+    description: Стискайте зображення JPG, PNG і WebP зі збереженням високої якості.
+  image-ocr:
+    title: Інструмент Image OCR Text Extractor
+    description: Професійний інструмент Image OCR Text Extractor для розробників і
+      дизайнерів.
+  image-resizer:
+    title: Інструмент Image Resizer & Cropper
+    description: Професійний інструмент Image Resizer & Cropper для розробників і
+      дизайнерів.
+  image-watermark:
+    title: Інструмент Image Watermark
+    description: Професійний інструмент Image Watermark для розробників і дизайнерів.
+  images-to-pdf:
+    title: Зображення в PDF
+    description: Перетворюйте зображення JPG, PNG та WebP на якісний документ PDF.
+  json-to-xml:
+    title: Інструмент JSON to XML
+    description: Професійний інструмент JSON to XML для розробників і дизайнерів.
+  jwt-builder:
+    title: Інструмент JWT Builder & Signer
+    description: Професійний інструмент JWT Builder & Signer для розробників і дизайнерів.
+  line-deduplicator:
+    title: Інструмент Line Deduplicator
+    description: Професійний інструмент Line Deduplicator для розробників і дизайнерів.
+  markdown-to-html:
+    title: Markdown у HTML
+    description: Миттєво перетворюйте текст Markdown на чистий та валідний HTML.
+  mock-data-generator:
+    title: Генератор Mock Data Generator
+    description: Створюйте Mock Data Generator миттєво зі 100% конфіденційністю на
+      стороні клієнта.
+  pdf-compress:
+    title: Стиснути PDF
+    description: Зменшуйте розмір файлів PDF локально у браузері зі збереженням високої
+      якості.
+  pdf-editor:
+    title: Редактор PDF
+    description: Редагуйте текст, додавайте анотації та форми у файли PDF прямо в
+      браузері.
+  pdf-merge:
+    title: Об’єднати PDF
+    description: Об’єднуйте кілька файлів PDF в один документ швидко та безпечно.
+  pdf-ocr:
+    title: Інструмент PDF OCR Text Extractor
+    description: Професійний інструмент PDF OCR Text Extractor для розробників і дизайнерів.
+  pdf-organize:
+    title: Інструмент Organize PDF Pages
+    description: Професійний інструмент Organize PDF Pages для розробників і дизайнерів.
+  pdf-protect:
+    title: Інструмент PDF Protect & Unlock
+    description: Професійний інструмент PDF Protect & Unlock для розробників і дизайнерів.
+  pdf-redact:
+    title: Інструмент PDF Redaction Tool
+    description: Професійний інструмент PDF Redaction Tool для розробників і дизайнерів.
+  pdf-split:
+    title: Розділити PDF
+    description: Видобувайте сторінки або діапазони сторінок із вашого PDF-документа.
+  pdf-to-image:
+    title: PDF у зображення
+    description: Перетворюйте сторінки PDF на високоякісні зображення JPG або PNG.
+  pdf-watermark-tool:
+    title: Інструмент PDF Watermark
+    description: Професійний інструмент PDF Watermark для розробників і дизайнерів.
+  qr-scanner:
+    title: Інструмент QR Code Scanner
+    description: Професійний інструмент QR Code Scanner для розробників і дизайнерів.
+  regex-memo:
+    title: Інструмент Regex cheatsheet
+    description: Професійний інструмент Regex cheatsheet для розробників і дизайнерів.
+  regex-replace:
+    title: Інструмент Regex Find & Replace
+    description: Професійний інструмент Regex Find & Replace для розробників і дизайнерів.
+  regex-tester:
+    title: Інструмент Regex Tester
+    description: Професійний інструмент Regex Tester для розробників і дизайнерів.
+  safelink-decoder:
+    title: Інструмент Outlook Safelink decoder
+    description: Професійний інструмент Outlook Safelink decoder для розробників і
+      дизайнерів.
+  svg-converter:
+    title: Конвертер SVG to PNG/JPG Converter
+    description: Онлайн-інструмент для швидкого та безпечного перетворення SVG to
+      PNG/JPG Converter у браузері.
+  text-encrypt:
+    title: Інструмент Text Encrypt & Decrypt
+    description: Професійний інструмент Text Encrypt & Decrypt для розробників і дизайнерів.
+  text-sorter:
+    title: Інструмент Text Sorter & Deduplicator
+    description: Професійний інструмент Text Sorter & Deduplicator для розробників
+      і дизайнерів.
+  text-to-speech:
+    title: Інструмент Text to Speech
+    description: Професійний інструмент Text to Speech для розробників і дизайнерів.
+  video-to-gif:
+    title: Інструмент Video to GIF
+    description: Професійний інструмент Video to GIF для розробників і дизайнерів.
+  webp-converter:
+    title: Конвертер WebP
+    description: Перетворюйте зображення у та з формату WebP для прискорення завантаження
+      сайтів.
+  word-counter:
+    title: Інструмент Word & Character Counter
+    description: Професійний інструмент Word & Character Counter для розробників і
+      дизайнерів.
+  xml-to-json:
+    title: Інструмент XML to JSON
+    description: Професійний інструмент XML to JSON для розробників і дизайнерів.
+  yaml-validator:
+    title: Форматувальник YAML Validator & Formatter
+    description: Форматуйте та впорядковуйте YAML Validator & Formatter чисто та зручно.

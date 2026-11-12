@@ -126,6 +126,389 @@ function extractFaqsFromMarkdown(rawMd) {
   return faqs;
 }
 
+function getLocalizedToolArticleAndFaqs(toolSlug, locTitle, locDesc, lang = 'en') {
+  if (lang === 'en') {
+    const enMdPath = path.join(rootDir, 'src', 'content', 'tools', `${toolSlug}.md`);
+    if (fs.existsSync(enMdPath)) {
+      const rawMd = fs.readFileSync(enMdPath, 'utf8');
+      return {
+        articleHtml: md.render(rawMd),
+        faqs: extractFaqsFromMarkdown(rawMd),
+      };
+    }
+  }
+
+  const langMdPath = path.join(rootDir, 'src', 'content', 'tools', lang, `${toolSlug}.md`);
+  if (fs.existsSync(langMdPath)) {
+    const rawMd = fs.readFileSync(langMdPath, 'utf8');
+    return {
+      articleHtml: md.render(rawMd),
+      faqs: extractFaqsFromMarkdown(rawMd),
+    };
+  }
+
+  const cleanTitle = escapeHtml(locTitle || toolSlug);
+  const cleanDesc = escapeHtml(locDesc || 'Client-side online developer tool');
+
+  const configs = {
+    ar: {
+      dir: 'rtl',
+      h2: `دليل استخدام ومميزات ${cleanTitle}`,
+      s1Title: '1. نبذة عن الأداة والغرض الهندسي',
+      s1Text: `تم تطوير أداة <strong>${cleanTitle}</strong> ضمن منصة DevTol لتوفير حل هندسي سريع، دقيق، ومستقل للمطورين والمصممين ومسؤولي الأنظمة. تساعدك الأداة على إنجاز مهامك البرمجية والتحويلية دون الحاجة إلى تثبيت برمجيات إضافية أو استخدام خوادم خارجية قد تعرض بياناتك ومفاتيحك البرمجية لمخاطر الاعتراض والتسريب.`,
+      s2Title: '2. معمارية الأمان والمعالجة المحلية بنسبة 100% (Zero-Server Architecture)',
+      s2Text: `الفارق الجوهري بين DevTol والمنصات السحابية التقليدية هو مبدأ الأمان بالتعريف (Security by Design):`,
+      s2Points: [
+        '<strong>معالجة داخل المتصفح:</strong> تنفذ جميع العمليات الرياضية والتنسيقية داخل محرك الجافاسكريبت الخاص بجهازك مباشرة.',
+        '<strong>انعدام التخزين السحابي:</strong> لا يتم حفظ نصوصك، ملفاتك، أو رموزك على أي قاعدة بيانات أو خادم وسيط.',
+        '<strong>توافق صارم مع معايير الويب:</strong> تعتمد الأدوات على مواصفات قياسية معتمدة من W3C و IETF لضمان دقة النتائج بنسبة 100%.',
+      ],
+      s3Title: '3. خطوات الاستخدام السريع',
+      s3Steps: [
+        'ضع البيانات أو الملفات المطلوبة في صندوق الإدخال بالأعلى.',
+        'حدد الخيارات أو المعاملات المناسبة لاحتياجات مشروعك البرمجي.',
+        'تظهر النتيجة فورياً مع إمكانية نسخها للحافظة أو تنزيلها بضغطة زر واحدة.',
+      ],
+      faqTitle: `4. الأسئلة الشائعة حول ${cleanTitle}`,
+      faqs: [
+        {
+          q: `هل استخدام أداة ${cleanTitle} آمن ومجاني على منصة DevTol؟`,
+          a: `نعم، أداة ${cleanTitle} مجانية تماماً بنسبة 100% ولا تتطلب أي تسجيل أو اشتراك. تتم معالجة جميع البيانات محلياً داخل متصفحك دون رفع أي بيانات لخوادم خارجية.`,
+        },
+        {
+          q: `كيف تضمن أداة ${cleanTitle} حماية خصوصية بياناتي وملفاتي؟`,
+          a: `تعتمد المنصة معمارية المعالجة المحلية الصفرية (Zero-Server Architecture)، حيث تنفذ خوارزميات الأداة عبر تقنيات WebAssembly و Web Workers مباشرة داخل ذاكرة جهازك.`,
+        },
+        {
+          q: `هل يمكنني استخدام أداة ${cleanTitle} بدون اتصال بالإنترنت؟`,
+          a: `نعم، تدعم منصة DevTol تقنية تطبيقات الويب التقدمية (PWA)، وبمجرد فتح الأداة لأول مرة يمكنك تشغيلها بدون اتصال بالإنترنت في أي وقت.`,
+        },
+      ],
+    },
+    de: {
+      dir: 'ltr',
+      h2: `Anleitung und technische Spezifikationen für ${cleanTitle}`,
+      s1Title: '1. Funktionsübersicht und technischer Zweck',
+      s1Text: `Das Tool <strong>${cleanTitle}</strong> auf der DevTol-Plattform wurde entwickelt, um Softwareentwicklern, Designern und Systemadministratoren eine schnelle, hochpräzise und private Lösung zu bieten. Führen Sie Ihre Berechnungen und Transformationen direkt aus, ohne zusätzliche Software installieren oder vertrauliche Produktionsdaten an externe Server übertragen zu müssen.`,
+      s2Title: '2. 100% Client-Side Architektur & Zero-Server Datenschutz',
+      s2Text: `Der wesentliche Unterschied zwischen DevTol und herkömmlichen Cloud-Tools liegt im Prinzip "Security by Design":`,
+      s2Points: [
+        '<strong>Ausführung in der Browser-Sandbox:</strong> Alle Algorithmen laufen lokal über WebAssembly und die V8-Engine Ihres Geräts.',
+        '<strong>Keine Cloud-Speicherung:</strong> Weder Tokens noch Passwörter oder Dateien werden auf externen Datenbanken gespeichert.',
+        '<strong>Strikte Konformität:</strong> Entwickelt nach anerkannten IETF-, RFC- und W3C-Webstandards.',
+      ],
+      s3Title: '3. Schnellanleitung zur Verwendung',
+      s3Steps: [
+        'Geben Sie die Eingabedaten oder Dateien in das obige Formular ein.',
+        'Passen Sie die Konfigurationsoptionen an Ihre Projektanforderungen an.',
+        'Das Ergebnis wird sofort berechnet und steht zum Kopieren oder Download bereit.',
+      ],
+      faqTitle: `4. Häufig gestellte Fragen zu ${cleanTitle}`,
+      faqs: [
+        {
+          q: `Ist die Nutzung von ${cleanTitle} auf DevTol sicher und kostenlos?`,
+          a: `Ja, ${cleanTitle} ist zu 100% kostenlos und erfordert weder Registrierung noch Abonnement. Alle Daten werden rein lokal im Browser verarbeitet.`,
+        },
+        {
+          q: `Wie schützt ${cleanTitle} die Vertraulichkeit meiner Daten?`,
+          a: `Dank der Zero-Server-Architektur verlassen keine Daten Ihren lokalen Arbeitsspeicher; es gibt keinerlei Netzwerkübertragungen an Backend-Server.`,
+        },
+        {
+          q: `Kann ${cleanTitle} auch offline verwendet werden?`,
+          a: `Ja, DevTol ist eine Progressive Web App (PWA) und nach dem ersten Laden vollständig ohne aktive Internetverbindung nutzbar.`,
+        },
+      ],
+    },
+    es: {
+      dir: 'ltr',
+      h2: `Guía técnica y especificaciones de ${cleanTitle}`,
+      s1Title: '1. Descripción general y propósito técnico',
+      s1Text: `La herramienta <strong>${cleanTitle}</strong> en la plataforma DevTol fue desarrollada para ofrecer a desarrolladores, diseñadores y administradores de sistemas una solución rápida, precisa y confidencial. Realice conversiones y cálculos directamente en su navegador sin necesidad de instalar programas adicionales ni exponer datos en servidores externos.`,
+      s2Title: '2. Arquitectura 100% del lado del cliente y privacidad Zero-Server',
+      s2Text: `A diferencia de los servicios convencionales en la nube, DevTol opera bajo el estándar de seguridad por diseño (Security by Design):`,
+      s2Points: [
+        '<strong>Ejecución en sandbox local:</strong> Todas las operaciones se ejecutan en la memoria de su navegador mediante WebAssembly y JavaScript.',
+        '<strong>Cero almacenamiento remoto:</strong> Sus contraseñas, tokens y archivos nunca se envían a bases de datos en la nube.',
+        '<strong>Estándares oficiales:</strong> Cumplimiento estricto de las especificaciones RFC y W3C.',
+      ],
+      s3Title: '3. Pasos de uso rápido',
+      s3Steps: [
+        'Pegue los datos o cargue los archivos en el panel superior.',
+        'Ajuste los parámetros según las especificaciones de su flujo de trabajo.',
+        'El resultado se genera de forma instantánea para copiarlo al portapapeles o descargarlo.',
+      ],
+      faqTitle: `4. Preguntas frecuentes sobre ${cleanTitle}`,
+      faqs: [
+        {
+          q: `¿Es seguro y gratuito usar ${cleanTitle} en DevTol?`,
+          a: `Sí, ${cleanTitle} es 100% gratuito y no requiere registro ni suscripciones. Todo el procesamiento se realiza localmente en su dispositivo.`,
+        },
+        {
+          q: `¿Cómo protege ${cleanTitle} la privacidad de mis archivos y datos?`,
+          a: `Gracias a la arquitectura Zero-Server, ningún byte de información se transmite por internet ni se registra en servidores de terceros.`,
+        },
+        {
+          q: `¿Puedo utilizar ${cleanTitle} sin conexión a internet?`,
+          a: `Sí, DevTol funciona como una Progressive Web App (PWA) con soporte fuera de línea completo tras la carga inicial.`,
+        },
+      ],
+    },
+    fr: {
+      dir: 'ltr',
+      h2: `Guide d'utilisation et spécifications techniques de ${cleanTitle}`,
+      s1Title: `1. Présentation et objectif technique`,
+      s1Text: `L'outil <strong>${cleanTitle}</strong> sur la plateforme DevTol est conçu pour fournir aux développeurs, concepteurs et équipes d'ingénierie une solution rapide, précise et totalement confidentielle. Exécutez vos opérations techniques sans installer d'applications tierces ni transmettre vos données à des serveurs distants.`,
+      s2Title: `2. Architecture 100% côté client et confidentialité Zero-Server`,
+      s2Text: `Contrairement aux outils cloud classiques, DevTol applique le principe de sécurité dès la conception (Security by Design) :`,
+      s2Points: [
+        `<strong>Traitement local isolé :</strong> Tous les calculs s'effectuent directement dans le navigateur via WebAssembly et Web Workers.`,
+        `<strong>Aucun stockage cloud :</strong> Vos jetons, clés secrètes et fichiers ne sont jamais enregistrés sur des serveurs distants.`,
+        `<strong>Conformité stricte :</strong> Respect rigoureux des standards de l'IETF, du W3C et des spécifications RFC.`,
+      ],
+      s3Title: `3. Instructions d'utilisation rapide`,
+      s3Steps: [
+        `Insérez vos données ou fichiers dans le formulaire ci-dessus.`,
+        `Sélectionnez les options adaptées aux exigences de votre projet.`,
+        `Le résultat est généré instantanément, prêt à être copié ou téléchargé d'un simple clic.`,
+      ],
+      faqTitle: `4. Foire aux questions (FAQ) sur ${cleanTitle}`,
+      faqs: [
+        {
+          q: `L'outil ${cleanTitle} est-il gratuit et sécurisé sur DevTol ?`,
+          a: `Oui, ${cleanTitle} est 100% gratuit, sans inscription ni abonnement. Tous les traitements s'effectuent exclusivement en local dans votre navigateur.`,
+        },
+        {
+          q: `Comment ${cleanTitle} protège-t-il mes données sensibles ?`,
+          a: `Grâce à notre architecture Zero-Server, aucune donnée n'est envoyée sur le réseau ni consignée dans des bases de données distantes.`,
+        },
+        {
+          q: `Est-il possible d'utiliser ${cleanTitle} hors ligne ?`,
+          a: `Oui, DevTol est une Progressive Web App (PWA) parfaitement fonctionnelle sans connexion Internet après le premier chargement.`,
+        },
+      ],
+    },
+    pt: {
+      dir: 'ltr',
+      h2: `Guia de utilização e especificações técnicas de ${cleanTitle}`,
+      s1Title: '1. Visão geral e objetivo técnico',
+      s1Text: `A ferramenta <strong>${cleanTitle}</strong> na plataforma DevTol foi criada para oferecer aos desenvolvedores, designers e engenheiros de software uma solução rápida, exata e segura. Processe conversões e análises diretamente no navegador sem enviar credenciais para a nuvem.`,
+      s2Title: '2. Arquitetura 100% do lado do cliente e privacidade Zero-Server',
+      s2Text: `Diferente de serviços convencionais na nuvem, o DevTol baseia-se no princípio de segurança por design (Security by Design):`,
+      s2Points: [
+        '<strong>Execução local no navegador :</strong> Todas as operações ocorrem na memória do dispositivo via WebAssembly e Web Workers.',
+        '<strong>Zero armazenamento remoto :</strong> Suas chaves, tokens e documentos nunca são salvos em servidores externos.',
+        '<strong>Padrões de engenharia :</strong> Conformidade estrita com as especificações oficiais IETF e W3C.',
+      ],
+      s3Title: '3. Passo a passo para utilização',
+      s3Steps: [
+        'Insira os dados ou arquivos no campo acima.',
+        'Ajuste as opções conforme a necessidade do seu projeto.',
+        'Obtenha o resultado instantaneamente para copiar ou baixar com um clique.',
+      ],
+      faqTitle: `4. Perguntas frequentes sobre ${cleanTitle}`,
+      faqs: [
+        {
+          q: `O uso de ${cleanTitle} é gratuito e seguro no DevTol?`,
+          a: `Sim, ${cleanTitle} é 100% gratuito e não exige cadastro. Todo o processamento ocorre localmente no seu navegador.`,
+        },
+        {
+          q: `Como o ${cleanTitle} garante a segurança dos meus dados?`,
+          a: `Com a arquitetura Zero-Server, nenhum dado é transmitido pela rede ou gravado em servidores externos.`,
+        },
+        {
+          q: `Posso usar o ${cleanTitle} sem conexão à internet?`,
+          a: `Sim, o DevTol funciona como uma PWA e opera normalmente offline após o carregamento inicial.`,
+        },
+      ],
+    },
+    no: {
+      dir: 'ltr',
+      h2: `Brukerveiledning og tekniske spesifikasjoner for ${cleanTitle}`,
+      s1Title: '1. Oversikt og teknisk formål',
+      s1Text: `Verktøyet <strong>${cleanTitle}</strong> på DevTol-plattformen er utviklet for å gi programvareutviklere og designere en rask, presis og sikker løsning. Utfør beregninger og konverteringer direkte uten å laste opp sensitive produksjonsdata til eksterne skyservere.`,
+      s2Title: '2. 100% klientsidearkitektur og Zero-Server personvern',
+      s2Text: `Forskjellen mellom DevTol og tradisjonelle skytjenester er sikkerhet ved design (Security by Design):`,
+      s2Points: [
+        '<strong>Kjøring i nettleser-sandkasse :</strong> Alt utføres lokalt på enheten via WebAssembly og Web Workers.',
+        '<strong>Ingen skylagring :</strong> Passord, tokens og filer lagres aldri på eksterne databaser.',
+        '<strong>Bransjestandarder :</strong> Streng overholdelse av IETF- og W3C-spesifikasjoner.',
+      ],
+      s3Title: '3. Hurtigveiledning for bruk',
+      s3Steps: [
+        'Lim inn inndata eller last opp fil i feltet over.',
+        'Tilpass innstillingene etter dine prosjektbehov.',
+        'Resultatet genereres umiddelbart og kan kopieres eller lastes ned med ett klikk.',
+      ],
+      faqTitle: `4. Ofte stilte spørsmål om ${cleanTitle}`,
+      faqs: [
+        {
+          q: `Er det trygt og gratis å bruke ${cleanTitle} på DevTol?`,
+          a: `Ja, ${cleanTitle} er 100% gratis og krever ingen registrering. All databehandling skjer lokalt i nettleseren.`,
+        },
+        {
+          q: `Hvordan beskytter ${cleanTitle} personvernet mitt?`,
+          a: `Med Zero-Server-arkitekturen blir ingen data overført over nettverket eller lagret på eksterne servere.`,
+        },
+        {
+          q: `Kan jeg bruke ${cleanTitle} uten internettforbindelse?`,
+          a: `Ja, DevTol støtter PWA og fungerer i frakoblet modus etter første innlasting.`,
+        },
+      ],
+    },
+    uk: {
+      dir: 'ltr',
+      h2: `Посібник користувача та технічні характеристики ${cleanTitle}`,
+      s1Title: '1. Огляд інструмента та технічне призначення',
+      s1Text: `Інструмент <strong>${cleanTitle}</strong> на платформі DevTol розроблено для швидкого, точного та конфіденційного виконання завдань розробників і системних адміністраторів без потреби встановлювати сторонні програми або передавати конфіденційні дані на зовнішні сервери.`,
+      s2Title: '2. Архітектура 100% на стороні клієнта та безпека Zero-Server',
+      s2Text: `Головна відмінність між DevTol і звичайними хмарними сервісами — це безпека на рівні архітектури (Security by Design):`,
+      s2Points: [
+        '<strong>Виконання в пісочниці браузера :</strong> Усі операції виконуються локально на пристрої через WebAssembly.',
+        '<strong>Відсутність хмарного сховища :</strong> Паролі, токени та файли ніколи не зберігаються на сторонніх серверах.',
+        '<strong>Відповідність стандартам :</strong> Суворе дотримання офіційних специфікацій RFC та W3C.',
+      ],
+      s3Title: '3. Швидкі інструкції з використання',
+      s3Steps: [
+        'Введіть дані або завантажте файл у поле вище.',
+        'Виберіть необхідні параметри для вашого проекту.',
+        'Результат обчислюється миттєво і готовий до копіювання чи завантаження в один клік.',
+      ],
+      faqTitle: `4. Поширені запитання про ${cleanTitle}`,
+      faqs: [
+        {
+          q: `Чи безпечно і безкоштовно використовувати ${cleanTitle} на DevTol?`,
+          a: `Так, ${cleanTitle} на 100% безкоштовний і не вимагає реєстрації. Усі обчислення виконуються локально у вашому браузері.`,
+        },
+        {
+          q: `Як ${cleanTitle} захищає конфіденційність моїх даних?`,
+          a: `Завдяки архітектурі Zero-Server жоден байт даних не передається через інтернет і не зберігається на сторонніх серверах.`,
+        },
+        {
+          q: `Чи працює ${cleanTitle} без підключення до інтернету?`,
+          a: `Так, DevTol підтримує PWA і може працювати в автономному режимі після першого завантаження.`,
+        },
+      ],
+    },
+    vi: {
+      dir: 'ltr',
+      h2: `Hướng dẫn sử dụng và thông số kỹ thuật của ${cleanTitle}`,
+      s1Title: '1. Tổng quan và mục đích kỹ thuật',
+      s1Text: `Công cụ <strong>${cleanTitle}</strong> trên nền tảng DevTol được phát triển nhằm cung cấp cho các lập trình viên và kỹ sư giải pháp xử lý dữ liệu nhanh chóng, chính xác và bảo mật tối đa. Hoàn thành các tác vụ chuyển đổi mà không cần tải lên bất kỳ máy chủ nào.`,
+      s2Title: '2. Kiến trúc 100% phía máy khách & Bảo mật Zero-Server',
+      s2Text: `Sự khác biệt cốt lõi giữa DevTol và các dịch vụ đám mây là tiêu chuẩn an toàn ngay từ thiết kế (Security by Design):`,
+      s2Points: [
+        '<strong>Thực thi trong hộp cát cục bộ :</strong> Mọi tác vụ chạy trực tiếp trong trình duyệt bằng WebAssembly và Web Workers.',
+        '<strong>Không lưu trữ đám mây :</strong> Khóa bí mật, token và tài liệu của bạn không bao giờ lưu trên máy chủ bên ngoài.',
+        '<strong>Tiêu chuẩn quốc tế :</strong> Tuân thủ nghiêm ngặt các tiêu chuẩn IETF, RFC và W3C.',
+      ],
+      s3Title: '3. Hướng dẫn sử dụng nhanh',
+      s3Steps: [
+        'Dán dữ liệu hoặc tải tệp lên khung nhập liệu phía trên.',
+        'Tùy chỉnh các tham số theo yêu cầu dự án.',
+        'Kết quả được tạo tức thì, sẵn sàng sao chép hoặc tải về một chạm.',
+      ],
+      faqTitle: `4. Câu hỏi thường gặp về ${cleanTitle}`,
+      faqs: [
+        {
+          q: `Sử dụng ${cleanTitle} trên DevTol có miễn phí và an toàn không?`,
+          a: `Có, ${cleanTitle} hoàn toàn miễn phí 100% và không yêu cầu đăng ký. Mọi tác vụ được xử lý hoàn toàn cục bộ trên máy bạn.`,
+        },
+        {
+          q: `Công cụ ${cleanTitle} bảo vệ quyền riêng tư dữ liệu như thế nào?`,
+          a: `Nhờ kiến trúc Zero-Server, không có dữ liệu nào được truyền qua mạng hay lưu trữ trên máy chủ bên ngoài.`,
+        },
+        {
+          q: `Tôi có thể sử dụng ${cleanTitle} khi không có mạng không?`,
+          a: `Có, DevTol hỗ trợ PWA và hoạt động ngoại tuyến mượt mà sau lần truy cập đầu tiên.`,
+        },
+      ],
+    },
+    zh: {
+      dir: 'ltr',
+      h2: `${cleanTitle} 使用指南与技术规范`,
+      s1Title: '1. 工具概述与工程目标',
+      s1Text: `DevTol 平台上的 <strong>${cleanTitle}</strong> 工具专为开发者、设计师和系统工程师量身打造，提供快速、精准且极具隐私保护的技术解决方案。无需安装额外软件或将敏感代码与秘钥上传至外部云服务器即可直接完成操作。`,
+      s2Title: '2. 100% 客户端本地计算与 Zero-Server 架构',
+      s2Text: `DevTol 与传统云端工具的核心差异在于“原生安全设计”（Security by Design）：`,
+      s2Points: [
+        '<strong>本地沙箱独立运行 :</strong> 所有计算完全依托本地设备的 WebAssembly 和 V8 引擎执行。',
+        '<strong>零云端数据留存 :</strong> 任何凭证、密钥与文件绝不保存到外部数据库或服务器。',
+        '<strong>行业技术标准 :</strong> 严格遵循 IETF、W3C 和 RFC 官方规范。',
+      ],
+      s3Title: '3. 快速上手操作流程',
+      s3Steps: [
+        '在上方的输入框中粘贴待处理数据或上传源文件。',
+        '根据项目规范调整参数与格式选项。',
+        '处理结果实时生成，支持一键快速复制或下载保存。',
+      ],
+      faqTitle: `4. 常见问题解答 (${cleanTitle})`,
+      faqs: [
+        {
+          q: `在 DevTol 上使用 ${cleanTitle} 是否完全免费且安全？`,
+          a: `是的，${cleanTitle} 100% 永久免费，无需注册或付费订阅。所有数据转换与计算全部在本地浏览器内存中完成。`,
+        },
+        {
+          q: `${cleanTitle} 如何保障我的数据与代码隐私？`,
+          a: `得益于 Zero-Server 零服务器架构，任何文件与字符都不会通过网络向外发送，也不存在第三方数据记录风险。`,
+        },
+        {
+          q: `是否可以在无网络（离线）状态下使用 ${cleanTitle}？`,
+          a: `完全可以。DevTol 支持渐进式 Web 应用 (PWA) 技术，首次加载后即可在离线环境下正常运行。`,
+        },
+      ],
+    },
+  };
+
+  const c = configs[lang] || configs.de;
+  const isRtl = c.dir === 'rtl';
+
+  const schemaFaqs = c.faqs.map(item => ({
+    question: item.q,
+    answer: item.a,
+  }));
+
+  const articleHtml = `
+    <article class="localized-tool-guide" style="line-height: 1.85; color: #334155; text-align: ${isRtl ? 'right' : 'left'}; direction: ${c.dir};">
+      <header style="margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #e2e8f0;">
+        <h2 style="font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 8px;">${c.h2}</h2>
+        <p style="color: #64748b; font-size: 1rem;">${cleanDesc}</p>
+      </header>
+
+      <section style="margin-bottom: 28px;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">${c.s1Title}</h3>
+        <p>${c.s1Text}</p>
+      </section>
+
+      <section style="margin-bottom: 28px;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">${c.s2Title}</h3>
+        <p>${c.s2Text}</p>
+        <ul style="${isRtl ? 'padding-right: 20px;' : 'padding-left: 20px;'} margin-top: 8px;">
+          ${c.s2Points.map(p => `<li>${p}</li>`).join('')}
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 28px;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">${c.s3Title}</h3>
+        <ol style="${isRtl ? 'padding-right: 20px;' : 'padding-left: 20px;'} margin-top: 8px;">
+          ${c.s3Steps.map(s => `<li>${s}</li>`).join('')}
+        </ol>
+      </section>
+
+      <section style="margin-bottom: 24px;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 12px;">${c.faqTitle}</h3>
+        ${c.faqs.map(f => `
+          <div style="margin-bottom: 16px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 18px;">
+            <strong style="display: block; font-size: 1.05rem; color: #0f172a; margin-bottom: 6px;">${escapeHtml(f.q)}</strong>
+            <p style="margin: 0; font-size: 0.95rem; color: #475569;">${escapeHtml(f.a)}</p>
+          </div>
+        `).join('')}
+      </section>
+    </article>
+  `;
+
+  return { articleHtml, faqs: schemaFaqs };
+}
+
 function generatePrerenderedHtml({
   pathSlug,
   title,
@@ -423,14 +806,16 @@ for (let i = 0; i < totalTools; i++) {
     const locTitle = locDict.title || tool.title;
     const locDesc = locDict.description || tool.description;
 
+    const locData = getLocalizedToolArticleAndFaqs(tool.slug, locTitle, locDesc, lang);
+
     const localizedHtml = generatePrerenderedHtml({
       pathSlug: tool.slug,
       title: locTitle,
       description: locDesc,
       keywords: tool.keywords,
-      articleHtml: tool.articleHtml,
+      articleHtml: locData.articleHtml,
       category: 'DeveloperApplication',
-      faqs: tool.faqs,
+      faqs: locData.faqs,
       relatedTools: relatedTools.map(rt => {
         const rtDict = allLocales[lang]?.tools?.[rt.slug] || {};
         return {
@@ -1060,4 +1445,16 @@ for (const sc of programmaticScenarios) {
   }
 }
 
-console.log(`[SEO Prerender] Successfully generated ${generatedCount} static HTML pages across 10 languages in dist/!`);
+console.log(`[SEO Prerender] Successfully generated ${generatedCount} static HTML pages across ${supportedLangs.length + 1} languages in dist/!`);
+
+// Ensure 404.html, _redirects, robots.txt, and sitemap.xml are mirrored from public to dist
+const publicDir = path.join(rootDir, 'public');
+for (const file of ['404.html', '_redirects', 'robots.txt', 'sitemap.xml']) {
+  const src = path.join(publicDir, file);
+  const dest = path.join(distDir, file);
+  if (fs.existsSync(src)) {
+    fs.copyFileSync(src, dest);
+    console.log(`[SEO Prerender] Synced ${file} to dist/`);
+  }
+}
+
