@@ -9,7 +9,9 @@ const output = ref('');
 const errored = ref(false);
 const processing = ref(false);
 
-figlet.defaults({ fontPath: '//unpkg.com/figlet@1.6.0/fonts/' });
+// Fonts are self-hosted (public/figlet-fonts) so the tool works same-origin
+// without relying on a third-party CDN that blocked the fetch via CORS.
+figlet.defaults({ fontPath: '/figlet-fonts' });
 
 watchEffect(async () => {
   processing.value = true;

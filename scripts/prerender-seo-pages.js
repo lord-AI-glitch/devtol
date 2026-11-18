@@ -27,17 +27,12 @@ if (!fs.existsSync(templateIndexPath)) {
 
 let baseHtmlTemplate = fs.readFileSync(templateIndexPath, 'utf8');
 
-// Inline critical index.css into HTML to eliminate render-blocking CSS requests
+// Keep the hashed stylesheet as an external, immutable, shared asset.
+// Inlining it made every one of the ~1670 prerendered pages carry ~68 KB of
+// duplicated CSS (112 MB in dist) with zero browser/CDN reuse across pages.
 const cssMatch = baseHtmlTemplate.match(/<link rel="stylesheet" href="([^"]*\/assets\/index-[^"]+\.css)">/);
 if (cssMatch) {
-  const cssHref = cssMatch[1];
-  const cssFilePath = path.join(distDir, cssHref.replace(/^\//, ''));
-  if (fs.existsSync(cssFilePath)) {
-    const cssContent = fs.readFileSync(cssFilePath, 'utf8');
-    baseHtmlTemplate = baseHtmlTemplate.replace(cssMatch[0], `<style>${cssContent}</style>`);
-    fs.writeFileSync(templateIndexPath, baseHtmlTemplate, 'utf8');
-    console.log(`[SEO Prerender] Inlined critical CSS (${cssHref}) to eliminate render-blocking resources!`);
-  }
+  console.log(`[SEO Prerender] Keeping shared stylesheet ${cssMatch[1]} (cached once, reused by all pages)`);
 }
 
 // Clean baseHtmlTemplate so it is an unpolluted blank template for all prerendered pages
@@ -56,6 +51,94 @@ const md = new MarkdownIt({
 });
 
 const supportedLangs = ['ar', 'de', 'es', 'fr', 'no', 'pt', 'uk', 'vi', 'zh'];
+
+// Open Graph locale codes per language (social crawlers ignore generic en_US on localized pages)
+const OG_LOCALES = {
+  en: 'en_US',
+  ar: 'ar_AR',
+  de: 'de_DE',
+  es: 'es_ES',
+  fr: 'fr_FR',
+  no: 'nb_NO',
+  pt: 'pt_BR',
+  uk: 'uk_UA',
+  vi: 'vi_VN',
+  zh: 'zh_CN',
+};
+
+// Hard budgets keep titles/descriptions inside SERP truncation limits
+const TITLE_MAX = 62;
+const DESC_MAX = 158;
+
+function clampText(value, max) {
+  if (value.length <= max) return value;
+  const slice = value.slice(0, max - 1);
+  const cut = slice.lastIndexOf(' ');
+  return `${(cut > max * 0.6 ? slice.slice(0, cut) : slice).trimEnd()}…`;
+}
+
+const LOCAL_TITLE_SUFFIX = {
+  ar: ' أونلاين مجاناً - DevTol',
+  de: ' Online Kostenlos - DevTol',
+  es: ' Online Gratis - DevTol',
+  fr: ' en Ligne Gratuit - DevTol',
+  no: ' Online Gratis - DevTol',
+  pt: ' Online Grátis - DevTol',
+  uk: ' Онлайн безкоштовно - DevTol',
+  vi: ' Trực tuyến miễn phí - DevTol',
+  zh: ' 在线免费 - DevTol',
+  en: ' Online - DevTol',
+};
+
+// Titles: prefer a clean cut at a natural separator over a mid-sentence "…".
+// Google rewrites/truncates by pixel width anyway, so a few chars over the
+// soft budget beats an ellipsis in the middle of a phrase.
+const TITLE_SOFT_MAX = 70;
+function fitTitle(value, max = TITLE_MAX) {
+  if (value.length <= max) return value;
+  let best = '';
+  for (const sep of [' — ', ' – ', ' - ', ' | ', ': ', ' (', '، ', ', ']) {
+    let idx = value.lastIndexOf(sep, max);
+    while (idx > 0) {
+      const head = value.slice(0, idx).trimEnd();
+      if (head.length >= 25 && head.length <= max && head.length > best.length) best = head;
+      idx = value.lastIndexOf(sep, idx - 1);
+    }
+  }
+  if (best) return best;
+  if (value.length <= TITLE_SOFT_MAX) return value;
+  return clampText(value, max);
+}
+
+function buildTitle(title, lang) {
+  const suffixes = [LOCAL_TITLE_SUFFIX[lang] || LOCAL_TITLE_SUFFIX.en, ' | DevTol'];
+  for (const suffix of suffixes) {
+    if (title.length + suffix.length <= TITLE_MAX) return `${title}${suffix}`;
+  }
+  return fitTitle(title, TITLE_MAX);
+}
+
+// Guides often start with a Markdown H1 that duplicates the page H1; demote in-article headings.
+function renderArticle(rawMd) {
+  return md.render(rawMd.replace(/^\uFEFF/, ''))
+    .replace(/<h1(\s[^>]*)?>/gi, '<h2$1>')
+    .replace(/<\/h1>/gi, '</h2>');
+}
+
+function buildDescription(description, lang) {
+  const tails = {
+    ar: '. أداة مطورين مجانية تعمل محلياً داخل المتصفح.',
+    de: '. Kostenloses Entwicklertool, 100% im Browser.',
+    es: '. Herramienta de desarrollador gratis, 100% en el navegador.',
+    fr: '. Outil développeur gratuit, 100% côté client.',
+    en: '. 100% free, private, client-side developer tool.',
+  };
+  const tail = tails[lang] || tails.en;
+  const clean = description.replace(/\s*[.。!]+$/, '').trimEnd();
+  const full = `${clean}${tail}`;
+  if (full.length <= DESC_MAX) return full;
+  return clean.length <= DESC_MAX ? clean : clampText(clean, DESC_MAX);
+}
 
 // Load all locales for titles and descriptions
 const allLocales = {};
@@ -132,7 +215,7 @@ function getLocalizedToolArticleAndFaqs(toolSlug, locTitle, locDesc, lang = 'en'
     if (fs.existsSync(enMdPath)) {
       const rawMd = fs.readFileSync(enMdPath, 'utf8');
       return {
-        articleHtml: md.render(rawMd),
+        articleHtml: renderArticle(rawMd),
         faqs: extractFaqsFromMarkdown(rawMd),
       };
     }
@@ -142,7 +225,7 @@ function getLocalizedToolArticleAndFaqs(toolSlug, locTitle, locDesc, lang = 'en'
   if (fs.existsSync(langMdPath)) {
     const rawMd = fs.readFileSync(langMdPath, 'utf8');
     return {
-      articleHtml: md.render(rawMd),
+      articleHtml: renderArticle(rawMd),
       faqs: extractFaqsFromMarkdown(rawMd),
     };
   }
@@ -520,29 +603,30 @@ function generatePrerenderedHtml({
   relatedTools = [],
   lang = 'en',
 }) {
+  if (pathSlug === 'pdf-editor') {
+    description = lang === 'ar'
+      ? 'تعديلات مرئية فقط: النص الأصلي يظل قابلًا للاستخراج في الملف الناتج. لا يصلح لحذف المعلومات الحساسة أو تنقيحها بأمان.'
+      : 'Visual overlays only: original text remains extractable in the downloaded PDF. Not for secure redaction or permanent text removal.';
+    articleHtml = '';
+    faqs = [];
+  }
+  const securityUnavailable = ['pdf-protect', 'pdf-redact'].includes(pathSlug);
+  if (securityUnavailable) {
+    title = lang === 'ar' ? 'أداة PDF غير متاحة' : 'PDF security tool unavailable';
+    description = lang === 'ar'
+      ? 'الأداة متوقفة. الملفات السابقة لم تكن مشفرة أو منقحة. رفع الملفات وتنزيلها معطلان لحماية بياناتك.'
+      : 'Unavailable. Previously generated files were not encrypted or redacted. Uploads and downloads are disabled.';
+    articleHtml = '';
+    faqs = [];
+    relatedTools = [];
+    category = 'InformationPage';
+  }
   const isEn = lang === 'en';
   const canonicalUrl = isEn ? `${BASE_URL}/${pathSlug}` : `${BASE_URL}/${lang}/${pathSlug}`;
 
-  // Localized title & description formatting with high CTR hooks
-  let fullTitle = `${title} Online — Free, Fast & Client-Side | DevTol`;
-  let fullDesc = `${description}. 100% free, private, and client-side developer tool running locally on DevTol.`;
-
-  if (lang === 'ar') {
-    fullTitle = `${title} أونلاين مجاناً (سريع ومحلي 100%) - DevTol`;
-    fullDesc = `${description}. أداة مطورين ومصممين مجانية 100% تعمل محلياً داخل المتصفح بأمان وخصوصية تامة على DevTol.`;
-  } else if (lang === 'de') {
-    fullTitle = `${title} Online Kostenlos (Schnell & Sicher) - DevTol`;
-    fullDesc = `${description}. 100% clientseitiges, kostenloses und sicheres Online-Entwicklertool auf DevTol.`;
-  } else if (lang === 'es') {
-    fullTitle = `${title} Online Gratis (Rápido y Seguro) - DevTol`;
-    fullDesc = `${description}. Herramienta online para desarrolladores 100% en el navegador, gratis y segura en DevTol.`;
-  } else if (lang === 'fr') {
-    fullTitle = `${title} en Ligne Gratuit (Rapide & Sécurisé) - DevTol`;
-    fullDesc = `${description}. Outil développeur en ligne 100% côté client, gratuit et sécurisé sur DevTol.`;
-  } else if (!isEn) {
-    fullTitle = `${title} Online (Free & Private) - DevTol`;
-    fullDesc = `${description}. Free, 100% client-side, fast and secure online developer tool on DevTol.`;
-  }
+  // Localized title & description formatting, clamped to SERP limits
+  const fullTitle = buildTitle(title, isEn ? 'en' : lang);
+  const fullDesc = buildDescription(description, isEn ? 'en' : lang);
 
   // Generate complete bidirectional hreflang tags
   const hreflangTags = [
@@ -634,6 +718,10 @@ function generatePrerenderedHtml({
   });
 
   let html = baseHtmlTemplate;
+  if (securityUnavailable) {
+    html = html.replace(/<meta\b[^>]*name=["'](?:robots|googlebot)["'][^>]*>/gi, '');
+    html = html.replace('</head>', '<meta name="robots" content="noindex, nofollow" /></head>');
+  }
 
   // Replace <html lang="...">
   html = html.replace(/<html\s+lang="[^"]*"/i, `<html lang="${lang}"${lang === 'ar' ? ' dir="rtl"' : ' dir="ltr"'}`);
@@ -653,6 +741,10 @@ function generatePrerenderedHtml({
   html = html.replace(/<meta\s+property="og:title"\s+content=".*?"\s*\/?>/i, `<meta property="og:title" content="${escapeHtml(fullTitle)}" />`);
   html = html.replace(/<meta\s+property="og:description"\s+content=".*?"\s*\/?>/i, `<meta property="og:description" content="${escapeHtml(fullDesc)}" />`);
   html = html.replace(/<meta\s+property="og:url"\s+content=".*?"\s*\/?>/i, `<meta property="og:url" content="${canonicalUrl}" />`);
+  html = html.replace(
+    /<meta\s+property="og:locale"\s+content=".*?"\s*\/?>/i,
+    `<meta property="og:locale" content="${OG_LOCALES[isEn ? 'en' : lang] || 'en_US'}" />`,
+  );
 
   // Replace Twitter
   html = html.replace(/<meta\s+name="twitter:title"\s+content=".*?"\s*\/?>/i, `<meta name="twitter:title" content="${escapeHtml(fullTitle)}" />`);
@@ -751,7 +843,7 @@ for (const varName of registeredToolVars) {
     let faqs = [];
     if (fs.existsSync(articlePath)) {
       const rawMd = fs.readFileSync(articlePath, 'utf8');
-      articleHtml = md.render(rawMd);
+      articleHtml = renderArticle(rawMd);
       faqs = extractFaqsFromMarkdown(rawMd);
     }
 
@@ -797,7 +889,6 @@ for (let i = 0; i < totalTools; i++) {
     fs.mkdirSync(targetDirEn, { recursive: true });
   }
   fs.writeFileSync(path.join(targetDirEn, 'index.html'), enHtml, 'utf8');
-  fs.writeFileSync(path.join(distDir, `${tool.slug}.html`), enHtml, 'utf8');
   generatedCount++;
 
   // 1B. Localized pages for all supported languages
@@ -832,7 +923,6 @@ for (let i = 0; i < totalTools; i++) {
       fs.mkdirSync(targetDirLang, { recursive: true });
     }
     fs.writeFileSync(path.join(targetDirLang, 'index.html'), localizedHtml, 'utf8');
-    fs.writeFileSync(path.join(distDir, lang, `${tool.slug}.html`), localizedHtml, 'utf8');
     generatedCount++;
   }
 }
@@ -845,13 +935,26 @@ for (const lang of supportedLangs) {
   }
 
   const locHome = allLocales[lang]?.home || {};
-  let homeTitle = `DevTol — Free Online Developer Tools Suite`;
-  let homeDesc = locHome.subtitle || 'Handy online tools for developers and IT workers. 100% client-side, secure and free.';
-
-  if (lang === 'ar') {
-    homeTitle = 'DevTol — منصة أدوات المطورين والمصممين المجانية (تعمل محلياً 100%)';
-    homeDesc = 'مجموعة أدوات برمجية وتصميم مجانية تعمل بالكامل في المتصفح مع حماية تامة للخصوصية وبدون رفع أي ملفات.';
-  }
+  const HOME_SEO = {
+    ar: {
+      title: 'DevTol — منصة أدوات المطورين والمصممين المجانية (تعمل محلياً 100%)',
+      desc: 'مجموعة أدوات برمجية وتصميم مجانية تعمل بالكامل في المتصفح مع حماية تامة للخصوصية وبدون رفع أي ملفات.',
+    },
+    de: { title: 'DevTol — Kostenlose Online-Tools für Entwickler', desc: 'Kostenlose, sichere Entwicklertools, die 100% im Browser laufen – ohne Uploads.' },
+    es: { title: 'DevTol — Herramientas online gratis para desarrolladores', desc: 'Herramientas de desarrollador gratis y seguras que se ejecutan 100% en el navegador.' },
+    fr: { title: 'DevTol — Outils en ligne gratuits pour développeurs', desc: 'Outils développeur gratuits et sécurisés, exécutés 100% dans le navigateur.' },
+    no: { title: 'DevTol — Gratis online-verktøy for utviklere', desc: 'Gratis og trygge utviklerverktøy som kjører 100% i nettleseren.' },
+    pt: { title: 'DevTol — Ferramentas online grátis para desenvolvedores', desc: 'Ferramentas de desenvolvedor grátis e seguras, executadas 100% no navegador.' },
+    uk: { title: 'DevTol — Безкоштовні онлайн-інструменти для розробників', desc: 'Безкоштовні інструменти розробника, що працюють 100% у браузері.' },
+    vi: { title: 'DevTol — Công cụ trực tuyến miễn phí cho lập trình viên', desc: 'Công cụ lập trình miễn phí, an toàn, chạy 100% trong trình duyệt.' },
+    zh: { title: 'DevTol — 免费在线开发者工具', desc: '免费、安全的开发者工具，100% 在浏览器本地运行。' },
+  };
+  let homeTitle = HOME_SEO[lang]?.title || 'DevTol — Free Online Developer Tools Suite';
+  let homeDesc = HOME_SEO[lang]?.desc
+    || locHome.subtitle
+    || 'Handy online tools for developers and IT workers. 100% client-side, secure and free.';
+  homeTitle = fitTitle(homeTitle, 62);
+  homeDesc = clampText(homeDesc, DESC_MAX);
 
   const homeHreflangs = [
     `<link rel="alternate" hreflang="x-default" href="${BASE_URL}/" />`,
@@ -864,14 +967,19 @@ for (const lang of supportedLangs) {
   homeHtml = homeHtml.replace(/<title>.*?<\/title>/i, `<title>${escapeHtml(homeTitle)}</title>`);
   homeHtml = homeHtml.replace(/<meta\s+name="description"\s+content=".*?"\s*\/?>/i, `<meta name="description" content="${escapeHtml(homeDesc)}" />`);
   homeHtml = homeHtml.replace(/<link\s+rel="canonical"\s+href=".*?"\s*\/?>/i, `<link rel="canonical" href="${BASE_URL}/${lang}" />`);
+  homeHtml = homeHtml.replace(/<meta\s+property="og:locale"\s+content=".*?"\s*\/?>/i, `<meta property="og:locale" content="${OG_LOCALES[lang] || 'en_US'}" />`);
+  homeHtml = homeHtml.replace(/<meta\s+property="og:title"\s+content=".*?"\s*\/?>/i, `<meta property="og:title" content="${escapeHtml(homeTitle)}" />`);
+  homeHtml = homeHtml.replace(/<meta\s+property="og:description"\s+content=".*?"\s*\/?>/i, `<meta property="og:description" content="${escapeHtml(homeDesc)}" />`);
+  homeHtml = homeHtml.replace(/<meta\s+property="og:url"\s+content=".*?"\s*\/?>/i, `<meta property="og:url" content="${BASE_URL}/${lang}" />`);
+  homeHtml = homeHtml.replace(/<meta\s+name="twitter:title"\s+content=".*?"\s*\/?>/i, `<meta name="twitter:title" content="${escapeHtml(homeTitle)}" />`);
+  homeHtml = homeHtml.replace(/<meta\s+name="twitter:description"\s+content=".*?"\s*\/?>/i, `<meta name="twitter:description" content="${escapeHtml(homeDesc)}" />`);
   homeHtml = homeHtml.replace('</head>', `\n    <!-- International Hreflangs -->\n    ${homeHreflangs}\n  </head>`);
 
   const homePrerenderBody = getHomePrerenderContent(lang, toolsList);
   homeHtml = homeHtml.replace(/<div id="app">[\s\S]*?<\/div>/i, homePrerenderBody.trim());
 
   fs.writeFileSync(path.join(homeTargetDir, 'index.html'), homeHtml, 'utf8');
-  fs.writeFileSync(path.join(distDir, `${lang}.html`), homeHtml, 'utf8');
-  generatedCount += 2;
+  generatedCount++;
 }
 
 // 3. Update root dist/index.html with home hreflangs & rich prerendered home content
@@ -1001,16 +1109,7 @@ for (const page of legalPages) {
       fs.mkdirSync(pageDir, { recursive: true });
     }
     fs.writeFileSync(path.join(pageDir, 'index.html'), pageHtml, 'utf8');
-
-    const flatFile = isEn
-      ? path.join(distDir, `${page.slug}.html`)
-      : path.join(distDir, lang, `${page.slug}.html`);
-    const flatDir = path.dirname(flatFile);
-    if (!fs.existsSync(flatDir)) {
-      fs.mkdirSync(flatDir, { recursive: true });
-    }
-    fs.writeFileSync(flatFile, pageHtml, 'utf8');
-    generatedCount += 2;
+    generatedCount++;
   }
 }
 
@@ -1432,20 +1531,33 @@ for (const sc of programmaticScenarios) {
       fs.mkdirSync(targetDir, { recursive: true });
     }
     fs.writeFileSync(path.join(targetDir, 'index.html'), pageHtml, 'utf8');
-
-    const flatFile = isEn
-      ? path.join(distDir, `${sc.pathSlug}.html`)
-      : path.join(distDir, lang, `${sc.pathSlug}.html`);
-    const flatDir = path.dirname(flatFile);
-    if (!fs.existsSync(flatDir)) {
-      fs.mkdirSync(flatDir, { recursive: true });
-    }
-    fs.writeFileSync(flatFile, pageHtml, 'utf8');
-    generatedCount += 2;
+    generatedCount++;
   }
 }
 
 console.log(`[SEO Prerender] Successfully generated ${generatedCount} static HTML pages across ${supportedLangs.length + 1} languages in dist/!`);
+
+// Cloudflare Pages serves `/slug` with 200 only when `slug.html` exists; with
+// just `slug/index.html` it answers 308 -> `/slug/`, which would turn every
+// canonical and sitemap URL into a redirect. Mirror each directory page to a
+// flat file so the extensionless canonical URLs keep returning 200.
+function mirrorFlatHtml(dir) {
+  let mirrored = 0;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (!entry.isDirectory() || entry.name === 'assets') continue;
+    const childDir = path.join(dir, entry.name);
+    const indexFile = path.join(childDir, 'index.html');
+    const flatFile = `${childDir}.html`;
+    // Always refresh the alias; otherwise a rerun can serve stale security notices.
+    if (fs.existsSync(indexFile)) {
+      fs.copyFileSync(indexFile, flatFile);
+      mirrored++;
+    }
+    mirrored += mirrorFlatHtml(childDir);
+  }
+  return mirrored;
+}
+console.log(`[SEO Prerender] Mirrored ${mirrorFlatHtml(distDir)} flat .html files for extensionless 200 responses`);
 
 // Ensure 404.html, _redirects, robots.txt, and sitemap.xml are mirrored from public to dist
 const publicDir = path.join(rootDir, 'public');

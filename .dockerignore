@@ -2,4 +2,16 @@ node_modules
 playwright-report
 coverage
 dist
+dist-ssr
+dist-extension
 test-results
+.git
+.gitignore
+graphify-out
+graphify-in
+*.tsbuildinfo
+.github
+cypress
+service_account*.json
+credentials*.json
+.env

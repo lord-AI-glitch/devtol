@@ -38,3 +38,10 @@ salt
 # Google Indexing & Cloud API secrets
 service_account*.json
 credentials*.json
+
+# Local tooling output (143+ MB of generated graph data, never needed for builds)
+graphify-out/
+graphify-in/
+*.tsbuildinfo
+.tmp-*
+.wrangler/

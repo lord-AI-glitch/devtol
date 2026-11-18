@@ -36,7 +36,7 @@ const homeSeoDesc = computed(() => {
   if (locale.value === 'ar') {
     return 'منصة أدوات المطورين والمصممين الشاملة: محرر ومحول PDF، ضغط الصور وWebP، أدوات JSON، تشفير النصوص، وتوليد الهاش بأمان وخصوصية تامة داخل المتصفح.';
   }
-  return '126+ free, private, client-side online tools for developers & designers. PDF editor, JSON, Base64, Regex, WebP converter, hash, and crypto running 100% in your browser.';
+  return '126+ free, private online tools for developers & designers: PDF editor, JSON, Base64, Regex, WebP, hash and crypto, all running 100% in your browser.';
 });
 
 const homeCanonical = computed(() => {

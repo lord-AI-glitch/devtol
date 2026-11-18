@@ -1,24 +1,58 @@
-# Global security headers
+# Rules are applied in file order and repeated headers are JOINED by Pages.
+# Every narrower rule below must detach Cache-Control (`! Cache-Control`)
+# before setting its own value, otherwise directives conflict.
+
+# Global security headers + default HTML caching
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(self), microphone=(), geolocation=()
+  Permissions-Policy: camera=(self), microphone=(self), geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Cache-Control: public, max-age=0, must-revalidate
 
 # Immutable caching for Vite static assets
 /assets/*
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
+
+# PWA service worker files must always revalidate so updates reach users
+/sw.js
+  ! Cache-Control
+  Cache-Control: no-cache
+/registerSW.js
+  ! Cache-Control
+  Cache-Control: no-cache
+/workbox-*
+  ! Cache-Control
+  Cache-Control: no-cache
+/manifest.webmanifest
+  ! Cache-Control
+  Cache-Control: no-cache
 
 # SEO files caching (1 day cache with revalidation)
 /robots.txt
+  ! Cache-Control
   Cache-Control: public, max-age=86400, stale-while-revalidate=43200
 /sitemap.xml
+  ! Cache-Control
   Content-Type: application/xml; charset=utf-8
   Cache-Control: no-cache, no-store, must-revalidate
 /llms.txt
+  ! Cache-Control
   Cache-Control: public, max-age=86400, stale-while-revalidate=43200
 /llms-full.txt
+  ! Cache-Control
   Cache-Control: public, max-age=86400, stale-while-revalidate=43200
 /favicon.ico
+  ! Cache-Control
   Cache-Control: public, max-age=86400, stale-while-revalidate=43200
+
+# Fonts fetched on demand by the PDF editor (unicode-safe PDF export)
+/Cairo-Regular.ttf
+  ! Cache-Control
+  Cache-Control: public, max-age=2592000
+/Amiri-Regular.ttf
+  ! Cache-Control
+  Cache-Control: public, max-age=2592000

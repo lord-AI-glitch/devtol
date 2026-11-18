@@ -9,7 +9,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: '100% Free Client-Side PDF Editor. Edit PDF text directly, find and replace text with Arabic support, add local system fonts, draw, sign, and redact PDFs securely in your browser without uploading files.',
+      content: 'Add visual text overlays, drawings and signatures to PDFs in your browser. Original text remains searchable and extractable. Not for secure redaction or permanent text removal.',
     },
     {
       name: 'keywords',
@@ -21,7 +21,7 @@ useHead({
     },
     {
       property: 'og:description',
-      content: '100% Free Client-Side PDF Editor. Edit PDF text directly, find and replace text with Arabic support, add local system fonts, draw, sign, and redact PDFs securely in your browser without uploading files.'
+      content: 'Add visual text overlays, drawings and signatures to PDFs in your browser. Original text remains searchable and extractable. Not for secure redaction or permanent text removal.'
     }
   ],
 });
@@ -800,7 +800,7 @@ async function executeFindAndReplace() {
     const blob = new Blob([modifiedBytes], { type: 'application/pdf' });
     file.value = new File([blob], file.value.name, { type: 'application/pdf' });
     await loadPdf();
-    message.success(`Successfully replaced ${matchCount} match(es)!`);
+    message.warning(`Applied ${matchCount} visual overlay(s). Original text remains searchable and extractable; this is not redaction.`);
   } catch (err: any) {
     message.error('Replace failed: ' + (err?.message || 'Error'));
   } finally {
@@ -852,6 +852,12 @@ async function saveAndDownload() {
 
 <template>
   <div style="max-width: 950px; margin: 0 auto">
+    <c-alert type="warning" mb-4 data-test-id="pdf-editor-safety-warning">
+      All text edits, replacements and covering marks are visual overlays only.
+      The original text remains searchable, copyable and extractable in the downloaded PDF.
+      This editor does not securely redact or permanently remove information.
+      Do not use it to hide sensitive data before sharing a document.
+    </c-alert>
     <!-- Upload Section -->
     <c-card title="Upload PDF to Edit" mb-4>
       <div
@@ -933,6 +939,11 @@ async function saveAndDownload() {
 
           <!-- Tab 2: Find & Replace Text -->
           <n-tab-pane name="replace" tab="🔍 Find & Replace Text">
+            <c-alert type="warning" mb-3 data-test-id="pdf-overlay-warning">
+              Visual overlay only: the original text remains in the PDF and can still be searched,
+              copied or extracted. This is not permanent text removal or secure redaction.
+              Do not use this operation to hide sensitive information.
+            </c-alert>
             <div grid grid-cols-1 md:grid-cols-2 gap-3 mb-3>
               <n-form-item label="Original Text to Find">
                 <n-input v-model:value="searchText" placeholder="Word or phrase to find..." />
@@ -989,7 +1000,7 @@ async function saveAndDownload() {
 
             <c-button :disabled="isReplacing" @click="executeFindAndReplace">
               <n-spin v-if="isReplacing" size="small" mr-2 />
-              {{ isReplacing ? 'Replacing...' : `Replace in ${replaceScope === 'current' ? 'Current Page' : 'All Pages'}` }}
+              {{ isReplacing ? 'Applying overlay...' : `Apply Visual Overlay to ${replaceScope === 'current' ? 'Current Page' : 'All Pages'}` }}
             </c-button>
           </n-tab-pane>
         </n-tabs>
@@ -1025,6 +1036,10 @@ async function saveAndDownload() {
           </div>
         </div>
 
+        <c-alert type="warning" mb-3 data-test-id="pdf-download-safety-warning">
+          Before sharing: this download retains original text under visual edits and covering marks.
+          It is not a securely redacted document.
+        </c-alert>
         <!-- Document Canvas Container -->
         <div
           class="canvas-viewport"
@@ -1143,7 +1158,7 @@ async function saveAndDownload() {
         <li mb-2><strong>Direct Text Editing:</strong> Click any text in your PDF to instantly modify it. We detect the original font and offer the closest match.</li>
         <li mb-2><strong>Full Arabic & RTL Support:</strong> Seamlessly edit, find, and replace Arabic text. The editor handles complex BiDi shaping, ligatures, and right-to-left logical rendering perfectly.</li>
         <li mb-2><strong>Local System Fonts:</strong> Load your own installed operating system fonts (like Times New Roman, Arial, Cairo) directly into the browser to match the PDF's native typography perfectly.</li>
-        <li mb-2><strong>Find & Replace:</strong> Batch replace words or phrases across the current page or the entire document.</li>
+        <li mb-2><strong>Visual text overlays:</strong> Cover words visually and add replacement text. The original text remains extractable. This is not secure redaction.</li>
         <li mb-2><strong>Sign & Markup:</strong> Add electronic signatures, draw with the pen tool, or insert text boxes and whiteouts anywhere on the page.</li>
       </ul>
 

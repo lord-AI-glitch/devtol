@@ -37,7 +37,8 @@
     "test:e2e": "playwright test",
     "test:e2e:dev": "BASE_URL=http://localhost:5173 NO_WEB_SERVER=true playwright test",
     "coverage": "vitest run --coverage",
-    "typecheck": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+    "typecheck": "vue-tsc --noEmit",
+    "typecheck:tests": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint src --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
     "script:create:tool": "node scripts/create-tool.mjs",
     "script:create:ui": "hygen generator ui-component",
@@ -161,6 +162,7 @@
     "vite-svg-loader": "^4.0.0",
     "vitest": "^0.34.0",
     "workbox-window": "^7.0.0",
+    "wrangler": "^4.163.0",
     "zx": "^7.2.1"
   }
 }

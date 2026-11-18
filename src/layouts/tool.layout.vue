@@ -3,9 +3,6 @@ import { computed, onErrorCaptured, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useHead } from '@vueuse/head';
 import type { HeadObject } from '@vueuse/head';
-import MarkdownIt from 'markdown-it';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-dark.css';
 
 import BaseLayout from './base.layout.vue';
 import FavoriteButton from '@/components/FavoriteButton.vue';
@@ -13,6 +10,7 @@ import ToolIssueWhatsApp from '@/components/ToolIssueWhatsApp.vue';
 import AdSenseUnit from '@/components/AdSenseUnit.vue';
 import type { Tool } from '@/tools/tools.types';
 import { useStyleStore } from '@/stores/style.store';
+import { getGuideRenderer } from '@/composables/use-tool-guide';
 
 const route = useRoute();
 const styleStore = useStyleStore();
@@ -30,13 +28,23 @@ const i18nKey = computed<string>(() => {
   return pathSlug;
 });
 
+const securityToolUnavailable = computed(() => ['pdf-protect', 'pdf-redact'].includes(i18nKey.value));
+const unavailableDescription = computed(() => locale.value === 'ar'
+  ? 'الأداة متوقفة: الملفات السابقة لم تكن محمية بكلمة مرور أو منقحة. رفع الملفات وتنزيلها معطلان لحماية بياناتك.'
+  : 'Unavailable: previous files were not encrypted or redacted. Uploads and downloads are disabled.');
+
 const toolTitle = computed<string>(() => {
+  if (securityToolUnavailable.value) return locale.value === 'ar' ? 'أداة PDF غير متاحة' : 'PDF security tool unavailable';
   const key = `tools.${i18nKey.value}.title`;
   if (te(key)) return t(key);
   return String(route.meta.name || 'Tool');
 });
 
 const rawDescription = computed<string>(() => {
+  if (securityToolUnavailable.value) return unavailableDescription.value;
+  if (i18nKey.value === 'pdf-editor') return locale.value === 'ar'
+    ? 'محرر بتغطية مرئية فقط. النص الأصلي يظل قابلًا للبحث والنسخ والاستخراج. لا يصلح لحذف المعلومات الحساسة أو تنقيحها بأمان.'
+    : 'Visual PDF editor. Original text remains searchable, copyable and extractable. Not for secure redaction or permanent text removal.';
   const key = `tools.${i18nKey.value}.description`;
   if (te(key)) return t(key);
   return String(route.meta.description || '');
@@ -51,62 +59,76 @@ onErrorCaptured((err, instance, info) => {
   return false;
 });
 
-const seoTitle = computed<string>(() => {
-  if (locale.value === 'ar') {
-    return `${toolTitle.value} أونلاين مجاناً (سريع ومحلي 100%) - DevTol`;
+const OG_LOCALES: Record<string, string> = {
+  en: 'en_US',
+  ar: 'ar_AR',
+  de: 'de_DE',
+  es: 'es_ES',
+  fr: 'fr_FR',
+  no: 'nb_NO',
+  pt: 'pt_BR',
+  uk: 'uk_UA',
+  vi: 'vi_VN',
+  zh: 'zh_CN',
+};
+const ogLocale = computed<string>(() => OG_LOCALES[locale.value] ?? 'en_US');
+
+function clampText(value: string, max: number): string {
+  if (value.length <= max) return value;
+  const slice = value.slice(0, max - 1);
+  const cut = slice.lastIndexOf(' ');
+  return `${(cut > max * 0.6 ? slice.slice(0, cut) : slice).trimEnd()}…`;
+}
+
+// Prefer a clean cut at a natural separator over a mid-sentence ellipsis.
+function fitTitle(value: string, max: number): string {
+  if (value.length <= max) return value;
+  let best = '';
+  for (const sep of [' — ', ' – ', ' - ', ' | ', ': ', ' (', '، ', ', ']) {
+    let idx = value.lastIndexOf(sep, max);
+    while (idx > 0) {
+      const head = value.slice(0, idx).trimEnd();
+      if (head.length >= 25 && head.length <= max && head.length > best.length) best = head;
+      idx = value.lastIndexOf(sep, idx - 1);
+    }
   }
-  return `${toolTitle.value} Online — Free, Fast & Client-Side | DevTol`;
+  if (best) return best;
+  if (value.length <= 70) return value;
+  return clampText(value, max);
+}
+
+const seoTitle = computed<string>(() => {
+  const suffixes = locale.value === 'ar'
+    ? [' أونلاين مجاناً - DevTol', ' | DevTol']
+    : [' Online — Free & Client-Side | DevTol', ' | DevTol'];
+  for (const suffix of suffixes) {
+    if (toolTitle.value.length + suffix.length <= 62) return `${toolTitle.value}${suffix}`;
+  }
+  return fitTitle(toolTitle.value, 62);
 });
 
 const seoDescription = computed<string>(() => {
+  if (securityToolUnavailable.value) return unavailableDescription.value;
+  const clean = rawDescription.value.replace(/\s*[.。!]+$/, '').trimEnd();
   if (locale.value === 'ar') {
-    const desc = rawDescription.value || `${toolTitle.value} أداة برمجية أونلاين`;
-    return `${desc}. أداة مطورين ومصممين مجانية 100% تعمل محلياً داخل المتصفح بأمان وخصوصية تامة على DevTol.`;
+    const desc = clean || `${toolTitle.value} أداة برمجية أونلاين`;
+    const full = `${desc}. أداة مطورين مجانية 100% تعمل محلياً داخل المتصفح بأمان.`;
+    return full.length <= 158 ? full : clampText(desc, 158);
   }
-  const desc = rawDescription.value || `${toolTitle.value} online utility`;
-  return `${desc}. 100% free, private, and client-side developer tool running locally on DevTol.`;
+  const desc = clean || `${toolTitle.value} online utility`;
+  const full = `${desc}. 100% free, private, client-side developer tool.`;
+  return full.length <= 158 ? full : clampText(desc, 158);
 });
 
 const canonicalUrl = computed<string>(() => `https://devtol.online${route.path}`);
 
-const seoKeywords = computed<string>(() => {
-  const customKeywords = (route.meta.keywords ?? []) as string[];
-  const baseKeywordsEn = [
-    toolTitle.value.toLowerCase(),
-    'online tool',
-    'free tool',
-    'developer utility',
-    'client-side tool',
-    'browser tool',
-    'no server upload',
-    'private developer tool',
-    'devtol',
-  ];
-  const baseKeywordsAr = [
-    toolTitle.value,
-    'أداة أونلاين',
-    'أداة مجانية',
-    'أدوات مطورين',
-    'أدوات مصممين',
-    'تعمل في المتصفح',
-    'بدون رفع ملفات',
-    'حماية الخصوصية',
-    'ديف تول',
-  ];
-  const activeBase = locale.value === 'ar' ? [...baseKeywordsAr, ...baseKeywordsEn] : baseKeywordsEn;
-  return Array.from(new Set([...customKeywords, ...activeBase])).join(', ');
-});
-
 const head = computed<HeadObject>(() => ({
   title: seoTitle.value,
   meta: [
+    { name: 'robots', content: securityToolUnavailable.value ? 'noindex, nofollow' : 'index, follow' },
     {
       name: 'description',
       content: seoDescription.value,
-    },
-    {
-      name: 'keywords',
-      content: seoKeywords.value,
     },
     {
       property: 'og:site_name',
@@ -114,7 +136,7 @@ const head = computed<HeadObject>(() => ({
     },
     {
       property: 'og:locale',
-      content: locale.value === 'ar' ? 'ar_AR' : 'en_US',
+      content: ogLocale.value,
     },
     {
       property: 'og:title',
@@ -167,7 +189,7 @@ const head = computed<HeadObject>(() => ({
       href: canonicalUrl.value,
     },
   ],
-  script: [
+  script: securityToolUnavailable.value ? [] : [
     {
       type: 'application/ld+json',
       children: JSON.stringify({
@@ -213,41 +235,38 @@ const head = computed<HeadObject>(() => ({
 }));
 useHead(head);
 
-// Markdown-it engine setup with highlight.js integration
-const md: MarkdownIt = new MarkdownIt({
-  html: true,
-  linkify: true,
-  typographer: true,
-  highlight(str: string, lang: string) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return `<pre class="hljs"><code class="hljs language-${lang}">${hljs.highlight(str, { language: lang, ignoreIllegals: true }).value}</code></pre>`;
-      } catch (_) {}
-    }
-    return `<pre class="hljs"><code class="hljs">${md.utils.escapeHtml(str)}</code></pre>`;
-  },
-});
-
-import DomPurify from 'dompurify';
-
-// Auto-load tool guide markdown files from /src/content/tools/[tool-name].md
-const toolGuides = import.meta.glob('/src/content/tools/*.md', { as: 'raw', eager: true });
+// Guide markdown is loaded per route and rendered lazily: bundling 1.3 MB of
+// guides plus markdown-it/highlight.js into every tool page wasted bandwidth.
+const toolGuides = import.meta.glob('/src/content/tools/*.md', { as: 'raw' });
 
 const renderedGuideHtml = ref<string>('');
+let guideRequestId = 0;
 
-function loadArticle(toolSlug: string) {
+async function loadArticle(toolSlug: string) {
+  const requestId = ++guideRequestId;
   const normalizedSlug = toolSlug
     .replace(/^\/(?:ar|de|es|fr|no|pt|uk|vi|zh)(?=\/|$)/, '')
     .replace(/^\/+/, '')
     .split('/')[0] || '';
-  const guidePath = `/src/content/tools/${normalizedSlug}.md`;
-  
-  if (guidePath in toolGuides) {
-    const rawContent = toolGuides[guidePath] as string;
-    renderedGuideHtml.value = DomPurify.sanitize(md.render(rawContent), { ADD_ATTR: ['target'] });
-  } else {
-    // Elegant fallback when a specialized article has not been written yet
+  if (['pdf-protect', 'pdf-redact', 'pdf-editor'].includes(normalizedSlug)) {
     renderedGuideHtml.value = '';
+    return;
+  }
+  const guidePath = `/src/content/tools/${normalizedSlug}.md`;
+  const loadGuide = toolGuides[guidePath];
+
+  if (!loadGuide) {
+    renderedGuideHtml.value = '';
+    return;
+  }
+
+  try {
+    const [rawContent, renderGuide] = await Promise.all([loadGuide(), getGuideRenderer()]);
+    if (requestId !== guideRequestId) return;
+    renderedGuideHtml.value = renderGuide(rawContent as string);
+  } catch (error) {
+    console.error('[DevTol] Could not render tool guide:', error);
+    if (requestId === guideRequestId) renderedGuideHtml.value = '';
   }
 }
 
