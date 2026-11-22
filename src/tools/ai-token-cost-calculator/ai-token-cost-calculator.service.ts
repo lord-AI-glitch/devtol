@@ -103,17 +103,6 @@ export const LLM_MODELS: LlmModel[] = [
     recommendedFor: 'Premier coding, architectural refactoring, natural prose',
   },
   {
-    id: 'claude-opus-4-1',
-    name: 'Claude Opus 4.1',
-    provider: 'Anthropic',
-    inputPricePerMillion: 15.00,
-    outputPricePerMillion: 75.00,
-    cachedInputPricePerMillion: 1.50,
-    contextWindow: 200000,
-    tier: 'flagship',
-    recommendedFor: 'Nuanced writing, complex analysis, deep synthesis',
-  },
-  {
     id: 'claude-haiku-4-5',
     name: 'Claude Haiku 4.5',
     provider: 'Anthropic',
@@ -203,6 +192,8 @@ export const LLM_MODELS: LlmModel[] = [
 // Retired models (OpenAI o1 / o3-mini, Claude 3.5 Sonnet / Haiku / 3 Opus,
 // Gemini 1.5 Pro / 2.0 Flash / 2.0 Flash-Lite, DeepSeek V3 / R1 / V3.2,
 // Codestral 2501) were removed because they no longer appear on those pages.
+// Claude Opus 4.1 was removed too: retired from the first-party Anthropic API
+// on Aug 5, 2026 (still billable via Amazon Bedrock / Google Cloud, $15/$75).
 export const PRICING_LAST_UPDATED = '2026-11-22';
 
 export const PRICING_SOURCES: Record<LlmModel['provider'], string> = {

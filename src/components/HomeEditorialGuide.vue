@@ -96,7 +96,7 @@ const isAr = computed(() => locale.value === 'ar');
               </tr>
               <tr>
                 <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">حفظ السجلات (Server Logs)</td>
-                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">مستحيل تقنياً لعدم وجود مسار خلفي</td>
+                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">لا تسجيل على خوادم DevTol — مدخلاتك لا تُرسل إلى خوادم DevTol أبداً</td>
                 <td class="px-6 py-4 text-slate-500">تُسجل في سجلات الخادم وقواعد البيانات</td>
               </tr>
               <tr>
@@ -216,7 +216,7 @@ const isAr = computed(() => locale.value === 'ar');
               </tr>
               <tr>
                 <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Server Logging & Storage</td>
-                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">Architecturally impossible</td>
+                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">No DevTol server logging — your inputs are never sent to DevTol servers</td>
                 <td class="px-6 py-4 text-slate-500">Persisted in access logs & databases</td>
               </tr>
               <tr>
