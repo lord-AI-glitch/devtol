@@ -11,66 +11,62 @@ export interface LlmModel {
 }
 
 export const LLM_MODELS: LlmModel[] = [
-  // Google
-  {
-    id: 'gemini-2.0-flash',
-    name: 'Gemini 2.0 Flash',
-    provider: 'Google',
-    inputPricePerMillion: 0.10,
-    outputPricePerMillion: 0.40,
-    cachedInputPricePerMillion: 0.025,
-    contextWindow: 1048576,
-    tier: 'budget',
-    recommendedFor: 'Fast multimodal, high throughput, ultra-low cost',
-  },
-  {
-    id: 'gemini-1.5-pro',
-    name: 'Gemini 1.5 Pro',
-    provider: 'Google',
-    inputPricePerMillion: 1.25,
-    outputPricePerMillion: 5.00,
-    cachedInputPricePerMillion: 0.3125,
-    contextWindow: 2097152,
-    tier: 'flagship',
-    recommendedFor: 'Massive 2M context analysis, deep reasoning',
-  },
-  {
-    id: 'gemini-2.0-flash-lite',
-    name: 'Gemini 2.0 Flash-Lite',
-    provider: 'Google',
-    inputPricePerMillion: 0.075,
-    outputPricePerMillion: 0.30,
-    cachedInputPricePerMillion: 0.02,
-    contextWindow: 1048576,
-    tier: 'budget',
-    recommendedFor: 'Extremely lightweight, cost-sensitive automation',
-  },
-
-  // DeepSeek
-  {
-    id: 'deepseek-v3',
-    name: 'DeepSeek-V3',
-    provider: 'DeepSeek',
-    inputPricePerMillion: 0.14,
-    outputPricePerMillion: 0.28,
-    cachedInputPricePerMillion: 0.014,
-    contextWindow: 65536,
-    tier: 'budget',
-    recommendedFor: 'Exceptional open-weights intelligence at minimum cost',
-  },
-  {
-    id: 'deepseek-r1',
-    name: 'DeepSeek-R1',
-    provider: 'DeepSeek',
-    inputPricePerMillion: 0.55,
-    outputPricePerMillion: 2.19,
-    cachedInputPricePerMillion: 0.14,
-    contextWindow: 65536,
-    tier: 'reasoning',
-    recommendedFor: 'Open reasoning & mathematics rivaling OpenAI o1',
-  },
-
   // OpenAI
+  {
+    id: 'gpt-6-1-sol',
+    name: 'GPT-6.1 Sol',
+    provider: 'OpenAI',
+    inputPricePerMillion: 2.00,
+    outputPricePerMillion: 10.00,
+    cachedInputPricePerMillion: 0.10,
+    contextWindow: 1050000,
+    tier: 'flagship',
+    recommendedFor: 'Near-Astra coding, agentic work and computer use at a lower cost',
+  },
+  {
+    id: 'gpt-6-1-terra',
+    name: 'GPT-6.1 Terra',
+    provider: 'OpenAI',
+    inputPricePerMillion: 1.00,
+    outputPricePerMillion: 5.00,
+    cachedInputPricePerMillion: 0.05,
+    contextWindow: 1050000,
+    tier: 'budget',
+    recommendedFor: 'Fast visual reasoning, computer use and clear writing',
+  },
+  {
+    id: 'gpt-6-luna',
+    name: 'GPT-6 Luna',
+    provider: 'OpenAI',
+    inputPricePerMillion: 0.10,
+    outputPricePerMillion: 0.50,
+    cachedInputPricePerMillion: 0.01,
+    contextWindow: 1050000,
+    tier: 'budget',
+    recommendedFor: 'Cost-sensitive high-volume classification, routing and extraction',
+  },
+  {
+    id: 'gpt-5',
+    name: 'GPT-5',
+    provider: 'OpenAI',
+    inputPricePerMillion: 1.25,
+    outputPricePerMillion: 10.00,
+    cachedInputPricePerMillion: 0.125,
+    contextWindow: 400000,
+    tier: 'reasoning',
+    recommendedFor: 'Flagship reasoning — retires Dec 11, 2026, replaced by GPT-6.1 Sol',
+  },
+  {
+    id: 'gpt-5-mini',
+    name: 'GPT-5 mini',
+    provider: 'OpenAI',
+    inputPricePerMillion: 0.25,
+    outputPricePerMillion: 2.00,
+    cachedInputPricePerMillion: 0.025,
+    contextWindow: 400000,
+    tier: 'budget',
+    recommendedFor: 'High-volume general work — retires Dec 11, 2026, replaced by GPT-6.1 Terra',
+  },
   {
     id: 'gpt-4o',
     name: 'GPT-4o',
@@ -93,33 +89,11 @@ export const LLM_MODELS: LlmModel[] = [
     tier: 'budget',
     recommendedFor: 'Everyday lightweight tasks, high-volume classification',
   },
-  {
-    id: 'o1',
-    name: 'OpenAI o1',
-    provider: 'OpenAI',
-    inputPricePerMillion: 15.00,
-    outputPricePerMillion: 60.00,
-    cachedInputPricePerMillion: 7.50,
-    contextWindow: 200000,
-    tier: 'reasoning',
-    recommendedFor: 'Complex multi-step math, science, and architectural reasoning',
-  },
-  {
-    id: 'o3-mini',
-    name: 'OpenAI o3-mini',
-    provider: 'OpenAI',
-    inputPricePerMillion: 1.10,
-    outputPricePerMillion: 4.40,
-    cachedInputPricePerMillion: 0.55,
-    contextWindow: 200000,
-    tier: 'reasoning',
-    recommendedFor: 'STEM reasoning & code generation at high speed',
-  },
 
   // Anthropic
   {
-    id: 'claude-3-5-sonnet',
-    name: 'Claude 3.5 Sonnet',
+    id: 'claude-sonnet-4-5',
+    name: 'Claude Sonnet 4.5',
     provider: 'Anthropic',
     inputPricePerMillion: 3.00,
     outputPricePerMillion: 15.00,
@@ -129,19 +103,8 @@ export const LLM_MODELS: LlmModel[] = [
     recommendedFor: 'Premier coding, architectural refactoring, natural prose',
   },
   {
-    id: 'claude-3-5-haiku',
-    name: 'Claude 3.5 Haiku',
-    provider: 'Anthropic',
-    inputPricePerMillion: 0.80,
-    outputPricePerMillion: 4.00,
-    cachedInputPricePerMillion: 0.08,
-    contextWindow: 200000,
-    tier: 'budget',
-    recommendedFor: 'Fast execution, high accuracy text transformations',
-  },
-  {
-    id: 'claude-3-opus',
-    name: 'Claude 3 Opus',
+    id: 'claude-opus-4-1',
+    name: 'Claude Opus 4.1',
     provider: 'Anthropic',
     inputPricePerMillion: 15.00,
     outputPricePerMillion: 75.00,
@@ -149,6 +112,65 @@ export const LLM_MODELS: LlmModel[] = [
     contextWindow: 200000,
     tier: 'flagship',
     recommendedFor: 'Nuanced writing, complex analysis, deep synthesis',
+  },
+  {
+    id: 'claude-haiku-4-5',
+    name: 'Claude Haiku 4.5',
+    provider: 'Anthropic',
+    inputPricePerMillion: 1.00,
+    outputPricePerMillion: 5.00,
+    cachedInputPricePerMillion: 0.10,
+    contextWindow: 200000,
+    tier: 'budget',
+    recommendedFor: 'Fast execution, high accuracy text transformations',
+  },
+
+  // Google
+  {
+    id: 'gemini-3-1-pro',
+    name: 'Gemini 3.1 Pro',
+    provider: 'Google',
+    inputPricePerMillion: 2.00,
+    outputPricePerMillion: 12.00,
+    cachedInputPricePerMillion: 0.20,
+    contextWindow: 1048576,
+    tier: 'flagship',
+    recommendedFor: 'Multimodal understanding, agentic work (rates for prompts up to 200K tokens)',
+  },
+  {
+    id: 'gemini-3-flash-preview',
+    name: 'Gemini 3 Flash',
+    provider: 'Google',
+    inputPricePerMillion: 0.50,
+    outputPricePerMillion: 3.00,
+    cachedInputPricePerMillion: 0.05,
+    contextWindow: 1000000,
+    tier: 'budget',
+    recommendedFor: 'Fast, capable production default',
+  },
+
+  // DeepSeek
+  {
+    id: 'deepseek-flash',
+    name: 'DeepSeek Flash',
+    provider: 'DeepSeek',
+    inputPricePerMillion: 0.30,
+    outputPricePerMillion: 1.20,
+    cachedInputPricePerMillion: 0.006,
+    contextWindow: 1000000,
+    tier: 'budget',
+    recommendedFor: 'Unified chat + reasoning at minimum cost (peak rate; off-peak 50% lower)',
+  },
+  {
+    id: 'deepseek-v4-pro',
+    name: 'DeepSeek V4 Pro',
+    provider: 'DeepSeek',
+    inputPricePerMillion: 1.32,
+    outputPricePerMillion: 3.96,
+    cachedInputPricePerMillion: 0.044,
+    contextWindow: 1000000,
+    tier: 'flagship',
+    recommendedFor: 'DeepSeek flagship for complex coding and analysis (peak rate; off-peak 50% lower)',
   },
 
   // Meta / Open Source
@@ -166,15 +188,33 @@ export const LLM_MODELS: LlmModel[] = [
   // Mistral
   {
     id: 'codestral',
-    name: 'Codestral 2501',
+    name: 'Codestral',
     provider: 'Mistral',
     inputPricePerMillion: 0.30,
     outputPricePerMillion: 0.90,
+    cachedInputPricePerMillion: 0.03,
     contextWindow: 256000,
     tier: 'code',
     recommendedFor: 'Dedicated code completion, refactoring & Fill-in-the-Middle',
   },
 ];
+
+// Prices verified against the providers' official pricing pages on 2026-11-22.
+// Retired models (OpenAI o1 / o3-mini, Claude 3.5 Sonnet / Haiku / 3 Opus,
+// Gemini 1.5 Pro / 2.0 Flash / 2.0 Flash-Lite, DeepSeek V3 / R1 / V3.2,
+// Codestral 2501) were removed because they no longer appear on those pages.
+export const PRICING_LAST_UPDATED = '2026-11-22';
+
+export const PRICING_SOURCES: Record<LlmModel['provider'], string> = {
+  OpenAI: 'https://platform.openai.com/docs/pricing',
+  Anthropic: 'https://docs.anthropic.com/en/docs/about-claude/pricing',
+  Google: 'https://ai.google.dev/gemini-api/docs/pricing',
+  DeepSeek: 'https://api-docs.deepseek.com/quick_start/pricing',
+  'Meta / Groq': 'https://groq.com/pricing',
+  Mistral: 'https://mistral.ai/pricing',
+};
+
+export const PRICING_DISCLAIMER = 'Prices are approximate and may change — check the provider\u2019s official pricing page before making a decision. GPT-5 and GPT-5 mini retire on Dec 11, 2026 (OpenAI deprecation schedule); GPT-6.1 Sol and Terra are their replacements. Gemini 3.1 Pro rates apply to prompts up to 200K tokens; GPT-6.1 rates apply to prompts up to 272K tokens. DeepSeek rates shown are peak cache-miss rates — off-peak rates are 50% lower.';
 
 export interface TokenEstimationMetrics {
   charCount: number;
@@ -328,7 +368,7 @@ export function processRawTransactions(data: any[]) {
     description: 'High input tokens with context embeddings & short answer',
     systemPrompt: 'Answer the user question strictly using the provided search context. If not mentioned in the context, reply that information is unavailable.',
     userPrompt: `[DOCUMENTATION CHUNK #1]
-DevTol is a privacy-first web utilities platform with 126+ developer tools. All tools execute entirely client-side inside the user browser.
+DevTol is a privacy-first web utilities platform with 122 developer tools. All tools execute entirely client-side inside the user browser.
 
 [DOCUMENTATION CHUNK #2]
 DevTol supports 10 global languages including Arabic, English, Spanish, French, German, and Chinese.

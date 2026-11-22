@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import YAML from 'yaml';
 import MarkdownIt from 'markdown-it';
+import katex from 'katex';
 import { getHomePrerenderContent, getLegalPageArticleHtml } from './seo-content-templates.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -33,6 +34,35 @@ let baseHtmlTemplate = fs.readFileSync(templateIndexPath, 'utf8');
 const cssMatch = baseHtmlTemplate.match(/<link rel="stylesheet" href="([^"]*\/assets\/index-[^"]+\.css)">/);
 if (cssMatch) {
   console.log(`[SEO Prerender] Keeping shared stylesheet ${cssMatch[1]} (cached once, reused by all pages)`);
+}
+
+// KaTeX styles: the tool-guide renderer dynamically imports katex.min.css,
+// so Vite emits it as a separate hashed asset (not part of the main bundle).
+// Prerendered tool pages whose article contains rendered math need that
+// stylesheet linked, or the formulas render unstyled. Scan the emitted CSS
+// for the file that actually contains KaTeX rules.
+let katexCssHref = null;
+try {
+  const assetsDir = path.join(distDir, 'assets');
+  const mainCssHref = cssMatch ? cssMatch[1] : null;
+  let katexInMainCss = false;
+  for (const file of fs.readdirSync(assetsDir)) {
+    if (!file.endsWith('.css')) continue;
+    const href = `/assets/${file}`;
+    const css = fs.readFileSync(path.join(assetsDir, file), 'utf8');
+    if (!css.includes('.katex')) continue;
+    if (href === mainCssHref) { katexInMainCss = true; continue; }
+    katexCssHref = href;
+    console.log(`[SEO Prerender] Found KaTeX stylesheet ${href}`);
+    break;
+  }
+  if (katexInMainCss && !katexCssHref) {
+    console.log('[SEO Prerender] KaTeX styles are bundled in the main stylesheet; no extra link needed');
+  } else if (!katexCssHref) {
+    console.warn('[SEO Prerender] Warning: no emitted CSS file contains KaTeX rules — prerendered math will be unstyled until the SPA loads the KaTeX stylesheet at runtime.');
+  }
+} catch (err) {
+  console.warn('[SEO Prerender] Warning: could not scan dist/assets for KaTeX CSS:', err.message);
 }
 
 // Clean baseHtmlTemplate so it is an unpolluted blank template for all prerendered pages
@@ -118,9 +148,57 @@ function buildTitle(title, lang) {
   return fitTitle(title, TITLE_MAX);
 }
 
+// Math rendering for guide articles — DUPLICATED from
+// src/composables/use-tool-guide.ts (isMathSpan + renderMath).
+// Keep both copies in sync: same classification rule, same KaTeX options.
+// A $...$ span counts as math if it contains a LaTeX command (\), a math
+// symbol, an equation (=), a single token (variable, function, number,
+// ratio), or only short tokens. Everything else — e.g. dollar prices in
+// prose like "$400 when the agreed rate is $450" — is left untouched.
+const MATH_CHARS = '^_{}≈×÷±≤≥≠→⇒∑∏∫√∞';
+
+function isMathSpan(content) {
+  const s = content.trim();
+  if (!s) return false;
+  if (s.includes('\\')) return true;
+  for (const ch of MATH_CHARS) {
+    if (s.includes(ch)) return true;
+  }
+  if (s.includes('=')) return true;
+  if (!/\s/.test(s) && /^[A-Za-z0-9_(),:;.\-+*/<>']+$/.test(s)) return true;
+  const tokens = s.split(/\s+/).map(t => t.replace(/^[(),:;]+|[(),:;]+$/g, ''));
+  return tokens.length > 0 && tokens.every(t => t.length <= 2 || /^\d+$/.test(t));
+}
+
+function renderMathWithKatex(raw) {
+  // Protect fenced code blocks and inline code: math inside them is literal.
+  const parts = raw.split(/(```[\s\S]*?```|`[^`\n]+`)/g);
+  return parts
+    .map((part, i) => {
+      if (i % 2 === 1) return part;
+      return part
+        .replace(/\$\$([^$\n]{1,200}?)\$\$/g, (_m, tex) => {
+          try {
+            return katex.renderToString(tex, { displayMode: true, throwOnError: false });
+          } catch {
+            return `$$${tex}$$`;
+          }
+        })
+        .replace(/\$([^$\n]{1,120}?)\$/g, (m, tex) => {
+          if (!isMathSpan(tex)) return m;
+          try {
+            return katex.renderToString(tex, { displayMode: false, throwOnError: false });
+          } catch {
+            return m;
+          }
+        });
+    })
+    .join('');
+}
+
 // Guides often start with a Markdown H1 that duplicates the page H1; demote in-article headings.
 function renderArticle(rawMd) {
-  return md.render(rawMd.replace(/^\uFEFF/, ''))
+  return md.render(renderMathWithKatex(rawMd.replace(/^\uFEFF/, '')))
     .replace(/<h1(\s[^>]*)?>/gi, '<h2$1>')
     .replace(/<\/h1>/gi, '</h2>');
 }
@@ -752,7 +830,12 @@ function generatePrerenderedHtml({
   html = html.replace(/<meta\s+name="twitter:description"\s+content=".*?"\s*\/?>/i, `<meta name="twitter:description" content="${escapeHtml(fullDesc)}" />`);
 
   // Inject hreflangs & dynamic tool JSON-LD schema into head
-  const headInjection = `\n    <!-- International Hreflang Network -->\n    ${hreflangTags}\n    <!-- Dynamic Tool Schema.org Structured Data -->\n    <script type="application/ld+json">\n    ${schemaJson.replace(/<\/script/gi, '<\\/script')}\n    </script>\n  </head>`;
+  // Prerendered math needs the KaTeX stylesheet: the SPA loads it lazily at
+  // runtime, but the static HTML is served before any JS runs.
+  const katexLink = (katexCssHref && articleHtml && articleHtml.includes('katex'))
+    ? `\n    <!-- KaTeX stylesheet (article contains rendered math) -->\n    <link rel="stylesheet" href="${katexCssHref}" />`
+    : '';
+  const headInjection = `\n    <!-- International Hreflang Network -->\n    ${hreflangTags}${katexLink}\n    <!-- Dynamic Tool Schema.org Structured Data -->\n    <script type="application/ld+json">\n    ${schemaJson.replace(/<\/script/gi, '<\\/script')}\n    </script>\n  </head>`;
   html = html.replace('</head>', headInjection);
 
   // Related tools navigation for internal link graph & topic clusters

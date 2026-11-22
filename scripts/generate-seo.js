@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { execFileSync } from 'child_process';
 import YAML from 'yaml';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -104,6 +105,26 @@ const toolRoutes = [];
 const today = new Date().toISOString().split('T')[0];
 const toolDetails = [];
 
+// Sitemap lastmod must be stable between builds: never fall back silently to
+// "today", and never use mtime (Cloudflare builds from a fresh clone, so
+// mtime is the clone time and changes on every build).
+function isValidDateStr(s) {
+  return typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && !Number.isNaN(new Date(s).getTime());
+}
+
+function getLastCommitDate(relPath) {
+  try {
+    const args = ['log', '-1', '--format=%ad', '--date=short'];
+    if (relPath) args.push('--', relPath);
+    const out = execFileSync('git', args, { cwd: rootDir, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+    return isValidDateStr(out) ? out : null;
+  } catch {
+    return null;
+  }
+}
+
+const repoHeadDate = getLastCommitDate(null);
+
 for (const varName of registeredToolVars) {
   const relImport = importedModules.get(varName);
   let toolFilePath = path.join(rootDir, 'src', 'tools', relImport.replace('./', ''), 'index.ts');
@@ -119,7 +140,18 @@ for (const varName of registeredToolVars) {
       const slug = toolPath.replace(/^\//, '');
 
       const dateMatch = fileContent.match(/createdAt:\s*new Date\(['"]([^'"]+)['"]\)/);
-      const lastmod = dateMatch ? dateMatch[1] : today;
+      const createdAtStr = dateMatch ? dateMatch[1] : null;
+      if (createdAtStr && !isValidDateStr(createdAtStr)) {
+        console.warn(`[SEO Generator] Warning: tool "${slug}" has an invalid createdAt "${createdAtStr}" — falling back to the last-commit date.`);
+      }
+      // Fallback chain: last commit touching the tool file -> valid createdAt
+      // -> last commit of the repo (HEAD, works even in a shallow clone)
+      // -> today, with a warning, as a last resort only.
+      const toolRelPath = path.relative(rootDir, toolFilePath).split(path.sep).join('/');
+      const lastmod = getLastCommitDate(toolRelPath)
+        || (isValidDateStr(createdAtStr) ? createdAtStr : null)
+        || repoHeadDate
+        || (() => { console.warn(`[SEO Generator] Warning: no usable lastmod for tool "${slug}" — using today.`); return today; })();
 
       const localeEntry = (enLocale.tools && enLocale.tools[slug]) || {};
       let title = localeEntry.title;

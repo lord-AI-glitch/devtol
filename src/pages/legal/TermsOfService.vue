@@ -16,7 +16,7 @@ useHead({
   <div class="legal-container">
     <div class="legal-card">
       <h1 class="text-3xl font-bold mb-4 text-primary">Terms of Service</h1>
-      <p class="text-sm text-slate-500 dark:text-neutral-400 mb-6">Effective Date: September 11, 2026</p>
+      <p class="text-sm text-slate-500 dark:text-neutral-400 mb-6">Effective Date: November 22, 2026</p>
 
       <div class="space-y-6 text-slate-600 dark:text-neutral-300 leading-relaxed">
         <section>
@@ -95,7 +95,7 @@ useHead({
         <section>
           <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">8. Governing Law & Dispute Resolution</h2>
           <p>
-            These Terms shall be governed by and construed in accordance with the laws of France and the European Union, without regard to conflict of law principles. Any dispute arising under these Terms shall be subject to the exclusive jurisdiction of the competent courts.
+            These Terms shall be governed by and construed in accordance with generally accepted principles of international commercial law, without regard to conflict of law principles. Any dispute arising under these Terms shall first be addressed through good-faith negotiation; if the parties cannot reach a resolution, the dispute shall be submitted to binding arbitration in English under the rules of a mutually agreed arbitral institution.
           </p>
         </section>
 

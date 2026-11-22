@@ -10,7 +10,9 @@ import ToolIssueWhatsApp from '@/components/ToolIssueWhatsApp.vue';
 import AdSenseUnit from '@/components/AdSenseUnit.vue';
 import type { Tool } from '@/tools/tools.types';
 import { useStyleStore } from '@/stores/style.store';
-import { getGuideRenderer } from '@/composables/use-tool-guide';
+// NOTE: use-tool-guide is imported dynamically inside loadArticle (below),
+// so markdown-it / highlight.js / KaTeX stay out of the shared layout chunk
+// and load only when a tool page actually has a guide to render.
 
 const route = useRoute();
 const styleStore = useStyleStore();
@@ -257,7 +259,11 @@ async function loadArticle(toolSlug: string) {
   }
 
   try {
-    const [rawContent, renderGuide] = await Promise.all([loadGuide(), getGuideRenderer()]);
+    const [{ getGuideRenderer }, rawContent] = await Promise.all([
+      import('@/composables/use-tool-guide'),
+      loadGuide(),
+    ]);
+    const renderGuide = await getGuideRenderer();
     if (requestId !== guideRequestId) return;
     renderedGuideHtml.value = renderGuide(rawContent as string);
   } catch (error) {

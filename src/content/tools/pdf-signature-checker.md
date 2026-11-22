@@ -123,7 +123,29 @@ export async function verifyPdfSignature(pdfBytes: Uint8Array): Promise<Signatur
 
 ---
 
-## 5. Frequently Asked Questions (FAQs)
+## 5. Common Mistakes & Pitfalls
+
+### Mistake 1: Treating "signature present" as "document trustworthy"
+**Cause:** A valid signature only proves the signed bytes were not changed after signing and that the holder of the private key signed them. It says nothing about whether that signer is who they claim to be.
+**Fix:** Always validate the full certificate chain up to a trusted root CA and confirm the signer's identity matches the expected party before relying on the document.
+
+### Mistake 2: Ignoring incremental updates appended after signing
+**Cause:** PDF allows appending new objects after the signature without touching the signed bytes, so hidden pages or overlaid clauses can be smuggled in while the signature still verifies.
+**Fix:** Check that the `/ByteRange` covers the whole file and treat any trailing bytes after the signed range as a warning, not as harmless metadata.
+
+### Mistake 3: Accepting expired or revoked certificates
+**Cause:** A signature made with a certificate that has since expired or been revoked may still verify mathematically, but it no longer carries trust.
+**Fix:** Check the certificate validity window and revocation status (CRL/OCSP, or the embedded responses in PAdES-LTA documents) at the signing time, not only at verification time.
+
+### Mistake 4: Confusing a scanned signature image with a digital signature
+**Cause:** A pasted image of a handwritten signature or a typed name provides no cryptographic integrity at all — anyone can copy the image into a modified document.
+**Fix:** Require a real PKCS#7/CMS signature dictionary (`/SubFilter` of `adbe.pkcs7.detached` or `ETSI.CAdES.detached`); an image alone is not verification.
+
+### Mistake 5: Verifying only the first signature in a multi-signature document
+**Cause:** Documents with several signers carry several signature dictionaries, and a later signature can cover a different byte range than the first.
+**Fix:** Enumerate and verify every signature in the document, and confirm each one covers the content it is supposed to approve.
+
+## 6. Frequently Asked Questions (FAQs)
 
 ### What does "Document has been altered or corrupted since it was signed" mean?
 This error triggers when the computed hash over the `/ByteRange` bytes does not match the digest encrypted in the PKCS#7 signature container. This occurs if any page, text string, metadata, or byte within the signed range was edited after signing.
@@ -139,5 +161,5 @@ An electronic signature can be any digital mark (such as a typed name or an imag
 
 ---
 
-## 6. Privacy & Security Notice
+## 7. Privacy & Security Notice
 All PDF parsing, ASN.1 decoding, and cryptographic hash verifications are conducted 100% locally within your browser sandbox. Confidential legal agreements, financial records, and medical files are never transmitted to external cloud servers.

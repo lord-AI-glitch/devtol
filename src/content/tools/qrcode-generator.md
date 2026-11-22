@@ -203,7 +203,29 @@ Matter and HomeKit IoT smart-home protocols print QR codes on hardware enclosure
 
 ---
 
-## 6. Frequently Asked Questions (FAQs)
+## 6. Common Mistakes & Pitfalls
+
+### Mistake 1: Dropping the quiet zone
+**Cause:** Without at least 4 modules of blank margin around the symbol, nearby text, logos, or background patterns confuse the scanner's edge detection and the code fails to read.
+**Fix:** Always keep the full quiet zone; when placing a QR code on a busy design, add a solid light-colored backing plate behind it.
+
+### Mistake 2: Encoding too much data into one code
+**Cause:** Long URLs or payloads push the version up and shrink every module, so low-resolution phone cameras can no longer resolve them reliably.
+**Fix:** Keep practical URLs under 300 characters (below Version 10); for longer destinations, use a short redirect link instead of encoding the full URL.
+
+### Mistake 3: Using low contrast or inverted colors
+**Cause:** Dark gray modules on a black background, or inverted white-on-black codes, defeat luminance-based detection on many industrial and older handheld scanners.
+**Fix:** Use dark modules on a light background with a contrast ratio of at least 4:1, and reserve inverted codes for modern phone cameras only.
+
+### Mistake 4: Covering finder patterns or timing lines with a logo
+**Cause:** A center logo that overlaps the three corner finder patterns or the timing lines removes the landmarks scanners use to locate and orient the matrix.
+**Fix:** Keep the logo in the center only, under 20% of the total area, at error correction Level H, and never touching a finder pattern or timing line.
+
+### Mistake 5: Exporting a low-resolution raster for print
+**Cause:** A small PNG scaled up for a poster or billboard turns modules into blurry blobs that no scanner can decode.
+**Fix:** Export SVG for print and large formats; if PNG is required, export at 1024 × 1024 px or higher.
+
+## 7. Frequently Asked Questions (FAQs)
 
 ### Q1: What is the maximum data storage capacity of a QR code?
 Under **Version 40** ($177 \times 177$ modules) at Error Correction Level **L**, a QR code can store up to:
@@ -211,7 +233,7 @@ Under **Version 40** ($177 \times 177$ modules) at Error Correction Level **L**,
 - **4,296** alphanumeric characters, or
 - **2,953** raw binary bytes, or
 - **1,817** Kanji characters.
-However, for reliable mobile camera scanning, practical web URLs should stay under 300 characters to maintain a lower version ($< Version 10$).
+However, for reliable mobile camera scanning, practical web URLs should stay under 300 characters to maintain a lower version (below Version 10).
 
 ### Q2: Can a QR code with an inverted color scheme (white on black) be scanned?
 While the official ISO/IEC 18004 specification assumes dark modules on a light background, modern smartphone barcode readers (iOS Camera, Google Lens) support inverted QR codes. However, many industrial laser scanners and older handheld scanners strictly fail on inverted matrices. For universal interoperability, always utilize dark foreground modules over a light background.
@@ -228,5 +250,5 @@ The most common reasons are:
 
 ---
 
-## 7. Client-Side Privacy & Security Guarantee
+## 8. Client-Side Privacy & Security Guarantee
 This QR Code Generator operates **100% within your client browser**. Wi-Fi passwords, private encryption keys, internal company URLs, and sensitive authentication seeds are processed exclusively within local memory. Zero payload bytes are transmitted to any server or cloud API, providing total privacy and compliance with SOC 2, HIPAA, and GDPR standards.

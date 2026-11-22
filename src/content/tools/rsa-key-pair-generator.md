@@ -93,7 +93,29 @@ RSA keys power TLS handshakes and domain email authentication (DKIM), allowing m
 
 ---
 
-## 5. Frequently Asked Questions (FAQs)
+## 5. Common Mistakes & Pitfalls
+
+### Mistake 1: Generating 1024-bit (or smaller) keys
+**Cause:** 1024-bit RSA is within reach of well-funded factorization efforts, so keys that size no longer provide a meaningful security margin.
+**Fix:** Use 2048 bits as the minimum for general use, 3072 bits for data that must stay secure beyond 2030, and 4096 bits for root CAs and long-term archives.
+
+### Mistake 2: Sharing, emailing, or committing the private key
+**Cause:** Anyone holding the private key can decrypt messages and forge signatures as you. A key committed to a repository is compromised the moment it is pushed, even to a private repo.
+**Fix:** Keep the private key in local secret storage with tight file permissions, distribute only the public key, and revoke and replace any private key that was ever exposed.
+
+### Mistake 3: Encrypting large data directly with RSA
+**Cause:** RSA can only encrypt a message shorter than the key minus padding overhead (about 190 bytes for a 2048-bit key with OAEP), so bulk data fails or forces insecure chunking.
+**Fix:** Use hybrid encryption: generate a random AES key, encrypt the data with AES-GCM, and encrypt only the AES key with RSA.
+
+### Mistake 4: Mixing up PKCS#1 and PKCS#8 formats on import
+**Cause:** A `BEGIN RSA PRIVATE KEY` (PKCS#1) file fed to a parser expecting `BEGIN PRIVATE KEY` (PKCS#8) — or the reverse — fails to load, and converting by hand risks corrupting the key.
+**Fix:** Check the PEM header before importing and convert explicitly (for example with OpenSSL `pkcs8 -topk8`) instead of renaming headers.
+
+### Mistake 5: Using raw "textbook" RSA without padding
+**Cause:** Unpadded RSA is deterministic and malleable: identical plaintexts produce identical ciphertexts and attackers can manipulate ciphertexts algebraically.
+**Fix:** Always use OAEP padding for encryption and PSS (or PKCS#1 v1.5) for signatures; never use raw modular exponentiation on application data.
+
+## 6. Frequently Asked Questions (FAQs)
 
 ### What key length should I choose: 2048, 3072, or 4096 bits?
 - **2048 bits**: Current baseline recommended by NIST for general commercial systems.
@@ -111,7 +133,7 @@ No. Key generation occurs directly inside your browser sandbox using the Web Cry
 
 ---
 
-## 6. Security and Privacy Guarantee
+## 7. Security and Privacy Guarantee
 - **Web Crypto Native**: Hardware-backed asymmetric key generation directly inside client memory.
 - **Zero Remote Storage**: Private keys are not transmitted or stored remotely.
 - **PKCS Compliant**: Exports RFC 5208 (PKCS#8) and RFC 5280 (SPKI) standards.

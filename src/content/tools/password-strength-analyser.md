@@ -95,7 +95,29 @@ Security administrators run internal password health checks on team credentials 
 
 ---
 
-## 5. Frequently Asked Questions (FAQs)
+## 5. Common Mistakes & Pitfalls
+
+### Mistake 1: Trusting a "Strong" score for a breached password
+**Cause:** A long, complex-looking password such as `P@ssw0rd2026!` can still score highly on entropy while appearing in every breach dictionary, making it one of the first guesses an attacker tries.
+**Fix:** Check candidate passwords against a breached-password list (for example Have I Been Pwned) in addition to the entropy score, and reject any match.
+
+### Mistake 2: Reusing one strong password everywhere
+**Cause:** A single breach at any one service exposes the same credential for every other account, no matter how strong the password itself is.
+**Fix:** Use a unique password per service, ideally generated and stored by a password manager, so one breach cannot cascade.
+
+### Mistake 3: Judging strength by character variety instead of length
+**Cause:** Short passwords with symbols (`Tr0ub4dor!`) have far less entropy than long passphrases of plain words, yet most meters reward the symbols and punish the words.
+**Fix:** Prioritize length — 15 or more characters, preferably several random words — over mandatory symbols and digits.
+
+### Mistake 4: Confusing entropy bits with real crack time
+**Cause:** Entropy measures the size of the search space, but how fast that space is searched depends on the server's hash: the same 60-bit password falls in seconds against fast MD5 but takes years against bcrypt.
+**Fix:** Read the entropy score together with the attack-scenario estimates, and remember that server-side slow hashing is what turns entropy into real protection.
+
+### Mistake 5: Testing a real password in an untrusted online meter
+**Cause:** Many online strength checkers transmit the typed password to a server, where it can be logged, leaked, or added to an attack dictionary.
+**Fix:** Only test passwords in a tool that runs entirely in your browser, like this one, and prefer testing a similar-but-different password rather than the real credential.
+
+## 6. Frequently Asked Questions (FAQs)
 
 ### Why are traditional composition rules (uppercase + number + symbol) considered outdated?
 NIST SP 800-63B emphasizes that strict composition rules lead users to adopt predictable transformations (e.g., replacing `e` with `3` or appending `!` to the end). Longer passphrases (15+ characters) formed from random words offer significantly higher entropy and usability.
@@ -114,7 +136,7 @@ No. The analyzer is executed completely in your local browser using client-side 
 
 ---
 
-## 6. Security and Privacy Guarantee
+## 7. Security and Privacy Guarantee
 - **Strictly Client-Side**: All analysis, dictionary checks, and entropy calculations occur locally.
 - **No Remote Telemetry**: Zero analytics, external network calls, or logging.
 - **NIST Aligned**: Evaluated against modern NIST SP 800-63B digital identity guidelines.

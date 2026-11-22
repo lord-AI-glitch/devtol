@@ -19,16 +19,12 @@ const form = ref({
   message: '',
 });
 
-const isSubmitted = ref(false);
-const isSubmitting = ref(false);
+const CONTACT_EMAIL = 'Lordrealstate5@gmail.com';
 
 function handleSubmit() {
-  isSubmitting.value = true;
-  // Simulate client-side confirmation
-  setTimeout(() => {
-    isSubmitting.value = false;
-    isSubmitted.value = true;
-  }, 600);
+  const subject = `[DevTol] ${form.subject}`;
+  const body = `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`;
+  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 </script>
 
@@ -50,54 +46,36 @@ function handleSubmit() {
             
             <div class="space-y-3 text-sm text-slate-600 dark:text-neutral-300">
               <div>
-                <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">General Inquiries & Support</p>
-                <a href="mailto:support@devtol.online" class="text-primary hover:underline font-medium">support@devtol.online</a>
+                <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">Email</p>
+                <a href="mailto:Lordrealstate5@gmail.com" class="text-primary hover:underline font-medium">Lordrealstate5@gmail.com</a>
               </div>
 
               <div>
-                <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">Privacy & Legal</p>
-                <a href="mailto:privacy@devtol.online" class="text-primary hover:underline font-medium">privacy@devtol.online</a>
+                <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">Phone (Support)</p>
+                <a href="tel:+201096656588" class="text-primary hover:underline font-medium">+20 1096656588</a>
               </div>
 
               <div>
                 <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">Feature Requests & Feedback</p>
-                <a href="mailto:support@devtol.online?subject=Feature%20Request" class="text-primary hover:underline font-medium">
+                <a href="mailto:Lordrealstate5@gmail.com?subject=Feature%20Request" class="text-primary hover:underline font-medium">
                   Submit Feedback / Request
                 </a>
               </div>
 
               <div>
-                <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">Twitter / X</p>
-                <a href="https://x.com/devtolonline" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">
-                  @devtolonline
+                <p class="text-xs text-slate-500 dark:text-neutral-400 font-semibold uppercase">Facebook</p>
+                <a href="https://www.facebook.com/ellordmax1" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">
+                  facebook.com/ellordmax1
                 </a>
               </div>
             </div>
           </div>
 
-          <div class="p-4 rounded-lg bg-slate-100 dark:bg-neutral-800/40 border border-slate-200 dark:border-neutral-700/60 text-xs text-slate-500 dark:text-neutral-400">
-            <p class="font-semibold text-slate-600 dark:text-neutral-300 mb-1">Response Time SLA</p>
-            <p>We aim to reply to community and technical inquiries within 24 to 48 business hours.</p>
-          </div>
         </div>
 
         <!-- Contact Form -->
         <div class="lg:col-span-2">
-          <div v-if="isSubmitted" class="p-8 rounded-lg bg-emerald-950/40 border border-emerald-500/50 text-center">
-            <div class="text-4xl mb-3">âœ…</div>
-            <h2 class="text-xl font-bold text-emerald-400 mb-2">Message Sent Successfully!</h2>
-            <p class="text-slate-600 dark:text-neutral-300 text-sm">
-              Thank you for reaching out. Our engineering team has received your message and will review it promptly.
-            </p>
-            <button
-              class="mt-5 px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-slate-900 dark:text-white rounded-md text-sm font-medium transition-colors"
-              @click="isSubmitted = false; form.name = ''; form.email = ''; form.message = '';"
-            >
-              Send Another Message
-            </button>
-          </div>
-
-          <form v-else class="space-y-4" @submit.prevent="handleSubmit">
+          <form class="space-y-4" @submit.prevent="handleSubmit">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-semibold text-slate-600 dark:text-neutral-300 mb-1 uppercase tracking-wider">Your Name *</label>
@@ -149,11 +127,14 @@ function handleSubmit() {
 
             <button
               type="submit"
-              :disabled="isSubmitting"
-              class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-semibold rounded-md text-sm transition-colors"
+              class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-md text-sm transition-colors"
             >
-              {{ isSubmitting ? 'Transmitting...' : 'Send Message' }}
+              Send Message
             </button>
+
+            <p class="text-xs text-slate-500 dark:text-neutral-400 text-center">
+              Clicking "Send Message" opens your email app with your message pre-filled to Lordrealstate5@gmail.com. Nothing is sent through DevTol's servers.
+            </p>
           </form>
         </div>
       </div>

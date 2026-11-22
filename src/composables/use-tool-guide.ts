@@ -1,13 +1,71 @@
 type GuideRenderer = (rawMarkdown: string) => string;
 
+type KatexLike = {
+  renderToString: (tex: string, options?: { displayMode?: boolean; throwOnError?: boolean }) => string;
+};
+
 let rendererPromise: Promise<GuideRenderer> | null = null;
 
+// A $...$ span counts as math if it contains a LaTeX command (\), a math
+// symbol, an equation (=), a single token (variable, function, number,
+// ratio), or only short tokens. Everything else — e.g. dollar prices in
+// prose like "$400 when the agreed rate is $450" — is left untouched.
+// Keep in sync with scripts/prerender-seo-pages.js (renderMathWithKatex).
+const MATH_CHARS = '^_{}≈×÷±≤≥≠→⇒∑∏∫√∞';
+
+function isMathSpan(content: string): boolean {
+  const s = content.trim();
+  if (!s) return false;
+  if (s.includes('\\')) return true;
+  for (const ch of MATH_CHARS) {
+    if (s.includes(ch)) return true;
+  }
+  if (s.includes('=')) return true;
+  if (!/\s/.test(s) && /^[A-Za-z0-9_(),:;.\-+*/<>']+$/.test(s)) return true;
+  const tokens = s.split(/\s+/).map(t => t.replace(/^[(),:;]+|[(),:;]+$/g, ''));
+  return tokens.length > 0 && tokens.every(t => t.length <= 2 || /^\d+$/.test(t));
+}
+
+function renderMath(raw: string, katex: KatexLike): string {
+  // Protect fenced code blocks and inline code: math inside them is literal.
+  const parts = raw.split(/(```[\s\S]*?```|`[^`\n]+`)/g);
+  return parts
+    .map((part, i) => {
+      if (i % 2 === 1) return part;
+      return part
+        .replace(/\$\$([^$\n]{1,200}?)\$\$/g, (_m, tex: string) => {
+          try {
+            return katex.renderToString(tex, { displayMode: true, throwOnError: false });
+          } catch {
+            return `$$${tex}$$`;
+          }
+        })
+        .replace(/\$([^$\n]{1,120}?)\$/g, (m, tex: string) => {
+          if (!isMathSpan(tex)) return m;
+          try {
+            return katex.renderToString(tex, { displayMode: false, throwOnError: false });
+          } catch {
+            return m;
+          }
+        });
+    })
+    .join('');
+}
+
 async function createGuideRenderer(): Promise<GuideRenderer> {
-  const [{ default: MarkdownIt }, { default: DomPurify }, { default: hljs }] = await Promise.all([
+  const [
+    { default: MarkdownIt },
+    { default: DomPurify },
+    { default: hljs },
+    ,
+    { default: katex },
+  ] = await Promise.all([
     import('markdown-it'),
     import('dompurify'),
     import('highlight.js/lib/core'),
     import('highlight.js/styles/atom-one-dark.css'),
+    import('katex'),
+    import('katex/dist/katex.min.css'),
   ]);
 
   const [
@@ -104,10 +162,14 @@ async function createGuideRenderer(): Promise<GuideRenderer> {
 
   return (rawMarkdown: string) => {
     const rendered = md
-      .render(rawMarkdown.replace(/^\uFEFF/, ''))
+      .render(renderMath(rawMarkdown.replace(/^\uFEFF/, ''), katex))
       .replace(/<h1(\s[^>]*)?>/gi, '<h2$1>')
       .replace(/<\/h1>/gi, '</h2>');
-    return DomPurify.sanitize(rendered, { ADD_ATTR: ['target'] });
+    // KaTeX output (spans + MathML) must survive sanitizing.
+    return DomPurify.sanitize(rendered, {
+      ADD_ATTR: ['target', 'encoding'],
+      ADD_TAGS: ['math', 'semantics', 'annotation', 'mrow', 'mi', 'mo', 'mn', 'msup', 'msub', 'msubsup', 'mfrac', 'msqrt', 'munder', 'mover', 'mtext', 'mtable', 'mtr', 'mtd'],
+    });
   };
 }
 

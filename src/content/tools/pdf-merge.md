@@ -1,4 +1,4 @@
-﻿# Merge PDF — Free Online PDF Merger: Combine Multiple Files Instantly
+# Merge PDF — Free Online PDF Merger: Combine Multiple Files Instantly
 
 > Merge unlimited PDF files into one seamless document — entirely in your browser. No uploads, no registration, no file size limits imposed by a third-party server.
 
@@ -80,3 +80,43 @@ This tool meets WCAG 2.1 AA contrast requirements. The upload zone is keyboard-a
 ## Technical Verification & E-E-A-T Disclaimer
 
 This tool is built on **pdf-lib v1.17+**, a battle-tested open-source library with over 7 million weekly npm downloads. The implementation follows the PDF specification (ISO 32000-1:2008) for page copying operations. All processing is verified client-side via browser DevTools — no network requests are made after the initial page load.
+
+---
+
+## Worked Example: Building One Quarterly Report from Four Files
+
+Omar, an accountant, must send a single quarterly report to his company's board. He has four separate PDFs: a 1-page cover sheet (0.2 MB), the Q1 financial summary of 8 pages (2.1 MB), the Q2 summary of 11 pages (3.4 MB), and a 6-page appendix of charts (1.1 MB).
+
+**Step 1 — Add the files in order.** Omar drags all four files into the Merge PDF tool. The list initially shows them alphabetically, which puts the appendix before the cover, so he drags the cover sheet to the top, followed by Q1, then Q2, then the appendix. The list now reads: cover, Q1, Q2, appendix — 26 pages in total.
+
+**Step 2 — Check the list before merging.** He counts the pages shown next to each file: 1 + 8 + 11 + 6 = 26 pages. The combined size is about 6.8 MB, well within what his browser can handle. He removes nothing, because every file is needed.
+
+**Step 3 — Merge and verify.** He clicks "Merge PDFs". The merge finishes in about 2 seconds. He downloads `merged.pdf`, renames it `Q1-Q2-Board-Report-2026.pdf`, and opens it to check that page 1 is the cover, page 2 starts the Q1 summary, page 13 starts Q2, and page 21 starts the appendix. The hyperlinks inside the Q2 tables still work, and the charts in the appendix are as sharp as in the originals.
+
+## Common Mistakes
+
+### Mistake 1: Merging files in the wrong order
+**Cause:** Files are added in alphabetical or upload order, which rarely matches the intended reading order — an appendix lands before the introduction. **Fix:** Always read the file list top to bottom before clicking merge, and drag each file into its correct position. Re-check the page numbers after downloading.
+
+### Mistake 2: Trying to merge a password-protected PDF
+**Cause:** One of the files is encrypted, so pdf-lib cannot parse it and the whole merge fails or silently skips that file. **Fix:** Unlock that file first with the PDF Protect & Unlock tool, confirm it opens without a password, and only then add it to the merge list.
+
+### Mistake 3: Merging the same file twice by accident
+**Cause:** A file is dragged in twice, or a cover page that already exists inside another document is added again, producing a duplicated section. **Fix:** Scan the list for duplicate filenames and check the total page count — in the example above, 26 pages is correct, while 27 would have signalled a duplicated cover.
+
+### Mistake 4: Expecting bookmarks to survive the merge
+**Cause:** Each source PDF has its own bookmark outline, and users assume the merged file will contain one combined outline. **Fix:** Know that page hyperlinks are preserved but document-level bookmarks are not merged in this version. If navigation matters, add a table-of-contents page as the second page of the merged document.
+
+## Frequently Asked Questions (Continued)
+
+### Will the merged file be much larger than the sum of the inputs?
+No. The merged file is roughly the sum of the input sizes — about 6.8 MB for the four files in the example above — plus a small amount of structural overhead, typically under 100 KB. No re-encoding takes place, so there is no quality loss and no surprise growth.
+
+### Can I merge a 200-page PDF with a 2-page PDF?
+Yes. Page counts do not need to match. The tool copies pages sequentially, so a 200-page report followed by a 2-page cover letter produces a 202-page document. The only practical limit is your browser's available memory.
+
+### What happens if one file in the list is corrupted?
+The merge stops and reports an error instead of producing a partial file. Remove the suspect file, open it separately to confirm it is damaged, replace it with a clean copy, and merge again.
+
+### Does merging change the page size of mixed documents?
+No. Each page keeps its original dimensions. If you merge an A4 report with a US Letter appendix, the output contains both sizes, exactly as the sources had them.

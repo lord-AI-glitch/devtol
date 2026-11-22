@@ -34,7 +34,7 @@ const platformHighlights = [
   {
     tag: 'Developer Standards',
     title: 'RFC-Compliant Specifications & Cryptographic Security',
-    description: 'DevTol algorithms strictly implement official IETF, NIST, and W3C specifications with zero telemetry.',
+    description: 'DevTol algorithms strictly implement official IETF, NIST, and W3C specifications. No data collection by DevTol tools — inputs never leave your browser.',
     badge: 'Standards Compliant',
   },
   {
