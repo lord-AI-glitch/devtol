@@ -107,7 +107,29 @@ DevOps teams securely share environment variables or production secrets across a
 
 ---
 
-## 5. Frequently Asked Questions (FAQs)
+## 5. Common Mistakes & Pitfalls
+
+### Mistake 1: Reusing an IV/nonce with the same key in AES-GCM
+**Cause:** GCM's security collapses when a nonce repeats under one key: an attacker can recover the authentication key and forge ciphertexts.
+**Fix:** Generate a fresh random 12-byte IV for every encryption and store it alongside the ciphertext; never reuse, hard-code, or derive it from a counter you might reset.
+
+### Mistake 2: Using AES-CBC without authentication
+**Cause:** CBC provides confidentiality only. Without a MAC, an attacker can flip ciphertext bits and exploit padding oracles to decrypt the message.
+**Fix:** Prefer AES-GCM (authenticated encryption). If you must use CBC, add an HMAC over the ciphertext (encrypt-then-MAC) and verify it before decrypting.
+
+### Mistake 3: Deriving a key directly from a password
+**Cause:** Human passphrases have far less entropy than a 256-bit key, and using them raw (or with a single hash round) makes offline dictionary attacks trivial.
+**Fix:** Always run passphrases through PBKDF2 (or Argon2/scrypt) with a random 16-byte salt and at least 100,000 iterations.
+
+### Mistake 4: Losing the salt or IV — or treating them as secrets
+**Cause:** Salt and IV are required to decrypt, so losing them destroys the data; conversely, hiding them adds no security and complicates key management.
+**Fix:** Store the salt and IV in plaintext next to the ciphertext (they are not secrets); protect only the passphrase or key.
+
+### Mistake 5: Encrypting with ECB mode or a hard-coded key
+**Cause:** ECB encrypts identical plaintext blocks to identical ciphertext blocks, leaking patterns, and a key baked into source code is exposed to anyone who reads the code.
+**Fix:** Never use ECB; use GCM or CBC with a random IV, and load keys from a secret manager or environment variable, never from the repository.
+
+## 6. Frequently Asked Questions (FAQs)
 
 ### Why is AES-GCM preferred over AES-CBC?
 AES-CBC only provides confidentiality, not integrity. If CBC ciphertexts are modified without authenticated MAC validation, the application may become vulnerable to padding oracle attacks. AES-GCM is an Authenticated Encryption with Associated Data (AEAD) scheme that automatically validates that ciphertext has not been tampered with.
@@ -123,7 +145,7 @@ No. All cryptographic operations are processed via the native browser Web Crypto
 
 ---
 
-## 6. Security and Privacy Guarantee
+## 7. Security and Privacy Guarantee
 - **Local Web Crypto API**: Hardware-accelerated client-side encryption.
 - **Zero-Knowledge Guarantee**: Keys and plaintexts remain in client volatile RAM only.
 - **NIST Standard Compliant**: Strict adherence to NIST SP 800-38D (AES-GCM) and RFC 8018 (PBKDF2).

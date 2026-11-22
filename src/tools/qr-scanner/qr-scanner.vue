@@ -25,7 +25,7 @@ function onFile(e:Event){
 async function decodeFromFile(f:File){
   isProcessing.value=true;
   try{
-    const mod = await import("https://esm.sh/jsqr@1.4.0");
+    const mod = await import('jsqr');
     const jsQR = (mod as any).default || mod;
     const img=new Image();img.src=URL.createObjectURL(f);await new Promise(r=>img.onload=r);
     const c=document.createElement("canvas");c.width=img.naturalWidth;c.height=img.naturalHeight;
@@ -42,7 +42,7 @@ async function startCamera(){
     stream.value=await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"}});
     if(videoRef.value){videoRef.value.srcObject=stream.value;await videoRef.value.play();}
     isScanning.value=true;
-    const mod = await import("https://esm.sh/jsqr@1.4.0");
+    const mod = await import('jsqr');
     const jsQR = (mod as any).default || mod;
     const c=document.createElement("canvas");
     scanInterval=setInterval(()=>{

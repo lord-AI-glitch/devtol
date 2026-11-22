@@ -14,39 +14,27 @@ useHead(computed(() => ({
     {
       name: 'description',
       content: isAr.value
-        ? 'تعرف على الفريق الهندسي، ورسالة منصة DevTol، وحوسبة الخصوصية المحلية 100%، ومعايير الجودة والاعتماد التحريري E-E-A-T.'
-        : 'Learn about the engineering team, mission, privacy-first client-side architecture, and E-E-A-T editorial standards behind DevTol.',
+        ? 'تعرف على مؤسس المنصة، ورسالة منصة DevTol، وحوسبة الخصوصية المحلية 100%، ومعايير الجودة والاعتماد التحريري E-E-A-T.'
+        : 'Learn about the founder, mission, privacy-first client-side architecture, and E-E-A-T editorial standards behind DevTol.',
     },
   ],
 })));
 
 const teamMembersEn = [
   {
-    name: 'DevTol Core Architecture & Engineering Team',
-    role: 'Platform Leadership & Systems Engineering',
-    bio: 'Senior full-stack and systems engineers specializing in high-performance client-side web computing, WebAssembly compilation, Web Crypto implementations, and distributed edge architectures.',
-    focus: 'Vue 3, TypeScript, WebAssembly, Web Crypto API, Edge Networking & Zero-Knowledge Privacy',
-  },
-  {
-    name: 'Security & RFC Compliance Guild',
-    role: 'Cryptographic Standards & Verification',
-    bio: 'Independent security engineers and technical contributors who audit client-side cryptographic primitives, verify mathematical correctness, and ensure compliance with official IETF RFC and NIST standards.',
-    focus: 'RFC 7519 (JWT), RFC 4648 (Base64), RFC 4122/9562 (UUID), FIPS PUB 180-4 (SHA/HMAC Cryptography)',
+    name: 'Lord',
+    role: 'Founder of DevTol',
+    bio: 'Founder of DevTol. Built the platform on open-source foundations (it-tools, GPL-3.0) and expanded it into a client-side-first utility suite for developers and designers.',
+    focus: 'Client-side architecture, privacy-first design, developer tools',
   },
 ];
 
 const teamMembersAr = [
   {
-    name: 'فريق المعمارية الهندسية الأساسي لمنصة DevTol',
-    role: 'القيادة الهندسية وتطوير النظم',
-    bio: 'مهندسو نظم وبرمجيات متخصصون في الحوسبة فائقة الأداء من جانب العميل، وترجمة محركات WebAssembly، وتطبيقات Web Crypto، وشبكات الحافة السحابية الموزعة.',
-    focus: 'Vue 3، TypeScript، تقنية WebAssembly، واجهات Web Crypto، ومعمارية الخصوصية صفرية المعرفة',
-  },
-  {
-    name: 'فريق تدقيق الأمان والامتثال لمعايير RFC',
-    role: 'معايير التشفير والتحقق الرياضي',
-    bio: 'مهندسو أمن برمجيات ومراجعون تقنيون مستقلون يدققون خوارزميات التشفير المحلية، ويتحققون من الدقة الحسابية والامتثال للمواصفات القياسية الرسمية لمنظمات IETF و NIST.',
-    focus: 'RFC 7519 (رموز JWT)، RFC 4648 (ترميز Base64)، RFC 4122/9562 (معرفات UUID)، FIPS PUB 180-4 (تشفير SHA/HMAC)',
+    name: 'لورد',
+    role: 'مؤسس DevTol',
+    bio: 'مؤسس منصة DevTol. بنى المنصة على أسس مفتوحة المصدر (it-tools، GPL-3.0) ووسّعها إلى مجموعة أدوات تعمل من جانب العميل للمطورين والمصممين.',
+    focus: 'معمارية العميل المحلية، الخصوصية أولاً، أدوات المطورين',
   },
 ];
 
@@ -154,7 +142,7 @@ const pillarsAr = [
         </section>
 
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">الهيكل الهندسي وفريق الإشراف الفني</h2>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">المؤسس</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div v-for="m in teamMembersAr" :key="m.name" class="p-5 rounded-lg bg-slate-50 dark:bg-neutral-800/70 border border-slate-200 dark:border-neutral-700">
               <h3 class="text-lg font-bold text-slate-900 dark:text-white">{{ m.name }}</h3>
@@ -171,9 +159,7 @@ const pillarsAr = [
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">الشفافية وقنوات التواصل المباشرة</h2>
           <p>
             نؤمن بأن أدوات المطورين يجب أن تكون آمنة، وشفافة، وقابلة للتدقيق. نرحب دائماً بملاحظاتكم، واقتراحات إضافة أدوات جديدة، وتقارير الإفصاح الأمني المسؤول عبر قنوات التواصل المباشرة الموضحة في صفحة الاتصال:
-            <a href="/contact" class="text-primary font-medium hover:underline mx-1">صفحة اتصل بنا</a>
-            أو عبر البريد الرسمي:
-            <a href="mailto:support@devtol.online" class="text-primary font-medium hover:underline mx-1">support@devtol.online</a>.
+            <a href="/contact" class="text-primary font-medium hover:underline mx-1">صفحة اتصل بنا</a>.
           </p>
         </section>
       </div>
@@ -216,13 +202,13 @@ const pillarsAr = [
           <div class="bg-slate-100 dark:bg-neutral-800/40 p-5 rounded-lg border border-slate-200 dark:border-neutral-700/70 mt-3 space-y-2">
             <p><strong>Experience:</strong> Our editorial materials are authored and reviewed by practicing engineers with hands-on production experience managing cloud microservices, authentication gateways, and distributed databases.</p>
             <p><strong>Expertise:</strong> Technical specifications, formulas, and code snippets are cross-referenced directly against canonical RFCs (e.g., IETF RFC 7519 for JWTs, RFC 4648 for Base64, RFC 4122/9562 for UUIDs, and POSIX IEEE 1003.1 for crontab syntax).</p>
-            <p><strong>Authoritativeness:</strong> DevTol is recognized across the developer community with thousands of weekly active sessions and production deployments worldwide.</p>
+            <p><strong>Authoritativeness:</strong> DevTol is recognized across a growing community of developers.</p>
             <p><strong>Trustworthiness:</strong> Complete source code transparency under the open-source GPL-3.0 license, allowing security auditors to inspect algorithmic logic and verify zero telemetry.</p>
           </div>
         </section>
 
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Engineering Leadership & Advisory Guild</h2>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Founder</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div v-for="m in teamMembersEn" :key="m.name" class="p-5 rounded-lg bg-slate-50 dark:bg-neutral-800/70 border border-slate-200 dark:border-neutral-700">
               <h3 class="text-lg font-bold text-slate-900 dark:text-white">{{ m.name }}</h3>
@@ -239,9 +225,7 @@ const pillarsAr = [
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Transparency & Direct Communication</h2>
           <p>
             We believe developer tools must remain auditable, transparent, and responsive. We actively welcome tool suggestions, pull requests, and responsible security disclosures through our
-            <a href="/contact" class="text-primary font-medium hover:underline mx-1">Contact Page</a>
-            or directly via our official engineering mailbox:
-            <a href="mailto:support@devtol.online" class="text-primary font-medium hover:underline mx-1">support@devtol.online</a>.
+            <a href="/contact" class="text-primary font-medium hover:underline mx-1">Contact Page</a>.
           </p>
         </section>
       </div>

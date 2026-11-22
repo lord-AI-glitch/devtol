@@ -59,7 +59,7 @@ const isAr = computed(() => locale.value === 'ar');
           <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-purple-500/10 text-purple-500 mb-4">
             <n-icon :component="IconScale" size="24" />
           </div>
-          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">توافق مع لوائح GDPR و HIPAA</h3>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">توافق مع لوائح GDPR</h3>
           <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
             نظراً لعدم وجود خوادم وسيطة تخزن البيانات الشخصية، فإن استخدام أدوات المنصة يتوافق تلقائياً مع مبدأ "الحماية بالتصميم" (Data Protection by Design).
           </p>
@@ -87,7 +87,7 @@ const isAr = computed(() => locale.value === 'ar');
                 <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">نقل البيانات عبر الإنترنت</td>
                 <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
                   <n-icon :component="IconCheck" class="text-emerald-500" />
-                  <span>صفر بايت (تبقى داخل جهازك)</span>
+                  <span>مدخلاتك: صفر بايت تُرفع إلى خوادم DevTol</span>
                 </td>
                 <td class="px-6 py-4 text-rose-500 flex items-center gap-1.5">
                   <n-icon :component="IconX" />
@@ -96,17 +96,17 @@ const isAr = computed(() => locale.value === 'ar');
               </tr>
               <tr>
                 <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">حفظ السجلات (Server Logs)</td>
-                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">مستحيل تقنياً لعدم وجود مسار خلفي</td>
+                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">لا تسجيل على خوادم DevTol — مدخلاتك لا تُرسل إلى خوادم DevTol أبداً</td>
                 <td class="px-6 py-4 text-slate-500">تُسجل في سجلات الخادم وقواعد البيانات</td>
               </tr>
               <tr>
                 <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">زمن الاستجابة والتأخير</td>
-                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">فوري (0 ميلي ثانية latency)</td>
+                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">فوري تقريباً (بدون تأخير الشبكة)</td>
                 <td class="px-6 py-4 text-slate-500">يعتمد على سرعة رفع الملفات والشبكة</td>
               </tr>
               <tr>
                 <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">العمل في بيئات العمل الحساسة (Air-gapped)</td>
-                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">متوافقة وتعمل بدون إنترنت (PWA)</td>
+                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">تعمل دون إنترنت بعد تحميلها (باستثناء الأدوات التي تحتاج تنزيل محرك لأول مرة)</td>
                 <td class="px-6 py-4 text-slate-500">غير ممكنة وتتطلب اتصالاً دائماً</td>
               </tr>
             </tbody>
@@ -124,13 +124,13 @@ const isAr = computed(() => locale.value === 'ar');
           <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
             <h4 class="font-bold text-slate-900 dark:text-white mb-2">كيف تضمن المنصة عدم وصول بياناتي إلى الخوادم؟</h4>
             <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              يمكنك التحقق من ذلك بنفسك عبر فتح أدوات المطورين في المتصفح (Inspect Element -> Network Tab)؛ ستلاحظ عدم إرسال أي طلبات شبكية أثناء استخدامك لأي أداة من أدوات فحص التوكن أو التشفير أو معالجة المستندات.
+              يمكنك التحقق من ذلك بنفسك عبر فتح أدوات المطورين في المتصفح (Inspect Element -> Network Tab)؛ ستلاحظ عدم إرسال أي طلبات تحمل بياناتك — الصفحة نفسها تحمّل الخطوط والإعلانات — أثناء استخدامك لأي أداة من أدوات فحص التوكن أو التشفير أو معالجة المستندات.
             </p>
           </div>
           <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
             <h4 class="font-bold text-slate-900 dark:text-white mb-2">هل يمكن تثبيت واستخدام DevTol بدون اتصال بالإنترنت؟</h4>
             <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              نعم، المنصة مبنية كتطبيق ويب تقدمي (PWA). بمجرد تحميلها لمرة واحدة، يمكنك تثبيتها على نظامك واستخدام كافة الأدوات البرمجية حتى في وضع عدم الاتصال بالإنترنت (Offline Mode).
+              نعم، المنصة مبنية كتطبيق ويب تقدمي (PWA). بمجرد تحميلها لمرة واحدة، يمكنك تثبيتها على نظامك واستخدام الأدوات حتى في وضع عدم الاتصال بالإنترنت (Offline Mode)، باستثناء الأدوات التي تحتاج تنزيل محرك لأول مرة.
             </p>
           </div>
         </div>
@@ -179,7 +179,7 @@ const isAr = computed(() => locale.value === 'ar');
           <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-purple-500/10 text-purple-500 mb-4">
             <n-icon :component="IconScale" size="24" />
           </div>
-          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Enterprise Compliance (GDPR & HIPAA)</h3>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Enterprise Compliance (GDPR)</h3>
           <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
             Because DevTol never receives or retains confidential input strings, development teams can safely format queries and debug tokens without triggering regulatory data breach liabilities.
           </p>
@@ -207,7 +207,7 @@ const isAr = computed(() => locale.value === 'ar');
                 <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Payload Transmission</td>
                 <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
                   <n-icon :component="IconCheck" class="text-emerald-500" />
-                  <span>0 Bytes (Kept strictly on your machine)</span>
+                  <span>Your inputs: 0 bytes uploaded to DevTol servers</span>
                 </td>
                 <td class="px-6 py-4 text-rose-500 flex items-center gap-1.5">
                   <n-icon :component="IconX" />
@@ -216,17 +216,17 @@ const isAr = computed(() => locale.value === 'ar');
               </tr>
               <tr>
                 <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Server Logging & Storage</td>
-                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">Architecturally impossible</td>
+                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">No DevTol server logging — your inputs are never sent to DevTol servers</td>
                 <td class="px-6 py-4 text-slate-500">Persisted in access logs & databases</td>
               </tr>
               <tr>
                 <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Execution Latency</td>
-                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">Sub-millisecond (Zero network overhead)</td>
+                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">Near-instant (no network round-trip)</td>
                 <td class="px-6 py-4 text-slate-500">Subject to round-trip latency & quotas</td>
               </tr>
               <tr>
                 <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Air-Gapped Workstation Support</td>
-                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">100% Offline Capable (PWA)</td>
+                <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-semibold">Offline capable once loaded (except tools that need a first-time engine download)</td>
                 <td class="px-6 py-4 text-slate-500">Fails without active internet access</td>
               </tr>
             </tbody>
@@ -244,13 +244,13 @@ const isAr = computed(() => locale.value === 'ar');
           <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
             <h4 class="font-bold text-slate-900 dark:text-white mb-2">How can I verify that my data never leaves my browser?</h4>
             <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Open your browser's Developer Tools (F12 or Inspect -> Network Tab). Perform any conversion, JWT signing, or formatting operation. You will observe zero outbound HTTP requests, verifying local execution.
+              Open your browser's Developer Tools (F12 or Inspect -> Network Tab). Perform any conversion, JWT signing, or formatting operation. You will observe zero requests carrying your data — the page itself loads fonts and ads — verifying local execution.
             </p>
           </div>
           <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
             <h4 class="font-bold text-slate-900 dark:text-white mb-2">Can DevTol operate completely offline?</h4>
             <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Yes. DevTol is built as an offline-first Progressive Web App (PWA). Once loaded, assets are cached in local browser storage, allowing all utilities to function without an active internet connection.
+              Yes. DevTol is built as an offline-first Progressive Web App (PWA). Once loaded, assets are cached in local browser storage, allowing utilities to function without an active internet connection — except tools that need a first-time engine download.
             </p>
           </div>
         </div>

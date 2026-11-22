@@ -54,7 +54,7 @@ A critical security misconception is storing user passwords using SHA-256 or SHA
 - Attackers armed with precomputed rainbow tables or offline dictionary attacks can crack raw SHA-256 password digests in seconds.
 - **Correct Solution**: Passwords must be hashed using dedicated, deliberately slow **Key Derivation Functions (KDFs)** with configurable work factors and memory hardness, such as **Argon2id**, **bcrypt**, or **scrypt**.
 
-## 7. Comparative Performance Benchmarks & Hardware Acceleration
+## 6. Comparative Performance Benchmarks & Hardware Acceleration
 When selecting a hash function for high-throughput stream processing or distributed consensus, raw execution speed and hardware instruction support play a pivotal role. The table below illustrates standard throughput characteristics observed across modern x86-64 and ARM64 architectures:
 
 | Algorithm | Digest Size | Architecture Optimization | Throughput (Cycles/Byte) | Primary Cryptographic Vulnerabilities |
@@ -68,7 +68,7 @@ When selecting a hash function for high-throughput stream processing or distribu
 
 Modern processors feature dedicated hardware instructions specifically targeting SHA-256 computation (Intel SHA Extensions and ARMv8 Cryptographic Extensions). When these instructions are leveraged by optimized low-level engines (like OpenSSL or BoringSSL), SHA-256 computation speeds increase by 4x to 8x compared to naive software loops, ensuring negligible CPU overhead even on high-traffic gigabit networks.
 
-## 6. Frequently Asked Questions (FAQs)
+## 7. Frequently Asked Questions (FAQs)
 **Q1: Can a hash function be decrypted?**
 No. Hashing is a one-way mathematical reduction. Because an infinite number of arbitrary-length inputs map into a finite bit space (such as 256 bits), information is irreversibly compressed. You cannot mathematically invert a digest back into its original text.
 
@@ -83,3 +83,6 @@ MD5 is still occasionally used as a quick non-cryptographic checksum for caching
 
 **Q5: How does HMAC differ from a plain hash?**
 A Hash-based Message Authentication Code (HMAC) incorporates a cryptographic secret key into the hashing process ($	ext{HMAC}(K, m) = H((K' \oplus opad) \parallel H((K' \oplus ipad) \parallel m))$). This guarantees both data integrity and authentic origin, preventing tampering and length extension attacks.
+
+**Q6: Is BLAKE3 supported by this tool?**
+BLAKE3 is not supported in this tool — it supports MD5, SHA-1, SHA-2, SHA-3 and RIPEMD-160.

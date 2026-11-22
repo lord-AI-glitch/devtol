@@ -26,7 +26,7 @@ DevTol takes an entirely different, engineering-first approach:
 - **Digital Signatures**: Draw your signature directly with a mouse, stylus, or trackpad and stamp it onto contracts, NDAs, and invoices.
 - **Pen & Highlighter Tools**: Mark up diagrams, highlight critical sentences, or draw freehand arrows in customizable stroke widths and colors.
 - **Custom Text Placement**: Click anywhere on any page to type text with full font size, color, and spacing control.
-- **Redaction & Whiteout**: Quickly block out confidential numbers, personal data, or unwanted logos with precise whiteout boxes.
+- **Whiteout Overlays (Visual Only)**: Quickly cover confidential numbers, personal data, or unwanted logos with precise whiteout boxes. Note: the original text remains extractable — this is not secure redaction.
 
 ### 2. Search, Find & Replace Text with Full Font Matching
 - **Deep Text Search**: Scan across all pages in seconds to locate specific keywords, account numbers, or names.
@@ -64,4 +64,46 @@ Yes. Unlike many cloud editors that scramble Arabic characters or disconnect cur
 Yes. You can draw your signature using the pen tool or signature pad, position it precisely on any signature line, resize it, and export an authentic signed PDF document.
 
 ### Q5: Can I search and replace text across multiple pages?
-Yes. The built-in search and replace tool allows you to find any occurrence of text across your entire document and replace or redact it with one click.
+Yes. The built-in search and replace tool allows you to find any occurrence of text across your entire document and replace it with one click (as a visual overlay).
+
+---
+
+## Worked Example: Fixing a 12-Page Freelance Contract
+
+Sara, a freelance designer in Cairo, receives a 12-page service contract as a PDF. Three things are wrong with it, and she fixes all of them in one editing session without printing anything.
+
+**The problems.** Page 1 names the client as "Acme Ltd" in 14 places across the document, but the correct legal name is "Acme Consulting Ltd". Page 6 shows an old bank sort code, 20-45-67, that must not be sent to the client. Page 12 has an empty signature line waiting for her signature, and the daily rate on page 4 reads $400 when the agreed rate is $450.
+
+**Step 1 — Find and replace the client name.** Sara opens Find & Replace, searches for "Acme Ltd" and sees 14 matches listed across pages 1, 2, 4, 7, and 9. She types the replacement "Acme Consulting Ltd" and replaces all 14 at once. She then zooms to 200% on page 2 to check that the longer name still fits inside the paragraph and has not overflowed into the margin.
+
+**Step 2 — Cover the old sort code.** On page 6 she selects the whiteout tool and draws a box exactly over "20-45-67". She types the new sort code, 20-45-68, on top of the box in the same font size, 11 pt. She understands this is a visual cover only: anyone who copies the text underneath can still read the old number, so she would never use this step for a document going to a stranger.
+
+**Step 3 — Correct the rate and sign.** On page 4 she clicks on "$400", deletes it, and types "$450". On page 12 she draws her signature with the pen tool, resizes it to fit the 6 cm signature line, and places it precisely above the line. She downloads the file as `Acme-Consulting-Contract-Signed.pdf` and re-opens it to confirm all 12 pages, the 14 replacements, and the signature are present before emailing it.
+
+## Common Mistakes
+
+### Mistake 1: Treating a whiteout box as secure redaction
+**Cause:** The whiteout box looks like the text has vanished, so people assume it is gone. **Fix:** Remember the original text remains searchable, copyable, and extractable underneath the box. For genuinely confidential numbers, use a dedicated redaction tool that removes the text layer, or share a flattened image-only copy instead.
+
+### Mistake 2: Replacing text without checking the font and size
+**Cause:** The replacement text is typed in the editor's default font, which may be larger or styled differently from the surrounding paragraph. **Fix:** Match the original font family and point size before replacing, then zoom to 200% and check the line for overflow, overlapping words, or a visible change in weight.
+
+### Mistake 3: Signing first, then editing afterwards
+**Cause:** A signature is added early, and a later text correction shifts the layout or moves the signature line. **Fix:** Finish every text correction, replacement, and whiteout first, and add the signature as the very last step before downloading.
+
+### Mistake 4: Downloading without re-opening the file
+**Cause:** A misplaced annotation on page 9 or a replacement that overflowed a margin goes unnoticed. **Fix:** Always re-open the downloaded PDF and scroll through every page once before sending it to a client or employer.
+
+## Frequently Asked Questions (Continued)
+
+### Does whiteout permanently delete the text underneath?
+No. Whiteout draws an opaque box over the text on the page. The original characters remain in the PDF's text layer, so they can still be selected, copied, or extracted with another tool. Do not use whiteout for secure redaction of passwords, ID numbers, or medical details.
+
+### Can I edit a scanned PDF with this editor?
+Only partly. A scanned PDF is a photograph of a page, not real text, so Find & Replace cannot find words in it. You can still draw, highlight, add text boxes, and sign on top of a scan, but to change the printed words themselves, run the scan through the PDF OCR tool first.
+
+### What happens to fillable form fields when I edit the PDF?
+Form fields are preserved in most cases, but text drawn over a field does not change the field's stored value. If a form field still holds an old value, click into the field itself and edit it, rather than covering it with a text box.
+
+### Why does my replacement text look bolder than the original?
+The editor may substitute a system font when the document's original font is not installed on your device. Load the matching font if you have it, or choose the closest weight and size, then compare the edited line with the lines above and below it at 200% zoom.

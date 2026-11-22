@@ -5,11 +5,18 @@ import { useMessage } from 'naive-ui';
 import { Copy, Wand, Refresh } from '@vicons/tabler';
 import {
   LLM_MODELS,
+  PRICING_DISCLAIMER,
+  PRICING_LAST_UPDATED,
+  PRICING_SOURCES,
   SAMPLE_PROMPTS,
   calculateLlmCosts,
   estimateTokens,
   type LlmModel,
 } from './ai-token-cost-calculator.service';
+
+const pricingLastUpdated = PRICING_LAST_UPDATED;
+const pricingSources = PRICING_SOURCES;
+const pricingDisclaimer = PRICING_DISCLAIMER;
 
 let message: ReturnType<typeof useMessage> | null = null;
 try {
@@ -328,7 +335,7 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
     </n-card>
 
     <!-- Pricing Comparison Section -->
-    <n-card title="LLM Cost Comparison Leaderboard (2025/2026 Live Pricing)" size="small">
+    <n-card :title="`LLM Cost Comparison Leaderboard (Prices last updated: ${pricingLastUpdated})`" size="small">
       <template #header-extra>
         <n-radio-group v-model:value="selectedTier" size="small">
           <n-radio-button value="all">All Models</n-radio-button>
@@ -384,6 +391,16 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
             </tr>
           </tbody>
         </n-table>
+      </div>
+
+      <div class="mt-3 text-xs text-gray-500">
+        <p>{{ pricingDisclaimer }}</p>
+        <p class="mt-1">
+          Prices last updated: {{ pricingLastUpdated }} · Sources:
+          <template v-for="(url, provider, i) in pricingSources" :key="provider">
+            <span v-if="i > 0"> · </span><a :href="url" target="_blank" rel="noopener" class="underline">{{ provider }}</a>
+          </template>
+        </p>
       </div>
     </n-card>
   </div>

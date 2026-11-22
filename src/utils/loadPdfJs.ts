@@ -1,4 +1,4 @@
-// Helper to load pdfjs from local static asset or fallback CDN
+// Helper to load pdfjs from the local static asset only (no CDN fallback)
 export async function loadPdfJs(): Promise<any> {
   const w = window as any;
   if (w.pdfjsLib) {
@@ -17,19 +17,9 @@ export async function loadPdfJs(): Promise<any> {
       }
     };
     script.onerror = () => {
-      // Fallback to cdnjs if local fails
-      const fallbackScript = document.createElement('script');
-      fallbackScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
-      fallbackScript.onload = () => {
-        if (w.pdfjsLib) {
-          w.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-          resolve(w.pdfjsLib);
-        } else {
-          reject(new Error('PDF.js CDN fallback failed to initialize.'));
-        }
-      };
-      fallbackScript.onerror = () => reject(new Error('Failed to load PDF.js from local and CDN.'));
-      document.head.appendChild(fallbackScript);
+      // No CDN fallback: the local PDF.js bundle is part of the site.
+      // A silent CDN load would break the "no third-party requests" promise.
+      reject(new Error('Failed to load the local PDF engine. Please check your connection and reload the page. / تعذّر تحميل محرك PDF المحلي. تحقق من اتصالك وأعد تحميل الصفحة.'));
     };
     document.head.appendChild(script);
   });

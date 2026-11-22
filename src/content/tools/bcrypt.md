@@ -104,7 +104,29 @@ Because each hash generates a fresh 16-byte random salt, identical passwords gen
 
 ---
 
-## 5. Frequently Asked Questions (FAQs)
+## 5. Common Mistakes & Pitfalls
+
+### Mistake 1: Choosing a cost factor that is too low
+**Cause:** A cost factor of 4 or 5 makes hashing nearly instant — convenient for tests, but it also lets an attacker's GPU cluster try billions of candidates per second.
+**Fix:** Use cost 10 to 12 for interactive logins (roughly 100–350 ms per hash) and re-hash on login when hardware gets faster.
+
+### Mistake 2: Hashing passwords longer than 72 bytes without pre-hashing
+**Cause:** Bcrypt silently truncates input at 72 bytes, so two passphrases that share the same first 72 bytes produce the identical hash.
+**Fix:** Pre-hash long passphrases with SHA-256 to a fixed 32-byte digest before passing them to bcrypt, as shown in the deep-dive section above.
+
+### Mistake 3: Comparing hashes with a plain equality check
+**Cause:** Naive string comparison can leak timing information, and re-hashing a candidate with a fresh salt and comparing with `==` always fails, because every bcrypt hash uses a new random salt.
+**Fix:** Always verify with the library's constant-time compare function (for example `bcrypt.compare`), which extracts the salt and cost from the stored hash.
+
+### Mistake 4: Reusing or hard-coding the salt
+**Cause:** A fixed salt means identical passwords produce identical hashes, re-enabling rainbow-table attacks across your whole user table.
+**Fix:** Let the library generate a fresh 16-byte cryptographically random salt for every password; never reuse, hard-code, or derive the salt from the username.
+
+### Mistake 5: Hashing passwords with a fast hash like SHA-256 or MD5
+**Cause:** General-purpose hashes are designed to be fast, so an attacker with a GPU cluster can test billions of password guesses per second against stolen digests.
+**Fix:** Use a deliberately slow, salted key derivation function — bcrypt, scrypt, or Argon2id — for password storage, never a raw hash.
+
+## 6. Frequently Asked Questions (FAQs)
 
 ### What is the distinction between $2a$, $2b$, and $2y$ prefixes?
 - `$2a$`: Early revision. A historic bug in crypt_blowfish did not properly handle passwords exceeding 255 characters or containing null bytes.
@@ -122,7 +144,7 @@ No. This tool runs 100% locally in your browser sandbox using compiled WebAssemb
 
 ---
 
-## 6. Security and Privacy Guarantee
+## 7. Security and Privacy Guarantee
 - **Zero-Knowledge Protocol**: Raw credentials and salts are maintained only in browser volatile memory.
 - **No Remote Telemetry**: Zero analytics, trackers, or HTTP POST requests are fired during generation or verification.
 - **Standardized RFC Format**: Produces standard modular crypt outputs compatible with Node.js, Python, Ruby, Go, PHP, and Java bcrypt libraries.

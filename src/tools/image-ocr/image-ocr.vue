@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
+// Local tesseract.js worker bundle (Vite emits it as a hashed asset).
+import workerUrl from 'tesseract.js/dist/worker.min.js?url';
 const message = useMessage();
 const file = ref<File|null>(null);
 const lang = ref("eng");
@@ -15,17 +17,22 @@ async function runOCR(){
   if(!file.value)return;
   isProcessing.value=true;result.value="";progress.value=0;
   try{
-    let Tesseract: any;
+    // Local tesseract.js v5: the engine (public/tesseract-core/) and the
+    // language data (public/tessdata/) are served from this site — no CDN.
+    const { createWorker, OEM } = await import('tesseract.js');
+    const worker = await createWorker(lang.value, OEM.LSTM_ONLY, {
+      workerPath: workerUrl,
+      corePath: '/tesseract-core',
+      langPath: '/tessdata',
+      logger: (m: any) => { if (m.status === 'recognizing text') progress.value = Math.round(m.progress * 100); },
+    });
     try {
-      const mod = await import("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js");
-      Tesseract = mod.default || mod;
-    } catch {
-      const mod = await import("https://esm.sh/tesseract.js@5");
-      Tesseract = mod.default || mod;
+      const { data } = await worker.recognize(file.value);
+      result.value = data.text.trim();
+      confidence.value = Math.round(data.confidence);
+    } finally {
+      await worker.terminate();
     }
-    const r=await Tesseract.recognize(file.value,lang.value,{logger:(m:any)=>{if(m.status==="recognizing text")progress.value=Math.round(m.progress*100);}});
-    result.value=r.data.text.trim();
-    confidence.value=Math.round(r.data.confidence);
     message.success(`OCR complete! Confidence: ${confidence.value}%`);
   }catch(e:any){message.error(e?.message||"OCR failed");}
   finally{isProcessing.value=false;}

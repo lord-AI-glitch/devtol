@@ -16,7 +16,7 @@ useHead({
   <div class="legal-container">
     <div class="legal-card">
       <h1 class="text-3xl font-bold mb-4 text-primary">Privacy Policy</h1>
-      <p class="text-sm text-slate-500 dark:text-neutral-400 mb-6">Last Updated: September 11, 2026</p>
+      <p class="text-sm text-slate-500 dark:text-neutral-400 mb-6">Last Updated: November 22, 2026</p>
 
       <div class="space-y-6 text-slate-600 dark:text-neutral-300 leading-relaxed">
         <section>
@@ -56,7 +56,21 @@ useHead({
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">4. Cookies & Web Beacons</h2>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">4. Third-Party Services</h2>
+          <p>
+            DevTol itself runs no analytics or tracking of its own. The following third-party services are involved when you use the site:
+          </p>
+          <ul class="list-disc pl-5 mt-2 space-y-1">
+            <li><strong>Google AdSense</strong> — serves advertisements and may set advertising cookies (see section 3 above). You can opt out of personalized advertising via <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">Google Ads Settings</a>.</li>
+            <li><strong>Google Fonts</strong> — the site currently loads its Inter and JetBrains Mono typefaces from Google's font servers, which receive your IP address and browser information with that request. We plan to host these fonts locally; until then, loading them remains a third-party request.</li>
+          </ul>
+          <p class="mt-2">
+            All tool engines — including OCR, PDF processing, image and QR-code engines — are served by DevTol itself and run entirely in your browser; they do not connect to any third party, and your tool inputs never leave your browser.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">5. Cookies & Web Beacons</h2>
           <p>
             A cookie is a small text file placed on your computer or mobile device when you visit a website. We use cookies and similar tracking technologies to:
           </p>
@@ -71,7 +85,7 @@ useHead({
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">5. GDPR Compliance (European Economic Area)</h2>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">6. GDPR Compliance (European Economic Area)</h2>
           <p>
             If you are a resident of the European Economic Area (EEA), you have specific data protection rights under the General Data Protection Regulation (GDPR). These include:
           </p>
@@ -83,12 +97,12 @@ useHead({
             <li><strong>The right to data portability</strong>: Request transfer of your data to another organization.</li>
           </ul>
           <p class="mt-2">
-            Because we do not maintain accounts or store personal user records in remote databases, we process negligible personal data. Where advertising cookies are involved, we utilize Google-certified Consent Management Platforms (CMP) to collect affirmative consent.
+            Because we do not maintain accounts or store personal user records in remote databases, we process negligible personal data. Where advertising cookies are involved, we use Google Funding Choices, a Google-certified Consent Management Platform (CMP), to ask for your consent before personalized advertising cookies are set.
           </p>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">6. CCPA / CPRA Compliance (California Residents)</h2>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">7. CCPA / CPRA Compliance (California Residents)</h2>
           <p>
             Under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA), California residents are afforded specific rights regarding their personal information:
           </p>
@@ -99,30 +113,29 @@ useHead({
             <li>The right to non-discrimination for exercising privacy rights.</li>
           </ul>
           <p class="mt-2">
-            We do not sell personal data for monetary consideration. To opt-out of cookie-based cross-context behavioral tracking, use the "Do Not Sell My Personal Information" link or configure Global Privacy Control (GPC) signals in your browser.
+            We do not sell personal data for monetary consideration. To opt out of cookie-based cross-context behavioral tracking, configure Global Privacy Control (GPC) signals in your browser, or contact us via the Contact Us page.
           </p>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">7. Children's Privacy (COPPA)</h2>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">8. Children's Privacy (COPPA)</h2>
           <p>
             Our service is not directed to individuals under the age of 13 (or 16 in certain jurisdictions). We do not knowingly collect personal identifiable information from children. If you believe that a child has provided us with personal data, please contact us immediately so we can promptly delete such information.
           </p>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">8. Changes to This Privacy Policy</h2>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">9. Changes to This Privacy Policy</h2>
           <p>
             We may update our Privacy Policy periodically to reflect technological changes, regulatory updates, or operational adjustments. Any changes will be posted on this page with an updated "Last Updated" revision date.
           </p>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">9. Contact Information</h2>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">10. Contact Information</h2>
           <p>
-            For questions or requests regarding this Privacy Policy or your data privacy rights, please reach out via our 
-            <router-link to="/contact" class="text-primary hover:underline">Contact Us page</router-link> or email us at 
-            <a href="mailto:privacy@devtol.online" class="text-primary hover:underline">privacy@devtol.online</a>.
+            For questions or requests regarding this Privacy Policy or your data privacy rights, please reach out via our
+            <router-link to="/contact" class="text-primary hover:underline">Contact Us page</router-link>.
           </p>
         </section>
       </div>

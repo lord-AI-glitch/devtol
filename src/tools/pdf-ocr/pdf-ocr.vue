@@ -2,6 +2,8 @@
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
 import { loadPdfJs } from "@/utils/loadPdfJs";
+// Local tesseract.js worker bundle (Vite emits it as a hashed asset).
+import workerUrl from 'tesseract.js/dist/worker.min.js?url';
 const message = useMessage();
 const file = ref<File|null>(null);
 const lang = ref("eng");
@@ -17,32 +19,37 @@ async function runOCR(){
   if(!file.value)return;
   isProcessing.value=true;result.value="";progress.value=0;
   try{
-    let Tesseract: any;
-    try {
-      const mod = await import("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js");
-      Tesseract = mod.default || mod;
-    } catch {
-      const mod = await import("https://esm.sh/tesseract.js@5");
-      Tesseract = mod.default || mod;
-    }
+    // Local tesseract.js v5: the engine (public/tesseract-core/) and the
+    // language data (public/tessdata/) are served from this site — no CDN.
+    const { createWorker, OEM } = await import('tesseract.js');
+    const worker = await createWorker(lang.value, OEM.LSTM_ONLY, {
+      workerPath: workerUrl,
+      corePath: '/tesseract-core',
+      langPath: '/tessdata',
+      logger: (m: any) => { if (m.status === 'recognizing text') progress.value = Math.round(m.progress * 100); },
+    });
     let text="";
-    if(file.value.type==="application/pdf"){
-      const pdfjsLib = await loadPdfJs();
-      const bytes=await file.value.arrayBuffer();
-      const pdf=await pdfjsLib.getDocument({data:bytes}).promise;
-      for(let i=1;i<=pdf.numPages;i++){
-        const page=await pdf.getPage(i);
-        const vp=page.getViewport({scale:2});
-        const canvas=document.createElement("canvas");
-        canvas.width=vp.width;canvas.height=vp.height;
-        await page.render({canvasContext:canvas.getContext("2d")!,viewport:vp}).promise;
-        const r=await Tesseract.recognize(canvas,lang.value);
-        text+="--- Page "+i+" ---\n"+r.data.text+"\n\n";
-        progress.value=Math.round(i/pdf.numPages*100);
+    try {
+      if(file.value.type==="application/pdf"){
+        const pdfjsLib = await loadPdfJs();
+        const bytes=await file.value.arrayBuffer();
+        const pdf=await pdfjsLib.getDocument({data:bytes}).promise;
+        for(let i=1;i<=pdf.numPages;i++){
+          const page=await pdf.getPage(i);
+          const vp=page.getViewport({scale:2});
+          const canvas=document.createElement("canvas");
+          canvas.width=vp.width;canvas.height=vp.height;
+          await page.render({canvasContext:canvas.getContext("2d")!,viewport:vp}).promise;
+          const { data } = await worker.recognize(canvas);
+          text+="--- Page "+i+" ---\n"+data.text+"\n\n";
+          progress.value=Math.round(i/pdf.numPages*100);
+        }
+      }else{
+        const { data } = await worker.recognize(file.value);
+        text=data.text;
       }
-    }else{
-      const r=await Tesseract.recognize(file.value,lang.value,{logger:m=>{if(m.status==="recognizing text")progress.value=Math.round(m.progress*100);}});
-      text=r.data.text;
+    } finally {
+      await worker.terminate();
     }
     result.value=text.trim();
     message.success("OCR complete!");

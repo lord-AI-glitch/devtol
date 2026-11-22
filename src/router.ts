@@ -145,12 +145,6 @@ const programmaticRoutes = [
     meta: { isTool: true, layout: layouts.toolLayout, name: dateTool?.name },
   },
   {
-    path: '/date-time-converter/:pair',
-    name: 'date-time-converter-pair',
-    component: dateTool?.component,
-    meta: { isTool: true, layout: layouts.toolLayout, name: dateTool?.name },
-  },
-  {
     path: '/compress-pdf/:preset',
     name: 'compress-pdf-preset',
     component: pdfCompressTool?.component,
@@ -216,12 +210,6 @@ const localizedProgrammaticRoutes = supportedLangs.flatMap(lang => [
   {
     path: `/${lang}/date-converter/:pair`,
     name: `${lang}-date-converter-pair`,
-    component: dateTool?.component,
-    meta: { isTool: true, layout: layouts.toolLayout, name: dateTool?.name, lang },
-  },
-  {
-    path: `/${lang}/date-time-converter/:pair`,
-    name: `${lang}-date-time-converter-pair`,
     component: dateTool?.component,
     meta: { isTool: true, layout: layouts.toolLayout, name: dateTool?.name, lang },
   },

@@ -10,7 +10,7 @@ function onFile(e:Event){const f=(e.target as HTMLInputElement).files?.[0];if(f)
 async function readExif(f:File){
   isLoading.value=true;
   try{
-    const exifr = await import("https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.esm.mjs");
+    const exifr = await import('exifr');
     const data = await exifr.parse(f, { gps: true, tiff: true, exif: true });
     metadata.value=data||{};
     if(!data||Object.keys(data).length===0)message.info("No EXIF metadata found in this image.");
