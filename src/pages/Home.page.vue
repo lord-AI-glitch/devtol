@@ -27,16 +27,16 @@ const { t, locale } = useI18n();
 
 const homeSeoTitle = computed(() => {
   if (locale.value === 'ar') {
-    return 'DevTol — أكثر من 126 أداة مجانية للمطورين والمصممين (محلي 100%)';
+    return 'DevTol — 122 أداة مجانية للمطورين والمصممين (محلي 100%)';
   }
-  return 'DevTol — 126+ Free Online Developer Tools | 100% Client-Side';
+  return 'DevTol — 122 Free Online Developer Tools | 100% Client-Side';
 });
 
 const homeSeoDesc = computed(() => {
   if (locale.value === 'ar') {
     return 'منصة أدوات المطورين والمصممين الشاملة: محرر ومحول PDF، ضغط الصور وWebP، أدوات JSON، تشفير النصوص، وتوليد الهاش بأمان وخصوصية تامة داخل المتصفح.';
   }
-  return '126+ free, private online tools for developers & designers: PDF editor, JSON, Base64, Regex, WebP, hash and crypto, all running 100% in your browser.';
+  return '122 free, private online tools for developers & designers: PDF editor, JSON, Base64, Regex, WebP, hash and crypto, all running 100% in your browser.';
 });
 
 const homeCanonical = computed(() => {
@@ -168,7 +168,7 @@ const featuredTools = computed(() => {
       <!-- Trust Metrics Bar -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto mt-8 sm:mt-10 py-4 px-6 rounded-2xl bg-slate-100/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/60 backdrop-blur-sm">
         <div class="text-center">
-          <div class="text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400">126+</div>
+          <div class="text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400">122</div>
           <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Built-in Utilities</div>
         </div>
         <div class="text-center">

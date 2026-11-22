@@ -71,7 +71,7 @@ const deals: Deal[] = [
     category: 'Community & Open Source',
     partner: 'DevTol Community',
     title: 'Support Free & Private Tools',
-    description: 'Help us maintain server infrastructure, keep all 126+ tools 100% free and client-side, and develop next-generation developer utilities.',
+    description: 'Help us maintain server infrastructure, keep all 122 tools 100% free and client-side, and develop next-generation developer utilities.',
     badge: '100% Open Source',
     ctaText: 'Buy Us a Coffee',
     link: 'https://buymeacoffee.com/lordrealstx',

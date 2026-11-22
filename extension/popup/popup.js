@@ -74,7 +74,7 @@ function initTabs() {
 }
 
 // ==========================================
-// 3. Tools Directory & Fuzzy Search (126+ Tools)
+// 3. Tools Directory & Fuzzy Search (122 Tools)
 // ==========================================
 let allTools = [];
 let activeCategory = 'all';

@@ -1,8 +1,8 @@
 home:
   hero:
     title: 'All-in-One Local Toolbox for Developers & Designers'
-    description: 'Over 126 secure productivity utilities running entirely in your browser sandbox. Convert, encode, debug, and optimize without sending a single byte to external servers.'
-    searchPlaceholder: 'Search 126+ tools by name, keyword, or format (e.g. PDF, JSON, WebP, Hash)...'
+    description: '122 secure productivity utilities running entirely in your browser sandbox. Convert, encode, debug, and optimize. Inputs are processed locally in your browser and never uploaded to DevTol servers.'
+    searchPlaceholder: 'Search 122 tools by name, keyword, or format (e.g. PDF, JSON, WebP, Hash)...'
   pillars:
     privacyTitle: 'Total Client-Side Privacy'
     privacyDesc: 'Your files, secret keys, tokens, and payloads are processed solely in your browser memory. Nothing touches a remote database or cloud server.'
@@ -53,7 +53,7 @@ home:
     deals: 'Developer Deals'
     securityBadge: '100% Client-Side Processing • No Server Storage • Private & Secure'
     securitySubtext: 'All data, keys, and tokens are evaluated solely in your local browser sandbox.'
-    copyright: 'Free and open source under MIT license.'
+    copyright: 'Free and open source under the GNU GPL-3.0 license.'
 about:
   content: >
     # About DevTol
@@ -540,14 +540,6 @@ tools:
   pdf-organize:
     title: 'Organize PDF Pages'
     description: 'Reorder and rotate PDF pages visually. Drag and rearrange pages then download.'
-
-  pdf-protect:
-    title: 'PDF Protect & Unlock'
-    description: 'Password-protect or unlock PDF files directly in your browser. Zero server uploads.'
-
-  pdf-redact:
-    title: 'PDF Redaction Tool'
-    description: 'Permanently redact sensitive text from PDF files. Client-side privacy guaranteed.'
 
   pdf-split:
     title: 'Split PDF'

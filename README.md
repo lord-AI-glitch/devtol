@@ -11,7 +11,7 @@
 
 **DevTol** is an all-in-one suite of web-based developer tools designed for developers, designers, DevOps engineers, and digital practitioners. Every tool executes directly inside the user's browser sandbox, ensuring absolute data privacy with zero server transmission.
 
-- **100+ Utilities**: Converters, formatters, encoders, crypto, web tools, network calculators, and generators.
+- **122 Utilities**: Converters, formatters, encoders, crypto, web tools, network calculators, and generators.
 - **Privacy-First**: Client-side execution without tracking, server logs, or third-party data leaks.
 - **PWA & Offline Capable**: Instant loading with full offline caching.
 - **Clean Responsive UX**: Designed with Vue 3, TypeScript, and Naive UI.
@@ -28,7 +28,7 @@
 
 ```sh
 # Clone repository
-git clone https://github.com/DevTol/devtol.git
+git clone https://github.com/lord-AI-glitch/devtol.git
 cd devtol
 
 # Install dependencies

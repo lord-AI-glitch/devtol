@@ -603,13 +603,6 @@ function generatePrerenderedHtml({
   relatedTools = [],
   lang = 'en',
 }) {
-  if (pathSlug === 'pdf-editor') {
-    description = lang === 'ar'
-      ? 'تعديلات مرئية فقط: النص الأصلي يظل قابلًا للاستخراج في الملف الناتج. لا يصلح لحذف المعلومات الحساسة أو تنقيحها بأمان.'
-      : 'Visual overlays only: original text remains extractable in the downloaded PDF. Not for secure redaction or permanent text removal.';
-    articleHtml = '';
-    faqs = [];
-  }
   const securityUnavailable = ['pdf-protect', 'pdf-redact'].includes(pathSlug);
   if (securityUnavailable) {
     title = lang === 'ar' ? 'أداة PDF غير متاحة' : 'PDF security tool unavailable';
@@ -620,6 +613,14 @@ function generatePrerenderedHtml({
     faqs = [];
     relatedTools = [];
     category = 'InformationPage';
+  }
+  if (pathSlug === 'pdf-editor') {
+    // Honest description: the editor does visual overlays only — the registry
+    // description claims secure redaction, which the tool cannot do. Keep the
+    // guide and FAQs rendering; only the description is overridden.
+    description = lang === 'ar'
+      ? 'محرر بتغطية مرئية فقط. النص الأصلي يظل قابلًا للبحث والنسخ والاستخراج. لا يصلح لحذف المعلومات الحساسة أو تنقيحها بأمان.'
+      : 'Visual PDF editor. Original text remains searchable, copyable and extractable. Not for secure redaction or permanent text removal.';
   }
   const isEn = lang === 'en';
   const canonicalUrl = isEn ? `${BASE_URL}/${pathSlug}` : `${BASE_URL}/${lang}/${pathSlug}`;
@@ -998,7 +999,7 @@ const homeSchemaJson = JSON.stringify({
       '@id': `${BASE_URL}/#website`,
       'url': `${BASE_URL}/`,
       'name': 'DevTol',
-      'description': '126+ free, private, client-side online tools for developers & designers.',
+      'description': '122 free, private, client-side online tools for developers & designers.',
       'inLanguage': 'en',
     },
     {
@@ -1371,7 +1372,7 @@ const programmaticScenarios = [
     description: 'Decode and inspect JSON Web Tokens (JWT) alongside RSA/HMAC key generation, hash verification, and payload formatting in one zero-telemetry workspace.',
     keywords: ['jwt.io alternative', 'devtol vs jwt.io', 'offline jwt decoder', 'private jwt parser'],
     titleAr: 'مقارنة DevTol مع JWT.io — فحص وتحليل توكن JWT بخصوصية محلية تامة',
-    descAr: 'فك تشفير وفحص JSON Web Tokens محلياً مع أكثر من 120 أداة للمطورين في مكان واحد بدون تتبع.',
+    descAr: 'فك تشفير وفحص JSON Web Tokens محلياً مع 122 أداة للمطورين في مكان واحد بدون تتبع.',
   },
   {
     pathSlug: 'vs/jsonlint',
@@ -1388,7 +1389,7 @@ const programmaticScenarios = [
     competitor: 'Regex101',
     focusArea: 'Regular Expression Testing, Capture Groups & Text Processing',
     title: 'DevTol vs Regex101 — Fast Client-Side Regex Tester & Developer Suite',
-    description: 'Test regular expressions locally with real-time match highlighting, capture group inspection, and seamless integration with 120+ text and data utilities.',
+    description: 'Test regular expressions locally with real-time match highlighting, capture group inspection, and seamless integration with 122 text and data utilities.',
     keywords: ['regex101 alternative', 'devtol vs regex101', 'offline regex tester', 'client side regex debugger'],
     titleAr: 'مقارنة DevTol مع Regex101 — اختبار التعبيرات النمطية Regex محلياً وبسرعة',
     descAr: 'اختبر التعبيرات النمطية Regex مع تظليل فوري للنتائج وأدوات معالجة النصوص المدمجة في منصة واحدة.',
@@ -1440,7 +1441,7 @@ function buildComparisonArticleHtml(sc, isAr = false) {
             </tr>
             <tr>
               <td><strong>عدد الأدوات المدمجة</strong></td>
-              <td>أكثر من 124 أداة للمطورين وملفات PDF والتشفير في مكان واحد</td>
+              <td>122 أداة للمطورين وملفات PDF والتشفير في مكان واحد</td>
               <td>يركز على فئة محدودة من الأدوات</td>
             </tr>
           </tbody>
@@ -1478,7 +1479,7 @@ function buildComparisonArticleHtml(sc, isAr = false) {
           </tr>
           <tr>
             <td><strong>Unified Toolchain Breadth</strong></td>
-            <td>124+ Developer, Crypto, Network, Data &amp; PDF Tools</td>
+            <td>122 Developer, Crypto, Network, Data &amp; PDF Tools</td>
             <td>Single-domain utility focus</td>
           </tr>
         </tbody>

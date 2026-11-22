@@ -74,7 +74,7 @@ useHead({
         <section>
           <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">5. Intellectual Property & Open Source Licensing</h2>
           <p>
-            The software source code of DevTol is released under the MIT Open Source License. The proprietary trademarks, logos, domain names, distinctive site design, and educational technical editorial articles remain the intellectual property of DevTol and its content creators.
+            The software source code of DevTol is released under the GNU General Public License v3.0 (GPL-3.0). DevTol is a modified version of it-tools (https://github.com/CorentinTh/it-tools), licensed under GPL-3.0. The proprietary trademarks, logos, domain names, distinctive site design, and educational technical editorial articles remain the intellectual property of DevTol and its content creators.
           </p>
         </section>
 

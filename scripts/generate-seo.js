@@ -25,7 +25,7 @@ if (fs.existsSync(enLocalePath)) {
 
 // 1. Core static routes
 const staticRoutes = [
-  { path: '/', priority: '1.0', changefreq: 'daily', title: 'DevTol — 126+ Free Online Developer Tools | 100% Client-Side' },
+  { path: '/', priority: '1.0', changefreq: 'daily', title: 'DevTol — 122 Free Online Developer Tools | 100% Client-Side' },
   { path: '/guides', priority: '0.9', changefreq: 'weekly', title: 'Developer Engineering Guides & Technical Architecture' },
   { path: '/deals', priority: '0.8', changefreq: 'weekly', title: 'Developer Deals, Cloud Credits & Partner Perks' },
   { path: '/pdf-tools', priority: '0.9', changefreq: 'weekly', title: 'Free PDF Tools Online — 100% Client-Side & Private' },
@@ -558,7 +558,7 @@ const toolDetailMap = new Map(toolDetails.map(t => [t.varName, t]));
 
 let llmsContent = `# DevTol
 
-> DevTol is a free, open-source, client-side developer utility platform featuring 120+ tools across PDF processing, cryptography, image editing, data converters, network utilities, and text formatting. All operations run 100% locally inside the browser sandbox with zero server data transmission.
+> DevTol is a free, open-source, client-side developer utility platform featuring 122 tools across PDF processing, cryptography, image editing, data converters, network utilities, and text formatting. All operations run 100% locally inside the browser sandbox with zero server data transmission.
 
 ## Platform Principles
 - 100% Client-Side Privacy: Passwords, tokens, images, and documents never leave the user browser.
@@ -607,7 +607,7 @@ const aiCatalog = {
   schema_version: '2026-10',
   name_for_human: 'DevTol — Free Client-Side Developer Utilities',
   name_for_model: 'devtol_developer_tools',
-  description_for_model: 'Comprehensive suite of 126+ free, 100% client-side developer, cryptography, PDF, network, and data conversion utilities running locally in the browser with zero server data transmission.',
+  description_for_model: 'Comprehensive suite of 122 free, 100% client-side developer, cryptography, PDF, network, and data conversion utilities running locally in the browser with zero server data transmission.',
   base_url: BASE_URL,
   agentic_browsing: {
     llms_txt: `${BASE_URL}/llms.txt`,

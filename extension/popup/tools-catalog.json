@@ -1235,35 +1235,6 @@
     ]
   },
   {
-    "name": "PDF Protect & Unlock",
-    "path": "/pdf-protect",
-    "category": "PDF Tools",
-    "description": "Password-protect or unlock PDF files directly in your browser. Zero server uploads.",
-    "keywords": [
-      "pdf",
-      "password",
-      "protect",
-      "encrypt",
-      "unlock",
-      "security"
-    ]
-  },
-  {
-    "name": "PDF Redaction Tool",
-    "path": "/pdf-redact",
-    "category": "PDF Tools",
-    "description": "Permanently redact sensitive text from PDF files. Client-side privacy guaranteed.",
-    "keywords": [
-      "pdf",
-      "redact",
-      "censor",
-      "remove",
-      "sensitive",
-      "privacy",
-      "blackout"
-    ]
-  },
-  {
     "name": "PDF signature checker",
     "path": "/pdf-signature-checker",
     "category": "Crypto",
