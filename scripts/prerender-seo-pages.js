@@ -614,6 +614,14 @@ function generatePrerenderedHtml({
     relatedTools = [];
     category = 'InformationPage';
   }
+  if (pathSlug === 'pdf-editor') {
+    // Honest description: the editor does visual overlays only — the registry
+    // description claims secure redaction, which the tool cannot do. Keep the
+    // guide and FAQs rendering; only the description is overridden.
+    description = lang === 'ar'
+      ? 'محرر بتغطية مرئية فقط. النص الأصلي يظل قابلًا للبحث والنسخ والاستخراج. لا يصلح لحذف المعلومات الحساسة أو تنقيحها بأمان.'
+      : 'Visual PDF editor. Original text remains searchable, copyable and extractable. Not for secure redaction or permanent text removal.';
+  }
   const isEn = lang === 'en';
   const canonicalUrl = isEn ? `${BASE_URL}/${pathSlug}` : `${BASE_URL}/${lang}/${pathSlug}`;
 
@@ -1364,7 +1372,7 @@ const programmaticScenarios = [
     description: 'Decode and inspect JSON Web Tokens (JWT) alongside RSA/HMAC key generation, hash verification, and payload formatting in one zero-telemetry workspace.',
     keywords: ['jwt.io alternative', 'devtol vs jwt.io', 'offline jwt decoder', 'private jwt parser'],
     titleAr: 'مقارنة DevTol مع JWT.io — فحص وتحليل توكن JWT بخصوصية محلية تامة',
-    descAr: 'فك تشفير وفحص JSON Web Tokens محلياً مع أكثر من 120 أداة للمطورين في مكان واحد بدون تتبع.',
+    descAr: 'فك تشفير وفحص JSON Web Tokens محلياً مع 122 أداة للمطورين في مكان واحد بدون تتبع.',
   },
   {
     pathSlug: 'vs/jsonlint',
@@ -1381,7 +1389,7 @@ const programmaticScenarios = [
     competitor: 'Regex101',
     focusArea: 'Regular Expression Testing, Capture Groups & Text Processing',
     title: 'DevTol vs Regex101 — Fast Client-Side Regex Tester & Developer Suite',
-    description: 'Test regular expressions locally with real-time match highlighting, capture group inspection, and seamless integration with 120+ text and data utilities.',
+    description: 'Test regular expressions locally with real-time match highlighting, capture group inspection, and seamless integration with 122 text and data utilities.',
     keywords: ['regex101 alternative', 'devtol vs regex101', 'offline regex tester', 'client side regex debugger'],
     titleAr: 'مقارنة DevTol مع Regex101 — اختبار التعبيرات النمطية Regex محلياً وبسرعة',
     descAr: 'اختبر التعبيرات النمطية Regex مع تظليل فوري للنتائج وأدوات معالجة النصوص المدمجة في منصة واحدة.',
