@@ -10,17 +10,15 @@ import { tool as curlToCodeConverter } from './curl-to-code-converter';
 import { tool as aiRegexGeneratorExplainer } from './ai-regex-generator-explainer';
 import { tool as sqlToOrmConverter } from './sql-to-orm-converter';
 
-// PDF Tools (1-11)
+// PDF Tools (1-9)
 import { tool as pdfEditor } from './pdf-editor';
 import { tool as pdfMerge } from './pdf-merge';
 import { tool as pdfSplit } from './pdf-split';
 import { tool as pdfCompress } from './pdf-compress';
 import { tool as pdfToImage } from './pdf-to-image';
 import { tool as imagesToPdf } from './images-to-pdf';
-import { tool as pdfProtect } from './pdf-protect';
 import { tool as pdfOrganize } from './pdf-organize';
 import { tool as pdfOcr } from './pdf-ocr';
-import { tool as pdfRedact } from './pdf-redact';
 import { tool as pdfWatermarkTool } from './pdf-watermark-tool';
 
 // Text & Data Tools (11-20)
@@ -135,7 +133,7 @@ import { tool as yamlViewer } from './yaml-viewer';
 export const toolsByCategory: ToolCategory[] = [
   {
     name: 'PDF Tools',
-    components: [pdfEditor, pdfMerge, pdfSplit, pdfCompress, pdfToImage, imagesToPdf, pdfProtect, pdfOrganize, pdfOcr, pdfRedact, pdfWatermarkTool],
+    components: [pdfEditor, pdfMerge, pdfSplit, pdfCompress, pdfToImage, imagesToPdf, pdfOrganize, pdfOcr, pdfWatermarkTool],
   },
   {
     name: 'AI Tools',

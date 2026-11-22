@@ -603,13 +603,6 @@ function generatePrerenderedHtml({
   relatedTools = [],
   lang = 'en',
 }) {
-  if (pathSlug === 'pdf-editor') {
-    description = lang === 'ar'
-      ? 'تعديلات مرئية فقط: النص الأصلي يظل قابلًا للاستخراج في الملف الناتج. لا يصلح لحذف المعلومات الحساسة أو تنقيحها بأمان.'
-      : 'Visual overlays only: original text remains extractable in the downloaded PDF. Not for secure redaction or permanent text removal.';
-    articleHtml = '';
-    faqs = [];
-  }
   const securityUnavailable = ['pdf-protect', 'pdf-redact'].includes(pathSlug);
   if (securityUnavailable) {
     title = lang === 'ar' ? 'أداة PDF غير متاحة' : 'PDF security tool unavailable';
@@ -998,7 +991,7 @@ const homeSchemaJson = JSON.stringify({
       '@id': `${BASE_URL}/#website`,
       'url': `${BASE_URL}/`,
       'name': 'DevTol',
-      'description': '126+ free, private, client-side online tools for developers & designers.',
+      'description': '122 free, private, client-side online tools for developers & designers.',
       'inLanguage': 'en',
     },
     {
@@ -1440,7 +1433,7 @@ function buildComparisonArticleHtml(sc, isAr = false) {
             </tr>
             <tr>
               <td><strong>عدد الأدوات المدمجة</strong></td>
-              <td>أكثر من 124 أداة للمطورين وملفات PDF والتشفير في مكان واحد</td>
+              <td>122 أداة للمطورين وملفات PDF والتشفير في مكان واحد</td>
               <td>يركز على فئة محدودة من الأدوات</td>
             </tr>
           </tbody>
@@ -1478,7 +1471,7 @@ function buildComparisonArticleHtml(sc, isAr = false) {
           </tr>
           <tr>
             <td><strong>Unified Toolchain Breadth</strong></td>
-            <td>124+ Developer, Crypto, Network, Data &amp; PDF Tools</td>
+            <td>122 Developer, Crypto, Network, Data &amp; PDF Tools</td>
             <td>Single-domain utility focus</td>
           </tr>
         </tbody>

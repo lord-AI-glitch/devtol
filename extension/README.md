@@ -5,7 +5,7 @@
 ---
 
 ## Features
-- **Instant Search Across 126+ Tools**: Fuzzy search with deep links directly opening tools on `https://devtol.online`.
+- **Instant Search Across 122 Tools**: Fuzzy search with deep links directly opening tools on `https://devtol.online`.
 - **5 Built-in Offline Micro-Tools**:
   - **JSON Prettifier & Minifier**: Format (2 or 4 spaces) and minify JSON with one-click clipboard copy.
   - **Password & Token Generator**: Cryptographically secure random tokens (8–64 length) with entropy calculation.

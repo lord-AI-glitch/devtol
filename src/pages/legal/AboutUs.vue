@@ -124,7 +124,10 @@ const pillarsAr = [
             في بيئات العمل التقنية والمؤسسية، يترتب على استخدام المحولات السحابية التقليدية مخاطر جسيمة تتعلق بتسريب البيانات ومخالفة لوائح حماية البيانات والخصوصية مثل GDPR و HIPAA. ولذا، صُممت منصة DevTol وفق فلسفة معمارية صارمة: <strong>المعالجة المحلية الكاملة من جانب العميل بنسبة 100%</strong>. من خلال تسخير أحدث إمكانيات محركات المتصفحات الحديثة، وتقنيات WebAssembly و Web Workers و Web Crypto API، تتم كافة العمليات الحسابية والتشفيرية محلياً في ذاكرة جهازك المؤقتة وتتبخر بمجرد إغلاق الصفحة دون أن تلامس خوادم خارجية.
           </p>
           <p class="mt-3">
-            انطلاقاً من الاحترام البالغ لمجتمع البرمجيات الحرة ومبادرات المصادر المفتوحة التي قدمت حجر الأساس الأول لبعض أدوات الويب (مثل مشروع it-tools تحت ترخيص MIT)، قام الفريق الهندسي في DevTol بإعادة بناء المنصة بالكامل، وتوسيعها بأكثر من 30 أداة حصرية مطورة خصيصاً للمنصة (مثل حاسبات استهلاك نماذج الذكاء الاصطناعي، ونماذج تقدير عوائد الإعلانات البرمجية، ومجموعة أدوات معالجة ملفات PDF محلياً، ومحللات استعلامات SQL متعددة اللهجات)، مدعومة بتوثيق هندسي عميق بعشر لغات عالمية.
+            انطلاقاً من الاحترام البالغ لمجتمع البرمجيات الحرة ومبادرات المصادر المفتوحة التي قدمت حجر الأساس الأول لبعض أدوات الويب (مثل مشروع it-tools تحت ترخيص GPL-3.0)، قام الفريق الهندسي في DevTol بإعادة بناء المنصة بالكامل، وتوسيعها بأكثر من 30 أداة حصرية مطورة خصيصاً للمنصة (مثل حاسبات استهلاك نماذج الذكاء الاصطناعي، ونماذج تقدير عوائد الإعلانات البرمجية، ومجموعة أدوات معالجة ملفات PDF محلياً، ومحللات استعلامات SQL متعددة اللهجات)، مدعومة بتوثيق هندسي عميق بعشر لغات عالمية.
+          </p>
+          <p class="mt-3">
+            ديف تول مبني على مشروع it-tools (CorentinTh) مع تعديلات — أول تعديل سبتمبر 2026. الكود المصدري: <a href="https://github.com/lord-AI-glitch/devtol" class="text-primary font-medium hover:underline">github.com/lord-AI-glitch/devtol</a> · المشروع الأصلي: <a href="https://github.com/CorentinTh/it-tools" class="text-primary font-medium hover:underline">github.com/CorentinTh/it-tools</a>.
           </p>
         </section>
 
@@ -146,7 +149,7 @@ const pillarsAr = [
             <p><strong>الخبرة العملية (Experience):</strong> محتوانا الهندسي يكتبه ويراجعه ممارسون تقنيون ذوو خبرة ميدانية في بناء وإدارة البنى السحابية الموزعة وبوابات التحقق وقواعد البيانات الإنتاجية.</p>
             <p><strong>التخصص العلمي (Expertise):</strong> تتم مراجعة كافة المعادلات الرياضية ومقتطفات الشفرات بالرجوع المباشر إلى وثائق RFC الرسمية (مثل IETF RFC 7519 لرموز JWT، و RFC 4648 لترميز Base64، و RFC 4122/9562 لمعرفات UUID، ومعايير POSIX IEEE 1003.1 لجدولة المهام).</p>
             <p><strong>المصداقية والأثر (Authoritativeness):</strong> تحظى أدواتنا بانتشار وثقة مجتمعات المطورين والفرق الهندسية حول العالم بفضل شفافيتها وسرعتها الفائقة.</p>
-            <p><strong>الموثوقية والشفافية (Trustworthiness):</strong> الشفرات البرمجية متاحة للاطلاع والمراجعة تحت ترخيص MIT المفتوح، مما يمكن مسؤولي الأمان من فحص منطق التنفيذ والاطمئنان التام لخلوه من أي جمع للبيانات.</p>
+            <p><strong>الموثوقية والشفافية (Trustworthiness):</strong> الشفرات البرمجية متاحة للاطلاع والمراجعة تحت ترخيص GPL-3.0 المفتوح، مما يمكن مسؤولي الأمان من فحص منطق التنفيذ والاطمئنان التام لخلوه من أي جمع للبيانات.</p>
           </div>
         </section>
 
@@ -189,7 +192,10 @@ const pillarsAr = [
             DevTol operates on a zero-compromise architectural premise: <strong>100% Local Client-Side Execution</strong>. By leveraging modern browser engines, WebAssembly compilation, Web Workers, and the Web Crypto API, all data transformations execute strictly in your workstation's volatile memory and vanish upon closing the tab without touching external servers.
           </p>
           <p class="mt-3">
-            While proudly honoring open-source software foundations (including foundational utilities derived from the open-source it-tools MIT ecosystem), DevTol has been completely re-architected, optimized, and expanded into an enterprise-grade developer platform. We have built over 30 bespoke custom utilities—including AI token pricing calculators, programmatic AdSense revenue estimation engines, local PDF manipulation suites, and multi-dialect SQL analyzers—complemented by exhaustive technical documentation across 10 languages.
+            While proudly honoring open-source software foundations (including foundational utilities derived from the open-source it-tools GPL-3.0 ecosystem), DevTol has been completely re-architected, optimized, and expanded into an enterprise-grade developer platform. We have built over 30 bespoke custom utilities—including AI token pricing calculators, programmatic AdSense revenue estimation engines, local PDF manipulation suites, and multi-dialect SQL analyzers—complemented by exhaustive technical documentation across 10 languages.
+          </p>
+          <p class="mt-3">
+            Built on it-tools (CorentinTh) with modifications — first modified September 2026. Source code: <a href="https://github.com/lord-AI-glitch/devtol" class="text-primary font-medium hover:underline">github.com/lord-AI-glitch/devtol</a> · Upstream: <a href="https://github.com/CorentinTh/it-tools" class="text-primary font-medium hover:underline">github.com/CorentinTh/it-tools</a>.
           </p>
         </section>
 
@@ -211,7 +217,7 @@ const pillarsAr = [
             <p><strong>Experience:</strong> Our editorial materials are authored and reviewed by practicing engineers with hands-on production experience managing cloud microservices, authentication gateways, and distributed databases.</p>
             <p><strong>Expertise:</strong> Technical specifications, formulas, and code snippets are cross-referenced directly against canonical RFCs (e.g., IETF RFC 7519 for JWTs, RFC 4648 for Base64, RFC 4122/9562 for UUIDs, and POSIX IEEE 1003.1 for crontab syntax).</p>
             <p><strong>Authoritativeness:</strong> DevTol is recognized across the developer community with thousands of weekly active sessions and production deployments worldwide.</p>
-            <p><strong>Trustworthiness:</strong> Complete source code transparency under the open-source MIT License, allowing security auditors to inspect algorithmic logic and verify zero telemetry.</p>
+            <p><strong>Trustworthiness:</strong> Complete source code transparency under the open-source GPL-3.0 license, allowing security auditors to inspect algorithmic logic and verify zero telemetry.</p>
           </div>
         </section>
 

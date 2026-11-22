@@ -248,10 +248,6 @@ async function loadArticle(toolSlug: string) {
     .replace(/^\/(?:ar|de|es|fr|no|pt|uk|vi|zh)(?=\/|$)/, '')
     .replace(/^\/+/, '')
     .split('/')[0] || '';
-  if (['pdf-protect', 'pdf-redact', 'pdf-editor'].includes(normalizedSlug)) {
-    renderedGuideHtml.value = '';
-    return;
-  }
   const guidePath = `/src/content/tools/${normalizedSlug}.md`;
   const loadGuide = toolGuides[guidePath];
 
