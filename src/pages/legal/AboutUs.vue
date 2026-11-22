@@ -202,7 +202,7 @@ const pillarsAr = [
           <div class="bg-slate-100 dark:bg-neutral-800/40 p-5 rounded-lg border border-slate-200 dark:border-neutral-700/70 mt-3 space-y-2">
             <p><strong>Experience:</strong> Our editorial materials are authored and reviewed by practicing engineers with hands-on production experience managing cloud microservices, authentication gateways, and distributed databases.</p>
             <p><strong>Expertise:</strong> Technical specifications, formulas, and code snippets are cross-referenced directly against canonical RFCs (e.g., IETF RFC 7519 for JWTs, RFC 4648 for Base64, RFC 4122/9562 for UUIDs, and POSIX IEEE 1003.1 for crontab syntax).</p>
-            <p><strong>Authoritativeness:</strong> DevTol is recognized across the developer community with thousands of weekly active sessions and production deployments worldwide.</p>
+            <p><strong>Authoritativeness:</strong> DevTol is recognized across a growing community of developers.</p>
             <p><strong>Trustworthiness:</strong> Complete source code transparency under the open-source GPL-3.0 license, allowing security auditors to inspect algorithmic logic and verify zero telemetry.</p>
           </div>
         </section>
