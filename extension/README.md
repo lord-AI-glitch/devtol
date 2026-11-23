@@ -10,7 +10,7 @@
   - **JSON Prettifier & Minifier**: Format (2 or 4 spaces) and minify JSON with one-click clipboard copy.
   - **Password & Token Generator**: Cryptographically secure random tokens (8–64 length) with entropy calculation.
   - **Base64 String Converter**: UTF-8 safe encode and decode.
-  - **Prompt Token & AI Cost Estimator**: Calculate tokens and costs for GPT-4o, Claude 3.5 Sonnet, and Gemini 1.5 Pro.
+  - **AI Token Cost Calculator**: Opens the full calculator on devtol.online — prices are maintained there, so the extension never shows stale rates.
   - **Unix Epoch Converter**: Live ticking Unix timestamp with ISO-8601 UTC and local time conversion.
 - **Dark / Light Mode**: Automatically matches system preference and persists user choice.
 - **Privacy-First**: Zero tracking, zero remote scripts, zero invasive host permissions (`storage` only).
@@ -27,7 +27,7 @@
 3. Click **Load unpacked** (تحميل حزمة غير مضغوطة).
 4. Select the directory:
    ```
-   E:\مشاريع مهمه\devtol\dist-extension
+   dist-extension/
    ```
 5. Pin the **DevTol** icon to your browser toolbar and click to use!
 
@@ -40,7 +40,7 @@
 2. Click **New Item** (عنصر جديد).
 3. Upload the pre-built ZIP archive:
    ```
-   E:\مشاريع مهمه\devtol\dist-extension\devtol-chrome-extension.zip
+   dist-extension/devtol-chrome-extension.zip
    ```
 4. Fill in standard store metadata (Category: `Developer Tools`, Language: `English / Arabic`).
 5. Submit for review (Manifest V3 without host permissions typically passes review in < 24 hours).

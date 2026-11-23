@@ -144,28 +144,13 @@
       </div>
     </section>
 
-    <!-- 5. AI Token & Cost Estimator Tab -->
+    <!-- 5. AI Token Cost Calculator Tab (opens on the website) -->
     <section id="panel-ai" class="tab-panel">
       <div class="card">
         <div class="card-title">
-          <span>Prompt Token & Cost Estimator</span>
-          <span id="aiTokenCountBadge" class="badge badge-success">0 tokens</span>
+          <span>AI Token Cost Calculator</span>
         </div>
-        <textarea id="aiPromptInput" class="textarea-field" style="height: 80px;" placeholder="Paste LLM prompt here to estimate tokens and pricing..."></textarea>
-        <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 4px;">
-          <div class="model-row">
-            <span class="model-name">OpenAI GPT-4o</span>
-            <span id="costGpt4o" class="model-cost">$0.0000</span>
-          </div>
-          <div class="model-row">
-            <span class="model-name">Claude 3.5 Sonnet</span>
-            <span id="costClaude" class="model-cost">$0.0000</span>
-          </div>
-          <div class="model-row">
-            <span class="model-name">Google Gemini 1.5 Pro</span>
-            <span id="costGemini" class="model-cost">$0.0000</span>
-          </div>
-        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0 8px;">Token prices change often, so the calculator lives on devtol.online where it stays up to date — the extension no longer keeps its own price table.</p>
         <a href="https://devtol.online/ai-token-cost-calculator?utm_source=chrome_extension" target="_blank" class="secondary-btn" style="text-decoration: none; justify-content: center; margin-top: 6px;">
           Open Advanced AI Calculator ↗
         </a>
