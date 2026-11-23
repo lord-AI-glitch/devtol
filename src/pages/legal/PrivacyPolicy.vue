@@ -16,7 +16,7 @@ useHead({
   <div class="legal-container">
     <div class="legal-card">
       <h1 class="text-3xl font-bold mb-4 text-primary">Privacy Policy</h1>
-      <p class="text-sm text-slate-500 dark:text-neutral-400 mb-6">Last Updated: November 22, 2026</p>
+      <p class="text-sm text-slate-500 dark:text-neutral-400 mb-6">Last Updated: November 23, 2026</p>
 
       <div class="space-y-6 text-slate-600 dark:text-neutral-300 leading-relaxed">
         <section>
@@ -62,7 +62,7 @@ useHead({
           </p>
           <ul class="list-disc pl-5 mt-2 space-y-1">
             <li><strong>Google AdSense</strong> — serves advertisements and may set advertising cookies (see section 3 above). You can opt out of personalized advertising via <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">Google Ads Settings</a>.</li>
-            <li><strong>Google Fonts</strong> — the site currently loads its Inter and JetBrains Mono typefaces from Google's font servers, which receive your IP address and browser information with that request. We plan to host these fonts locally; until then, loading them remains a third-party request.</li>
+            <li><strong>Fonts</strong> — the site's Inter and JetBrains Mono typefaces are hosted on DevTol itself; loading them makes no request to any third party.</li>
           </ul>
           <p class="mt-2">
             All tool engines — including OCR, PDF processing, image and QR-code engines — are served by DevTol itself and run entirely in your browser; they do not connect to any third party, and your tool inputs never leave your browser.
