@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initJsonTool();
   initTokenTool();
   initBase64Tool();
-  initAiTool();
   initUnixTool();
 });
 
@@ -368,49 +367,9 @@ function initBase64Tool() {
   }
 }
 
-// ==========================================
-// 7. AI Token & Cost Estimator Tool
-// ==========================================
-function initAiTool() {
-  const input = document.getElementById('aiPromptInput');
-  const tokenBadge = document.getElementById('aiTokenCountBadge');
-  const gpt4oEl = document.getElementById('costGpt4o');
-  const claudeEl = document.getElementById('costClaude');
-  const geminiEl = document.getElementById('costGemini');
-
-  input.addEventListener('input', () => {
-    const text = input.value;
-    if (!text.trim()) {
-      tokenBadge.textContent = '0 tokens';
-      gpt4oEl.textContent = '$0.0000';
-      claudeEl.textContent = '$0.0000';
-      geminiEl.textContent = '$0.0000';
-      return;
-    }
-
-    // Accurate heuristic BPE token estimator (~3.8 chars/token for code/text)
-    const charCount = text.length;
-    const wordCount = text.trim().split(/\s+/).length;
-    const estimatedTokens = Math.max(1, Math.round((charCount / 3.8 + wordCount * 0.2) / 1.1));
-
-    tokenBadge.textContent = `${estimatedTokens.toLocaleString()} tokens`;
-
-    // Pricing per 1M tokens:
-    // GPT-4o: $2.50 / 1M
-    // Claude 3.5 Sonnet: $3.00 / 1M
-    // Gemini 1.5 Pro: $1.25 / 1M
-    const costGpt4o = (estimatedTokens * (2.50 / 1_000_000)).toFixed(5);
-    const costClaude = (estimatedTokens * (3.00 / 1_000_000)).toFixed(5);
-    const costGemini = (estimatedTokens * (1.25 / 1_000_000)).toFixed(5);
-
-    gpt4oEl.textContent = `$${costGpt4o}`;
-    claudeEl.textContent = `$${costClaude}`;
-    geminiEl.textContent = `$${costGemini}`;
-  });
-}
 
 // ==========================================
-// 8. Unix Epoch & Time Converter Tool
+// 7. Unix Epoch & Time Converter Tool
 // ==========================================
 function initUnixTool() {
   const liveDisplay = document.getElementById('liveUnixDisplay');
