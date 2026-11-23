@@ -7,6 +7,7 @@ import shadow from 'vue-shadow-dom';
 import { plausible } from './plugins/plausible.plugin';
 
 import 'virtual:uno.css';
+import './assets/main.css';
 
 import App from './App.vue';
 import router from './router';
