@@ -1,6 +1,6 @@
 ﻿# Text to Speech Converter — Free Online Developer & Privacy Utility
 
-> Convert written text into natural spoken voice using the browser Speech Synthesis API. Built with zero server dependencies, guaranteeing 100% data security and confidentiality.
+> Convert written text into natural spoken voice using the browser Speech Synthesis API. Built with zero server dependencies, and your inputs are processed locally and never uploaded to DevTol's servers.
 
 ## Overview & Zero-Knowledge Architecture
 In an era of ubiquitous cloud processing, submitting sensitive intellectual property, operational logs, or personal media to unknown backend servers poses substantial risk. The **Text to Speech Converter** operates with a zero-transmission model. Every transformation, compilation, cryptographic verification, or rasterization is executed directly on your hardware via JavaScript and WebAssembly sandboxes. 

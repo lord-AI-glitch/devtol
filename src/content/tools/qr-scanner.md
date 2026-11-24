@@ -1,6 +1,6 @@
 ﻿# QR Code Scanner — Free Online Developer & Privacy Utility
 
-> Scan and decode QR codes via webcam stream or image file upload. Built with zero server dependencies, guaranteeing 100% data security and confidentiality.
+> Scan and decode QR codes via webcam stream or image file upload. Built with zero server dependencies, and your inputs are processed locally and never uploaded to DevTol's servers.
 
 ## Overview & Zero-Knowledge Architecture
 In an era of ubiquitous cloud processing, submitting sensitive intellectual property, operational logs, or personal media to unknown backend servers poses substantial risk. The **QR Code Scanner** operates with a zero-transmission model. Every transformation, compilation, cryptographic verification, or rasterization is executed directly on your hardware via JavaScript and WebAssembly sandboxes. 

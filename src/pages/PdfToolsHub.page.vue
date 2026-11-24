@@ -253,7 +253,7 @@ const faqs = computed(() => [
 
       <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
         {{ isAr
-          ? 'مجموعة متكاملة من 12 أداة لتعديل ودمج وضغط وتأمين ملفات الـ PDF بأقصى سرعة وأمان مطلق دون رفع أي ملف إلى أي خادم خارجي.'
+          ? 'مجموعة متكاملة من 10 أدوات لتعديل ودمج وضغط وتأمين ملفات الـ PDF بأقصى سرعة وأمان مطلق دون رفع أي ملف إلى أي خادم خارجي.'
           : 'High-performance developer-grade PDF suite. Edit, merge, split, compress, and sign documents locally in your browser with zero latency and zero privacy risks.'
         }}
       </p>

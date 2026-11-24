@@ -1,6 +1,6 @@
 ﻿# YAML Validator & Formatter — Free Online Developer & Privacy Utility
 
-> Validate syntax errors and beautify YAML or convert seamlessly to JSON. Built with zero server dependencies, guaranteeing 100% data security and confidentiality.
+> Validate syntax errors and beautify YAML or convert seamlessly to JSON. Built with zero server dependencies, and your inputs are processed locally and never uploaded to DevTol's servers.
 
 ## Overview & Zero-Knowledge Architecture
 In an era of ubiquitous cloud processing, submitting sensitive intellectual property, operational logs, or personal media to unknown backend servers poses substantial risk. The **YAML Validator & Formatter** operates with a zero-transmission model. Every transformation, compilation, cryptographic verification, or rasterization is executed directly on your hardware via JavaScript and WebAssembly sandboxes. 
