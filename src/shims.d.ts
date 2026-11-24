@@ -29,13 +29,16 @@ declare module 'unicode-emoji-json' {
     unicode_version: string;
     skin_tone_support: boolean;
     skin_tone_support_unicode_version: string;
-  }>;
-  
-  export default emoji;
+  }>;\n  \n  export default emoji;
 }
 
 declare module 'pdf-signature-reader' {
   const verifySignature: (pdf: ArrayBuffer) => ({signatures: SignatureInfo[]});
 
   export default verifySignature;
+}
+
+declare module '*.yml' {
+  const messages: Record<string, any>;
+  export default messages;
 }
