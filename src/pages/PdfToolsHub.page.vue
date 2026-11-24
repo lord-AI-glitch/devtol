@@ -164,8 +164,8 @@ const pdfTools: PdfToolItem[] = [
     slug: 'pdf-watermark-tool',
     nameEn: 'Watermark PDF',
     nameAr: 'إضافة علامة مائية لـ PDF',
-    descEn: 'Add custom text or image watermarks, stamps, confidentiality disclaimers, and logos to all pages.',
-    descAr: 'إضافة علامة مائية مخصصة (نصية أو صورية) وأختام سرية وشعارات لجميع صفحات المستند.',
+    descEn: 'Add custom text watermarks, stamps, and confidentiality disclaimers to all pages.',
+    descAr: 'إضافة علامة مائية نصية وأختام سرية لجميع صفحات المستند.',
     icon: Droplet,
     category: 'edit',
     badgeEn: 'Text & Logo Stamps',
@@ -279,7 +279,7 @@ const faqs = computed(() => [
             :class="selectedCategory === 'all' ? 'bg-emerald-600 text-white shadow' : 'bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-neutral-700'"
             @click="selectedCategory = 'all'"
           >
-            {{ isAr ? 'جميع الأدوات (12)' : 'All Tools (12)' }}
+            {{ isAr ? 'جميع الأدوات (10)' : 'All Tools (10)' }}
           </button>
           <button
             class="px-3 py-1.5 rounded-lg font-medium transition-all"
