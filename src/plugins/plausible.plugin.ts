@@ -4,26 +4,51 @@ import { config } from '@/config';
 
 const noop = () => {};
 
-function createFakePlausibleInstance(): Pick<ReturnType<typeof Plausible>, 'trackEvent' | 'enableAutoPageviews'> {
+type PlausibleInstance = Pick<ReturnType<typeof Plausible>, 'trackEvent' | 'enableAutoPageviews'>;
+
+function createFakePlausibleInstance(): PlausibleInstance {
   return {
     trackEvent: noop,
     enableAutoPageviews: () => noop,
   };
 }
 
+// A stable wrapper that forwards every call to the current inner instance.
+// Holders that captured the provided value at setup (e.g. the base layout's
+// `useTracker()`) keep working and automatically use the real tracker once
+// its chunk loads; only the inner reference swaps, never the provided object.
+function createDelegatingPlausibleInstance(initial: PlausibleInstance): {
+  instance: PlausibleInstance;
+  setInner: (next: PlausibleInstance) => void;
+} {
+  let inner = initial;
+  return {
+    instance: {
+      trackEvent: (...args: Parameters<PlausibleInstance['trackEvent']>) => inner.trackEvent(...args),
+      enableAutoPageviews: (...args: Parameters<PlausibleInstance['enableAutoPageviews']>) =>
+        inner.enableAutoPageviews(...args),
+    },
+    setInner: (next: PlausibleInstance) => {
+      inner = next;
+    },
+  };
+}
+
 export const plausible = {
   install: (app: App) => {
     if (config.plausible.isTrackerEnabled) {
-      // The real tracker is loaded on demand; the fake instance is provided
+      // The real tracker is loaded on demand; a delegating wrapper is provided
       // synchronously so `inject('plausible')` never resolves to undefined,
-      // and is replaced once the tracker chunk arrives.
+      // and holders captured at setup automatically use the real tracker
+      // once the chunk arrives.
       const fake = createFakePlausibleInstance();
-      app.provide('plausible', fake);
+      const { instance, setInner } = createDelegatingPlausibleInstance(fake);
+      app.provide('plausible', instance);
       import('plausible-tracker')
         .then(({ default: Plausible }) => {
-          const instance = Plausible(config.plausible);
-          instance.enableAutoPageviews();
-          app.provide('plausible', instance);
+          const realInstance = Plausible(config.plausible);
+          realInstance.enableAutoPageviews();
+          setInner(realInstance);
         })
         .catch((error: unknown) => {
           // Tracker chunk failed to load (e.g. stale chunk after a deploy):

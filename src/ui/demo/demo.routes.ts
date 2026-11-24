@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 import DemoHome from './demo-home.page.vue';
 
-const demoPages = import.meta.glob('../*/*.demo.vue', { eager: true });
+const demoPages = import.meta.glob('../*/*.demo.vue');
 
 export const demoRoutes = Object.keys(demoPages).map((demoComponentPath) => {
   const [, , fileName] = demoComponentPath.split('/');
