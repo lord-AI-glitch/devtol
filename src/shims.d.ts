@@ -29,7 +29,9 @@ declare module 'unicode-emoji-json' {
     unicode_version: string;
     skin_tone_support: boolean;
     skin_tone_support_unicode_version: string;
-  }>;\n  \n  export default emoji;
+  }>;
+  
+  export default emoji;
 }
 
 declare module 'pdf-signature-reader' {
@@ -37,7 +39,6 @@ declare module 'pdf-signature-reader' {
 
   export default verifySignature;
 }
-
 declare module '*.yml' {
   const messages: Record<string, any>;
   export default messages;
