@@ -9,12 +9,12 @@ export function getHomePrerenderContent(lang, toolsList = []) {
     : 'DevTol — Client-Side Developer Utilities & Web Engineering Suite';
 
   const heroSubtitle = isAr
-    ? 'أكثر من 124 أداة برمجية وهندسية تعمل محلياً بالكامل داخل المتصفح عبر WebAssembly و Web Workers و Web Crypto API. حماية مطلقة للخصوصية، صفر نقل للبيانات إلى أي خوادم، وسرعة فائقة بدون انتظار.'
-    : 'Over 124+ client-side developer and designer utilities running entirely in your browser sandbox using Web Workers, WebAssembly, and the Web Crypto API. Zero server transmissions, absolute data privacy, and instantaneous local processing.';
+    ? 'أكثر من 122 أداة برمجية وهندسية تعمل محلياً بالكامل داخل المتصفح عبر WebAssembly و Web Workers و Web Crypto API. حماية مطلقة للخصوصية، صفر نقل للبيانات إلى أي خوادم، وسرعة فائقة بدون انتظار.'
+    : 'Over 122 client-side developer and designer utilities running entirely in your browser sandbox using Web Workers, WebAssembly, and the Web Crypto API. Zero server transmissions, absolute data privacy, and instantaneous local processing.';
 
   const guidesBtnText = isAr ? 'أدلة المطورين الهندسية' : 'Developer Engineering Guides';
   const aboutBtnText = isAr ? 'عن المنصة ومعايير الخصوصية' : 'About & Privacy Architecture';
-  const toolsHeading = isAr ? 'فهرس الأدوات البرمجية الشامل (124+ أداة)' : 'Comprehensive Developer Tools Directory (124+ Tools)';
+  const toolsHeading = isAr ? 'فهرس الأدوات البرمجية الشامل (122 أداة)' : 'Comprehensive Developer Tools Directory (122 Tools)';
 
   // Build tools cards
   const toolsCardsHtml = toolsList.map(t => {
