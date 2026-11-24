@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { availableLocales, locale } = useI18n();
+import { supportedLocales } from '@/plugins/i18n.plugin';
+
+const { locale } = useI18n();
 
 const localesLong: Record<string, string> = {
   ar: 'العربية',
@@ -16,7 +18,7 @@ const localesLong: Record<string, string> = {
 };
 
 const localeOptions = computed(() =>
-  availableLocales.map(locale => ({
+  supportedLocales.map(locale => ({
     label: localesLong[locale] ?? locale,
     value: locale,
   })),
