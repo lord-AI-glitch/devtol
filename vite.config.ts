@@ -123,7 +123,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['vue', 'vue-router', 'pinia', 'vue-i18n', '@vueuse/core', '@vueuse/head', '@vicons/tabler', '@vicons/material'],
-          naive: ['naive-ui'],
         },
       },
     },
