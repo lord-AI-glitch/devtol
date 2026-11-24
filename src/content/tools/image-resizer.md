@@ -1,6 +1,6 @@
 ﻿# Image Resizer & Cropper — Free Online Developer & Privacy Utility
 
-> Resize dimensions, change resolution, or crop photos to specific aspect ratios. Built with zero server dependencies, guaranteeing 100% data security and confidentiality.
+> Resize dimensions, change resolution, or crop photos to specific aspect ratios. Built with zero server dependencies, and your inputs are processed locally and never uploaded to DevTol's servers.
 
 ## Overview & Zero-Knowledge Architecture
 In an era of ubiquitous cloud processing, submitting sensitive intellectual property, operational logs, or personal media to unknown backend servers poses substantial risk. The **Image Resizer & Cropper** operates with a zero-transmission model. Every transformation, compilation, cryptographic verification, or rasterization is executed directly on your hardware via JavaScript and WebAssembly sandboxes. 

@@ -1,6 +1,6 @@
 ﻿# EXIF Metadata Inspector & Cleaner — Free Online Developer & Privacy Utility
 
-> Inspect camera metadata, GPS tags, and scrub EXIF data for privacy. Built with zero server dependencies, guaranteeing 100% data security and confidentiality.
+> Inspect camera metadata, GPS tags, and scrub EXIF data for privacy. Built with zero server dependencies, and your inputs are processed locally and never uploaded to DevTol's servers.
 
 ## Overview & Zero-Knowledge Architecture
 In an era of ubiquitous cloud processing, submitting sensitive intellectual property, operational logs, or personal media to unknown backend servers poses substantial risk. The **EXIF Metadata Inspector & Cleaner** operates with a zero-transmission model. Every transformation, compilation, cryptographic verification, or rasterization is executed directly on your hardware via JavaScript and WebAssembly sandboxes. 

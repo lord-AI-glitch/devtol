@@ -513,7 +513,7 @@ export function getLegalPageArticleHtml(slug, lang) {
           </div>
 
           <h3 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-top: 28px;">3. الأدوات المتاحة في الحزمة</h3>
-          <p>تشمل أدوات PDF في DevTol ما يلي: محرر PDF متقدم، دمج ملفات PDF متعددة، تقسيم واستخراج الصفحات، ضغط وتقليص حجم المستندات، تحويل PDF إلى صور JPG/PNG، تحويل الصور إلى مستندات PDF، إضافة علامة مائية نصية أو مرئية، طمس وحجب النصوص الحساسة (Redact)، التعرف الضوئي على المحارف (OCR)، وتنظيم وإعادة ترتيب وتدوير الصفحات، وفحص التوقيعات الرقمية المشفرة.</p>
+          <p>تشمل أدوات PDF في DevTol ما يلي: محرر PDF متقدم، دمج ملفات PDF متعددة، تقسيم واستخراج الصفحات، ضغط وتقليص حجم المستندات، تحويل PDF إلى صور JPG/PNG، تحويل الصور إلى مستندات PDF، إضافة علامة مائية نصية، التعرف الضوئي على المحارف (OCR)، وتنظيم وإعادة ترتيب وتدوير الصفحات، وفحص التوقيعات الرقمية المشفرة.</p>
         </article>
       ` : `
         <article class="prose" style="line-height: 1.8; color: #334155;">
@@ -570,7 +570,7 @@ export function getLegalPageArticleHtml(slug, lang) {
           </div>
 
           <h3 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-top: 28px;">3. Complete Tool Inventory</h3>
-          <p>Explore our 12 specialized client-side PDF utilities: PDF Editor, Merge PDF, Split & Extract PDF, Compress PDF, PDF to Image (JPG/PNG), Images to PDF, Watermark PDF, Redact Sensitive Text, Optical Character Recognition (OCR), Organize & Rotate Pages, Encrypt & Protect PDF, and Digital Signature Validation.</p>
+          <p>Explore our 10 specialized client-side PDF utilities: PDF Editor, Merge PDF, Split & Extract PDF, Compress PDF, PDF to Image (JPG/PNG), Images to PDF, Watermark PDF, Optical Character Recognition (OCR), Organize & Rotate Pages, and Digital Signature Validation.</p>
         </article>
       `;
 

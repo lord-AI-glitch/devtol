@@ -495,7 +495,7 @@ tools:
 
   image-watermark:
     title: 'Image Watermark'
-    description: 'Add text or image watermarks to photos with custom position, opacity and style.'
+    description: 'Add text watermarks to photos with custom position, opacity and style.'
 
   images-to-pdf:
     title: 'Images to PDF'
