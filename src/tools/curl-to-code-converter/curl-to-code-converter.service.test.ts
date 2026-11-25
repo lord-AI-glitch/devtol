@@ -157,6 +157,27 @@ describe('curl-to-code-converter.service', () => {
     );
   });
 
+  it('parses --interface, --capath, --output-dir, --mail-auth and --retry-delay before the URL', () => {
+    // Values use dots on purpose: on unfixed base each of these was mistaken
+    // for the URL by the positional fallback (only --mail-auth corrupts with a
+    // dot-free value too, since every email contains a dot).
+    expect(parseCurl('curl --interface eth0.100 https://api.example.com/data').url).toBe(
+      'https://api.example.com/data',
+    );
+    expect(parseCurl('curl --capath /etc/ssl/certs.pem https://api.example.com/data').url).toBe(
+      'https://api.example.com/data',
+    );
+    expect(parseCurl('curl --output-dir out.dir https://api.example.com/data').url).toBe(
+      'https://api.example.com/data',
+    );
+    expect(parseCurl('curl --mail-auth sender@example.com https://api.example.com/data').url).toBe(
+      'https://api.example.com/data',
+    );
+    expect(parseCurl('curl --retry-delay 5.5 https://api.example.com/data').url).toBe(
+      'https://api.example.com/data',
+    );
+  });
+
   it('parses -H and -d before the URL', () => {
     const result = parseCurl(
       `curl -H "Authorization: Bearer abc" -d '{"a":1}' https://api.example.com/data`,
