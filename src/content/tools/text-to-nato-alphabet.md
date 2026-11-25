@@ -106,3 +106,19 @@ No. All character conversions take place locally inside your browser memory. No 
 - **Local Character Mapping**: Processing occurs strictly within client browser memory.
 - **Zero Remote Storage**: Data is discarded immediately upon session end.
 - **ICAO / ITU Standard Conformance**: Compliant with international aviation and maritime standards.
+
+---
+
+## 7. Worked Example: Reading a Serial Over the Phone
+
+Suppose a support caller must confirm the device serial `AB-123`. Type it into the tool, keep phonetic numbers and punctuation callouts switched on, and read the output as shown: "Alfa - Bravo - [Dash] - One - Two - Tree". Each word comes from the standard table: A is Alfa, B is Bravo, the hyphen becomes the [Dash] callout, and 3 is read as "Tree", not "three".
+
+A second example with digits that are easy to mishear: `K7-90` becomes "Kilo - Seven - [Dash] - Niner - Zero". The 9 is "Niner" — one of the pronunciations the digit table changes because "nine" blurs into other words on a noisy line — and the 0 is "Zero". Read the whole string in one steady pass, pausing only at the [Dash] callout, and ask the other side to repeat it back. If they repeat "Alpha" or "three", correct them to "Alfa" and "Tree" before continuing.
+
+## 8. Common Mistakes
+
+- **Saying "Alpha" instead of "Alfa".** The ICAO spelling is Alfa with an F, and Juliett with two Ts; the common spellings are the ones listeners mishear.
+- **Reading digits as plain English.** "Three" sounds like "free" and "nine" like "mine" over radio. Use Tree, Fow-er, Fife, and Niner every time.
+- **Skipping the punctuation.** A hyphen in a serial is part of the code. Read the [Dash] callout the tool shows instead of jumping across it, or the other side may copy the wrong string.
+- **Spelling letters out one by one.** Reading "A, B" instead of "Alfa, Bravo" throws away the whole point of the alphabet: the code words are chosen to survive noise that kills single letters.
+- **Reading a sensitive code aloud on a shared line.** The conversion itself stays in your browser, but the spoken words travel. Confirm who is listening before reading a password or private key phonetically.
