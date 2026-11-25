@@ -12,7 +12,7 @@ import {
   IconX,
 } from '@tabler/icons-vue';
 import { useHead } from '@vueuse/head';
-import { computed, defineAsyncComponent, onMounted, ref } from 'vue';
+import { computed, defineAsyncComponent, onMounted, onUnmounted, ref } from 'vue';
 import ToolCard from '../components/ToolCard.vue';
 import AdSenseUnit from '../components/AdSenseUnit.vue';
 import HomeEditorialGuide from '../components/HomeEditorialGuide.vue';
@@ -101,21 +101,58 @@ const filteredTools = computed(() => {
   return list;
 });
 
-// Progressive rendering to ensure sub-second FCP/LCP
+// Progressive rendering to ensure sub-second FCP/LCP.
+// Only the first 24 cards mount eagerly; further cards mount in chunks of 24
+// only when the user scrolls near them (IntersectionObserver on a sentinel
+// below the grid). There is deliberately NO idle auto-reveal: the previous
+// requestIdleCallback fallback fired at the first idle period (~1-2 s after
+// load), i.e. inside the Lighthouse/TBT measurement window, mounting all 122
+// cards in one long task. A non-scroller sees the first 24 until they scroll;
+// search/category filters bypass visibleCount entirely (see displayedTools),
+// so every tool stays findable.
 const INITIAL_VISIBLE_COUNT = 24;
+const REVEAL_CHUNK_SIZE = 24;
 const visibleCount = ref(INITIAL_VISIBLE_COUNT);
+const revealSentinel = ref<HTMLElement | null>(null);
+
+let revealObserver: IntersectionObserver | null = null;
+
+// Fully revealed only against the whole tool list (not the current filter):
+// when a search/category filter is active, displayedTools bypasses
+// visibleCount entirely, so the observer must stay connected until the
+// unfiltered list is fully revealed.
+const isFullyRevealed = () => visibleCount.value >= toolStore.tools.length;
+
+const stopRevealing = () => {
+  if (revealObserver) {
+    revealObserver.disconnect();
+    revealObserver = null;
+  }
+};
+
+const revealMore = () => {
+  visibleCount.value = Math.min(visibleCount.value + REVEAL_CHUNK_SIZE, filteredTools.value.length);
+  if (isFullyRevealed()) {
+    stopRevealing();
+  }
+};
 
 onMounted(() => {
-  if (typeof window !== 'undefined') {
-    const revealAll = () => {
-      visibleCount.value = toolStore.tools.length;
-    };
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(revealAll, { timeout: 1200 });
-    } else {
-      setTimeout(revealAll, 50);
-    }
+  if (typeof window === 'undefined') {
+    return;
   }
+  if ('IntersectionObserver' in window && revealSentinel.value) {
+    revealObserver = new IntersectionObserver((entries) => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        revealMore();
+      }
+    }, { rootMargin: '800px', threshold: 0 });
+    revealObserver.observe(revealSentinel.value);
+  }
+});
+
+onUnmounted(() => {
+  stopRevealing();
 });
 
 const displayedTools = computed(() => {
@@ -362,6 +399,9 @@ const featuredTools = computed(() => {
       <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <ToolCard v-for="tool in displayedTools" :key="tool.name" :tool="tool" />
       </div>
+
+      <!-- Scroll sentinel for chunked reveal (0-height, no layout impact) -->
+      <div ref="revealSentinel" aria-hidden="true" />
     </section>
 
     <!-- Bottom AdSense Compliance Unit -->

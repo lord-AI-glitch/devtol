@@ -38,6 +38,6 @@ const { tool } = toRefs(props);
 <style scoped>
 .tool-card-wrapper {
   content-visibility: auto;
-  contain-intrinsic-size: 100px 140px;
+  contain-intrinsic-size: auto 140px;
 }
 </style>
