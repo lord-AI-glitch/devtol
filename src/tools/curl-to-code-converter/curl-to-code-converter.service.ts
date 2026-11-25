@@ -62,6 +62,11 @@ const IGNORED_VALUE_FLAGS: ReadonlySet<string> = new Set([
   '--tls-max',
   '--mail-from',
   '--mail-rcpt',
+  '--mail-auth',
+  '--capath',
+  '--interface',
+  '--output-dir',
+  '--retry-delay',
 ]);
 
 /**

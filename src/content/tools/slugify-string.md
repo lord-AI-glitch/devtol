@@ -7,7 +7,7 @@ Operating under a strict **Zero-Knowledge Architecture: raw strings, proprietary
 
 ### Core Technical Advantages
 - **Zero-Knowledge Processing**: All text transformations occur locally inside browser memory.
-- **Unicode NFKD Normalization**: Decomposes accented characters (e.g., `é`, `ü`, `ñ`) into base Latin characters (`e`, `u`, `n`).
+- **Unicode Transliteration**: Maps accented and non-Latin characters to Latin equivalents through `@sindresorhus/transliterate` (e.g., `é` → `e`, `ñ` → `n`, `مرحبا` → `mrhba`), then strips any remaining diacritics after NFD normalization.
 - **Fixed Hyphen Delimiter**: Words are always joined with hyphens (`-`) — the separator is fixed, not configurable.
 - **RFC 3986 URL Compliance**: Generates slugs that are safe for direct inclusion in URI paths without percent-encoding.
 
@@ -31,31 +31,24 @@ Output: "10-best-cryptographic-practices-for-2026-a-developers-guide"
 
 ## 3. Algorithmic & Linguistic Deep Dive
 
-### Unicode Normalization Form KD (NFKD)
-Human text contains complex Unicode combinations:
-- **Precomposed characters**: e.g., `é` (`U+00E9`).
-- **Decomposed combinations**: e.g., base `e` (`U+0065`) followed by combining acute accent (`U+0301`).
+### The Real Pipeline: `@sindresorhus/slugify`
+The tool is a thin wrapper around the library `@sindresorhus/slugify` (v2.2.1), called with its defaults — hyphen separator, lowercasing on, decamelization on — and no settings of its own. The real pipeline, verified against the library source and live runs, is:
 
-The slugify pipeline applies Unicode Normalization Form KD (Compatibility Decomposition):
+1. **Transliterate** — `@sindresorhus/transliterate` first applies a built-in character map (Arabic, Cyrillic, accented Latin letters and more are mapped to Latin equivalents) plus built-in word replacements (`&` becomes ` and `, 🦄 becomes ` unicorn `, ♥ becomes ` love `). Only then does it normalize to NFD and strip characters with the Unicode `Diacritic` property. Note the details: the decomposition is **NFD, not NFKD**, and the strip uses the `\p{Diacritic}` property, not a hardcoded `[\u0300-\u036f]` range. The slugify library itself never calls `normalize('NFKD')`.
+2. **Decamelize** — camelCase boundaries are split into separate words: `HelloWorld` becomes `hello-world`.
+3. **Lowercase** — the whole string is lowercased.
+4. **Possessives** — the apostrophe in a trailing `'s` or `'t` after a word is dropped (the letter itself is kept) — but only when the `'s`/`'t` is followed by whitespace or the end of the string; if punctuation follows, the apostrophe becomes a hyphen instead (`Developer's.` becomes `developer-s`). Example: `A Developer's Guide` becomes `a-developers-guide`.
+5. **Sanitize & join** — every run of characters outside `[a-z0-9]` becomes a single hyphen; leading, trailing and duplicate hyphens are removed.
 
-$$\text{NFKD}(\text{String}) \implies \text{Base Characters} + \text{Combining Diacritical Marks}$$
+Verified examples from the real tool:
 
-A subsequent regex removes combining diacritical marks in the Unicode block `[\u0300-\u036f]`:
-
-The snippet below shows the algorithm in code — `separator` here is a parameter of the illustrative function, not a setting in the tool: the tool always calls it with the hyphen default and offers no way to change it.
-
-```typescript
-function slugify(text: string, separator = '-'): string {
-  return text
-    .normalize('NFKD') // Decompose combined glyphs
-    .replace(/[\u0300-\u036f]/g, '') // Strip diacritic marks
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9\s-]/g, '') // Remove invalid punctuation
-    .replace(/[\s_]+/g, separator) // Replace whitespace with delimiter
-    .replace(new RegExp(`${separator}+`, 'g'), separator) // Deduplicate separators
-    .replace(new RegExp(`^${separator}|${separator}$`, 'g'), ''); // Trim leading/trailing separators
-}
+```text
+"Café au lait"        → "cafe-au-lait"
+"HelloWorld FooBar"   → "hello-world-foo-bar"
+"Fish & Chips"        → "fish-and-chips"
+"مرحبا بالعالم"       → "mrhba-balealm"
+"Привет мир"          → "privet-mir"
+"你好世界"             → ""  (no transliteration — dropped entirely)
 ```
 
 ---

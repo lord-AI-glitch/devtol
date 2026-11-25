@@ -10,7 +10,7 @@ import { tool as curlToCodeConverter } from './curl-to-code-converter';
 import { tool as aiRegexGeneratorExplainer } from './ai-regex-generator-explainer';
 import { tool as sqlToOrmConverter } from './sql-to-orm-converter';
 
-// PDF Tools (1-9)
+// PDF Tools (1-10)
 import { tool as pdfEditor } from './pdf-editor';
 import { tool as pdfMerge } from './pdf-merge';
 import { tool as pdfSplit } from './pdf-split';
@@ -20,6 +20,7 @@ import { tool as imagesToPdf } from './images-to-pdf';
 import { tool as pdfOrganize } from './pdf-organize';
 import { tool as pdfOcr } from './pdf-ocr';
 import { tool as pdfWatermarkTool } from './pdf-watermark-tool';
+import { tool as pdfSignatureChecker } from './pdf-signature-checker';
 
 // Text & Data Tools (11-20)
 import { tool as wordCounter } from './word-counter';
@@ -54,7 +55,6 @@ import { tool as jsonToXml } from './json-to-xml';
 import { tool as regexTester } from './regex-tester';
 import { tool as regexMemo } from './regex-memo';
 import { tool as markdownToHtml } from './markdown-to-html';
-import { tool as pdfSignatureChecker } from './pdf-signature-checker';
 import { tool as numeronymGenerator } from './numeronym-generator';
 import { tool as macAddressGenerator } from './mac-address-generator';
 import { tool as textToBinary } from './text-to-binary';
@@ -133,7 +133,7 @@ import { tool as yamlViewer } from './yaml-viewer';
 export const toolsByCategory: ToolCategory[] = [
   {
     name: 'PDF Tools',
-    components: [pdfEditor, pdfMerge, pdfSplit, pdfCompress, pdfToImage, imagesToPdf, pdfOrganize, pdfOcr, pdfWatermarkTool],
+    components: [pdfEditor, pdfMerge, pdfSplit, pdfCompress, pdfToImage, imagesToPdf, pdfOrganize, pdfOcr, pdfWatermarkTool, pdfSignatureChecker],
   },
   {
     name: 'AI Tools',
@@ -255,7 +255,18 @@ export const toolsByCategory: ToolCategory[] = [
   },
 ];
 
-export const tools = toolsByCategory.flatMap(({ components }) => components);
-export const toolsWithCategory = toolsByCategory.flatMap(({ components, name }) =>
-  components.map(tool => ({ category: name, ...tool })),
-);
+// Same dedupe as toolsWithCategory below: a tool in two categories must
+// appear once in the flat list (its routes are built from this list).
+export const tools = [...new Map(
+  toolsByCategory.flatMap(({ components }) => components.map(tool => [tool.path, tool] as const)),
+).values()];
+// A tool can belong to more than one category (PDF signature checker is both
+// a PDF tool and a Crypto tool); the flat "all tools" list must still contain
+// each tool once. A Map keyed by path dedupes it — a repeated path keeps the
+// last category's label, which preserves the pre-existing 'Crypto' label for
+// the checker in All Tools / search.
+export const toolsWithCategory = [...new Map(
+  toolsByCategory.flatMap(({ components, name }) =>
+    components.map(tool => [tool.path, { category: name, ...tool }] as const),
+  ),
+).values()];
