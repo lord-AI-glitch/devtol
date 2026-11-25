@@ -5,31 +5,25 @@ import type { ShadowRootExpose } from 'vue-shadow-dom';
 import { matchRegex } from './regex-tester.service';
 import { useValidation } from '@/composable/validation';
 import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { useShareLink } from '@/composable/shareLink';
+import { encodeShareState } from '@/utils/shareUrl';
 
 const regex = useQueryParamOrStorage({ name: 'regex', storageName: 'regex-tester:regex', defaultValue: '' });
-const text = ref('');
+// the text is shareable: it syncs to ?text= (base64url) so a link reproduces
+// the exact input — except empty input or the default value, which cannot be
+// shared (see the limitation in src/utils/shareUrl.ts); the regex param stays
+// plain for backwards compatibility
+const text = useQueryParamOrStorage({ name: 'text', storageName: 'regex-tester:text', defaultValue: '', transformer: 'base64url' });
 const global = ref(true);
 const ignoreCase = ref(false);
 const multiline = ref(false);
 const dotAll = ref(true);
 const unicode = ref(true);
 const unicodeSets = ref(false);
-const visualizerSVG = ref<ShadowRootExpose>();
 
-const regexValidation = useValidation({
-  source: regex,
-  rules: [
-    {
-      message: 'Invalid regex: {0}',
-      validator: value => new RegExp(value),
-      getErrorMessage: (value) => {
-        const _ = new RegExp(value);
-        return '';
-      },
-    },
-  ],
-});
-const results = computed(() => {
+// the active flags as one compact string, synced to ?flags= so a shared link
+// reproduces the same matches, not just the same inputs (default: dgsu)
+const flagsString = computed(() => {
   let flags = 'd';
   if (global.value) {
     flags += 'g';
@@ -49,9 +43,46 @@ const results = computed(() => {
   else if (unicodeSets.value) {
     flags += 'v';
   }
+  return flags;
+});
+const flagsParam = useQueryParamOrStorage({ name: 'flags', storageName: 'regex-tester:flags', defaultValue: 'dgsu' });
 
+function applyFlags(value: string) {
+  global.value = value.includes('g');
+  ignoreCase.value = value.includes('i');
+  multiline.value = value.includes('m');
+  dotAll.value = value.includes('s');
+  unicode.value = value.includes('u');
+  unicodeSets.value = !value.includes('u') && value.includes('v');
+}
+
+applyFlags(flagsParam.value);
+watch(flagsParam, value => applyFlags(value));
+watch(flagsString, (value) => {
+  if (value !== flagsParam.value) {
+    flagsParam.value = value;
+  }
+});
+
+const { copyShareLink } = useShareLink(() => ({ text: encodeShareState(text.value), flags: flagsString.value }));
+const visualizerSVG = ref<ShadowRootExpose>();
+
+const regexValidation = useValidation({
+  source: regex,
+  rules: [
+    {
+      message: 'Invalid regex: {0}',
+      validator: value => new RegExp(value),
+      getErrorMessage: (value) => {
+        const _ = new RegExp(value);
+        return '';
+      },
+    },
+  ],
+});
+const results = computed(() => {
   try {
-    return matchRegex(regex.value, text.value, flags);
+    return matchRegex(regex.value, text.value, flagsString.value);
   }
   catch (_) {
     return [];
@@ -134,6 +165,11 @@ watchEffect(
         multiline
         rows="5"
       />
+      <div mt-2 flex justify-end>
+        <n-button size="small" secondary @click="copyShareLink">
+          Copy link
+        </n-button>
+      </div>
     </c-card>
 
     <c-card title="Matches" mb-1 mt-3>

@@ -4,13 +4,21 @@ import { useStorage } from '@vueuse/core';
 import { formatJson } from './json.models';
 import { withDefaultOnError } from '@/utils/defaults';
 import { useValidation } from '@/composable/validation';
+import { useQueryParamOrStorage } from '@/composable/queryParams';
+import { useShareLink } from '@/composable/shareLink';
+import { encodeShareState } from '@/utils/shareUrl';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const inputElement = ref<HTMLElement>();
 
-const rawJson = useStorage('json-prettify:raw-json', '{"hello": "world", "foo": "bar"}');
+// the raw input is shareable: it syncs to ?input= (base64url) so a link
+// reproduces the exact input — except empty input or the default value, which
+// cannot be shared (see the limitation in src/utils/shareUrl.ts);
+// settings stay storage-only
+const rawJson = useQueryParamOrStorage({ name: 'input', storageName: 'json-prettify:raw-json', defaultValue: '{"hello": "world", "foo": "bar"}', transformer: 'base64url' });
 const indentSize = useStorage('json-prettify:indent-size', 3);
 const sortKeys = useStorage('json-prettify:sort-keys', true);
+const { copyShareLink } = useShareLink(() => ({ input: encodeShareState(rawJson.value) }));
 const cleanJson = computed(() => withDefaultOnError(() => formatJson({ rawJson, indentSize, sortKeys }), ''));
 
 const rawJsonValidation = useValidation({
@@ -54,6 +62,11 @@ const rawJsonValidation = useValidation({
       monospace
     />
   </n-form-item>
+  <div mb-3 flex justify-end>
+    <n-button size="small" secondary @click="copyShareLink">
+      Copy link
+    </n-button>
+  </div>
   <n-form-item label="Prettified version of your JSON">
     <TextareaCopyable :value="cleanJson" language="json" :follow-height-of="inputElement" />
   </n-form-item>
