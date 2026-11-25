@@ -8,7 +8,7 @@ Operating under a strict **Zero-Knowledge Architecture: raw strings, proprietary
 ### Core Technical Advantages
 - **Zero-Knowledge Processing**: All text transformations occur locally inside browser memory.
 - **Unicode NFKD Normalization**: Decomposes accented characters (e.g., `é`, `ü`, `ñ`) into base Latin characters (`e`, `u`, `n`).
-- **Configurable Delimiters**: Choose between hyphens (`-`), underscores (`_`), or custom separator characters.
+- **Fixed Hyphen Delimiter**: Words are always joined with hyphens (`-`) — the separator is fixed, not configurable.
 - **RFC 3986 URL Compliance**: Generates slugs that are safe for direct inclusion in URI paths without percent-encoding.
 
 ---
@@ -17,8 +17,8 @@ Operating under a strict **Zero-Knowledge Architecture: raw strings, proprietary
 
 ### Generating an SEO Slug
 1. **Enter Text**: Input your headline, title, or string into the text area.
-2. **Select Separator**: Choose **Hyphen (-)** (standard for SEO URLs) or **Underscore (_)**.
-3. **Configure Options**: Toggle lowercase enforcement, symbol stripping, and maximum character length limits.
+2. **Nothing to Configure**: The tool has no settings — it always uses hyphens, always lowercases, and never truncates.
+3. **Review the Output**: Read the generated slug before using it — punctuation disappears, and non-Latin scripts are transliterated or dropped.
 4. **Copy Output**: Click **Copy** to export the sanitized slug for use in your CMS, blog, or routing tables.
 
 ```text
@@ -41,6 +41,8 @@ The slugify pipeline applies Unicode Normalization Form KD (Compatibility Decomp
 $$\text{NFKD}(\text{String}) \implies \text{Base Characters} + \text{Combining Diacritical Marks}$$
 
 A subsequent regex removes combining diacritical marks in the Unicode block `[\u0300-\u036f]`:
+
+The snippet below shows the algorithm in code — `separator` here is a parameter of the illustrative function, not a setting in the tool: the tool always calls it with the hyphen default and offers no way to change it.
 
 ```typescript
 function slugify(text: string, separator = '-'): string {
@@ -74,10 +76,10 @@ Search engines prioritize descriptive, readable URL slugs over database IDs. Cle
 Major search engines (including Google) treat hyphens as natural word separators (e.g., `secure-password` is indexed as `secure` and `password`), whereas underscores are often treated as continuous single tokens (`secure_password`).
 
 ### How does the tool handle international alphabets (Cyrillic, Arabic, Chinese)?
-The tool can either transliterate supported scripts to Latin equivalents or retain valid UTF-8 characters while stripping whitespace and invalid punctuation.
+The tool transliterates supported scripts (Arabic, Cyrillic) to Latin equivalents; scripts with no transliteration, such as Chinese, are dropped entirely — no non-Latin characters are retained in the output.
 
 ### Can slug length be restricted to prevent database truncation?
-Yes. The tool includes an optional length cap that truncates strings at clean word boundaries rather than breaking words midway.
+No. The tool has no length limit and no length setting — a long title produces a long slug. Shorten the title itself if you need a shorter slug.
 
 ### Is any text uploaded to an external server?
 No. All string manipulation and regular expression matching runs entirely within your local browser runtime.

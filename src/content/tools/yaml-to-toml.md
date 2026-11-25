@@ -55,7 +55,7 @@ features = ["full"]
 When YAML defines a list of objects (such as multiple database connections, server clusters, or route handlers), DevTol transforms them into TOML's double-bracket array-of-tables syntax (`[[servers]]`), ensuring complete structural fidelity.
 
 ### Date and Timestamp Preservations
-TOML enforces strict RFC 3339 datetime representations (e.g., `2026-09-29T14:30:00Z`). DevTol detects ISO-formatted dates in your YAML input and formats them as first-class TOML datetime objects.
+TOML supports RFC 3339 datetime values (e.g., `2026-09-29T14:30:00Z`), but this converter does not produce them: the parser reads ISO-formatted dates as plain strings, so they stay quoted strings in the TOML output. If your application expects a real datetime, check the type on the TOML side after converting.
 
 ---
 

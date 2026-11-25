@@ -35,7 +35,7 @@ Images typically account for **over 60% of total web page weight**. Unoptimized 
 
 1. **Select or Drop Your Images**: Click the upload area or drag and drop your JPG, PNG, or WebP files into the compressor.
 2. **Adjust the Quality Slider**: Set your target visual quality (recommended: 75%–85% for the ideal balance of sharpness and minimal byte size).
-3. **Compare File Savings**: Instantly view the original size vs. optimized size and the exact percentage reduction in real time.
+3. **Compare File Savings**: Instantly view the original size vs. optimized size and the rounded percentage reduction in real time.
 4. **Download Instantly**: Click **Download** to save your compressed image directly to your device with zero upload delay.
 
 ---
@@ -62,7 +62,7 @@ A 3 MB JPEG banner is too heavy for a mobile homepage. The workflow is:
 
 1. Click the upload area and pick the JPEG (the tool accepts one file at a time).
 2. Leave the quality slider at its default of 75%, and keep the output format on JPEG.
-3. Click **Compress Image**. The tool redraws the photo on a canvas at its original pixel size and shows the original and compressed images side by side, with a green tag showing the exact percentage saved — computed as (1 − compressed size ÷ original size) × 100.
+3. Click **Compress Image**. The tool redraws the photo on a canvas at its original pixel size and shows the original and compressed images side by side, with a green tag showing the rounded percentage saved — computed as (1 − compressed size ÷ original size) × 100.
 4. Click **Download Compressed** to save the result as `compressed.jpeg`.
 
 Pixel dimensions never change: a 1920×1080 photo stays 1920×1080. If the savings tag shows a small number, try WebP instead — the same quality setting usually produces a smaller file than JPEG.

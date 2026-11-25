@@ -53,7 +53,7 @@ Generates modern, asynchronous Rust code using `reqwest::Client` compatible with
 Yes. It automatically handles shell line-continuation backslashes (`\`) and multiline formatting copied directly from Linux or macOS terminals.
 
 ### Can it convert multipart/form-data or binary uploads?
-The parser accurately extracts both JSON bodies (`-d` / `--data-raw`) and form-encoded data, formatting the target code into appropriate payload dictionaries or byte buffers.
+No. The parser handles JSON bodies (`-d` / `--data-raw`) but ignores `-F` / `--form` entirely, so a multipart upload produces code with no body. Build the multipart request by hand and use the converter only for the headers and URL.
 
 ### Are my secret API keys safe?
 **Yes, completely.** All parsing and code synthesis logic executes in client-side JavaScript. Zero network requests are initiated, guaranteeing that no server ever receives your keys.
@@ -153,6 +153,8 @@ A `-u admin:secret` login appears as `auth=(...)` in the Python output, but the 
 
 ### Mistake 1: Converting a multipart upload
 A command that uploads a file with `-F "file=@photo.png"` produces code with no body, because the parser does not handle `-F`. Build the multipart request by hand and use the converter only for the headers and URL.
+
+Put `-F` after the URL: if it comes before the URL, the parser treats `file=@photo.png` as the URL and produces `https://file=@photo.png`, losing the real URL.
 
 ### Mistake 2: Committing a real token
 The converter never redacts anything: a pasted `Bearer <redacted>` ends up verbatim in the generated headers. Replace it with an environment variable such as `os.environ["API_TOKEN"]` before the code leaves your machine.
