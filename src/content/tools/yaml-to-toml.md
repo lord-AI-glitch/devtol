@@ -86,3 +86,72 @@ TOML is designed specifically for configuration files and maps exceptionally wel
 
 ### Does DevTol support multi-line strings in TOML?
 Yes. Multi-line literal strings in YAML (using `|` or `>`) are cleanly converted into TOML multi-line basic strings (`"""..."""`) or multi-line literal strings (`'''...'''`).
+
+---
+
+## 6. Worked Example: A Server Config with Lists, Dates, and Multiline Text
+
+Convert this YAML file:
+
+```yaml
+server:
+  host: "0.0.0.0"
+  port: 8080
+  started: 2026-09-29T14:30:00Z
+features:
+  - auth
+  - billing
+  - reports
+servers:
+  - name: alpha
+    ip: 10.0.0.1
+  - name: beta
+    ip: 10.0.0.2
+message: |
+  Hello,
+  world.
+```
+
+The converter returns:
+
+```toml
+features = [ "auth", "billing", "reports" ]
+message = """
+Hello,
+world.
+"""
+
+[server]
+host = "0.0.0.0"
+port = 8_080
+started = "2026-09-29T14:30:00Z"
+
+[[servers]]
+name = "alpha"
+ip = "10.0.0.1"
+
+[[servers]]
+name = "beta"
+ip = "10.0.0.2"
+```
+
+Four things in that output deserve a second look. The list of servers became `[[servers]]` array-of-tables entries, one per item. The multiline message kept its line breaks inside a `"""` block. The port number `8080` came out as `8_080` — TOML allows underscores inside numbers, and the serializer inserts them. And the timestamp stayed a quoted string: the parser does not turn ISO dates into TOML datetime values, so if your application expects a real datetime, check the type on the TOML side after converting.
+
+---
+
+## 7. Common Mistakes
+
+### Mistake 1: Indenting YAML with tabs
+YAML forbids tabs for indentation. A single tab-indented line makes the whole document invalid, and the converter shows an error instead of output. Replace tabs with spaces before pasting.
+
+### Mistake 2: Leaving a key with no value
+A line such as `b:` with nothing after it does not become an empty value in TOML — it disappears from the output entirely, with no warning. TOML has no null, so a valueless key has nowhere to go. Give every key a value before converting.
+
+### Mistake 3: Expecting YAML merge keys to merge
+A `<<: *defaults` merge key is not resolved. It shows up in the TOML output as a literal key named `<<`, holding the merged mapping as its own table. Expand shared settings by hand instead of relying on anchors and merge keys.
+
+### Mistake 4: Assuming comments survive
+Comments starting with `#` are dropped during parsing, so the TOML output contains data only. Keep a commented copy of the original file if the comments explain why a setting exists.
+
+### Mistake 5: Expecting the original key order
+Simple values (strings, numbers, arrays) are printed first and tables come after them, so the output is grouped by type rather than in your original order. In the example above, `features` and `message` appear before the `[server]` table even though `server` was written first in the YAML.
