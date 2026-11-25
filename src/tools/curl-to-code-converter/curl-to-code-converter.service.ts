@@ -16,6 +16,55 @@ export interface ParsedCurl {
 export type TargetLanguage = 'python' | 'javascript' | 'typescript' | 'go' | 'php' | 'rust' | 'java' | 'dart';
 
 /**
+ * curl flags that take a value but whose values parseCurl does not use
+ * (multipart form fields, output file, user-agent, timeouts, ...).
+ * Their values must be skipped, otherwise a value containing '.' (or a URL,
+ * e.g. a referer/proxy) is mistaken for the request URL by the positional
+ * fallback in parseCurl. `--url` is intentionally excluded: its value IS
+ * the URL. `--json` is also excluded: real curl takes it with an OPTIONAL
+ * value (`--json [data]`), so `curl --json <url>` must not eat the URL as a
+ * flag value. Attached forms (`--form=name=value`, `-Ffile=@x`) need no entry:
+ * they start with '-' and are skipped by the fallback already.
+ */
+const IGNORED_VALUE_FLAGS: ReadonlySet<string> = new Set([
+  '-F',
+  '--form',
+  '--form-string',
+  '-o',
+  '--output',
+  '-A',
+  '--user-agent',
+  '-e',
+  '--referer',
+  '-b',
+  '--cookie',
+  '-c',
+  '--cookie-jar',
+  '-T',
+  '--upload-file',
+  '--connect-timeout',
+  '--max-time',
+  '-m',
+  '--retry',
+  '--cacert',
+  '--cert',
+  '--key',
+  '--proxy',
+  '-x',
+  '-w',
+  '--write-out',
+  '-D',
+  '--dump-header',
+  '--resolve',
+  '--oauth2-bearer',
+  '--dns-servers',
+  '--connect-to',
+  '--tls-max',
+  '--mail-from',
+  '--mail-rcpt',
+]);
+
+/**
  * Robustly parses a cURL command string into structured HTTP request components.
  * Handles multiline commands, shell quoting (' and "), various data flags, and auth types.
  */
@@ -122,6 +171,29 @@ export function parseCurl(command: string): ParsedCurl {
         bodyParts.push(nextToken);
       }
       i++;
+      continue;
+    }
+
+    // Other value-taking flags the parser otherwise ignores: skip the flag
+    // AND its value, or the value is mistaken for the positional URL by the
+    // fallback below (e.g. `-F file=@photo.png` before the URL used to yield
+    // `https://file=@photo.png`, and `-o out.json` yielded `https://out.json`).
+    // --url is deliberately NOT in this set: its value IS the URL, so it is
+    // left to fall through to the URL detection below.
+    if (IGNORED_VALUE_FLAGS.has(token)) {
+      i++;
+      continue;
+    }
+
+    // Attached form: --url=<url> carries the request URL itself (unlike the
+    // flags above, its value must NOT be skipped).
+    if (token.startsWith('--url=')) {
+      if (!result.url) {
+        const urlValue = token.slice('--url='.length);
+        if (urlValue) {
+          result.url = urlValue.startsWith('http') ? urlValue : `https://${urlValue}`;
+        }
+      }
       continue;
     }
 
@@ -511,7 +583,7 @@ export const SAMPLE_CURLS = [
   {
     name: 'POST JSON with Bearer Token',
     curl: `curl -X POST https://api.example.com/v1/projects \\
-  -H "Authorization: Bearer sk-live-982348a97b91" \\
+  -H "Authorization: Bearer sk-live-EXAMPLE" \\
   -H "Content-Type: application/json" \\
   -d '{"name": "DevTol Modern Suite", "active": true, "tags": ["productivity", "tools"]}'`,
   },
