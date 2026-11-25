@@ -51,7 +51,7 @@ XML enforces strict syntactic rules compared to forgiving HTML parsers. A strict
 - **Collapse Content**: A switch (on by default) that keeps an element's text on the same line as its tags instead of breaking it onto separate lines.
 - **No Self-Closing Normalisation**: Empty elements are left exactly as written — `<item></item>` stays `<item></item>`.
 - **No Minifier**: There is no minify option. The closest equivalent is indent size 0, which removes indentation but keeps one element per line.
-- **Generic Error Message**: If the input XML is malformed, DevTol shows only `Provided XML is not valid.` — no line number, column, or parse description.
+- **Generic Error Message**: If the input XML is malformed, DevTol shows only `Provided XML is not valid.` — no line number, column, or parse description. (Exception: mismatched or unclosed tags pass validation and are silently repaired instead — see §6.)
 
 ---
 
@@ -60,7 +60,7 @@ XML enforces strict syntactic rules compared to forgiving HTML parsers. A strict
 1. **Paste Raw XML**: Copy your unformatted, minified, or raw XML payload and paste it into the editor.
 2. **Review Validation Status**: DevTol immediately parses the document. If the XML is invalid, it shows the generic message `Provided XML is not valid.`
 3. **Customize Format**: Set the indent size (0–10 spaces) and the collapse-content switch.
-4. **Copy or Download**: Click "Copy to Clipboard" to transfer the clean XML into your code editor or API testing tool (Postman, SoapUI), or download it as an `.xml` file.
+4. **Copy**: Click "Copy to Clipboard" to transfer the clean XML into your code editor or API testing tool (Postman, SoapUI).
 
 ---
 
@@ -81,7 +81,7 @@ DevTol processes XML locally in your browser using the `xml-formatter` package �
 A mismatched tag means an opening tag does not match its closing tag (e.g., `<record>` closed with `</records>`), or tags are nested out of order (e.g., `<a><b></a></b>`). Surprisingly, DevTol does not reject these: the underlying formatter is lenient, so it silently repairs them instead — `<record></records>` formats to `<record></record>` — and validation passes. The generic message `Provided XML is not valid.` is reserved for input the formatter cannot parse at all, such as plain text or a document with two root elements. A green validation result therefore does not prove the document is well-formed.
 
 ### Does the formatter modify text inside `<script>` or `<style>` tags?
-If parsing SVG or XHTML documents, DevTol treats embedded scripts and style blocks respectfully, preserving internal content while formatting surrounding XML nodes.
+No — the formatter parses everything as XML, including the inside of `<script>` and `<style>` tags. Any `<` inside the script is read as the start of a tag, so the content is mangled: `<svg><script>if (a<b) {}</script></svg>` comes out with the `<b)` part swallowed as a tag, leaving `<script>if (a{}</script>`. If your script contains `<`, wrap it in a CDATA section or escape the `<` as `&lt;` before formatting.
 
 ### Can DevTol validate XML against an external XSD schema?
 DevTol checks **well-formedness only** — and, as noted above, that check is lenient about some malformed input. There is no validation against XSD schemas or DTDs.

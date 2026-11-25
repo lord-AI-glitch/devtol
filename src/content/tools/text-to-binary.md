@@ -86,7 +86,7 @@ Standard computer memory is organized into 8-bit octets (bytes). The letter `A` 
 Partly. `é` encodes as its code unit 233 (`11101001`), but the tool does not use UTF-8: 🚀 becomes two 16-bit groups (one per UTF-16 surrogate half), and decoding those groups back does not reconstruct the emoji.
 
 ### What happens if the binary string is not divisible by 8?
-There is no strict-mode option. The tool's only rule is that the cleaned bitstream must be a whole number of 8-bit groups — anything else is rejected with `Invalid binary string`.
+There is no strict-mode option. The tool's only rule is that the cleaned bitstream must be a whole number of 8-bit groups — anything else is rejected: the output stays empty and the input field shows `Binary should be a valid ASCII binary string with multiples of 8 bits`. (`Invalid binary string` is only the error thrown internally by the converter — it is never shown to the user.)
 
 ### Is input data uploaded to an external server?
 No. All conversions run locally in your browser memory. No inputs are stored or transmitted.
@@ -125,7 +125,7 @@ Input:   01000100 01100101 01110110
 Output:  "Dev"
 ```
 
-The decoder strips every character that is not `0` or `1` before decoding, so spaces, commas, and line breaks between the 8-bit groups are all ignored. A binary string whose length is not a multiple of 8 is rejected with the error `Invalid binary string` — for example, `01000001 010` fails because the trailing `010` is only 3 bits.
+The decoder strips every character that is not `0` or `1` before decoding, so spaces, commas, and line breaks between the 8-bit groups are all ignored. A binary string whose length is not a multiple of 8 is rejected — the output stays empty and the input field shows `Binary should be a valid ASCII binary string with multiples of 8 bits`. For example, `01000001 010` fails because the trailing `010` is only 3 bits.
 
 ### Characters above ASCII
 

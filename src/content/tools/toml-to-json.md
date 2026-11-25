@@ -19,7 +19,7 @@ Everything runs locally in your browser: configuration payloads, internal server
 1. **Paste TOML Configuration**: Input your TOML content (e.g., a `Cargo.toml` or `pyproject.toml` file) into the editor.
 2. **Review Real-Time Validation**: The parser automatically evaluates syntax; invalid TOML shows the generic message `Provided TOML is not valid.`
 3. **Read the Output**: The JSON is pretty-printed with a fixed 3-space indent.
-4. **Copy or Download**: Click **Copy** to grab the generated JSON string, or click **Download** to save it as a `.json` file.
+4. **Copy**: Click **Copy** to grab the generated JSON string.
 
 ```toml
 # Sample TOML Input:

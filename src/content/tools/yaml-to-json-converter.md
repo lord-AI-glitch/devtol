@@ -74,7 +74,7 @@ staging_service:
 1. **Paste YAML Code**: Copy your YAML configuration, Docker Compose file, or Kubernetes manifest and paste it into the left-hand input pane.
 2. **Instant Translation**: DevTol immediately parses the YAML and generates formatted, syntax-highlighted JSON in the right-hand output pane.
 3. **Fixed Formatting**: The output is always pretty-printed JSON with a 3-space indent (`JSON.stringify(obj, null, 3)`); there is no minified or indent-size option.
-4. **Copy or Download**: Transfer the resulting JSON to your clipboard with one click, or download it as a `.json` file for immediate pipeline integration.
+4. **Copy**: Transfer the resulting JSON to your clipboard with one click for immediate pipeline integration.
 
 ---
 

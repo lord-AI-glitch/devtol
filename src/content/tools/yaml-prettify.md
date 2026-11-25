@@ -90,8 +90,8 @@ services:
   web:
     image: nginx:alpine
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
     environment:
       NODE_ENV: production
       LOG_LEVEL: debug

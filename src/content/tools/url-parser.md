@@ -30,7 +30,7 @@ Everything runs locally in your browser: inspected URLs, query tokens, authoriza
 URL Anatomy Overview:
 https://alice:secret@api.example.com:8443/v1/checkout?cart_id=8912&coupon=SUMMER#payment
 │       │     │      │               │    │           └───────────┬───────────┘ └──┬──┘
-│       │     │      │               │    │                       └── Query Params  └── Hash
+│       │     │      │               │    │                       └── Query Params  └── Hash (not displayed)
 │       │     │      │               │    └────────────────────────── Pathname
 │       │     │      │               └─────────────────────────────── Port
 │       │     │      └─────────────────────────────────────────────── Hostname

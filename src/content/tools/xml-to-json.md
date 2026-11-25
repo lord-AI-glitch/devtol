@@ -80,7 +80,7 @@ XML stores all attributes and values as raw text strings, and this converter kee
 1. **Paste XML Content**: Paste your raw XML string, SOAP envelope, RSS feed, or SVG document into the left-hand input editor.
 2. **Instant Real-Time Conversion**: The converter parses and renders the formatted JSON in real-time in the adjacent output pane.
 3. **Fixed Formatting**: The JSON output is always pretty-printed with a 2-space indent; there is no indentation option.
-4. **Copy or Export**: Click "Copy to Clipboard" to paste the resulting JSON directly into your JavaScript, TypeScript, or Python codebase, or download it as a `.json` file.
+4. **Copy**: Click "Copy to Clipboard" to paste the resulting JSON directly into your JavaScript, TypeScript, or Python codebase.
 
 ---
 

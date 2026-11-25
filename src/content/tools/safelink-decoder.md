@@ -17,7 +17,7 @@ Everything runs locally in your browser: inspected URLs, parameters, and query t
 
 ### Decoding an Obfuscated Security Link
 1. **Paste Link**: Paste the rewritten link from your email client or document into the input field.
-2. **Click Decode**: The utility reads the link's `url` query parameter (percent-decoded automatically by the URL parser) and returns it as the target URL.
+2. **Watch It Decode Live**: As soon as you paste, the decoded URL appears in the output field — the result updates while you type, with no button to click. The utility reads the link's `url` query parameter (percent-decoded automatically by the URL parser) and returns it as the target URL. If the link is not a SafeLinks URL, the output field shows `Error: Invalid SafeLinks URL provided`.
 3. **Read the Destination**: The output is the destination URL itself, taken from the link's `url` parameter. Nothing else is shown — no protocol check, no domain summary, no stripped metadata.
 4. **Copy the URL**: Copy the decoded destination URL directly to your clipboard.
 
