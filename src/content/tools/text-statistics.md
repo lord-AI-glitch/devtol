@@ -1,15 +1,15 @@
-# Online Text Statistics & Readability Analyser: Lexical Density, Syllables & Reading Metrics
+# Online Text Statistics: Character, Word, Line & Byte Counts
 
 ## 1. Quick Overview & Core Advantages
-The **Online Text Statistics & Readability Analyser** is an analytical writing and content-auditing utility engineered for authors, SEO professionals, editors, and software developers. It calculates real-time linguistic metrics, including word count, character count (with/without spaces), sentence count, paragraph count, estimated reading time, and lexical diversity, alongside industry-standard readability scores like **Flesch-Kincaid Grade Level**, **Flesch Reading Ease**, and **Gunning Fog Index**.
+The **Online Text Statistics** tool is a writing and content-auditing utility engineered for authors, SEO professionals, editors, and software developers. It shows four live metrics for any pasted text — character count, word count, line count, and byte size — updating as you type.
 
-Operating under a strict **Zero-Knowledge Architecture: draft manuscripts, confidential contracts, and proprietary texts never leave local browser memory**. Text analysis routines run locally in your browser, ensuring complete confidentiality for unpublished manuscripts, legal agreements, and corporate communications.
+Everything runs locally in your browser: pasted text is counted in the page and never leaves your machine, so drafts and confidential texts stay private.
 
 ### Core Technical Advantages
-- **Zero-Knowledge Security**: Submitted manuscripts and texts are processed entirely inside browser memory.
-- **Comprehensive Readability Scoring**: Computes Flesch Reading Ease, Flesch-Kincaid Grade Level, and Gunning Fog Index.
-- **Detailed Lexical Metrics**: Analyzes word length distribution, unique word counts, and average syllables per word.
-- **Speaking & Reading Estimates**: Provides accurate time estimates for silent reading (225 wpm) and spoken delivery (130 wpm).
+- **Local Counting**: Text is counted entirely inside browser memory — no uploads, no server.
+- **Four Live Metrics**: Character count, word count, line count, and byte size, updated as you type.
+- **Characters vs. Bytes**: Character count and byte size are shown side by side, so the gap appears immediately on non-ASCII text (`café` is 4 characters but 5 bytes).
+- **Whitespace Word Count**: Words are counted by splitting on whitespace, so tabs and line breaks act as separators just like spaces.
 
 ---
 
@@ -17,87 +17,102 @@ Operating under a strict **Zero-Knowledge Architecture: draft manuscripts, confi
 
 ### Analyzing Text Metrics
 1. **Paste Text**: Enter or paste your article, manuscript, or document into the text area.
-2. **Review Real-Time Metrics**: Instantly inspect word counts, character counts, and sentence breakdowns.
-3. **Evaluate Readability Scores**: Review the Flesch Reading Ease score and corresponding school grade level.
-4. **Inspect Word Frequency**: Check the top recurring keywords and phrases to optimize lexical variety and avoid keyword stuffing.
-5. **Export Statistics**: Copy the calculated metrics summary directly into your editorial review workflow.
+2. **Review Real-Time Metrics**: Instantly inspect the four counts — characters, words, lines, and byte size.
+3. **Compare Characters and Bytes**: On plain ASCII text the two numbers match; on text with accented characters or emoji the byte size is larger.
+4. **Check Line Counts**: Paste a list or a multi-line draft to see how many lines it has.
+5. **Compare Drafts**: Paste a revised version to see the counts change — useful when trimming text to a length limit.
 
 ```text
-Sample Analysis Dashboard:
-Words:            1,248
-Characters:       7,812 (6,564 without spaces)
-Sentences:        64
-Average Words/Sentence: 19.5
-Flesch Reading Ease:    62.4 (Plain English, 8th-9th Grade)
-Estimated Reading Time: 5 min 32 sec
+Sample Counts (for "Pack light, travel far."
+on one line and "Check the numbers twice." on the next):
+Characters:   48
+Words:        8
+Lines:        2
+Byte size:    48 Bytes
 ```
 
 ---
 
-## 3. Linguistic & Algorithmic Deep Dive
+## 3. Counting Rules, in Brief
 
-### Readability Formulas
+The four numbers are counted in fixed, simple ways — the worked examples below show them in action:
 
-#### 1. Flesch Reading Ease (FRE)
-Standardized by Rudolf Flesch, this index measures text comprehension on a scale of 0 to 100 (higher scores indicate easier reading):
-
-$$206.835 - 1.015 \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) - 84.6 \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right)$$
-
-- **90–100**: Very Easy (5th grade reading level)
-- **60–70**: Standard (8th–9th grade level, recommended for web content)
-- **0–30**: Very Difficult (Academic / legal documents)
-
-#### 2. Flesch-Kincaid Grade Level (FKGL)
-Translates reading complexity into standard US educational grade levels:
-
-$$0.39 \left( \frac{\text{Total Words}}{\text{Total Sentences}} \right) + 11.8 \left( \frac{\text{Total Syllables}}{\text{Total Words}} \right) - 15.59$$
-
-#### 3. Syllable Counting Heuristics
-Syllable counting algorithms apply linguistic rules:
-- Count vowel sequences (`[aeiouy]+`).
-- Subtract silent terminal `e` characters (e.g., `make` = 1 syllable).
-- Handle diphthongs and triphthongs as single vocalic units.
-
-```typescript
-function countSyllables(word: string): number {
-  word = word.toLowerCase().trim();
-  if (word.length <= 3) return 1;
-  word = word.replace(/(?:[^laeiouy]|ed|es|e)$/, '');
-  word = word.replace(/^y/, '');
-  const matches = word.match(/[aeiouy]{1,2}/g);
-  return matches ? matches.length : 1;
-}
-```
+- **Characters** are the JavaScript string length: every character counts as one, including spaces and punctuation. An emoji such as 🚀 counts as 2, because it occupies two UTF-16 code units.
+- **Words** are counted by splitting the text on whitespace, so spaces, tabs, and line breaks all act as separators.
+- **Lines** are counted by splitting on line breaks; an empty line still counts as a line.
+- **Byte size** is the UTF-8 byte length, not the character count. ASCII text matches character-for-character, but `café` is 4 characters and 5 bytes, and 🚀 is 2 characters and 4 bytes.
 
 ---
 
 ## 4. Real-World Production & Editorial Use Cases
 
-### 1. SEO Content Optimization & Engagement
-Search engines prefer clear, accessible prose. Keeping web articles within a Flesch Reading Ease score of 60–70 improves content accessibility and user engagement.
+### 1. Checking Length Limits
+Social bios, meta descriptions, commit messages, and form fields all have character limits. Paste the draft and read the character count directly instead of guessing.
 
-### 2. Legal and Compliance Document Auditing
-Financial and healthcare policies often require documentation to meet specific reading comprehension standards to satisfy regulatory compliance requirements.
+### 2. Estimating Size Before Sending
+Byte size is the number that matters for storage and transfer: a message that looks short in characters can be larger in bytes once accented characters or emoji appear. Comparing the two numbers shows the gap at a glance.
 
 ---
 
 ## 5. Frequently Asked Questions (FAQs)
 
-### What is the ideal Flesch Reading Ease score for web articles?
-For general public web content, a score between **60 and 70** (equivalent to an 8th to 9th-grade reading level) is ideal. It ensures that technical ideas remain clear without sacrificing substance.
+### What is the difference between character count and byte size?
+Character count is the JavaScript string length; byte size is the UTF-8 byte length. They match on plain ASCII text, but `café` is 4 characters and 5 bytes, and 🚀 counts as 2 characters and 4 bytes.
 
-### How is reading time calculated?
-Standard reading time is based on an average adult silent reading speed of **200 to 250 words per minute (WPM)**. Spoken presentation time assumes an average delivery speed of **130 to 150 WPM**.
+### How are words counted?
+By splitting the text on whitespace — spaces, tabs, and line breaks all separate words. Leading or trailing spaces can inflate the count, so trim the text first if the exact number matters.
 
 ### Does the tool work accurately with non-English text?
-While basic word and character counts function across all UTF-8 texts, the Flesch readability formulas are calibrated specifically for English syntax and syllable patterns.
+The counts work on any text: characters, words, lines, and bytes are counted the same way regardless of language. Only the byte size changes with the script — non-ASCII characters take more bytes in UTF-8.
 
 ### Are my documents uploaded to an external server?
-No. All lexical parsing, syllable counting, and statistical analysis execute entirely inside your local browser memory.
+No. All counting executes entirely inside your local browser memory.
 
 ---
 
 ## 6. Security and Privacy Guarantee
 - **Local Parsing**: Documents are evaluated entirely inside client memory.
 - **Zero Remote Storage**: Text is never transmitted to external APIs or recorded in logs.
-- **ISO Standard Readability**: Follows standardized Flesch and Flesch-Kincaid specifications.
+- **Counts Only**: The tool displays four numbers — characters, words, lines, bytes — and nothing else.
+
+---
+
+## 7. Worked Examples: The Four Numbers the Tool Shows
+
+The tool displays exactly four metrics: character count, word count, line count, and byte size. For this sample sentence:
+
+```text
+The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs! How vexingly quick daft zebras jump?
+```
+
+the tool reports:
+
+| Metric | Value |
+| :--- | :--- |
+| Character count | 122 |
+| Word count | 23 |
+| Line count | 1 |
+| Byte size | 122 Bytes |
+
+### How each number is counted
+
+- **Characters** are counted as JavaScript string length, so every character — letters, spaces, punctuation — counts as one.
+- **Words** are counted by splitting the text on whitespace. That means double spaces, tabs, and line breaks all act as separators, and the count is the number of resulting pieces.
+- **Lines** are counted by splitting on line breaks, so an empty line still counts as a line. The text `one two`, `three  four`, an empty line, then `five` gives 5 words across 4 lines.
+- **Byte size** is the UTF-8 byte length, not the character count. ASCII text matches character-for-character, but `café` is 4 characters and 5 bytes, because `é` takes 2 bytes in UTF-8.
+
+### One counting quirk to know
+
+Leading or trailing spaces inflate the word count: the text `␣␣hello world␣␣` (two spaces at each end) is reported as 4 words instead of 2, because splitting on whitespace produces empty pieces at the edges. Trim the text first if the exact word count matters.
+
+### A three-line sample
+
+A second, shorter check confirms the counting rules on multi-line text:
+
+```text
+First line here.
+Second line follows.
+Third and final line.
+```
+
+The tool reports 59 characters, 10 words, 3 lines, and 59 Bytes. Each line break adds one line and one character, and because the text is plain ASCII the byte size matches the character count. The gap between the two numbers only appears with non-ASCII text, as with `café` above. For an empty input the tool shows zeros across the board: 0 characters, 0 words, 0 lines, and 0 Bytes.
