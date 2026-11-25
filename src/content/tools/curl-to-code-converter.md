@@ -154,7 +154,7 @@ A `-u admin:secret` login appears as `auth=(...)` in the Python output, but the 
 ### Mistake 1: Converting a multipart upload
 A command that uploads a file with `-F "file=@photo.png"` produces code with no body, because the parser does not handle `-F`. Build the multipart request by hand and use the converter only for the headers and URL.
 
-Put `-F` after the URL: if it comes before the URL, the parser treats `file=@photo.png` as the URL and produces `https://file=@photo.png`, losing the real URL.
+Tip: the parser accepts `-F` before or after the URL — either position parses the URL correctly.
 
 ### Mistake 2: Committing a real token
 The converter never redacts anything: a pasted `Bearer <redacted>` ends up verbatim in the generated headers. Replace it with an environment variable such as `os.environ["API_TOKEN"]` before the code leaves your machine.

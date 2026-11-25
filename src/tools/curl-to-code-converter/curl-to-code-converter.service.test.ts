@@ -79,4 +79,82 @@ describe('curl-to-code-converter.service', () => {
     expect(rustCode).toContain('reqwest::Client::new()');
     expect(rustCode).toContain('.send()');
   });
+
+  // -F / --form values must never be mistaken for the URL, regardless of
+  // where the flag sits relative to the URL (multipart bodies are not
+  // captured by parseCurl; the flag is ignored, the URL must survive).
+  it('parses -F before the URL without corrupting it', () => {
+    const result = parseCurl('curl -F file=@photo.png https://api.example.com/upload');
+    expect(result.url).toBe('https://api.example.com/upload');
+    expect(result.method).toBe('GET');
+    expect(result.body).toBeNull();
+  });
+
+  it('parses -F after the URL', () => {
+    const result = parseCurl('curl https://api.example.com/upload -F file=@photo.png');
+    expect(result.url).toBe('https://api.example.com/upload');
+    expect(result.method).toBe('GET');
+  });
+
+  it('parses --form before the URL', () => {
+    const result = parseCurl('curl --form file=@photo.png https://api.example.com/upload');
+    expect(result.url).toBe('https://api.example.com/upload');
+  });
+
+  it('parses -F with a quoted value before the URL', () => {
+    const result = parseCurl('curl -F "file=@my photo.png" https://api.example.com/upload');
+    expect(result.url).toBe('https://api.example.com/upload');
+  });
+
+  it('parses -o, -A and -e before the URL without corrupting it', () => {
+    expect(parseCurl('curl -o out.json https://api.example.com/data').url).toBe(
+      'https://api.example.com/data',
+    );
+    expect(parseCurl('curl -A "Mozilla/5.0" https://api.example.com/data').url).toBe(
+      'https://api.example.com/data',
+    );
+    // -e takes a URL as its value: it must not win over the real URL.
+    expect(
+      parseCurl('curl -e https://referrer.example.com https://api.example.com/data').url,
+    ).toBe('https://api.example.com/data');
+  });
+
+  it('parses --url form', () => {
+    const result = parseCurl('curl --url https://api.example.com/data');
+    expect(result.url).toBe('https://api.example.com/data');
+  });
+
+  it('parses --url= attached form', () => {
+    const result = parseCurl('curl --url=https://api.example.com/data');
+    expect(result.url).toBe('https://api.example.com/data');
+  });
+
+  it('parses --dns-servers, --connect-to, --tls-max, --mail-from and --mail-rcpt before the URL', () => {
+    expect(parseCurl('curl --dns-servers 8.8.8.8 https://api.example.com/data').url).toBe(
+      'https://api.example.com/data',
+    );
+    expect(
+      parseCurl(
+        'curl --connect-to api.example.com:443:internal.example.com:443 https://api.example.com/data',
+      ).url,
+    ).toBe('https://api.example.com/data');
+    expect(parseCurl('curl --tls-max 1.2 https://api.example.com/data').url).toBe(
+      'https://api.example.com/data',
+    );
+    expect(parseCurl('curl --mail-from user@example.com https://api.example.com/data').url).toBe(
+      'https://api.example.com/data',
+    );
+    expect(parseCurl('curl --mail-rcpt rcpt@example.com https://api.example.com/data').url).toBe(
+      'https://api.example.com/data',
+    );
+  });
+
+  it('parses -H and -d before the URL', () => {
+    const result = parseCurl(
+      `curl -H "Authorization: Bearer abc" -d '{"a":1}' https://api.example.com/data`,
+    );
+    expect(result.url).toBe('https://api.example.com/data');
+    expect(result.method).toBe('POST');
+    expect(result.headers['Authorization']).toBe('Bearer abc');
+  });
 });
