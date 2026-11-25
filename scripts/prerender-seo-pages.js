@@ -1021,8 +1021,8 @@ for (const lang of supportedLangs) {
   const locHome = allLocales[lang]?.home || {};
   const HOME_SEO = {
     ar: {
-      title: 'DevTol — منصة أدوات المطورين والمصممين المجانية (تعمل محلياً 100%)',
-      desc: 'مجموعة أدوات برمجية وتصميم مجانية تعمل بالكامل في المتصفح مع حماية تامة للخصوصية وبدون رفع أي ملفات.',
+      title: 'DevTol — أدوات PDF مجانية وخاصة وأدوات المطورين (محلي 100%)',
+      desc: 'أدوات PDF خاصة ومجانية — تعديل وOCR مع دعم كامل للعربية، إلى جانب الدمج والتقسيم والضغط — ضمن 122 أداة للمطورين تعمل داخل متصفحك.',
     },
     de: { title: 'DevTol — Kostenlose Online-Tools für Entwickler', desc: 'Kostenlose, sichere Entwicklertools, die 100% im Browser laufen – ohne Uploads.' },
     es: { title: 'DevTol — Herramientas online gratis para desarrolladores', desc: 'Herramientas de desarrollador gratis y seguras que se ejecutan 100% en el navegador.' },
@@ -1082,7 +1082,7 @@ const homeSchemaJson = JSON.stringify({
       '@id': `${BASE_URL}/#website`,
       'url': `${BASE_URL}/`,
       'name': 'DevTol',
-      'description': '122 free, private, client-side online tools for developers & designers.',
+      'description': 'Free private PDF tools and 122 client-side developer tools — files never leave your browser.',
       'inLanguage': 'en',
     },
     {

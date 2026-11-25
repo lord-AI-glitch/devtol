@@ -27,16 +27,16 @@ const { t, locale } = useI18n();
 
 const homeSeoTitle = computed(() => {
   if (locale.value === 'ar') {
-    return 'DevTol — 122 أداة مجانية للمطورين والمصممين (محلي 100%)';
+    return 'DevTol — أدوات PDF مجانية وخاصة وأدوات المطورين (محلي 100%)';
   }
-  return 'DevTol — 122 Free Online Developer Tools | 100% Client-Side';
+  return 'DevTol — Free Private PDF Tools & Developer Toolbox | 100% Client-Side';
 });
 
 const homeSeoDesc = computed(() => {
   if (locale.value === 'ar') {
-    return 'منصة أدوات المطورين والمصممين الشاملة: محرر ومحول PDF، ضغط الصور وWebP، أدوات JSON، تشفير النصوص، وتوليد الهاش بأمان وخصوصية تامة داخل المتصفح.';
+    return 'أدوات PDF خاصة ومجانية — تعديل وOCR مع دعم كامل للعربية، إلى جانب الدمج والتقسيم والضغط — ضمن 122 أداة للمطورين (JSON وBase64 وRegex وJWT والتشفير)، كلها تعمل داخل متصفحك. ملفاتك لا تغادر جهازك.';
   }
-  return '122 free, private online tools for developers & designers: PDF editor, JSON, Base64, Regex, WebP, hash and crypto, all running 100% in your browser.';
+  return 'Free private PDF tools — edit, merge, split, compress, OCR with Arabic support — plus JSON, Base64, Regex, JWT and crypto. 122 tools, 100% in your browser; files never leave your device.';
 });
 
 const homeCanonical = computed(() => {
@@ -137,7 +137,7 @@ const featuredTools = computed(() => {
     '/pdf-editor',
     '/ai-token-cost-calculator',
     '/image-compressor',
-    '/json-to-typescript',
+    '/pdf-merge',
     '/curl-to-code-converter',
     '/token-generator',
   ];
