@@ -114,3 +114,19 @@ This tool is specifically engineered for 32-bit IPv4 spaces. Due to the massive 
 
 ## 6. Privacy & Security Notice
 All network parsing, CIDR arithmetic, and string expansions happen locally in your browser session. Your internal network topologies, private RFC 1918 subnets (`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`), and public IP ranges are never transmitted to any external server.
+
+---
+
+## 7. Worked Example: Expanding a /28 for a Firewall Allow-List
+
+Suppose you need to allow a small office subnet through a firewall that only accepts individual addresses. Enter `10.0.0.0/28` and exclude the network and broadcast addresses. A `/28` holds 2^(32-28) = 16 addresses, from `10.0.0.0` to `10.0.0.15`. Excluding the network address (`10.0.0.0`) and the broadcast address (`10.0.0.15`) leaves 14 usable hosts, `10.0.0.1` through `10.0.0.14`. Choose comma-delimited output and paste the result straight into the firewall rule.
+
+The same 14 hosts can be produced from a hyphenated range instead: `10.0.0.1 - 10.0.0.14` expands to exactly the same list, which is a useful cross-check that the CIDR was typed correctly. A second check: `192.168.1.100 - 192.168.1.120` should produce 21 addresses (120 − 100 + 1), so if the tool reports any other count, re-check the endpoints before copying the list into a scanner or allow-list.
+
+## 8. Common Mistakes
+
+- **Expanding a /16 or broader in the browser.** A `/16` is 65,536 addresses and a `/8` is over 16 million; the tab can stall or run out of memory. For prefixes broader than `/18`, use a streaming generator or CLI script instead, as the FAQ above recommends.
+- **Forgetting the network and broadcast toggle.** A `/28` gives 16 addresses with the toggle on and 14 with it off. If the count looks two short, the toggle — not the tool — is the explanation.
+- **Typing a CIDR with host bits set.** `10.0.0.5/28` still expands from the network address `10.0.0.0`, because the expansion is computed from the masked network. Type the network address itself when you want the list to start there.
+- **Pasting an IPv6 range.** The tool handles 32-bit IPv4 only; an IPv6 block will not expand.
+- **Expecting a scan.** The expander only generates the address list. Reachability, open ports, and live hosts still need a scanner such as Nmap fed with the exported list.

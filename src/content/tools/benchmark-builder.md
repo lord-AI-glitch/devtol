@@ -89,3 +89,19 @@ No. All script evaluation, timing calculations, and visualizations run 100% loca
 - **Local Isolation**: Code is compiled and executed exclusively on your local machine.
 - **Zero Network Transmission**: Scripts, functions, and output metrics are never sent across the internet.
 - **Ephemeral Sandbox**: State is cleared upon tab navigation or refresh.
+
+---
+
+## 7. Worked Example: Map Pipeline vs For Loop
+
+Use the guide's own setup above: an array of 10,000 numbers, a functional pipeline (filter the evens, then map ×2) against an imperative for loop doing the same work. Add both as test cases, keep the default limits (50 cycles or 1,000 ms per case), and run the suite. The runner warms up each case first, then samples it and reports operations per second, the mean, and the p95 latency.
+
+Suppose the runner reports 12,400 ops/sec for the for loop and 6,800 ops/sec for the pipeline. Dividing the two (12,400 ÷ 6,800 ≈ 1.8) says the loop is about 1.8 times faster on this machine — a gap worth acting on if this code runs on every keystroke or frame. Before rewriting anything, check the margin of error: if the two cases' error bars overlap, raise the cycle count and run again instead of trusting a single close result.
+
+## 8. Common Mistakes
+
+- **Trusting one run.** A single sample is noise: JIT state, garbage collection, and background tabs all move the numbers. Judge only on the reported mean with its margin of error.
+- **Timing the warm-up.** The first runs measure compilation, not the code. Let the runner's warm-up cycles finish, and never benchmark a function the first time it executes.
+- **Allocating inside the timed case.** Building a large array inside the test measures the allocator and triggers GC pauses. Allocate in the Setup Script, as the example above does, and time only the work under test.
+- **Letting the result go unused.** An optimizing compiler can delete code whose result is never read. The runner pins each return value to a consumer sink; if you write your own harness, do the same.
+- **Comparing across machines.** Ops/sec from another laptop, browser, or tab are not comparable. Re-run the same suite on the same machine when you need a before-and-after number.
