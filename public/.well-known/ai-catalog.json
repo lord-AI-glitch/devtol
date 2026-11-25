@@ -2,7 +2,7 @@
   "schema_version": "2026-10",
   "name_for_human": "DevTol — Free Client-Side Developer Utilities",
   "name_for_model": "devtol_developer_tools",
-  "description_for_model": "Comprehensive suite of 126+ free, 100% client-side developer, cryptography, PDF, network, and data conversion utilities running locally in the browser with zero server data transmission.",
+  "description_for_model": "Comprehensive suite of 122 free, 100% client-side developer, cryptography, PDF, network, and data conversion utilities running locally in the browser with zero server data transmission.",
   "base_url": "https://devtol.online",
   "agentic_browsing": {
     "llms_txt": "https://devtol.online/llms.txt",
@@ -51,12 +51,6 @@
           "description": "Convert JPG, PNG, or WebP images into a single PDF document. No server uploads."
         },
         {
-          "id": "pdf-protect",
-          "title": "PDF Protect & Unlock",
-          "url": "https://devtol.online/pdf-protect",
-          "description": "Password-protect or unlock PDF files directly in your browser. Zero server uploads."
-        },
-        {
           "id": "pdf-organize",
           "title": "Organize PDF Pages",
           "url": "https://devtol.online/pdf-organize",
@@ -67,12 +61,6 @@
           "title": "PDF OCR Text Extractor",
           "url": "https://devtol.online/pdf-ocr",
           "description": "Extract text from scanned PDFs and images using OCR. Supports multiple languages."
-        },
-        {
-          "id": "pdf-redact",
-          "title": "PDF Redaction Tool",
-          "url": "https://devtol.online/pdf-redact",
-          "description": "Permanently redact sensitive text from PDF files. Client-side privacy guaranteed."
         },
         {
           "id": "pdf-watermark-tool",

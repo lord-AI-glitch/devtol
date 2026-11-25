@@ -1,7 +1,7 @@
 home:
   hero:
-    title: 'All-in-One Local Toolbox for Developers & Designers'
-    description: '122 secure productivity utilities running entirely in your browser sandbox. Convert, encode, debug, and optimize. Inputs are processed locally in your browser and never uploaded to DevTol servers.'
+    title: 'The Private PDF & Developer Toolbox — Your Files Never Leave Your Browser'
+    description: '122 free tools running entirely in your browser — led by a 10-tool PDF suite (edit and OCR with full Arabic support, plus merge, split and compress) plus JSON, Base64, Regex, JWT and crypto. Your files never leave your device: no uploads, no accounts, and no server-side processing or storage of your files.'
     searchPlaceholder: 'Search 122 tools by name, keyword, or format (e.g. PDF, JSON, WebP, Hash)...'
   pillars:
     privacyTitle: 'Total Client-Side Privacy'

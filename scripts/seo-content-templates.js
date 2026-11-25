@@ -5,12 +5,12 @@ export function getHomePrerenderContent(lang, toolsList = []) {
   const isAr = lang === 'ar';
 
   const heroTitle = isAr
-    ? 'DevTol — منصة أدوات المطورين والمصممين (معالجة محلية 100% بدون خوادم)'
-    : 'DevTol — Client-Side Developer Utilities & Web Engineering Suite';
+    ? 'DevTol — أدوات PDF الخاصة وأدوات المطورين (ملفاتك لا تغادر متصفحك أبداً)'
+    : 'DevTol — Private PDF Tools & Developer Toolbox (Files Never Leave Your Browser)';
 
   const heroSubtitle = isAr
-    ? 'أكثر من 122 أداة برمجية وهندسية تعمل محلياً بالكامل داخل المتصفح عبر WebAssembly و Web Workers و Web Crypto API. حماية مطلقة للخصوصية، صفر نقل للبيانات إلى أي خوادم، وسرعة فائقة بدون انتظار.'
-    : 'Over 122 client-side developer and designer utilities running entirely in your browser sandbox using Web Workers, WebAssembly, and the Web Crypto API. Zero server transmissions, absolute data privacy, and instantaneous local processing.';
+    ? 'مجموعة PDF من 10 أدوات — تعديل وOCR مع دعم كامل للعربية، إلى جانب الدمج والتقسيم والضغط — ضمن 122 أداة مجانية تعمل محلياً بالكامل داخل المتصفح عبر WebAssembly و Web Workers و Web Crypto API. حماية مطلقة للخصوصية، صفر نقل للبيانات إلى أي خوادم، وسرعة فائقة بدون انتظار.'
+    : 'A 10-tool PDF suite — edit and OCR with full Arabic support, plus merge, split and compress — inside 122 free utilities running entirely in your browser sandbox using Web Workers, WebAssembly, and the Web Crypto API. Zero server transmissions, absolute data privacy, and instantaneous local processing.';
 
   const guidesBtnText = isAr ? 'أدلة المطورين الهندسية' : 'Developer Engineering Guides';
   const aboutBtnText = isAr ? 'عن المنصة ومعايير الخصوصية' : 'About & Privacy Architecture';
