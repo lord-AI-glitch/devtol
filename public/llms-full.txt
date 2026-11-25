@@ -1,6 +1,6 @@
 # DevTol
 
-> DevTol is a free, open-source, client-side developer utility platform featuring 120+ tools across PDF processing, cryptography, image editing, data converters, network utilities, and text formatting. All operations run 100% locally inside the browser sandbox with zero server data transmission.
+> DevTol is a free, open-source, client-side developer utility platform featuring 122 tools across PDF processing, cryptography, image editing, data converters, network utilities, and text formatting. All operations run 100% locally inside the browser sandbox with zero server data transmission.
 
 ## Platform Principles
 - 100% Client-Side Privacy: Passwords, tokens, images, and documents never leave the user browser.
