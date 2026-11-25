@@ -1,14 +1,14 @@
 # Online Safelink Decoder: URL Extraction, Phishing Defense & Anti-Tracking Analysis
 
 ## 1. Quick Overview & Core Advantages
-The **Online Safelink Decoder** is a security-focused URL analysis utility designed to unpack, decode, and extract destination URLs obfuscated by enterprise email filtering and link-rewriting systems, including **Microsoft Defender Safe Links**, **Proofpoint Targeted Attack Protection (TAP)**, and generic redirect wrappers.
+The **Online Safelink Decoder** is a security-focused URL analysis utility designed to unpack, decode, and extract destination URLs obfuscated by enterprise email link-rewriting — Microsoft Defender Safe Links only. It does not handle Proofpoint Targeted Attack Protection (TAP) links or generic redirect wrappers.
 
-Operating under a strict **Zero-Knowledge Architecture: inspected URLs, parameters, and query tokens never leave local browser memory**. Decoded endpoints and potentially sensitive query tokens (such as user email addresses, session cookies, or tracking parameters) are parsed locally within the browser runtime. This protects your enterprise intelligence and prevents accidental triggers to malicious tracking endpoints.
+Everything runs locally in your browser: inspected URLs, parameters, and query tokens never leave local browser memory. Decoded endpoints and potentially sensitive query tokens (such as user email addresses, session cookies, or tracking parameters) are parsed locally within the browser runtime.
 
 ### Core Technical Advantages
-- **Zero-Knowledge Analysis**: URL strings and security parameters are parsed entirely in client memory.
-- **Multi-Vendor Support**: Unwraps Microsoft Outlook Safe Links (`*.safelinks.protection.outlook.com`), Proofpoint TAP (`urldefense.proofpoint.com`), and standard redirect proxies.
-- **Deep Tracking Removal**: Automatically strips marketing and user-tracking query tags (such as `utm_*`, `fbclid`, `gclid`, and custom user IDs).
+- **Local Analysis**: URL strings and security parameters are parsed entirely in client memory.
+- **Microsoft Safe Links Only**: Unwraps Outlook Safe Links (`*.safelinks.protection.outlook.com`). Any other host — including Proofpoint's `urldefense.proofpoint.com` — is rejected with `Error: Invalid SafeLinks URL provided`.
+- **No Stripping**: The tool returns the destination URL exactly as stored in the link's `url` parameter, including any query string it carries — it strips no tracking tags.
 - **Phishing Prevention**: Inspect actual destination domains and protocols before visiting unfamiliar links.
 
 ---
@@ -17,9 +17,9 @@ Operating under a strict **Zero-Knowledge Architecture: inspected URLs, paramete
 
 ### Decoding an Obfuscated Security Link
 1. **Paste Link**: Paste the rewritten link from your email client or document into the input field.
-2. **Click Decode**: The utility parses URL query strings, reverses vendor-specific encodings, and extracts the target URL.
-3. **Inspect Target Parameters**: View the cleaned destination URL, verified protocol (HTTP/HTTPS), target domain, and stripped security metadata.
-4. **Copy Clean URL**: Copy the sanitized URL directly to your clipboard.
+2. **Click Decode**: The utility reads the link's `url` query parameter (percent-decoded automatically by the URL parser) and returns it as the target URL.
+3. **Read the Destination**: The output is the destination URL itself, taken from the link's `url` parameter. Nothing else is shown — no protocol check, no domain summary, no stripped metadata.
+4. **Copy the URL**: Copy the decoded destination URL directly to your clipboard.
 
 ```text
 Transformation Pipeline:
@@ -28,7 +28,7 @@ Transformation Pipeline:
    ▼
 https://nam01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fexample.com%2Fportal&data=04%7C01...
    │
-   ▼  (Local Regex & URI Percent Decoding - Zero Network)
+   ▼  (URL parsing — the `url` query parameter, percent-decoded - Zero Network)
 https://example.com/portal
 ```
 
@@ -47,41 +47,24 @@ https://[region].safelinks.protection.outlook.com/?url=[ENCODED_TARGET]&data=[ME
 - `data`: Encapsulates recipient email addresses, tenant identifiers, and internal routing tags.
 - `sdata`: Cryptographic HMAC signature ensuring the parameters have not been modified.
 
-### Proofpoint Targeted Attack Protection (v1, v2, v3)
-Proofpoint applies custom character substitutions across its URL Defense platforms:
-- **v1/v2**: URL is encoded in query strings with custom substitutions:
+The tool itself only reads the `url` parameter; `data` and `sdata` are ignored.
 
-```text
-https://urldefense.proofpoint.com/v2/url?u=https-3A__example.com_path&d=...
-```
-Substitutions: `-3A` maps to `:`, `_` maps to `/`.
+### What the Tool Actually Does
 
-- **v3**: Proofpoint v3 replaces URL paths with custom Base64-derived encodings. Decoding requires parsing the tokenized string, mapping substitution characters, and running Base64 decoding routines.
+The entire decoding logic is seven lines — there is no Proofpoint support and no tracking removal:
 
 ```typescript
-// SafeLink Decoding Engine
-function decodeSafeLink(rawUrl: string): string {
-  try {
-    const parsed = new URL(rawUrl);
-    // Microsoft Defender SafeLinks
-    if (parsed.hostname.includes('safelinks.protection.outlook.com')) {
-      const target = parsed.searchParams.get('url');
-      if (target) return decodeURIComponent(target);
-    }
-    // Proofpoint v2
-    if (parsed.hostname.includes('urldefense.proofpoint.com')) {
-      const target = parsed.searchParams.get('u');
-      if (target) {
-        let normalized = target.replace(/-/g, '%').replace(/_/g, '/');
-        return decodeURIComponent(normalized);
-      }
-    }
-    return rawUrl;
-  } catch {
-    return rawUrl;
+// The tool's entire decoding logic (safelink-decoder.service.ts)
+export function decodeSafeLinksURL(safeLinksUrl: string) {
+  if (!safeLinksUrl.match(/\.safelinks\.protection\.outlook\.com/)) {
+    throw new Error('Invalid SafeLinks URL provided');
   }
+
+  return new URL(safeLinksUrl).searchParams.get('url');
 }
 ```
+
+Two behaviours follow from this: a link from any host other than `*.safelinks.protection.outlook.com` is rejected outright, and a Safe Links URL with no `url` parameter returns nothing — the tool shows an empty output.
 
 ---
 
@@ -90,8 +73,8 @@ function decodeSafeLink(rawUrl: string): string {
 ### 1. Incident Response & Phishing Investigation
 Security Operations Center (SOC) analysts examine suspicious email links submitted by employees, extracting target domains to cross-reference with threat intelligence platforms (such as VirusTotal) without clicking the link.
 
-### 2. Stripping Sensitive Tracking Tokens from Corporate Links
-Email protection services frequently embed internal employee email addresses and organizational identifiers into tracking query parameters. Decoding links before public sharing prevents inadvertent data leaks.
+### 2. Seeing the Real Destination Before Sharing
+A rewritten link hides where it really goes. Decoding it first shows the true destination, so you can check the domain before forwarding the link or clicking it. Note that the destination itself is returned unchanged — if it carries tracking parameters of its own, they stay in place.
 
 ---
 
@@ -104,10 +87,10 @@ No. The decoding engine parses the text string locally using browser URL parsing
 Enterprise systems rewrite URLs to enable Time-of-Click protection. If an attacker delivers an initially benign link that later redirects to a credential harvesting page, the proxy can block the request at the moment an employee clicks it.
 
 ### Can this tool remove marketing tracking parameters (UTM tags)?
-Yes. The utility provides an option to strip common marketing parameters (e.g., `utm_source`, `utm_medium`, `gclid`, `fbclid`), returning a clean destination URL.
+No. The tool returns the destination URL exactly as stored in the link — any `utm_*`, `gclid`, or `fbclid` parameters in the destination stay in the output. There is no stripping option.
 
 ### Are the URLs I analyze sent to any external server?
-No. All regex evaluation and percent-decoding steps execute entirely in your local browser runtime. URLs are never logged or stored.
+No. All URL parsing and percent-decoding steps execute entirely in your local browser runtime. URLs are never logged or stored.
 
 ---
 
@@ -115,3 +98,41 @@ No. All regex evaluation and percent-decoding steps execute entirely in your loc
 - **Local Parsing**: SafeLinks are decoded locally using client-side JavaScript.
 - **Zero Outbound Requests**: No HTTP requests are made to destination websites or security proxies.
 - **Privacy First**: Sensitive employee tokens and tracking IDs remain completely confidential.
+
+---
+
+## 7. Worked Example: A Real Safe Link, Decoded
+
+Pasting this rewritten link into the tool:
+
+```text
+https://nam01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fexample.com%2Fportal&data=04%7C01%7Ctest%40example.com&sdata=abc123
+```
+
+returns exactly the destination, with nothing else attached:
+
+```text
+https://example.com/portal
+```
+
+The tool reads the percent-encoded `url` query parameter and decodes it. The `data` telemetry parameter and the `sdata` signature are discarded, not passed on.
+
+### What the tool accepts — and what it rejects
+
+- A link whose host is not under `*.safelinks.protection.outlook.com` is rejected with the error `Error: Invalid SafeLinks URL provided`. That includes ordinary links and other vendors' rewritten links.
+- A Safe Links URL with no `url` parameter returns an empty result, because there is no destination to extract.
+
+### Using the result safely
+
+Decoding never contacts the destination: no request is sent to the target site or to Microsoft. Once you have the clean URL, read its domain before clicking. If the visible link text in the email says one domain and the decoded URL shows another, treat the message as suspicious and verify it through a separate channel instead of clicking.
+
+### A destination that carries its own query string
+
+Destinations often contain query parameters of their own, and the decoding still returns the full address:
+
+```text
+Input:   https://nam01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fexample.com%2Fpage%3Fa%3D1%26b%3D2&data=04
+Output:  https://example.com/page?a=1&b=2
+```
+
+The encoded `%3F` and `%26` inside the `url` value become the real `?` and `&` of the destination, so the destination's own parameters survive intact. The wrapping link's `data` parameter is dropped along with the rest of the wrapper. This is the check that matters in practice: after decoding, the domain and the path should match what the sender claimed the link was. A decoded address that points somewhere else is the signal to stop, not to click.

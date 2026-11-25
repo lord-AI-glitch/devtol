@@ -6,17 +6,17 @@ Extensible Markup Language (XML) remains an essential foundational standard for 
 
 In operational environments, XML payloads are almost universally transmitted in minified, single-line streams to minimize network transfer overhead. However, when developers, integration engineers, or support specialists need to diagnose a failed SOAP transaction, inspect an SAML authentication token, or debug an enterprise service bus (ESB) message, minified XML is completely unreadable.
 
-The **DevTol XML Formatter & Validator** is a high-performance, client-side utility engineered to parse, validate, and hierarchically prettify complex XML documents. It parses XML text through the native browser DOMParser engine, validates well-formedness according to W3C specifications, and outputs clean, indented markup with customizable indentation and syntax-colored visual hierarchy.
+The **DevTol XML Formatter & Validator** is a high-performance, client-side utility engineered to parse, validate, and hierarchically prettify complex XML documents. It parses XML text with the `xml-formatter` npm package, validates well-formedness, and outputs clean, indented markup with an adjustable indent size and a collapse-content switch.
 
 ---
 
 ## 2. W3C XML Standards & Structural Validation
 
-XML enforces strict syntactic rules compared to forgiving HTML parsers. A single unclosed tag or mismatched attribute quote causes an XML parser to immediately halt execution. DevTol validates XML against the official W3C XML 1.0 (Fifth Edition) recommendations:
+XML enforces strict syntactic rules compared to forgiving HTML parsers. A strict XML parser halts immediately on a single unclosed tag or mismatched attribute quote — though this tool's formatter is lenient (see the FAQ below) and silently repairs some malformed input instead of rejecting it. DevTol validates XML against the official W3C XML 1.0 (Fifth Edition) recommendations:
 
 ### Key Validation Checks Performed
-- **Well-Formedness Verification**: Validates that all tags are symmetrically closed, correctly nested, and rooted in a single top-level parent element.
-- **Attribute Quotation Rules**: Ensures all attribute values are strictly enclosed in matching double (`"..."`) or single (`'...'`) quotes.
+- **Well-Formedness Verification**: Checks that the document parses; well-formed documents format cleanly. (The check is lenient — see the FAQ on malformed input.)
+- **Attribute Quotation Rules**: Attribute values must be quoted; the formatter normalises single-quoted values to double quotes.
 - **Character Entity References**: Detects and properly preserves pre-defined XML entity references:
   - `&lt;` ($<$)
   - `&gt;` ($>$)
@@ -31,8 +31,7 @@ XML enforces strict syntactic rules compared to forgiving HTML parsers. A single
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pay="http://payment.enterprise.org"><soapenv:Header/><soapenv:Body><pay:ProcessTransaction><pay:TransactionId>TX-98471</pay:TransactionId><pay:Amount currency="USD">4500.00</pay:Amount><pay:Status>Approved</pay:Status></pay:ProcessTransaction></soapenv:Body></soapenv:Envelope>
 
 <!-- After Formatting (DevTol Standard Indented Tree): -->
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
-                  xmlns:pay="http://payment.enterprise.org">
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pay="http://payment.enterprise.org">
   <soapenv:Header/>
   <soapenv:Body>
     <pay:ProcessTransaction>
@@ -48,18 +47,19 @@ XML enforces strict syntactic rules compared to forgiving HTML parsers. A single
 
 ## 3. Formatting Modes & Indentation Customization
 
-- **Indentation Depth**: Toggle between 2-space (concise for deeply nested schemas) or 4-space indentation (classic enterprise Java/C# standard).
-- **Self-Closing Tag Normalization**: Converts empty elements like `<item></item>` to compact self-closing tags `<item/>` to reduce visual clutter.
-- **Minification Engine**: Need to prepare an XML document for network transfer? DevTol provides an instant XML minifier that strips unnecessary whitespace, indentation, and comments while strictly preserving text node integrity.
-- **Instant Error Diagnostics**: If the input XML is malformed, DevTol highlights the exact line number, column offset, and parsing error description returned by the XML parser.
+- **Indentation Size**: A number input from 0 to 10 spaces (default 2). Setting it to 0 removes the indentation while keeping one element per line.
+- **Collapse Content**: A switch (on by default) that keeps an element's text on the same line as its tags instead of breaking it onto separate lines.
+- **No Self-Closing Normalisation**: Empty elements are left exactly as written — `<item></item>` stays `<item></item>`.
+- **No Minifier**: There is no minify option. The closest equivalent is indent size 0, which removes indentation but keeps one element per line.
+- **Generic Error Message**: If the input XML is malformed, DevTol shows only `Provided XML is not valid.` — no line number, column, or parse description.
 
 ---
 
 ## 4. Step-by-Step Practical Usage Guide
 
 1. **Paste Raw XML**: Copy your unformatted, minified, or raw XML payload and paste it into the editor.
-2. **Review Validation Status**: DevTol immediately parses the document. If syntax errors exist (such as an unclosed tag), an error banner indicates the exact failure point.
-3. **Customize Format**: Select your desired indentation size (2 spaces, 4 spaces, or Tab).
+2. **Review Validation Status**: DevTol immediately parses the document. If the XML is invalid, it shows the generic message `Provided XML is not valid.`
+3. **Customize Format**: Set the indent size (0–10 spaces) and the collapse-content switch.
 4. **Copy or Download**: Click "Copy to Clipboard" to transfer the clean XML into your code editor or API testing tool (Postman, SoapUI), or download it as an `.xml` file.
 
 ---
@@ -71,17 +71,84 @@ Enterprise XML payloads frequently carry the highest-sensitivity corporate data:
 - SAML 2.0 assertions containing enterprise employee identities and security tokens.
 - Healthcare HL7 and CDA clinical documents containing patient medical records.
 
-Uploading this data to cloud-based formatters violates regulatory mandates, including HIPAA, GDPR, and PCI-DSS. DevTol guarantees **100% Client-Side Processing**. Parsing and beautification are conducted locally using your browser's internal DOM parser. Zero data is sent across the Internet, ensuring your enterprise documents remain confidential and protected behind your corporate firewall.
+DevTol processes XML locally in your browser using the `xml-formatter` package — no data is sent across the Internet, so enterprise documents stay on your machine.
 
 ---
 
 ## 6. Frequently Asked Questions (FAQs)
 
-### What causes "XML Parsing Error: mismatched tag" in the validator?
-This error occurs when an opening tag does not match its closing tag (e.g., `<record>` closed with `</records>`), or when tags are improperly nested out of order (e.g., `<a><b></a></b>`). DevTol identifies the exact line number where the mismatch occurred.
+### What happens with a mismatched tag?
+A mismatched tag means an opening tag does not match its closing tag (e.g., `<record>` closed with `</records>`), or tags are nested out of order (e.g., `<a><b></a></b>`). Surprisingly, DevTol does not reject these: the underlying formatter is lenient, so it silently repairs them instead — `<record></records>` formats to `<record></record>` — and validation passes. The generic message `Provided XML is not valid.` is reserved for input the formatter cannot parse at all, such as plain text or a document with two root elements. A green validation result therefore does not prove the document is well-formed.
 
 ### Does the formatter modify text inside `<script>` or `<style>` tags?
 If parsing SVG or XHTML documents, DevTol treats embedded scripts and style blocks respectfully, preserving internal content while formatting surrounding XML nodes.
 
 ### Can DevTol validate XML against an external XSD schema?
-DevTol validates XML **Well-Formedness** according to W3C XML specifications. Schema validation against complex multi-file XML Schema Definitions (XSD) or DTDs requires local schema compilation, but DevTol verifies complete structural and syntactic integrity.
+DevTol checks **well-formedness only** — and, as noted above, that check is lenient about some malformed input. There is no validation against XSD schemas or DTDs.
+
+---
+
+## 7. Worked Examples: Real Formatting
+
+### The SOAP example, formatted
+
+With the default settings — 2-space indentation and content collapsing on — the minified envelope from section 2 formats to exactly this:
+
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pay="http://payment.enterprise.org">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <pay:ProcessTransaction>
+      <pay:TransactionId>TX-98471</pay:TransactionId>
+      <pay:Amount currency="USD">4500.00</pay:Amount>
+      <pay:Status>Approved</pay:Status>
+    </pay:ProcessTransaction>
+  </soapenv:Body>
+</soapenv:Envelope>
+```
+
+### Indentation and collapsing
+
+The indent control accepts 0 to 10 spaces. At 4 spaces with collapsing off, text nodes move onto their own lines:
+
+```xml
+<root>
+    <a>
+        text
+    </a>
+</root>
+```
+
+With collapsing on (the default), the same input stays compact: `<a>text</a>` on one line.
+
+### What is preserved, and what is not changed
+
+Entity references (`&lt;`, `&gt;`, `&amp;`, `&quot;`), comments, and CDATA blocks pass through untouched. An empty element written as `<item></item>` is left exactly as written — it is not rewritten to the self-closing form `<item/>`. Input that fails validation shows only the generic message `Provided XML is not valid.`, with no line or column number.
+
+### The default document and zero indentation
+
+The formatter opens with this document already loaded:
+
+```xml
+<hello><world>foo</world><world>bar</world></hello>
+```
+
+and with the default settings it produces:
+
+```xml
+<hello>
+  <world>foo</world>
+  <world>bar</world>
+</hello>
+```
+
+Setting the indent size to `0` still puts each element on its own line, but with no leading spaces at all:
+
+```xml
+<hello>
+<world>foo</world>
+<world>bar</world>
+</hello>
+```
+
+That is the full range of the indent control: a number from 0 to 10, always spaces, never tabs. Combined with the collapse switch, the two controls cover the realistic layouts: collapsed text on one line for reading values quickly, expanded text on separate lines for tracing deep nesting.
