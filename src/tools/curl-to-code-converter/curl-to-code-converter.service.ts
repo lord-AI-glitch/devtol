@@ -21,7 +21,9 @@ export type TargetLanguage = 'python' | 'javascript' | 'typescript' | 'go' | 'ph
  * Their values must be skipped, otherwise a value containing '.' (or a URL,
  * e.g. a referer/proxy) is mistaken for the request URL by the positional
  * fallback in parseCurl. `--url` is intentionally excluded: its value IS
- * the URL. Attached forms (`--form=name=value`, `-Ffile=@x`) need no entry:
+ * the URL. `--json` is also excluded: real curl takes it with an OPTIONAL
+ * value (`--json [data]`), so `curl --json <url>` must not eat the URL as a
+ * flag value. Attached forms (`--form=name=value`, `-Ffile=@x`) need no entry:
  * they start with '-' and are skipped by the fallback already.
  */
 const IGNORED_VALUE_FLAGS: ReadonlySet<string> = new Set([
@@ -54,7 +56,6 @@ const IGNORED_VALUE_FLAGS: ReadonlySet<string> = new Set([
   '-D',
   '--dump-header',
   '--resolve',
-  '--json',
   '--oauth2-bearer',
   '--dns-servers',
   '--connect-to',

@@ -119,6 +119,14 @@ describe('curl-to-code-converter.service', () => {
     ).toBe('https://api.example.com/data');
   });
 
+  // --json takes an OPTIONAL value in real curl (`--json [data]`), so the
+  // common form `curl --json <url>` must not eat the URL as a flag value.
+  it('parses --json before the URL without eating it', () => {
+    const result = parseCurl('curl --json https://api.example.com/data');
+    expect(result.url).toBe('https://api.example.com/data');
+    expect(result.method).toBe('GET');
+  });
+
   it('parses --url form', () => {
     const result = parseCurl('curl --url https://api.example.com/data');
     expect(result.url).toBe('https://api.example.com/data');
