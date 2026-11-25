@@ -35,7 +35,7 @@ Images typically account for **over 60% of total web page weight**. Unoptimized 
 
 1. **Select or Drop Your Images**: Click the upload area or drag and drop your JPG, PNG, or WebP files into the compressor.
 2. **Adjust the Quality Slider**: Set your target visual quality (recommended: 75%–85% for the ideal balance of sharpness and minimal byte size).
-3. **Compare File Savings**: Instantly view the original size vs. optimized size and the exact percentage reduction in real time.
+3. **Compare File Savings**: Instantly view the original size vs. optimized size and the rounded percentage reduction in real time.
 4. **Download Instantly**: Click **Download** to save your compressed image directly to your device with zero upload delay.
 
 ---
@@ -53,3 +53,48 @@ No. DevTol uses the browser's native HTML5 Canvas and Blob APIs. Your files rema
 
 ### Q4: Can I compress multiple images offline?
 Yes. Once the DevTol web application is loaded or installed as a PWA, you can compress images anytime, even on flights or with no active internet connection.
+
+---
+
+## Worked Example: Shrinking a Hero Photo
+
+A 3 MB JPEG banner is too heavy for a mobile homepage. The workflow is:
+
+1. Click the upload area and pick the JPEG (the tool accepts one file at a time).
+2. Leave the quality slider at its default of 75%, and keep the output format on JPEG.
+3. Click **Compress Image**. The tool redraws the photo on a canvas at its original pixel size and shows the original and compressed images side by side, with a green tag showing the rounded percentage saved — computed as (1 − compressed size ÷ original size) × 100.
+4. Click **Download Compressed** to save the result as `compressed.jpeg`.
+
+Pixel dimensions never change: a 1920×1080 photo stays 1920×1080. If the savings tag shows a small number, try WebP instead — the same quality setting usually produces a smaller file than JPEG.
+
+---
+
+## Choosing a Format and Quality
+
+| Situation | Recommended setting | Why |
+| --- | --- | --- |
+| Photograph for the web | JPEG or WebP, quality 75–85% | The best balance of size and visible quality |
+| Screenshot with text | WebP or PNG, quality 90% or higher | Sharp edges blur at low quality; PNG ignores the slider |
+| Logo with transparency | WebP or PNG | JPEG has no transparency — transparent areas turn black |
+| Maximum compatibility | JPEG | Opens everywhere, including old software |
+
+The quality slider runs from 1 to 100 and only affects JPEG and WebP output. PNG is lossless, so moving the slider changes nothing for a PNG file — the output is the same whatever the slider says.
+
+---
+
+## Common Mistakes
+
+### Mistake 1: Compressing a PNG and expecting the slider to help
+The quality slider is ignored for PNG output because PNG compression is lossless. If a PNG is still too big, convert it to WebP instead, or accept the size.
+
+### Mistake 2: Converting a transparent logo to JPEG
+JPEG has no alpha channel. Transparent pixels become black when the image is exported as JPEG, so a logo with a transparent background comes out with a black box behind it. Keep transparency by choosing WebP or PNG.
+
+### Mistake 3: Compressing the same JPEG twice
+Every JPEG pass throws away more detail. Compress once from the original file, and keep the original — compressing the compressed copy again only makes it worse.
+
+### Mistake 4: Selecting several files at once
+The tool processes one file per run, and its file picker has no multi-select: choosing three images only loads the first. Compress and download each image separately.
+
+### Mistake 5: Trusting the savings tag without looking
+A tiny file can come out larger after "compression" — for example, a small PNG re-encoded at quality 100. If the savings tag shows a negative number, keep the original.

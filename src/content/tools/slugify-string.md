@@ -8,7 +8,7 @@ Operating under a strict **Zero-Knowledge Architecture: raw strings, proprietary
 ### Core Technical Advantages
 - **Zero-Knowledge Processing**: All text transformations occur locally inside browser memory.
 - **Unicode NFKD Normalization**: Decomposes accented characters (e.g., `é`, `ü`, `ñ`) into base Latin characters (`e`, `u`, `n`).
-- **Configurable Delimiters**: Choose between hyphens (`-`), underscores (`_`), or custom separator characters.
+- **Fixed Hyphen Delimiter**: Words are always joined with hyphens (`-`) — the separator is fixed, not configurable.
 - **RFC 3986 URL Compliance**: Generates slugs that are safe for direct inclusion in URI paths without percent-encoding.
 
 ---
@@ -17,8 +17,8 @@ Operating under a strict **Zero-Knowledge Architecture: raw strings, proprietary
 
 ### Generating an SEO Slug
 1. **Enter Text**: Input your headline, title, or string into the text area.
-2. **Select Separator**: Choose **Hyphen (-)** (standard for SEO URLs) or **Underscore (_)**.
-3. **Configure Options**: Toggle lowercase enforcement, symbol stripping, and maximum character length limits.
+2. **Nothing to Configure**: The tool has no settings — it always uses hyphens, always lowercases, and never truncates.
+3. **Review the Output**: Read the generated slug before using it — punctuation disappears, and non-Latin scripts are transliterated or dropped.
 4. **Copy Output**: Click **Copy** to export the sanitized slug for use in your CMS, blog, or routing tables.
 
 ```text
@@ -41,6 +41,8 @@ The slugify pipeline applies Unicode Normalization Form KD (Compatibility Decomp
 $$\text{NFKD}(\text{String}) \implies \text{Base Characters} + \text{Combining Diacritical Marks}$$
 
 A subsequent regex removes combining diacritical marks in the Unicode block `[\u0300-\u036f]`:
+
+The snippet below shows the algorithm in code — `separator` here is a parameter of the illustrative function, not a setting in the tool: the tool always calls it with the hyphen default and offers no way to change it.
 
 ```typescript
 function slugify(text: string, separator = '-'): string {
@@ -74,10 +76,10 @@ Search engines prioritize descriptive, readable URL slugs over database IDs. Cle
 Major search engines (including Google) treat hyphens as natural word separators (e.g., `secure-password` is indexed as `secure` and `password`), whereas underscores are often treated as continuous single tokens (`secure_password`).
 
 ### How does the tool handle international alphabets (Cyrillic, Arabic, Chinese)?
-The tool can either transliterate supported scripts to Latin equivalents or retain valid UTF-8 characters while stripping whitespace and invalid punctuation.
+The tool transliterates supported scripts (Arabic, Cyrillic) to Latin equivalents; scripts with no transliteration, such as Chinese, are dropped entirely — no non-Latin characters are retained in the output.
 
 ### Can slug length be restricted to prevent database truncation?
-Yes. The tool includes an optional length cap that truncates strings at clean word boundaries rather than breaking words midway.
+No. The tool has no length limit and no length setting — a long title produces a long slug. Shorten the title itself if you need a shorter slug.
 
 ### Is any text uploaded to an external server?
 No. All string manipulation and regular expression matching runs entirely within your local browser runtime.
@@ -88,3 +90,53 @@ No. All string manipulation and regular expression matching runs entirely within
 - **Local Browser Execution**: Zero network transmission for submitted strings.
 - **No Data Retention**: Texts and generated slugs are discarded upon tab closure.
 - **Standards Compliant**: Produces RFC 3986 compliant URI path segments.
+
+---
+
+## 7. How the Slug Rules Work
+
+The tool applies one fixed rule set — the defaults of the slugify library it runs on:
+
+| Input | Output | Rule |
+| --- | --- | --- |
+| `My File Path` | `my-file-path` | Lowercased, spaces become hyphens |
+| `Café au Lait` | `cafe-au-lait` | Accents stripped to plain letters |
+| `10 Best Practices for 2026!` | `10-best-practices-for-2026` | Numbers kept, punctuation removed |
+| `myFilePath` | `my-file-path` | CamelCase splits into separate words |
+| `(A Developer's Guide)` | `a-developers-guide` | The apostrophe disappears, it does not become a hyphen |
+
+The separator is always a hyphen, the output is always lowercase, and there is no length limit — a 200-character title produces a 200-character slug.
+
+---
+
+## 8. Worked Example: From Article Title to CMS Slug
+
+A blog editor wants a URL for a new post titled "10 Best Cryptographic Practices for 2026! (A Developer's Guide)". Pasting the title into the tool returns:
+
+```text
+10-best-cryptographic-practices-for-2026-a-developers-guide
+```
+
+That slug goes straight into the article URL, for example `https://example.com/blog/10-best-cryptographic-practices-for-2026-a-developers-guide`. Two things are worth checking before publishing: the apostrophe in "Developer's" vanished instead of splitting the word, and the exclamation mark and parentheses are gone entirely. Both are by design — punctuation never survives slugification.
+
+File names work the same way: slugifying `Q3 Report — Final (v2).pdf` gives `q3-report-final-v2-pdf` — each dot becomes a hyphen, including the one before `pdf`. Add the extension back afterwards, or the file will open with the wrong program.
+
+---
+
+## 9. Common Mistakes
+
+### Mistake 1: Slugifying a full URL instead of just the title
+Pasting `https://example.com/blog/My Post` produces `https-example-com-blog-my-post`: every character that is not a letter or digit — the `://`, the dots, the space — becomes a hyphen. The result keeps the whole address inside the slug. Slugify the title only, then attach it to the path yourself.
+
+### Mistake 2: Expecting underscores
+Search engines treat hyphens as word separators and underscores as part of a single word, and this tool always uses hyphens. Do not mix the two styles on one site.
+
+### Mistake 3: Publishing a slug without reading it
+Automatic slugification can produce misleading results: "Café" becomes "cafe", an apostrophe disappears, and a title made only of symbols can collapse to an empty string. Always read the generated slug before it goes live, especially for titles in non-Latin scripts: Arabic and Cyrillic titles are transliterated (مرحبا بالعالم becomes `mrhba-balealm`, Привет мир becomes `privet-mir`), but scripts with no transliteration, such as Chinese, are dropped entirely — a Chinese-only title collapses to an empty string.
+
+---
+
+## 10. Frequently Asked Questions (Continued)
+
+### Can I slugify a title in Arabic, Cyrillic, or Chinese?
+You can paste it, but read the output first: Arabic and Cyrillic titles are transliterated into Latin letters (مرحبا بالعالم becomes `mrhba-balealm`, Привет мир becomes `privet-mir`), so they usually survive. Chinese characters have no transliteration and are removed — a Chinese-only title collapses to an empty string.

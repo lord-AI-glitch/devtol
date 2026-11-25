@@ -121,3 +121,57 @@ Yes. Simply paste multiple `CREATE TABLE` statements separated by semicolons or 
 
 ### How do I use the generated schemas in my project?
 Click **Copy Code** or **Download** in the upper right corner of the output pane. Save the downloaded file to your project root or models folder (e.g. `prisma/schema.prisma`, `app/models.py`, or `src/db/schema.ts`) and run your ORM's migration command.
+
+---
+
+## 5. Worked Example: The Same Schema as Drizzle
+
+The same users-and-posts input from section 3, as Drizzle ORM (PostgreSQL dialect):
+
+```typescript
+// Drizzle ORM Schema generated from SQL (PostgreSQL dialect)
+import { pgTable, serial, integer, bigint, varchar, text, boolean, timestamp, date, uuid, numeric, doublePrecision } from 'drizzle-orm/pg-core';
+
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  email: varchar('email', { length: 255 }).notNull().unique(),
+  fullName: varchar('full_name', { length: 100 }),
+  createdAt: timestamp('created_at').defaultNow(),
+});
+
+export const posts = pgTable('posts', {
+  id: serial('id').primaryKey(),
+  userId: integer('user_id').notNull(),
+  title: varchar('title', { length: 200 }).notNull(),
+  content: text('content'),
+});
+```
+
+The `SERIAL` and `AUTO_INCREMENT` markers both become `serial(...).primaryKey()`, the `TIMESTAMP DEFAULT CURRENT_TIMESTAMP` column becomes `timestamp(...).defaultNow()`, and string lengths carry over exactly (`varchar('email', { length: 255 })`). One thing is missing: the foreign key from `posts.user_id` to `users.id` is only a plain `integer('user_id')` column — the Drizzle output emits no `.references()` call, so add it by hand if your schema needs the constraint.
+
+---
+
+## 6. Type Mapping Reference
+
+| SQL types | Normalized type |
+| --- | --- |
+| `INT`, `INTEGER`, `SMALLINT`, `TINYINT`, `MEDIUMINT`, `SERIAL` | int |
+| `BIGINT`, `BIGSERIAL` | bigint |
+| `FLOAT`, `REAL`, `DOUBLE` | float |
+| `DECIMAL`, `NUMERIC`, `MONEY` | decimal |
+| `BOOLEAN`, `BOOL`, `BIT` | boolean |
+| `UUID` | uuid |
+| `JSON`, `JSONB` | json |
+| `TIMESTAMP`, `TIMESTAMPTZ`, `DATETIME` | datetime |
+| `DATE`, `YEAR` | date |
+| `TEXT`, `LONGTEXT`, `MEDIUMTEXT`, `TINYTEXT` | text |
+| `VARCHAR`, `NVARCHAR`, `CHAR`, `NCHAR`, `STRING` | string |
+| `BLOB`, `BYTEA`, `VARBINARY`, `BINARY` | binary |
+
+Types the converter does not recognize fall back to `unknown` and are generated as plain string columns.
+
+---
+
+## 7. What the Converter Does Not Emit
+
+Foreign keys are parsed from inline `REFERENCES` and table-level `CONSTRAINT ... FOREIGN KEY` clauses, but only the SQLAlchemy output renders them — as `ForeignKey("users.id")`. Prisma, Drizzle, TypeORM, and GORM keep the column as a plain scalar field (`userId: Int` in Prisma), with no `@relation`, `.references()`, or decorator. Add the relation by hand after pasting: Prisma `@relation(fields: [userId], references: [id])`, or Drizzle `.references(() => users.id)`.

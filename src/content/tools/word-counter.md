@@ -61,3 +61,55 @@ Keyword density is computed by taking the total occurrences of a specific word (
 
 ### Q4: Does this word counter work on mobile devices and offline?
 Yes. DevTol is fully responsive and installs as a Progressive Web Application (PWA), enabling full offline text analysis on iOS, Android, macOS, Windows, and Linux.
+
+---
+
+## Worked Example: Counting a Short Paragraph
+
+Paste this paragraph into the counter:
+
+```text
+DevTol counts words fast. Paste any text and watch the numbers update as you type! Short sentences, long paragraphs, and repeated words all count. Words, words, words — the counter tracks every word.
+```
+
+The tool reports:
+
+| Metric | Value |
+| --- | --- |
+| Words | 33 |
+| Characters | 199 |
+| Characters (no spaces) | 167 |
+| Sentences | 4 |
+| Paragraphs | 1 |
+| Reading time | 1 min |
+| Top keyword | "words" — 5 times, 15.2% density |
+
+The word "words" appears five times, so its density is 5 ÷ 33 × 100 = 15.2%. Notice that the lone em dash (—) counts as a word of its own: the counter splits on whitespace, so any standalone token counts, even a punctuation mark.
+
+---
+
+## How Each Number Is Calculated
+
+- **Words**: the text is split on whitespace, so hyphenated words count as one token and every standalone token counts — including a lone dash.
+- **Characters**: every character in the text, including spaces and punctuation.
+- **Characters (no spaces)**: the same count with all whitespace removed.
+- **Sentences**: runs of `.`, `!`, and `?` are counted, so "Wait... really?!" counts as two sentences, and an ellipsis counts as one.
+- **Paragraphs**: blocks separated by a blank line. Text with line breaks but no blank line is a single paragraph.
+- **Reading time**: word count divided by 200 words per minute, rounded up — so even a ten-word note shows 1 minute.
+- **Top keywords**: only a–z words longer than two letters count, stop words are removed, and the ten most frequent are listed with density (count ÷ words × 100, one decimal).
+
+---
+
+## Common Mistakes
+
+### Mistake 1: Counting hyphenated words as two
+"well-known" is one token, not two, because the counter splits on whitespace only. If your style guide counts hyphenated compounds as two words, the tool's number will look low.
+
+### Mistake 2: Wondering why "AI" never appears in Top Keywords
+Keywords must be longer than two letters, so two-letter words such as "AI" or "UX" are never listed, no matter how often they appear. The main word count still includes them.
+
+### Mistake 3: Pasting text in another language and trusting the keyword table
+The keyword table only matches a–z letters, so words in Arabic, Cyrillic, or CJK scripts are counted in the word total but never appear as keywords. Word, character, and sentence counts still work; only the keyword table is English-only.
+
+### Mistake 4: Expecting line breaks to split paragraphs
+Pressing Enter once does not start a new paragraph for this counter — only a blank line does. A pasted poem with single line breaks reports one paragraph unless blank lines separate the stanzas.

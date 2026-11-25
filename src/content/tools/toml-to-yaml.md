@@ -111,3 +111,58 @@ No. All TOML parsing and YAML serialization run locally in your browser memory. 
 - **Local Client Processing**: Transformations execute entirely within browser memory.
 - **Zero Remote Storage**: Data is discarded immediately upon tab navigation or refresh.
 - **Standard Conformance**: Compliant with TOML v1.0.0 and YAML 1.2 specifications.
+
+---
+
+## 7. Worked Example: A Rust Package Manifest
+
+Convert this `Cargo.toml` excerpt:
+
+```toml
+[package]
+name = "my-app"
+version = "0.1.0"
+
+[dependencies]
+tokio = { version = "1.35", features = ["full"] }
+serde = "1.0"
+
+[[bin]]
+name = "my-app"
+path = "src/main.rs"
+```
+
+The converter returns:
+
+```yaml
+package:
+  name: my-app
+  version: 0.1.0
+dependencies:
+  tokio:
+    version: "1.35"
+    features:
+      - full
+  serde: "1.0"
+bin:
+  - name: my-app
+    path: src/main.rs
+```
+
+The inline table `{ version = "1.35", features = ["full"] }` expands into a nested mapping, the `[[bin]]` array of tables becomes a YAML list, and the output uses two-space indentation throughout. Notice that `version: "1.35"` and `serde: "1.0"` stay quoted: without the quotes YAML would read them as numbers, so the converter quotes strings that look like numbers. (`version: 0.1.0` is left unquoted: `0.1.0` is not a valid number, so it reads as a string even without quotes.) Key order is preserved exactly as written.
+
+---
+
+## 8. Common Mistakes
+
+### Mistake 1: Expecting comments to survive
+TOML comments starting with `#` are dropped during parsing, so the YAML output contains data only. Keep a commented copy of the original file if the comments document why a value is set.
+
+### Mistake 2: Pasting invalid TOML and trusting the output
+If the input is not valid TOML, the tool shows "Provided TOML is not valid." and produces no output — it never guesses. Fix the error, usually a missing quote or a duplicated key, and convert again.
+
+### Mistake 3: Multiline strings changing shape
+A TOML multiline string written with `"""` becomes a YAML literal block (`|` or `|-` depending on whether the text ends with a newline) that keeps the line breaks. The content is identical, but the syntax is different — do not be surprised when the output looks nothing like the input.
+
+### Mistake 4: Assuming dotted keys stay dotted
+A TOML key written as `server.host = "x"` is a nested table, not a flat key, so the YAML output nests it under `server:` with a `host:` child. If you want a literal key containing a dot, quote it: `"server.host" = "x"` parses as a single key named `server.host`.
