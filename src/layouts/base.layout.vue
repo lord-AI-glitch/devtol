@@ -12,7 +12,7 @@ import { config } from '@/config';
 import type { ToolCategory } from '@/tools/tools.types';
 import { useToolStore } from '@/tools/tools.store';
 import { useTracker } from '@/modules/tracker/tracker.services';
-import { computed, defineAsyncComponent } from 'vue';
+import { computed, defineAsyncComponent, ref, watch } from 'vue';
 import CollapsibleToolMenu from '@/components/CollapsibleToolMenu.vue';
 import AdSenseUnit from '@/components/AdSenseUnit.vue';
 
@@ -40,6 +40,18 @@ const tools = computed<ToolCategory[]>(() => [
   ...(favoriteTools.value.length > 0 ? [{ name: t('tools.categories.favorite-tools'), components: favoriteTools.value }] : []),
   ...toolsByCategory.value,
 ]);
+
+// Lazy sidebar menu: on mobile the sider starts collapsed, so the ~122 menu
+// items never mount on initial load. The menu mounts the first time the
+// sider is opened and stays mounted afterwards (no re-mount cost on later
+// toggles). On desktop the sider starts open, so the menu mounts on first
+// render exactly as before.
+const menuMounted = ref(!styleStore.isMenuCollapsed);
+watch(() => styleStore.isMenuCollapsed, (collapsed) => {
+  if (!collapsed) {
+    menuMounted.value = true;
+  }
+});
 </script>
 
 <template>
@@ -67,7 +79,7 @@ const tools = computed<ToolCategory[]>(() => [
           </div>
         </div>
 
-        <CollapsibleToolMenu :tools-by-category="tools" />
+        <CollapsibleToolMenu v-if="menuMounted" :tools-by-category="tools" />
 
 
 
