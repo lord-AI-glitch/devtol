@@ -6,7 +6,7 @@ test.describe('Tool - Token generator', () => {
   });
 
   test('Has title', async ({ page }) => {
-    await expect(page).toHaveTitle('Token generator - DevTol');
+    await expect(page).toHaveTitle('Token generator Online — Free & Client-Side | DevTol');
   });
 
   test('New token on refresh', async ({ page }) => {

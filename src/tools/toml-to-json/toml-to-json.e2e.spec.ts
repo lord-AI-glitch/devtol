@@ -6,7 +6,7 @@ test.describe('Tool - TOML to JSON', () => {
   });
 
   test('Has correct title', async ({ page }) => {
-    await expect(page).toHaveTitle('TOML to JSON - DevTol');
+    await expect(page).toHaveTitle('TOML to JSON Online — Free & Client-Side | DevTol');
   });
 
   test('TOML is parsed and outputs clean JSON', async ({ page }) => {

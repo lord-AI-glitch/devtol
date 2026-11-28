@@ -18,7 +18,7 @@ test.describe('Tool - Iban validator and parser', () => {
   });
 
   test('Has correct title', async ({ page }) => {
-    await expect(page).toHaveTitle('IBAN validator and parser - DevTol');
+    await expect(page).toHaveTitle('IBAN validator and parser Online — Free & Client-Side | DevTol');
   });
 
   test('iban info are extracted from a valid iban', async ({ page }) => {
