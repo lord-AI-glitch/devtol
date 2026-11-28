@@ -80,10 +80,10 @@ describe('ai-token-cost-calculator.service', () => {
       usePromptCache: true,
     });
 
-    const sonnetUncached = uncached.find(c => c.model.id === 'claude-3-5-sonnet')!;
-    const sonnetCached = cached.find(c => c.model.id === 'claude-3-5-sonnet')!;
+    const sonnetUncached = uncached.find(c => c.model.id === 'claude-sonnet-4-5')!;
+    const sonnetCached = cached.find(c => c.model.id === 'claude-sonnet-4-5')!;
 
-    // Claude 3.5 Sonnet input is $3.00 uncached vs $0.30 cached (90% cache discount)
+    // Claude Sonnet 4.5 input is $3.00 uncached vs $0.30 cached (90% cache discount)
     expect(sonnetCached.inputCost).toBeLessThan(sonnetUncached.inputCost);
     expect(sonnetCached.isCached).toBe(true);
   });
