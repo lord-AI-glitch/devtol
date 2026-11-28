@@ -1,5 +1,6 @@
-import { defineTool } from '../tool';
 import { ListCheck } from '@vicons/tabler';
+import { defineTool } from '../tool';
+
 export const tool = defineTool({
   name: 'Line Deduplicator',
   path: '/line-deduplicator',

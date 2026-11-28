@@ -350,7 +350,7 @@ router.beforeEach((to, _from, next) => {
   const langMatch = to.path.match(/^\/(ar|de|es|fr|no|pt|uk|vi|zh)(\/|$)/);
   if (langMatch) {
     const lang = langMatch[1];
-    // @ts-ignore
+    // @ts-expect-error: vue-i18n locale is typed as a narrower union than the matched lang string
     i18n.global.locale.value = lang;
   }
   next();

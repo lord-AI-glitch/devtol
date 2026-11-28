@@ -1,5 +1,6 @@
-import { defineTool } from '../tool';
 import { FileCheck } from '@vicons/tabler';
+import { defineTool } from '../tool';
+
 export const tool = defineTool({
   name: 'YAML Validator & Formatter',
   path: '/yaml-validator',

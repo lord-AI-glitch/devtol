@@ -1,5 +1,6 @@
-import { defineTool } from '../tool';
 import { SortAscending } from '@vicons/tabler';
+import { defineTool } from '../tool';
+
 export const tool = defineTool({
   name: 'Text Sorter & Deduplicator',
   path: '/text-sorter',

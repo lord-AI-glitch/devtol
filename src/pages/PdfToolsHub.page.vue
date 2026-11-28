@@ -1,25 +1,23 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import { useHead } from '@vueuse/head';
 import { NIcon, NInput } from 'naive-ui';
 import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowsMinimize,
+  Droplet,
+  Edit,
+  FileDigit,
   FileText,
+  Files,
+  Fingerprint,
+  Photo,
+  Scissors,
   Search,
   ShieldCheck,
-  Edit,
-  Files,
-  Scissors,
-  ArrowsMinimize,
-  Photo,
-  FileDigit,
-  Droplet,
-  Fingerprint,
-  ArrowRight,
-  ArrowLeft,
-  Check,
-  X,
 } from '@vicons/tabler';
 
 const { t, locale } = useI18n();
@@ -50,16 +48,16 @@ const searchQuery = ref('');
 const selectedCategory = ref('all');
 
 interface PdfToolItem {
-  id: string;
-  slug: string;
-  nameEn: string;
-  nameAr: string;
-  descEn: string;
-  descAr: string;
-  icon: any;
-  category: 'edit' | 'organize' | 'convert' | 'security';
-  badgeEn: string;
-  badgeAr: string;
+  id: string
+  slug: string
+  nameEn: string
+  nameAr: string
+  descEn: string
+  descAr: string
+  icon: any
+  category: 'edit' | 'organize' | 'convert' | 'security'
+  badgeEn: string
+  badgeAr: string
 }
 
 const pdfTools: PdfToolItem[] = [
@@ -186,10 +184,12 @@ const pdfTools: PdfToolItem[] = [
 ];
 
 const filteredTools = computed(() => {
-  return pdfTools.filter(tool => {
+  return pdfTools.filter((tool) => {
     const matchesCategory = selectedCategory.value === 'all' || tool.category === selectedCategory.value;
     const q = searchQuery.value.trim().toLowerCase();
-    if (!q) return matchesCategory;
+    if (!q) {
+      return matchesCategory;
+    }
 
     const matchesName = isAr.value
       ? tool.nameAr.toLowerCase().includes(q) || tool.nameEn.toLowerCase().includes(q)
@@ -242,16 +242,16 @@ const faqs = computed(() => [
   <div class="pdf-hub-container" :dir="isAr ? 'rtl' : 'ltr'">
     <!-- 1. Hero Section -->
     <header class="pdf-hub-hero">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-4">
+      <div class="mb-4 inline-flex items-center gap-2 border border-emerald-500/20 rounded-full bg-emerald-500/10 px-3 py-1 text-xs text-emerald-600 font-semibold dark:text-emerald-400">
         <NIcon size="16" :component="ShieldCheck" />
         <span>{{ isAr ? 'معالجة محلية 100% داخل المتصفح • بدون خوادم • مجاني للأبد' : '100% Client-Side Processing • Zero Server Uploads • Forever Free' }}</span>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+      <h1 class="text-3xl text-slate-900 font-extrabold leading-tight tracking-tight sm:text-5xl dark:text-white">
         {{ isAr ? 'أدوات PDF الاحترافية والمجانية' : 'All-in-One Free Online PDF Suite' }}
       </h1>
 
-      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+      <p class="mx-auto mt-4 max-w-2xl text-base text-slate-600 leading-relaxed sm:text-lg dark:text-slate-300">
         {{ isAr
           ? 'مجموعة متكاملة من 10 أدوات لتعديل ودمج وضغط وتأمين ملفات الـ PDF بأقصى سرعة وأمان مطلق دون رفع أي ملف إلى أي خادم خارجي.'
           : 'High-performance developer-grade PDF suite. Edit, merge, split, compress, and sign documents locally in your browser with zero latency and zero privacy risks.'
@@ -259,7 +259,7 @@ const faqs = computed(() => [
       </p>
 
       <!-- Instant Search & Category Pills -->
-      <div class="mt-8 max-w-xl mx-auto">
+      <div class="mx-auto mt-8 max-w-xl">
         <NInput
           v-model:value="searchQuery"
           round
@@ -273,37 +273,37 @@ const faqs = computed(() => [
           </template>
         </NInput>
 
-        <div class="flex items-center justify-center gap-2 mt-4 flex-wrap text-xs">
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
           <button
-            class="px-3 py-1.5 rounded-lg font-medium transition-all"
+            class="rounded-lg px-3 py-1.5 font-medium transition-all"
             :class="selectedCategory === 'all' ? 'bg-emerald-600 text-white shadow' : 'bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-neutral-700'"
             @click="selectedCategory = 'all'"
           >
             {{ isAr ? 'جميع الأدوات (10)' : 'All Tools (10)' }}
           </button>
           <button
-            class="px-3 py-1.5 rounded-lg font-medium transition-all"
+            class="rounded-lg px-3 py-1.5 font-medium transition-all"
             :class="selectedCategory === 'edit' ? 'bg-emerald-600 text-white shadow' : 'bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-neutral-700'"
             @click="selectedCategory = 'edit'"
           >
             {{ isAr ? 'التعديل والضغط' : 'Edit & Compress' }}
           </button>
           <button
-            class="px-3 py-1.5 rounded-lg font-medium transition-all"
+            class="rounded-lg px-3 py-1.5 font-medium transition-all"
             :class="selectedCategory === 'organize' ? 'bg-emerald-600 text-white shadow' : 'bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-neutral-700'"
             @click="selectedCategory = 'organize'"
           >
             {{ isAr ? 'الدمج والتقسيم' : 'Merge & Organize' }}
           </button>
           <button
-            class="px-3 py-1.5 rounded-lg font-medium transition-all"
+            class="rounded-lg px-3 py-1.5 font-medium transition-all"
             :class="selectedCategory === 'convert' ? 'bg-emerald-600 text-white shadow' : 'bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-neutral-700'"
             @click="selectedCategory = 'convert'"
           >
             {{ isAr ? 'تحويل الصور والـ OCR' : 'Convert & OCR' }}
           </button>
           <button
-            class="px-3 py-1.5 rounded-lg font-medium transition-all"
+            class="rounded-lg px-3 py-1.5 font-medium transition-all"
             :class="selectedCategory === 'security' ? 'bg-emerald-600 text-white shadow' : 'bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-neutral-700'"
             @click="selectedCategory = 'security'"
           >
@@ -315,51 +315,51 @@ const faqs = computed(() => [
 
     <!-- 2. Tools Grid -->
     <main class="pdf-tools-grid-section mt-12">
-      <div v-if="filteredTools.length === 0" class="text-center py-16">
-        <p class="text-slate-500 dark:text-slate-400 text-base">
+      <div v-if="filteredTools.length === 0" class="py-16 text-center">
+        <p class="text-base text-slate-500 dark:text-slate-400">
           {{ isAr ? 'لم يتم العثور على أداة مطابقة لبحثك.' : 'No PDF tools match your search criteria.' }}
         </p>
       </div>
 
-      <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div v-else class="grid grid-cols-1 gap-5 lg:grid-cols-3 sm:grid-cols-2">
         <RouterLink
           v-for="tool in filteredTools"
           :key="tool.id"
           :to="`${currentLangPrefix}/${tool.slug}`"
-          class="pdf-tool-card group p-5 rounded-2xl border transition-all duration-200 flex flex-col justify-between"
+          class="group pdf-tool-card flex flex-col justify-between border rounded-2xl p-5 transition-all duration-200"
           :class="isAr ? 'text-right' : 'text-left'"
         >
           <div>
-            <div class="flex items-center justify-between gap-3 mb-3">
-              <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 group-hover:scale-105 transition-transform">
+            <div class="mb-3 flex items-center justify-between gap-3">
+              <div class="h-12 w-12 flex items-center justify-center border border-emerald-500/20 rounded-xl bg-emerald-500/10 text-emerald-600 transition-transform group-hover:scale-105 dark:text-emerald-400">
                 <NIcon size="24" :component="tool.icon" />
               </div>
-              <span class="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-slate-300">
+              <span class="rounded-md bg-slate-100 px-2.5 py-1 text-[11px] text-slate-600 font-semibold tracking-wider uppercase dark:bg-neutral-800 dark:text-slate-300">
                 {{ isAr ? tool.badgeAr : tool.badgeEn }}
               </span>
             </div>
 
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1.5 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+            <h3 class="mb-1.5 text-lg text-slate-900 font-bold transition-colors dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
               {{ isAr ? tool.nameAr : tool.nameEn }}
             </h3>
 
-            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3">
+            <p class="line-clamp-3 text-xs text-slate-500 leading-relaxed sm:text-sm dark:text-slate-400">
               {{ isAr ? tool.descAr : tool.descEn }}
             </p>
           </div>
 
-          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-neutral-800 flex items-center justify-between text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+          <div class="mt-4 flex items-center justify-between border-t border-slate-100 pt-3 text-xs text-emerald-600 font-semibold dark:border-neutral-800 dark:text-emerald-400">
             <span>{{ isAr ? 'فتح الأداة وتجربتها' : 'Open Free Tool' }}</span>
-            <NIcon size="16" :component="isAr ? ArrowLeft : ArrowRight" class="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" />
+            <NIcon size="16" :component="isAr ? ArrowLeft : ArrowRight" class="transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
           </div>
         </RouterLink>
       </div>
     </main>
 
     <!-- 3. Security Comparison Matrix (DevTol vs Traditional Giants) -->
-    <section class="mt-20 pt-12 border-t border-slate-200 dark:border-neutral-800">
-      <div class="text-center max-w-2xl mx-auto mb-10">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+    <section class="mt-20 border-t border-slate-200 pt-12 dark:border-neutral-800">
+      <div class="mx-auto mb-10 max-w-2xl text-center">
+        <h2 class="text-2xl text-slate-900 font-extrabold sm:text-3xl dark:text-white">
           {{ isAr ? 'لماذا تتفوق DevTol على iLovePDF و Smallpdf؟' : 'Why DevTol Outperforms Traditional Cloud Tools' }}
         </h2>
         <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">
@@ -370,19 +370,27 @@ const faqs = computed(() => [
         </p>
       </div>
 
-      <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/60 shadow-sm">
+      <div class="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-sm dark:border-neutral-800 dark:bg-neutral-900/60">
         <table class="w-full text-sm" :class="isAr ? 'text-right' : 'text-left'">
           <thead>
-            <tr class="bg-slate-50 dark:bg-neutral-800/80 border-b border-slate-200 dark:border-neutral-700">
-              <th class="p-4 font-bold text-slate-900 dark:text-white">{{ isAr ? 'المعيار التقني' : 'Engineering Metric' }}</th>
-              <th class="p-4 font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">{{ isAr ? 'منصة DevTol المحلية' : 'DevTol Client-Side' }}</th>
-              <th class="p-4 font-bold text-slate-500 dark:text-slate-400">{{ isAr ? 'المنافسون التقليديون (iLovePDF / Smallpdf)' : 'Legacy Cloud Converters' }}</th>
+            <tr class="border-b border-slate-200 bg-slate-50 dark:border-neutral-700 dark:bg-neutral-800/80">
+              <th class="p-4 text-slate-900 font-bold dark:text-white">
+                {{ isAr ? 'المعيار التقني' : 'Engineering Metric' }}
+              </th>
+              <th class="bg-emerald-50/50 p-4 text-emerald-600 font-bold dark:bg-emerald-950/20 dark:text-emerald-400">
+                {{ isAr ? 'منصة DevTol المحلية' : 'DevTol Client-Side' }}
+              </th>
+              <th class="p-4 text-slate-500 font-bold dark:text-slate-400">
+                {{ isAr ? 'المنافسون التقليديون (iLovePDF / Smallpdf)' : 'Legacy Cloud Converters' }}
+              </th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-100 dark:divide-neutral-800">
             <tr>
-              <td class="p-4 font-semibold text-slate-800 dark:text-slate-200">{{ isAr ? 'خصوصية البيانات وسرية المستندات' : 'Data Privacy & Security' }}</td>
-              <td class="p-4 text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-50/30 dark:bg-emerald-950/10">
+              <td class="p-4 text-slate-800 font-semibold dark:text-slate-200">
+                {{ isAr ? 'خصوصية البيانات وسرية المستندات' : 'Data Privacy & Security' }}
+              </td>
+              <td class="bg-emerald-50/30 p-4 text-emerald-600 font-bold dark:bg-emerald-950/10 dark:text-emerald-400">
                 {{ isAr ? '100% في المتصفح (صفر بايت يُرفع للسحابة)' : '100% Client-Side (0 Bytes Uploaded)' }}
               </td>
               <td class="p-4 text-red-500 dark:text-red-400">
@@ -390,8 +398,10 @@ const faqs = computed(() => [
               </td>
             </tr>
             <tr>
-              <td class="p-4 font-semibold text-slate-800 dark:text-slate-200">{{ isAr ? 'القيود اليومية والاشتراكات' : 'Daily Limits & Paywalls' }}</td>
-              <td class="p-4 text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-50/30 dark:bg-emerald-950/10">
+              <td class="p-4 text-slate-800 font-semibold dark:text-slate-200">
+                {{ isAr ? 'القيود اليومية والاشتراكات' : 'Daily Limits & Paywalls' }}
+              </td>
+              <td class="bg-emerald-50/30 p-4 text-emerald-600 font-bold dark:bg-emerald-950/10 dark:text-emerald-400">
                 {{ isAr ? 'غير محدود مجاناً للأبد وبدون تسجيل' : 'Unlimited Free Tasks Forever (No Paywalls)' }}
               </td>
               <td class="p-4 text-slate-600 dark:text-slate-400">
@@ -399,8 +409,10 @@ const faqs = computed(() => [
               </td>
             </tr>
             <tr>
-              <td class="p-4 font-semibold text-slate-800 dark:text-slate-200">{{ isAr ? 'دعم النصوص والخطوط العربية' : 'Arabic & RTL Font Shaping' }}</td>
-              <td class="p-4 text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-50/30 dark:bg-emerald-950/10">
+              <td class="p-4 text-slate-800 font-semibold dark:text-slate-200">
+                {{ isAr ? 'دعم النصوص والخطوط العربية' : 'Arabic & RTL Font Shaping' }}
+              </td>
+              <td class="bg-emerald-50/30 p-4 text-emerald-600 font-bold dark:bg-emerald-950/10 dark:text-emerald-400">
                 {{ isAr ? 'دعم كامل وتشابك صحيح للحروف' : 'Native Unicode BiDi & OpenType Arabic' }}
               </td>
               <td class="p-4 text-red-500 dark:text-red-400">
@@ -408,8 +420,10 @@ const faqs = computed(() => [
               </td>
             </tr>
             <tr>
-              <td class="p-4 font-semibold text-slate-800 dark:text-slate-200">{{ isAr ? 'زمن الاستجابة والتنفيذ' : 'Execution Speed & Latency' }}</td>
-              <td class="p-4 text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-50/30 dark:bg-emerald-950/10">
+              <td class="p-4 text-slate-800 font-semibold dark:text-slate-200">
+                {{ isAr ? 'زمن الاستجابة والتنفيذ' : 'Execution Speed & Latency' }}
+              </td>
+              <td class="bg-emerald-50/30 p-4 text-emerald-600 font-bold dark:bg-emerald-950/10 dark:text-emerald-400">
                 {{ isAr ? 'فوري محلياً (0.5 إلى 2 ثانية)' : 'Near-Instant Local CPU (0.5s - 2s)' }}
               </td>
               <td class="p-4 text-slate-600 dark:text-slate-400">
@@ -422,9 +436,9 @@ const faqs = computed(() => [
     </section>
 
     <!-- 4. FAQ Accordion -->
-    <section class="mt-20 pt-12 border-t border-slate-200 dark:border-neutral-800">
-      <div class="text-center max-w-xl mx-auto mb-10">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+    <section class="mt-20 border-t border-slate-200 pt-12 dark:border-neutral-800">
+      <div class="mx-auto mb-10 max-w-xl text-center">
+        <h2 class="text-2xl text-slate-900 font-extrabold sm:text-3xl dark:text-white">
           {{ isAr ? 'الأسئلة الشائعة حول أدوات الـ PDF' : 'Frequently Asked Questions' }}
         </h2>
         <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">
@@ -432,17 +446,17 @@ const faqs = computed(() => [
         </p>
       </div>
 
-      <div class="max-w-3xl mx-auto space-y-4">
+      <div class="mx-auto max-w-3xl space-y-4">
         <div
           v-for="(faq, idx) in faqs"
           :key="idx"
-          class="p-5 rounded-xl border border-slate-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/60"
+          class="border border-slate-200 rounded-xl bg-white p-5 dark:border-neutral-800 dark:bg-neutral-900/60"
         >
-          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-            <span class="text-emerald-500 font-mono text-sm">#{{ idx + 1 }}</span>
+          <h3 class="mb-2 flex items-center gap-2 text-base text-slate-900 font-bold dark:text-white">
+            <span class="text-sm text-emerald-500 font-mono">#{{ idx + 1 }}</span>
             <span>{{ faq.q }}</span>
           </h3>
-          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p class="text-sm text-slate-600 leading-relaxed dark:text-slate-400">
             {{ faq.a }}
           </p>
         </div>

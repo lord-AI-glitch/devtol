@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { useStorage } from '@vueuse/core';
 import { useMessage } from 'naive-ui';
-import { Copy, Download, Terminal, Trash, Wand } from '@vicons/tabler';
-import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import { Download, Trash, Wand } from '@vicons/tabler';
 import {
   SAMPLE_CURLS,
+  type TargetLanguage,
   generateCode,
   parseCurl,
-  type TargetLanguage,
 } from './curl-to-code-converter.service';
+import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const message = useMessage();
 
@@ -26,14 +26,22 @@ const phpLib = useStorage('curl-converter:php-lib', 'curl');
 const parsedCurl = computed(() => parseCurl(curlInput.value));
 
 const activeLibrary = computed(() => {
-  if (targetLanguage.value === 'python') return pythonLib.value;
-  if (targetLanguage.value === 'javascript' || targetLanguage.value === 'typescript') return jsLib.value;
-  if (targetLanguage.value === 'php') return phpLib.value;
+  if (targetLanguage.value === 'python') {
+    return pythonLib.value;
+  }
+  if (targetLanguage.value === 'javascript' || targetLanguage.value === 'typescript') {
+    return jsLib.value;
+  }
+  if (targetLanguage.value === 'php') {
+    return phpLib.value;
+  }
   return undefined;
 });
 
 const generatedOutput = computed(() => {
-  if (!curlInput.value.trim()) return '';
+  if (!curlInput.value.trim()) {
+    return '';
+  }
   return generateCode(parsedCurl.value, targetLanguage.value, {
     library: activeLibrary.value,
   });
@@ -79,20 +87,20 @@ const phpLibOptions = [
   { label: 'Guzzle (PSR-7 Client)', value: 'guzzle' },
 ];
 
-const loadPreset = (idx: number) => {
+function loadPreset(idx: number) {
   const preset = SAMPLE_CURLS[idx];
   if (preset) {
     curlInput.value = preset.curl;
     message.success(`Loaded: ${preset.name}`);
   }
-};
+}
 
-const clearInput = () => {
+function clearInput() {
   curlInput.value = '';
   message.info('Cleared cURL input');
-};
+}
 
-const downloadCode = () => {
+function downloadCode() {
   const extensions: Record<TargetLanguage, string> = {
     python: 'py',
     javascript: 'js',
@@ -113,9 +121,9 @@ const downloadCode = () => {
   link.click();
   URL.revokeObjectURL(url);
   message.success(`Downloaded request.${ext}`);
-};
+}
 
-const getMethodTagType = (method: string): 'default' | 'success' | 'warning' | 'info' | 'error' => {
+function getMethodTagType(method: string): 'default' | 'success' | 'warning' | 'info' | 'error' {
   switch (method.toUpperCase()) {
     case 'GET': return 'info';
     case 'POST': return 'success';
@@ -124,7 +132,7 @@ const getMethodTagType = (method: string): 'default' | 'success' | 'warning' | '
     case 'DELETE': return 'error';
     default: return 'default';
   }
-};
+}
 </script>
 
 <template>
@@ -132,7 +140,7 @@ const getMethodTagType = (method: string): 'default' | 'success' | 'warning' | '
     <!-- Top Preset Row -->
     <div class="preset-section mb-4 flex flex-wrap items-center justify-between gap-2">
       <div class="flex flex-wrap items-center gap-2">
-        <span class="text-sm font-semibold text-gray-500">Quick Samples:</span>
+        <span class="text-sm text-gray-500 font-semibold">Quick Samples:</span>
         <n-button
           v-for="(preset, idx) in SAMPLE_CURLS"
           :key="preset.name"
@@ -253,7 +261,7 @@ const getMethodTagType = (method: string): 'default' | 'success' | 'warning' | '
     </n-card>
 
     <!-- Privacy Trust Badge -->
-    <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-700 dark:text-emerald-300 flex items-center gap-2">
+    <div class="flex items-center gap-2 border border-emerald-500/20 rounded-lg bg-emerald-500/10 p-3 text-xs text-emerald-700 dark:text-emerald-300">
       <span>🔒</span>
       <span>
         <strong>100% Client-Side Privacy:</strong> Your cURL commands, API secret keys, authorization tokens, and request payloads are parsed entirely inside your browser sandbox. Zero data is ever logged or transmitted to any server.

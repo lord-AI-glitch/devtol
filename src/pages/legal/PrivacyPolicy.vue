@@ -15,53 +15,67 @@ useHead({
 <template>
   <div class="legal-container">
     <div class="legal-card">
-      <h1 class="text-3xl font-bold mb-4 text-primary">Privacy Policy</h1>
-      <p class="text-sm text-slate-500 dark:text-neutral-400 mb-6">Last Updated: November 23, 2026</p>
+      <h1 class="mb-4 text-3xl text-primary font-bold">
+        Privacy Policy
+      </h1>
+      <p class="mb-6 text-sm text-slate-500 dark:text-neutral-400">
+        Last Updated: November 23, 2026
+      </p>
 
-      <div class="space-y-6 text-slate-600 dark:text-neutral-300 leading-relaxed">
+      <div class="text-slate-600 leading-relaxed space-y-6 dark:text-neutral-300">
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">1. Introduction</h2>
+          <h2 class="mb-2 text-xl text-slate-900 font-semibold dark:text-white">
+            1. Introduction
+          </h2>
           <p>
             Welcome to <strong>DevTol</strong> ("we", "our", or "us"). We respect your privacy and are committed to protecting any personal data you share or that is collected through your use of our website and utilities. This Privacy Policy outlines the types of information we collect, how it is processed, and your legal rights under applicable privacy frameworks, including the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).
           </p>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">2. Client-Side Processing Architecture (Zero Data Storage)</h2>
+          <h2 class="mb-2 text-xl text-slate-900 font-semibold dark:text-white">
+            2. Client-Side Processing Architecture (Zero Data Storage)
+          </h2>
           <p>
-            The vast majority of utilities on DevTol (such as JWT Parser, Base64 Converter, JSON Viewer, UUID Generator, Hashing utilities, and financial calculators) operate <strong>entirely client-side within your browser</strong>. 
+            The vast majority of utilities on DevTol (such as JWT Parser, Base64 Converter, JSON Viewer, UUID Generator, Hashing utilities, and financial calculators) operate <strong>entirely client-side within your browser</strong>.
           </p>
-          <ul class="list-disc pl-5 mt-2 space-y-1">
+          <ul class="mt-2 list-disc pl-5 space-y-1">
             <li>Your input data, secrets, tokens, hashes, and text payloads are <strong>never transmitted</strong> to our web servers.</li>
             <li>Computations, conversions, and cryptographic operations are executed locally using your device's web browser JavaScript engine and Web Crypto API.</li>
           </ul>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">3. Google AdSense & Third-Party Advertising</h2>
+          <h2 class="mb-2 text-xl text-slate-900 font-semibold dark:text-white">
+            3. Google AdSense & Third-Party Advertising
+          </h2>
           <p>
             We use third-party advertising services, including <strong>Google AdSense</strong>, to serve advertisements when you visit our website. Google and other certified third-party ad networks use cookies to serve ads based on your prior visits to our website or other websites across the Internet.
           </p>
-          <div class="bg-amber-50 dark:bg-neutral-800/60 p-4 rounded-lg border border-amber-200 dark:border-neutral-700 mt-3">
-            <h3 class="font-semibold text-amber-800 dark:text-amber-400 mb-1">Google DART Cookie Notice</h3>
+          <div class="mt-3 border border-amber-200 rounded-lg bg-amber-50 p-4 dark:border-neutral-700 dark:bg-neutral-800/60">
+            <h3 class="mb-1 text-amber-800 font-semibold dark:text-amber-400">
+              Google DART Cookie Notice
+            </h3>
             <p class="text-sm text-slate-700 dark:text-neutral-200">
               Google's use of advertising cookies (including the DoubleClick DART cookie) enables it and its partners to serve targeted ads to users based on their visits to our site and/or other sites on the Internet.
             </p>
-            <p class="text-sm mt-2 text-slate-700 dark:text-neutral-200">
-              Users may opt out of personalized advertising by visiting the 
-              <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">Google Ads Settings</a> page. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting 
-              <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">aboutads.info</a>.
+            <p class="mt-2 text-sm text-slate-700 dark:text-neutral-200">
+              Users may opt out of personalized advertising by visiting the
+              <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-primary font-medium hover:underline">Google Ads Settings</a> page. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting
+              <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" class="text-primary font-medium hover:underline">aboutads.info</a>.
             </p>
           </div>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">4. Third-Party Services</h2>
+          <h2 class="mb-2 text-xl text-slate-900 font-semibold dark:text-white">
+            4. Third-Party Services
+          </h2>
           <p>
             DevTol itself runs no analytics or tracking of its own. The following third-party services are involved when you use the site:
           </p>
-          <ul class="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>Google AdSense</strong> — serves advertisements and may set advertising cookies (see section 3 above). You can opt out of personalized advertising via <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">Google Ads Settings</a>.</li>
+          <ul class="mt-2 list-disc pl-5 space-y-1">
+            <li><strong>Google AdSense</strong> — serves advertisements and may set advertising cookies (see section 3 above). You can opt out of personalized advertising via <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-primary font-medium hover:underline">Google Ads Settings</a>.</li>
             <li><strong>Fonts</strong> — the site's Inter and JetBrains Mono typefaces are hosted on DevTol itself; loading them makes no request to any third party.</li>
           </ul>
           <p class="mt-2">
@@ -70,11 +84,13 @@ useHead({
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">5. Cookies & Web Beacons</h2>
+          <h2 class="mb-2 text-xl text-slate-900 font-semibold dark:text-white">
+            5. Cookies & Web Beacons
+          </h2>
           <p>
             A cookie is a small text file placed on your computer or mobile device when you visit a website. We use cookies and similar tracking technologies to:
           </p>
-          <ul class="list-disc pl-5 mt-2 space-y-1">
+          <ul class="mt-2 list-disc pl-5 space-y-1">
             <li>Remember user preferences, such as theme settings (dark/light mode) and favorite tools via browser localStorage.</li>
             <li>Analyze aggregate site traffic and interaction metrics to offer enhanced site experiences.</li>
             <li>Deliver relevant, non-intrusive advertisements through Google AdSense and its advertising partners.</li>
@@ -85,11 +101,13 @@ useHead({
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">6. GDPR Compliance (European Economic Area)</h2>
+          <h2 class="mb-2 text-xl text-slate-900 font-semibold dark:text-white">
+            6. GDPR Compliance (European Economic Area)
+          </h2>
           <p>
             If you are a resident of the European Economic Area (EEA), you have specific data protection rights under the General Data Protection Regulation (GDPR). These include:
           </p>
-          <ul class="list-disc pl-5 mt-2 space-y-1">
+          <ul class="mt-2 list-disc pl-5 space-y-1">
             <li><strong>The right to access</strong>: Request copies of any personal data we hold.</li>
             <li><strong>The right to rectification</strong>: Request correction of inaccurate information.</li>
             <li><strong>The right to erasure</strong>: Request that we delete your personal data under certain conditions.</li>
@@ -102,11 +120,13 @@ useHead({
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">7. CCPA / CPRA Compliance (California Residents)</h2>
+          <h2 class="mb-2 text-xl text-slate-900 font-semibold dark:text-white">
+            7. CCPA / CPRA Compliance (California Residents)
+          </h2>
           <p>
             Under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA), California residents are afforded specific rights regarding their personal information:
           </p>
-          <ul class="list-disc pl-5 mt-2 space-y-1">
+          <ul class="mt-2 list-disc pl-5 space-y-1">
             <li>The right to know what personal information is collected, disclosed, or sold.</li>
             <li>The right to request deletion of personal information.</li>
             <li>The right to opt-out of the "sale" or "sharing" of personal information for cross-context behavioral advertising.</li>
@@ -118,24 +138,32 @@ useHead({
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">8. Children's Privacy (COPPA)</h2>
+          <h2 class="mb-2 text-xl text-slate-900 font-semibold dark:text-white">
+            8. Children's Privacy (COPPA)
+          </h2>
           <p>
             Our service is not directed to individuals under the age of 13 (or 16 in certain jurisdictions). We do not knowingly collect personal identifiable information from children. If you believe that a child has provided us with personal data, please contact us immediately so we can promptly delete such information.
           </p>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">9. Changes to This Privacy Policy</h2>
+          <h2 class="mb-2 text-xl text-slate-900 font-semibold dark:text-white">
+            9. Changes to This Privacy Policy
+          </h2>
           <p>
             We may update our Privacy Policy periodically to reflect technological changes, regulatory updates, or operational adjustments. Any changes will be posted on this page with an updated "Last Updated" revision date.
           </p>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">10. Contact Information</h2>
+          <h2 class="mb-2 text-xl text-slate-900 font-semibold dark:text-white">
+            10. Contact Information
+          </h2>
           <p>
             For questions or requests regarding this Privacy Policy or your data privacy rights, please reach out via our
-            <router-link to="/contact" class="text-primary hover:underline">Contact Us page</router-link>.
+            <router-link to="/contact" class="text-primary hover:underline">
+              Contact Us page
+            </router-link>.
           </p>
         </section>
       </div>
@@ -169,4 +197,3 @@ useHead({
   color: #10b981;
 }
 </style>
-

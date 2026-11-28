@@ -12,7 +12,8 @@ export async function loadPdfJs(): Promise<any> {
       if (w.pdfjsLib) {
         w.pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
         resolve(w.pdfjsLib);
-      } else {
+      }
+      else {
         reject(new Error('PDF.js failed to load properly.'));
       }
     };

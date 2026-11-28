@@ -1,16 +1,16 @@
 export interface ParsedCurl {
-  method: string;
-  url: string;
-  headers: Record<string, string>;
-  body: string | null;
-  isJsonBody: boolean;
-  parsedJson: any | null;
+  method: string
+  url: string
+  headers: Record<string, string>
+  body: string | null
+  isJsonBody: boolean
+  parsedJson: any | null
   auth: {
-    type: 'none' | 'basic' | 'bearer';
-    user?: string;
-    pass?: string;
-    token?: string;
-  };
+    type: 'none' | 'basic' | 'bearer'
+    user?: string
+    pass?: string
+    token?: string
+  }
 }
 
 export type TargetLanguage = 'python' | 'javascript' | 'typescript' | 'go' | 'php' | 'rust' | 'java' | 'dart';
@@ -97,13 +97,14 @@ export function parseCurl(command: string): ParsedCurl {
   // Tokenize preserving single and double quotes
   const tokens: string[] = [];
   const tokenRegex = /[^\s"']+|"([^"\\]*(?:\\.[^"\\]*)*)"|'([^'\\]*(?:\\.[^'\\]*)*)'/g;
-  let match;
-  while ((match = tokenRegex.exec(normalized)) !== null) {
+  for (let match = tokenRegex.exec(normalized); match !== null; match = tokenRegex.exec(normalized)) {
     if (match[1] !== undefined) {
       tokens.push(match[1].replace(/\\"/g, '"'));
-    } else if (match[2] !== undefined) {
-      tokens.push(match[2].replace(/\\'/g, "'"));
-    } else {
+    }
+    else if (match[2] !== undefined) {
+      tokens.push(match[2].replace(/\\'/g, '\''));
+    }
+    else {
       tokens.push(match[0]);
     }
   }
@@ -151,7 +152,8 @@ export function parseCurl(command: string): ParsedCurl {
             user: nextToken.substring(0, colonIdx),
             pass: nextToken.substring(colonIdx + 1),
           };
-        } else {
+        }
+        else {
           result.auth = {
             type: 'basic',
             user: nextToken,
@@ -165,12 +167,12 @@ export function parseCurl(command: string): ParsedCurl {
 
     // Body / Data flags: -d, --data, --data-raw, --data-binary, --data-urlencode
     if (
-      token === '-d' ||
-      token === '--data' ||
-      token === '--data-raw' ||
-      token === '--data-binary' ||
-      token === '--data-urlencode' ||
-      token === '--data-ascii'
+      token === '-d'
+      || token === '--data'
+      || token === '--data-raw'
+      || token === '--data-binary'
+      || token === '--data-urlencode'
+      || token === '--data-ascii'
     ) {
       if (nextToken) {
         bodyParts.push(nextToken);
@@ -204,8 +206,8 @@ export function parseCurl(command: string): ParsedCurl {
 
     // URL detection: http:// or https:// or positional URL
     if (
-      (token.startsWith('http://') || token.startsWith('https://')) &&
-      !result.url
+      (token.startsWith('http://') || token.startsWith('https://'))
+      && !result.url
     ) {
       result.url = token;
       continue;
@@ -225,9 +227,11 @@ export function parseCurl(command: string): ParsedCurl {
   // Determine method: if data exists and no explicit method set, default to POST
   if (explicitMethod) {
     result.method = explicitMethod;
-  } else if (result.body) {
+  }
+  else if (result.body) {
     result.method = 'POST';
-  } else {
+  }
+  else {
     result.method = 'GET';
   }
 
@@ -248,7 +252,8 @@ export function parseCurl(command: string): ParsedCurl {
     try {
       result.parsedJson = JSON.parse(result.body);
       result.isJsonBody = true;
-    } catch {
+    }
+    catch {
       result.isJsonBody = false;
       result.parsedJson = null;
     }
@@ -258,7 +263,7 @@ export function parseCurl(command: string): ParsedCurl {
 }
 
 export interface GenerationOptions {
-  library?: string; // e.g. 'requests' vs 'httpx' for Python; 'fetch' vs 'axios' for JS
+  library?: string // e.g. 'requests' vs 'httpx' for Python; 'fetch' vs 'axios' for JS
 }
 
 /**
@@ -300,7 +305,7 @@ function generatePython(parsed: ParsedCurl, library: string): string {
   const { method, url, headers, body, isJsonBody: isJson, auth } = parsed;
 
   if (library === 'httpx') {
-    let code = `import httpx\n\n`;
+    let code = 'import httpx\n\n';
     code += `url = "${url}"\n\n`;
 
     if (Object.keys(headers).length > 0) {
@@ -309,25 +314,34 @@ function generatePython(parsed: ParsedCurl, library: string): string {
 
     if (isJson && parsed.parsedJson) {
       code += `data = ${JSON.stringify(parsed.parsedJson, null, 4)}\n\n`;
-    } else if (body) {
+    }
+    else if (body) {
       code += `data = """${body}"""\n\n`;
     }
 
-    code += `with httpx.Client() as client:\n`;
+    code += 'with httpx.Client() as client:\n';
     code += `    response = client.${method.toLowerCase()}(\n`;
-    code += `        url,\n`;
-    if (Object.keys(headers).length > 0) code += `        headers=headers,\n`;
-    if (isJson) code += `        json=data,\n`;
-    else if (body) code += `        content=data,\n`;
-    if (auth.type === 'basic') code += `        auth=("${auth.user}", "${auth.pass}"),\n`;
-    code += `    )\n\n`;
-    code += `print(response.status_code)\n`;
-    code += `print(response.text)\n`;
+    code += '        url,\n';
+    if (Object.keys(headers).length > 0) {
+      code += '        headers=headers,\n';
+    }
+    if (isJson) {
+      code += '        json=data,\n';
+    }
+    else if (body) {
+      code += '        content=data,\n';
+    }
+    if (auth.type === 'basic') {
+      code += `        auth=("${auth.user}", "${auth.pass}"),\n`;
+    }
+    code += '    )\n\n';
+    code += 'print(response.status_code)\n';
+    code += 'print(response.text)\n';
     return code;
   }
 
   // Default: requests
-  let code = `import requests\n\n`;
+  let code = 'import requests\n\n';
   code += `url = "${url}"\n\n`;
 
   if (Object.keys(headers).length > 0) {
@@ -336,19 +350,28 @@ function generatePython(parsed: ParsedCurl, library: string): string {
 
   if (isJson && parsed.parsedJson) {
     code += `payload = ${JSON.stringify(parsed.parsedJson, null, 4)}\n\n`;
-  } else if (body) {
+  }
+  else if (body) {
     code += `payload = """${body}"""\n\n`;
   }
 
   code += `response = requests.${method.toLowerCase()}(\n`;
-  code += `    url,\n`;
-  if (Object.keys(headers).length > 0) code += `    headers=headers,\n`;
-  if (isJson) code += `    json=payload,\n`;
-  else if (body) code += `    data=payload,\n`;
-  if (auth.type === 'basic') code += `    auth=("${auth.user}", "${auth.pass}"),\n`;
-  code += `)\n\n`;
-  code += `print(f"Status Code: {response.status_code}")\n`;
-  code += `print(response.text)\n`;
+  code += '    url,\n';
+  if (Object.keys(headers).length > 0) {
+    code += '    headers=headers,\n';
+  }
+  if (isJson) {
+    code += '    json=payload,\n';
+  }
+  else if (body) {
+    code += '    data=payload,\n';
+  }
+  if (auth.type === 'basic') {
+    code += `    auth=("${auth.user}", "${auth.pass}"),\n`;
+  }
+  code += ')\n\n';
+  code += 'print(f"Status Code: {response.status_code}")\n';
+  code += 'print(response.text)\n';
   return code;
 }
 
@@ -356,10 +379,10 @@ function generateJavaScript(parsed: ParsedCurl, library: string, isTs: boolean):
   const { method, url, headers, body, isJsonBody: isJson } = parsed;
 
   if (library === 'axios') {
-    let code = `import axios from 'axios';\n\n`;
+    let code = 'import axios from \'axios\';\n\n';
     code += `async function makeRequest()${isTs ? ': Promise<void>' : ''} {\n`;
-    code += `  try {\n`;
-    code += `    const response = await axios({\n`;
+    code += '  try {\n';
+    code += '    const response = await axios({\n';
     code += `      method: '${method.toLowerCase()}',\n`;
     code += `      url: '${url}',\n`;
     if (Object.keys(headers).length > 0) {
@@ -367,17 +390,18 @@ function generateJavaScript(parsed: ParsedCurl, library: string, isTs: boolean):
     }
     if (isJson && parsed.parsedJson) {
       code += `      data: ${JSON.stringify(parsed.parsedJson, null, 8).trim()},\n`;
-    } else if (body) {
-      code += `      data: '${body.replace(/'/g, "\\'")}',\n`;
     }
-    code += `    });\n\n`;
-    code += `    console.log(response.status);\n`;
-    code += `    console.log(response.data);\n`;
-    code += `  } catch (error) {\n`;
-    code += `    console.error('Request failed:', error);\n`;
-    code += `  }\n`;
-    code += `}\n\n`;
-    code += `makeRequest();\n`;
+    else if (body) {
+      code += `      data: '${body.replace(/'/g, '\\\'')}',\n`;
+    }
+    code += '    });\n\n';
+    code += '    console.log(response.status);\n';
+    code += '    console.log(response.data);\n';
+    code += '  } catch (error) {\n';
+    code += '    console.error(\'Request failed:\', error);\n';
+    code += '  }\n';
+    code += '}\n\n';
+    code += 'makeRequest();\n';
     return code;
   }
 
@@ -392,55 +416,59 @@ function generateJavaScript(parsed: ParsedCurl, library: string, isTs: boolean):
 
   if (isJson && parsed.parsedJson) {
     code += `    body: JSON.stringify(${JSON.stringify(parsed.parsedJson, null, 6).trim()}),\n`;
-  } else if (body) {
-    code += `    body: '${body.replace(/'/g, "\\'")}',\n`;
+  }
+  else if (body) {
+    code += `    body: '${body.replace(/'/g, '\\\'')}',\n`;
   }
 
-  code += `  });\n\n`;
-  code += `  const data = await response.json();\n`;
-  code += `  console.log(data);\n`;
-  code += `}\n\n`;
-  code += `makeRequest();\n`;
+  code += '  });\n\n';
+  code += '  const data = await response.json();\n';
+  code += '  console.log(data);\n';
+  code += '}\n\n';
+  code += 'makeRequest();\n';
   return code;
 }
 
 function generateGo(parsed: ParsedCurl): string {
   const { method, url, headers, body } = parsed;
 
-  let code = `package main\n\n`;
-  code += `import (\n`;
-  if (body) code += `\t"bytes"\n`;
-  code += `\t"fmt"\n`;
-  code += `\t"io"\n`;
-  code += `\t"net/http"\n`;
-  code += `)\n\n`;
-  code += `func main() {\n`;
+  let code = 'package main\n\n';
+  code += 'import (\n';
+  if (body) {
+    code += '\t"bytes"\n';
+  }
+  code += '\t"fmt"\n';
+  code += '\t"io"\n';
+  code += '\t"net/http"\n';
+  code += ')\n\n';
+  code += 'func main() {\n';
 
   if (body) {
     code += `\tpayload := []byte(\`${body}\`)\n`;
     code += `\treq, err := http.NewRequest("${method}", "${url}", bytes.NewBuffer(payload))\n`;
-  } else {
+  }
+  else {
     code += `\treq, err := http.NewRequest("${method}", "${url}", nil)\n`;
   }
 
-  code += `\tif err != nil {\n`;
-  code += `\t\tpanic(err)\n`;
-  code += `\t}\n\n`;
+  code += '\tif err != nil {\n';
+  code += '\t\tpanic(err)\n';
+  code += '\t}\n\n';
 
   for (const [k, v] of Object.entries(headers)) {
     code += `\treq.Header.Set("${k}", "${v}")\n`;
   }
 
-  code += `\n\tclient := &http.Client{}\n`;
-  code += `\tresp, err := client.Do(req)\n`;
-  code += `\tif err != nil {\n`;
-  code += `\t\tpanic(err)\n`;
-  code += `\t}\n`;
-  code += `\tdefer resp.Body.Close()\n\n`;
-  code += `\tbody, _ := io.ReadAll(resp.Body)\n`;
-  code += `\tfmt.Println("Status:", resp.Status)\n`;
-  code += `\tfmt.Println(string(body))\n`;
-  code += `}\n`;
+  code += '\n\tclient := &http.Client{}\n';
+  code += '\tresp, err := client.Do(req)\n';
+  code += '\tif err != nil {\n';
+  code += '\t\tpanic(err)\n';
+  code += '\t}\n';
+  code += '\tdefer resp.Body.Close()\n\n';
+  code += '\tbody, _ := io.ReadAll(resp.Body)\n';
+  code += '\tfmt.Println("Status:", resp.Status)\n';
+  code += '\tfmt.Println(string(body))\n';
+  code += '}\n';
   return code;
 }
 
@@ -448,61 +476,62 @@ function generatePhp(parsed: ParsedCurl, library: string): string {
   const { method, url, headers, body } = parsed;
 
   if (library === 'guzzle') {
-    let code = `<?php\nrequire 'vendor/autoload.php';\n\n`;
-    code += `use GuzzleHttp\\Client;\n\n`;
-    code += `$client = new Client();\n`;
+    let code = '<?php\nrequire \'vendor/autoload.php\';\n\n';
+    code += 'use GuzzleHttp\\Client;\n\n';
+    code += '$client = new Client();\n';
     code += `$response = $client->request('${method}', '${url}', [\n`;
     if (Object.keys(headers).length > 0) {
-      code += `    'headers' => [\n`;
+      code += '    \'headers\' => [\n';
       for (const [k, v] of Object.entries(headers)) {
         code += `        '${k}' => '${v}',\n`;
       }
-      code += `    ],\n`;
+      code += '    ],\n';
     }
     if (parsed.isJsonBody && parsed.parsedJson) {
       code += `    'json' => ${JSON.stringify(parsed.parsedJson)},\n`;
-    } else if (body) {
-      code += `    'body' => '${body.replace(/'/g, "\\'")}',\n`;
     }
-    code += `]);\n\n`;
-    code += `echo $response->getBody();\n`;
+    else if (body) {
+      code += `    'body' => '${body.replace(/'/g, '\\\'')}',\n`;
+    }
+    code += ']);\n\n';
+    code += 'echo $response->getBody();\n';
     return code;
   }
 
   // Default: native curl
-  let code = `<?php\n\n$curl = curl_init();\n\n`;
-  code += `curl_setopt_array($curl, [\n`;
+  let code = '<?php\n\n$curl = curl_init();\n\n';
+  code += 'curl_setopt_array($curl, [\n';
   code += `    CURLOPT_URL => "${url}",\n`;
-  code += `    CURLOPT_RETURNTRANSFER => true,\n`;
+  code += '    CURLOPT_RETURNTRANSFER => true,\n';
   code += `    CURLOPT_CUSTOMREQUEST => "${method}",\n`;
 
   if (body) {
-    code += `    CURLOPT_POSTFIELDS => '${body.replace(/'/g, "\\'")}',\n`;
+    code += `    CURLOPT_POSTFIELDS => '${body.replace(/'/g, '\\\'')}',\n`;
   }
 
   if (Object.keys(headers).length > 0) {
-    code += `    CURLOPT_HTTPHEADER => [\n`;
+    code += '    CURLOPT_HTTPHEADER => [\n';
     for (const [k, v] of Object.entries(headers)) {
       code += `        "${k}: ${v}",\n`;
     }
-    code += `    ],\n`;
+    code += '    ],\n';
   }
 
-  code += `]);\n\n`;
-  code += `$response = curl_exec($curl);\n`;
-  code += `$err = curl_error($curl);\n\n`;
-  code += `curl_close($curl);\n\n`;
-  code += `if ($err) {\n    echo "cURL Error: " . $err;\n} else {\n    echo $response;\n}\n`;
+  code += ']);\n\n';
+  code += '$response = curl_exec($curl);\n';
+  code += '$err = curl_error($curl);\n\n';
+  code += 'curl_close($curl);\n\n';
+  code += 'if ($err) {\n    echo "cURL Error: " . $err;\n} else {\n    echo $response;\n}\n';
   return code;
 }
 
 function generateRust(parsed: ParsedCurl): string {
   const { method, url, headers, body } = parsed;
 
-  let code = `use reqwest::header::{HeaderMap, HeaderName, HeaderValue};\n\n`;
-  code += `#[tokio::main]\n`;
-  code += `async fn main() -> Result<(), Box<dyn std::error::Error>> {\n`;
-  code += `    let client = reqwest::Client::new();\n\n`;
+  let code = 'use reqwest::header::{HeaderMap, HeaderName, HeaderValue};\n\n';
+  code += '#[tokio::main]\n';
+  code += 'async fn main() -> Result<(), Box<dyn std::error::Error>> {\n';
+  code += '    let client = reqwest::Client::new();\n\n';
   code += `    let response = client.${method.toLowerCase()}("${url}")\n`;
 
   for (const [k, v] of Object.entries(headers)) {
@@ -511,32 +540,33 @@ function generateRust(parsed: ParsedCurl): string {
 
   if (parsed.isJsonBody && parsed.parsedJson) {
     code += `        .json(&serde_json::json!(${JSON.stringify(parsed.parsedJson)}))\n`;
-  } else if (body) {
+  }
+  else if (body) {
     code += `        .body(r#"${body}"#)\n`;
   }
 
-  code += `        .send()\n`;
-  code += `        .await?;\n\n`;
-  code += `    let status = response.status();\n`;
-  code += `    let body_text = response.text().await?;\n\n`;
-  code += `    println!("Status: {}", status);\n`;
-  code += `    println!("{}", body_text);\n`;
-  code += `    Ok(())\n`;
-  code += `}\n`;
+  code += '        .send()\n';
+  code += '        .await?;\n\n';
+  code += '    let status = response.status();\n';
+  code += '    let body_text = response.text().await?;\n\n';
+  code += '    println!("Status: {}", status);\n';
+  code += '    println!("{}", body_text);\n';
+  code += '    Ok(())\n';
+  code += '}\n';
   return code;
 }
 
 function generateJava(parsed: ParsedCurl): string {
   const { method, url, headers, body } = parsed;
 
-  let code = `import java.net.URI;\n`;
-  code += `import java.net.http.HttpClient;\n`;
-  code += `import java.net.http.HttpRequest;\n`;
-  code += `import java.net.http.HttpResponse;\n\n`;
-  code += `public class App {\n`;
-  code += `    public static void main(String[] args) throws Exception {\n`;
-  code += `        HttpClient client = HttpClient.newHttpClient();\n\n`;
-  code += `        HttpRequest request = HttpRequest.newBuilder()\n`;
+  let code = 'import java.net.URI;\n';
+  code += 'import java.net.http.HttpClient;\n';
+  code += 'import java.net.http.HttpRequest;\n';
+  code += 'import java.net.http.HttpResponse;\n\n';
+  code += 'public class App {\n';
+  code += '    public static void main(String[] args) throws Exception {\n';
+  code += '        HttpClient client = HttpClient.newHttpClient();\n\n';
+  code += '        HttpRequest request = HttpRequest.newBuilder()\n';
   code += `            .uri(URI.create("${url}"))\n`;
 
   for (const [k, v] of Object.entries(headers)) {
@@ -545,24 +575,25 @@ function generateJava(parsed: ParsedCurl): string {
 
   if (body) {
     code += `            .method("${method}", HttpRequest.BodyPublishers.ofString("${body.replace(/"/g, '\\"')}"))\n`;
-  } else {
+  }
+  else {
     code += `            .method("${method}", HttpRequest.BodyPublishers.noBody())\n`;
   }
 
-  code += `            .build();\n\n`;
-  code += `        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());\n`;
-  code += `        System.out.println("Status: " + response.statusCode());\n`;
-  code += `        System.out.println(response.body());\n`;
-  code += `    }\n`;
-  code += `}\n`;
+  code += '            .build();\n\n';
+  code += '        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());\n';
+  code += '        System.out.println("Status: " + response.statusCode());\n';
+  code += '        System.out.println(response.body());\n';
+  code += '    }\n';
+  code += '}\n';
   return code;
 }
 
 function generateDart(parsed: ParsedCurl): string {
   const { method, url, headers, body } = parsed;
 
-  let code = `import 'package:http/http.dart' as http;\n\n`;
-  code += `void main() async {\n`;
+  let code = 'import \'package:http/http.dart\' as http;\n\n';
+  code += 'void main() async {\n';
   code += `  final url = Uri.parse('${url}');\n`;
 
   if (Object.keys(headers).length > 0) {
@@ -570,17 +601,21 @@ function generateDart(parsed: ParsedCurl): string {
   }
 
   if (body) {
-    code += `  final body = '${body.replace(/'/g, "\\'")}';\n`;
+    code += `  final body = '${body.replace(/'/g, '\\\'')}';\n`;
   }
 
   code += `\n  final response = await http.${method.toLowerCase()}(\n`;
-  code += `    url,\n`;
-  if (Object.keys(headers).length > 0) code += `    headers: headers,\n`;
-  if (body) code += `    body: body,\n`;
-  code += `  );\n\n`;
-  code += `  print('Status: \${response.statusCode}');\n`;
-  code += `  print(response.body);\n`;
-  code += `}\n`;
+  code += '    url,\n';
+  if (Object.keys(headers).length > 0) {
+    code += '    headers: headers,\n';
+  }
+  if (body) {
+    code += '    body: body,\n';
+  }
+  code += '  );\n\n';
+  code += '  print(\'Status: $' + '{response.statusCode}\');\n';
+  code += '  print(response.body);\n';
+  code += '}\n';
   return code;
 }
 

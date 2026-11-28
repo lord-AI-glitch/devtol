@@ -47,7 +47,9 @@ function rgbToHsv(r: number, g: number, b: number) {
 function analyze() {
   try {
     const c = colord(hex.value);
-    if (!c.isValid()) return;
+    if (!c.isValid()) {
+      return;
+    }
 
     const { r, g, b } = c.toRgb();
     const { h, s, l } = c.toHsl();
@@ -75,7 +77,8 @@ function analyze() {
       wcagBlack: { ratio: wcagB.toFixed(2), pass: wcagB >= 4.5 ? 'AA' : 'Fail' },
       palette,
     };
-  } catch (e: any) {
+  }
+  catch (e: any) {
     message.error(e.message);
   }
 }
@@ -83,43 +86,66 @@ function analyze() {
 watch(hex, analyze, { immediate: true });
 function copy(v: string) {
   navigator.clipboard.writeText(v);
-  message.success('Copied: ' + v);
+  message.success(`Copied: ${v}`);
 }
 </script>
+
 <template>
   <div style="max-width:800px;margin:0 auto">
     <c-card mb-4>
-      <div flex gap-4 items-center>
-        <div :style="{width:'80px',height:'80px',background:hex,borderRadius:'12px',flexShrink:0}"/>
+      <div flex items-center gap-4>
+        <div :style="{ width: '80px', height: '80px', background: hex, borderRadius: '12px', flexShrink: 0 }" />
         <div flex-1>
           <n-form-item label="Color (HEX)">
-            <n-input v-model:value="hex" placeholder="#4F9CFF" style="font-family:monospace;width:160px" maxlength="7"/>
+            <n-input v-model:value="hex" placeholder="#4F9CFF" style="font-family:monospace;width:160px" maxlength="7" />
           </n-form-item>
         </div>
-        <n-color-picker v-model:value="hex" :show-alpha="false" style="width:40px"/>
+        <n-color-picker v-model:value="hex" :show-alpha="false" style="width:40px" />
       </div>
     </c-card>
-    <n-spin v-if="isLoading" size="small" mb-4/>
+    <n-spin v-if="isLoading" size="small" mb-4 />
     <template v-if="formats">
       <n-grid :cols="2" :x-gap="16" mb-4>
-        <n-gi v-for="(val,key) in {HEX:formats.hex,RGB:formats.rgb,HSL:formats.hsl,HSV:formats.hsv,CMYK:formats.cmyk}" :key="key">
+        <n-gi v-for="(val, key) in { HEX: formats.hex, RGB: formats.rgb, HSL: formats.hsl, HSV: formats.hsv, CMYK: formats.cmyk }" :key="key">
           <c-card>
-            <div flex justify-between items-center>
-              <div><p text-xs style="color:var(--n-text-color-3)">{{ key }}</p><p font-mono font-semibold>{{ val }}</p></div>
-              <c-button size="small" variant="text" @click="copy(val as string)">Copy</c-button>
+            <div flex items-center justify-between>
+              <div>
+                <p text-xs style="color:var(--n-text-color-3)">
+                  {{ key }}
+                </p><p font-semibold font-mono>
+                  {{ val }}
+                </p>
+              </div>
+              <c-button size="small" variant="text" @click="copy(val as string)">
+                Copy
+              </c-button>
             </div>
           </c-card>
         </n-gi>
       </n-grid>
       <n-grid :cols="2" :x-gap="16" mb-4>
-        <n-gi><c-card title="WCAG vs White"><n-tag :type="Number(formats.wcagWhite.ratio)>=4.5?'success':'error'">Contrast: {{ formats.wcagWhite.ratio }}:1 — {{ formats.wcagWhite.pass }}</n-tag></c-card></n-gi>
-        <n-gi><c-card title="WCAG vs Black"><n-tag :type="Number(formats.wcagBlack.ratio)>=4.5?'success':'error'">Contrast: {{ formats.wcagBlack.ratio }}:1 — {{ formats.wcagBlack.pass }}</n-tag></c-card></n-gi>
+        <n-gi>
+          <c-card title="WCAG vs White">
+            <n-tag :type="Number(formats.wcagWhite.ratio) >= 4.5 ? 'success' : 'error'">
+              Contrast: {{ formats.wcagWhite.ratio }}:1 — {{ formats.wcagWhite.pass }}
+            </n-tag>
+          </c-card>
+        </n-gi>
+        <n-gi>
+          <c-card title="WCAG vs Black">
+            <n-tag :type="Number(formats.wcagBlack.ratio) >= 4.5 ? 'success' : 'error'">
+              Contrast: {{ formats.wcagBlack.ratio }}:1 — {{ formats.wcagBlack.pass }}
+            </n-tag>
+          </c-card>
+        </n-gi>
       </n-grid>
       <c-card title="Color Palette">
-        <div v-for="(colors,type) in formats.palette" :key="type" mb-4>
-          <p text-sm mb-2 font-semibold style="text-transform:capitalize">{{ type }}</p>
+        <div v-for="(colors, type) in formats.palette" :key="type" mb-4>
+          <p mb-2 text-sm font-semibold style="text-transform:capitalize">
+            {{ type }}
+          </p>
           <div flex gap-2>
-            <div v-for="c in colors" :key="c" :style="{background:c,width:'60px',height:'60px',borderRadius:'8px',cursor:'pointer'}" :title="c" @click="copy(c)"/>
+            <div v-for="c in colors" :key="c" :style="{ background: c, width: '60px', height: '60px', borderRadius: '8px', cursor: 'pointer' }" :title="c" @click="copy(c)" />
           </div>
         </div>
       </c-card>

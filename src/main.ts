@@ -21,9 +21,12 @@ function reloadForStaleChunks() {
   const key = 'devtol:stale-chunk-reload';
   try {
     const last = Number(sessionStorage.getItem(key) || 0);
-    if (Date.now() - last < 30_000) return false;
+    if (Date.now() - last < 30_000) {
+      return false;
+    }
     sessionStorage.setItem(key, String(Date.now()));
-  } catch {
+  }
+  catch {
     // Storage blocked: skip the auto-reload rather than risk a reload loop.
     return false;
   }
@@ -31,7 +34,9 @@ function reloadForStaleChunks() {
   return true;
 }
 window.addEventListener('vite:preloadError', (event) => {
-  if (reloadForStaleChunks()) event.preventDefault();
+  if (reloadForStaleChunks()) {
+    event.preventDefault();
+  }
 });
 router.onError((error) => {
   if (/dynamically imported module|Importing a module script failed|Failed to fetch/i.test(String(error?.message))) {

@@ -1,28 +1,28 @@
 export type CompoundFrequency = 'daily' | 'monthly' | 'quarterly' | 'semiannually' | 'annually';
 
 export interface CompoundInterestInput {
-  initialInvestment: number;
-  monthlyContribution: number;
-  annualInterestRate: number; // in percent, e.g. 7 for 7%
-  years: number;
-  compoundFrequency: CompoundFrequency;
+  initialInvestment: number
+  monthlyContribution: number
+  annualInterestRate: number // in percent, e.g. 7 for 7%
+  years: number
+  compoundFrequency: CompoundFrequency
 }
 
 export interface YearlyBreakdown {
-  year: number;
-  startingBalance: number;
-  contributions: number;
-  interestEarned: number;
-  totalInterest: number;
-  endBalance: number;
+  year: number
+  startingBalance: number
+  contributions: number
+  interestEarned: number
+  totalInterest: number
+  endBalance: number
 }
 
 export interface CompoundInterestResult {
-  finalBalance: number;
-  totalPrincipal: number;
-  totalContributions: number;
-  totalInterestEarned: number;
-  yearlyBreakdown: YearlyBreakdown[];
+  finalBalance: number
+  totalPrincipal: number
+  totalContributions: number
+  totalInterestEarned: number
+  yearlyBreakdown: YearlyBreakdown[]
 }
 
 export function getCompoundPeriodsPerYear(freq: CompoundFrequency): number {
@@ -69,28 +69,32 @@ export function calculateCompoundInterest(input: CompoundInterestInput): Compoun
         currentBalance += interest;
         yearInterest += interest;
         accumulatedInterest += interest;
-      } else if (periodsPerYear === 4 && month % 3 === 0) {
+      }
+      else if (periodsPerYear === 4 && month % 3 === 0) {
         // Quarterly
         const interest = currentBalance * ratePerPeriod;
         currentBalance += interest;
         yearInterest += interest;
         accumulatedInterest += interest;
-      } else if (periodsPerYear === 2 && month % 6 === 0) {
+      }
+      else if (periodsPerYear === 2 && month % 6 === 0) {
         // Semiannually
         const interest = currentBalance * ratePerPeriod;
         currentBalance += interest;
         yearInterest += interest;
         accumulatedInterest += interest;
-      } else if (periodsPerYear === 1 && month === 12) {
+      }
+      else if (periodsPerYear === 1 && month === 12) {
         // Annually
         const interest = currentBalance * ratePerPeriod;
         currentBalance += interest;
         yearInterest += interest;
         accumulatedInterest += interest;
-      } else if (periodsPerYear === 365) {
+      }
+      else if (periodsPerYear === 365) {
         // Daily: approximate 30.416 days per month
         const daysInMonth = (month === 2) ? 28 : (month === 4 || month === 6 || month === 9 || month === 11 ? 30 : 31);
-        const monthlyFactor = Math.pow(1 + ratePerPeriod, daysInMonth);
+        const monthlyFactor = (1 + ratePerPeriod) ** daysInMonth;
         const newBal = currentBalance * monthlyFactor;
         const interest = newBal - currentBalance;
         currentBalance = newBal;

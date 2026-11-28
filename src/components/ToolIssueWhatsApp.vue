@@ -4,10 +4,10 @@ import { IconAlertTriangle, IconBrandWhatsapp, IconRefresh } from '@tabler/icons
 import { useI18n } from 'vue-i18n';
 
 interface Props {
-  toolTitle: string;
-  toolPath?: string;
-  mode?: 'header' | 'floating' | 'banner';
-  errorMessage?: string;
+  toolTitle: string
+  toolPath?: string
+  mode?: 'header' | 'floating' | 'banner'
+  errorMessage?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<{
-  (e: 'retry'): void;
+  (e: 'retry'): void
 }>();
 
 const { t, locale } = useI18n();
@@ -38,7 +38,8 @@ const whatsappUrl = computed(() => {
       url: currentUrl,
       error: props.errorMessage,
     });
-  } else {
+  }
+  else {
     message = t('toolIssue.whatsappMessage', {
       toolTitle: title,
       url: currentUrl,

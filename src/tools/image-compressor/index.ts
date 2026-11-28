@@ -1,5 +1,6 @@
-import { defineTool } from '../tool';
 import { ArrowBarToDown } from '@vicons/tabler';
+import { defineTool } from '../tool';
+
 export const tool = defineTool({
   name: 'Image Compressor',
   path: '/image-compressor',

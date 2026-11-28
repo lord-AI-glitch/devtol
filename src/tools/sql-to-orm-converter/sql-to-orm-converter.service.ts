@@ -1,25 +1,25 @@
 export interface SqlColumn {
-  name: string;
-  rawType: string;
-  normalizedType: 'int' | 'bigint' | 'float' | 'decimal' | 'string' | 'text' | 'boolean' | 'date' | 'datetime' | 'uuid' | 'json' | 'binary' | 'unknown';
-  length?: number;
-  precision?: number;
-  scale?: number;
-  isPrimaryKey: boolean;
-  isAutoIncrement: boolean;
-  isNullable: boolean;
-  isUnique: boolean;
-  defaultValue?: string;
+  name: string
+  rawType: string
+  normalizedType: 'int' | 'bigint' | 'float' | 'decimal' | 'string' | 'text' | 'boolean' | 'date' | 'datetime' | 'uuid' | 'json' | 'binary' | 'unknown'
+  length?: number
+  precision?: number
+  scale?: number
+  isPrimaryKey: boolean
+  isAutoIncrement: boolean
+  isNullable: boolean
+  isUnique: boolean
+  defaultValue?: string
   foreignKey?: {
-    table: string;
-    column: string;
-  };
+    table: string
+    column: string
+  }
 }
 
 export interface SqlTable {
-  name: string;
-  columns: SqlColumn[];
-  primaryKeys: string[];
+  name: string
+  columns: SqlColumn[]
+  primaryKeys: string[]
 }
 
 export type OrmTarget = 'prisma' | 'sqlalchemy' | 'drizzle' | 'typeorm' | 'gorm' | 'typescript';
@@ -49,18 +49,42 @@ export function toSnakeCase(str: string): string {
 export function normalizeSqlType(rawType: string): SqlColumn['normalizedType'] {
   const type = rawType.toUpperCase().trim();
 
-  if (/^(INT|INTEGER|SMALLINT|TINYINT|MEDIUMINT|SERIAL)/i.test(type)) return 'int';
-  if (/^(BIGINT|BIGSERIAL)/i.test(type)) return 'bigint';
-  if (/^(FLOAT|REAL|DOUBLE)/i.test(type)) return 'float';
-  if (/^(DECIMAL|NUMERIC|MONEY)/i.test(type)) return 'decimal';
-  if (/^(BOOLEAN|BOOL|BIT)/i.test(type)) return 'boolean';
-  if (/^(UUID)/i.test(type)) return 'uuid';
-  if (/^(JSON|JSONB)/i.test(type)) return 'json';
-  if (/^(TIMESTAMP|TIMESTAMPTZ|DATETIME)/i.test(type)) return 'datetime';
-  if (/^(DATE|YEAR)/i.test(type)) return 'date';
-  if (/^(TEXT|LONGTEXT|MEDIUMTEXT|TINYTEXT)/i.test(type)) return 'text';
-  if (/^(VARCHAR|NVARCHAR|CHAR|NCHAR|STRING)/i.test(type)) return 'string';
-  if (/^(BLOB|BYTEA|VARBINARY|BINARY)/i.test(type)) return 'binary';
+  if (/^(INT|INTEGER|SMALLINT|TINYINT|MEDIUMINT|SERIAL)/i.test(type)) {
+    return 'int';
+  }
+  if (/^(BIGINT|BIGSERIAL)/i.test(type)) {
+    return 'bigint';
+  }
+  if (/^(FLOAT|REAL|DOUBLE)/i.test(type)) {
+    return 'float';
+  }
+  if (/^(DECIMAL|NUMERIC|MONEY)/i.test(type)) {
+    return 'decimal';
+  }
+  if (/^(BOOLEAN|BOOL|BIT)/i.test(type)) {
+    return 'boolean';
+  }
+  if (/^(UUID)/i.test(type)) {
+    return 'uuid';
+  }
+  if (/^(JSON|JSONB)/i.test(type)) {
+    return 'json';
+  }
+  if (/^(TIMESTAMP|TIMESTAMPTZ|DATETIME)/i.test(type)) {
+    return 'datetime';
+  }
+  if (/^(DATE|YEAR)/i.test(type)) {
+    return 'date';
+  }
+  if (/^(TEXT|LONGTEXT|MEDIUMTEXT|TINYTEXT)/i.test(type)) {
+    return 'text';
+  }
+  if (/^(VARCHAR|NVARCHAR|CHAR|NCHAR|STRING)/i.test(type)) {
+    return 'string';
+  }
+  if (/^(BLOB|BYTEA|VARBINARY|BINARY)/i.test(type)) {
+    return 'binary';
+  }
 
   return 'unknown';
 }
@@ -77,9 +101,8 @@ export function parseSqlSchema(sql: string): SqlTable[] {
     .replace(/\/\*[\s\S]*?\*\//gm, '');
 
   const headerRegex = /CREATE\s+TABLE(?:\s+IF\s+NOT\s+EXISTS)?\s+[`"']?([a-zA-Z0-9_]+)[`"']?\s*\(/gim;
-  let match: RegExpExecArray | null;
 
-  while ((match = headerRegex.exec(cleanSql)) !== null) {
+  for (let match = headerRegex.exec(cleanSql); match !== null; match = headerRegex.exec(cleanSql)) {
     const tableName = match[1];
     const startIndex = headerRegex.lastIndex; // right after '('
     let parenDepth = 1;
@@ -89,7 +112,8 @@ export function parseSqlSchema(sql: string): SqlTable[] {
       const c = cleanSql[endIndex];
       if (c === '(') {
         parenDepth++;
-      } else if (c === ')') {
+      }
+      else if (c === ')') {
         parenDepth--;
       }
       endIndex++;
@@ -111,13 +135,18 @@ export function parseSqlSchema(sql: string): SqlTable[] {
 
     for (let i = 0; i < body.length; i++) {
       const char = body[i];
-      if (char === '(') lineParenDepth++;
-      else if (char === ')') lineParenDepth--;
+      if (char === '(') {
+        lineParenDepth++;
+      }
+      else if (char === ')') {
+        lineParenDepth--;
+      }
 
       if (char === ',' && lineParenDepth === 0) {
         lines.push(currentLine.trim());
         currentLine = '';
-      } else {
+      }
+      else {
         currentLine += char;
       }
     }
@@ -129,7 +158,9 @@ export function parseSqlSchema(sql: string): SqlTable[] {
 
     for (const rawLine of lines) {
       const line = rawLine.trim();
-      if (!line) continue;
+      if (!line) {
+        continue;
+      }
 
       // Table-level PRIMARY KEY (col1, col2)
       const pkMatch = line.match(/^PRIMARY\s+KEY\s*\(([^)]+)\)/i);
@@ -157,7 +188,9 @@ export function parseSqlSchema(sql: string): SqlTable[] {
 
       // Column definition: col_name TYPE [CONSTRAINTS]
       const colMatch = line.match(/^[`"']?([a-zA-Z0-9_]+)[`"']?\s+([a-zA-Z0-9_]+(?:\s*\([^)]+\))?)(.*)$/i);
-      if (!colMatch) continue;
+      if (!colMatch) {
+        continue;
+      }
 
       const colName = colMatch[1];
       const rawType = colMatch[2];
@@ -172,10 +205,11 @@ export function parseSqlSchema(sql: string): SqlTable[] {
       const sizeMatch = rawType.match(/\((\d+)(?:,\s*(\d+))?\)/);
       if (sizeMatch) {
         if (sizeMatch[2]) {
-          precision = parseInt(sizeMatch[1], 10);
-          scale = parseInt(sizeMatch[2], 10);
-        } else {
-          length = parseInt(sizeMatch[1], 10);
+          precision = Number.parseInt(sizeMatch[1], 10);
+          scale = Number.parseInt(sizeMatch[2], 10);
+        }
+        else {
+          length = Number.parseInt(sizeMatch[1], 10);
         }
       }
 
@@ -244,7 +278,9 @@ export function parseSqlSchema(sql: string): SqlTable[] {
 // ----------------------------------------------------
 
 export function generatePrisma(tables: SqlTable[]): string {
-  if (tables.length === 0) return '// No tables parsed from input SQL';
+  if (tables.length === 0) {
+    return '// No tables parsed from input SQL';
+  }
 
   const lines: string[] = [
     '// Prisma Schema generated from SQL',
@@ -308,7 +344,8 @@ export function generatePrisma(tables: SqlTable[]): string {
         attributes.push('@id');
         if (col.isAutoIncrement) {
           attributes.push('@default(autoincrement())');
-        } else if (col.normalizedType === 'uuid') {
+        }
+        else if (col.normalizedType === 'uuid') {
           attributes.push('@default(uuid())');
         }
       }
@@ -320,11 +357,14 @@ export function generatePrisma(tables: SqlTable[]): string {
       if (col.defaultValue && !col.isPrimaryKey) {
         if (/now\(\)|current_timestamp/i.test(col.defaultValue)) {
           attributes.push('@default(now())');
-        } else if (/true|false/i.test(col.defaultValue)) {
+        }
+        else if (/true|false/i.test(col.defaultValue)) {
           attributes.push(`@default(${col.defaultValue.toLowerCase()})`);
-        } else if (!isNaN(Number(col.defaultValue))) {
+        }
+        else if (!Number.isNaN(Number(col.defaultValue))) {
           attributes.push(`@default(${col.defaultValue})`);
-        } else {
+        }
+        else {
           attributes.push(`@default("${col.defaultValue}")`);
         }
       }
@@ -333,7 +373,7 @@ export function generatePrisma(tables: SqlTable[]): string {
         attributes.push(`@map("${col.name}")`);
       }
 
-      const attrStr = attributes.length > 0 ? ' ' + attributes.join(' ') : '';
+      const attrStr = attributes.length > 0 ? ` ${attributes.join(' ')}` : '';
       lines.push(`  ${fieldName.padEnd(16)} ${prismaType.padEnd(12)}${attrStr}`);
     }
 
@@ -350,7 +390,9 @@ export function generatePrisma(tables: SqlTable[]): string {
 }
 
 export function generateSqlAlchemy(tables: SqlTable[]): string {
-  if (tables.length === 0) return '# No tables parsed from input SQL';
+  if (tables.length === 0) {
+    return '# No tables parsed from input SQL';
+  }
 
   const lines: string[] = [
     '# SQLAlchemy 2.0 Models generated from SQL',
@@ -447,9 +489,11 @@ export function generateSqlAlchemy(tables: SqlTable[]): string {
       if (col.defaultValue) {
         if (/now\(\)|current_timestamp/i.test(col.defaultValue)) {
           columnArgs.push('default=datetime.utcnow');
-        } else if (/true|false/i.test(col.defaultValue)) {
+        }
+        else if (/true|false/i.test(col.defaultValue)) {
           columnArgs.push(`default=${col.defaultValue.toLowerCase() === 'true' ? 'True' : 'False'}`);
-        } else {
+        }
+        else {
           columnArgs.push(`default=${col.defaultValue}`);
         }
       }
@@ -464,11 +508,13 @@ export function generateSqlAlchemy(tables: SqlTable[]): string {
 }
 
 export function generateDrizzle(tables: SqlTable[]): string {
-  if (tables.length === 0) return '// No tables parsed from input SQL';
+  if (tables.length === 0) {
+    return '// No tables parsed from input SQL';
+  }
 
   const lines: string[] = [
     '// Drizzle ORM Schema generated from SQL (PostgreSQL dialect)',
-    "import { pgTable, serial, integer, bigint, varchar, text, boolean, timestamp, date, uuid, numeric, doublePrecision } from 'drizzle-orm/pg-core';",
+    'import { pgTable, serial, integer, bigint, varchar, text, boolean, timestamp, date, uuid, numeric, doublePrecision } from \'drizzle-orm/pg-core\';',
     '',
   ];
 
@@ -482,7 +528,8 @@ export function generateDrizzle(tables: SqlTable[]): string {
 
       if (col.isPrimaryKey && col.isAutoIncrement) {
         colDef = `serial('${col.name}').primaryKey()`;
-      } else {
+      }
+      else {
         switch (col.normalizedType) {
           case 'int':
             colDef = `integer('${col.name}')`;
@@ -531,11 +578,14 @@ export function generateDrizzle(tables: SqlTable[]): string {
         if (col.defaultValue) {
           if (/now\(\)|current_timestamp/i.test(col.defaultValue)) {
             colDef += '.defaultNow()';
-          } else if (/true|false/i.test(col.defaultValue)) {
+          }
+          else if (/true|false/i.test(col.defaultValue)) {
             colDef += `.default(${col.defaultValue.toLowerCase()})`;
-          } else if (!isNaN(Number(col.defaultValue))) {
+          }
+          else if (!Number.isNaN(Number(col.defaultValue))) {
             colDef += `.default(${col.defaultValue})`;
-          } else {
+          }
+          else {
             colDef += `.default('${col.defaultValue}')`;
           }
         }
@@ -552,11 +602,13 @@ export function generateDrizzle(tables: SqlTable[]): string {
 }
 
 export function generateTypeOrm(tables: SqlTable[]): string {
-  if (tables.length === 0) return '// No tables parsed from input SQL';
+  if (tables.length === 0) {
+    return '// No tables parsed from input SQL';
+  }
 
   const lines: string[] = [
     '// TypeORM Entities generated from SQL',
-    "import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column, CreateDateColumn } from 'typeorm';",
+    'import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column, CreateDateColumn } from \'typeorm\';',
     '',
   ];
 
@@ -592,16 +644,27 @@ export function generateTypeOrm(tables: SqlTable[]): string {
 
       if (col.isPrimaryKey && col.isAutoIncrement) {
         lines.push('  @PrimaryGeneratedColumn()');
-      } else if (col.isPrimaryKey) {
+      }
+      else if (col.isPrimaryKey) {
         lines.push('  @PrimaryColumn()');
-      } else if (/now\(\)|current_timestamp/i.test(col.defaultValue || '')) {
+      }
+      else if (/now\(\)|current_timestamp/i.test(col.defaultValue || '')) {
         lines.push('  @CreateDateColumn()');
-      } else {
+      }
+      else {
         const opts: string[] = [];
-        if (col.name !== fieldName) opts.push(`name: '${col.name}'`);
-        if (col.isNullable) opts.push('nullable: true');
-        if (col.isUnique) opts.push('unique: true');
-        if (col.length) opts.push(`length: ${col.length}`);
+        if (col.name !== fieldName) {
+          opts.push(`name: '${col.name}'`);
+        }
+        if (col.isNullable) {
+          opts.push('nullable: true');
+        }
+        if (col.isUnique) {
+          opts.push('unique: true');
+        }
+        if (col.length) {
+          opts.push(`length: ${col.length}`);
+        }
 
         const optsStr = opts.length > 0 ? `{ ${opts.join(', ')} }` : '';
         lines.push(`  @Column(${optsStr})`);
@@ -620,7 +683,9 @@ export function generateTypeOrm(tables: SqlTable[]): string {
 }
 
 export function generateGorm(tables: SqlTable[]): string {
-  if (tables.length === 0) return '// No tables parsed from input SQL';
+  if (tables.length === 0) {
+    return '// No tables parsed from input SQL';
+  }
 
   const lines: string[] = [
     'package models',
@@ -669,10 +734,18 @@ export function generateGorm(tables: SqlTable[]): string {
       }
 
       const gormTags: string[] = [`column:${col.name}`];
-      if (col.isPrimaryKey) gormTags.push('primaryKey');
-      if (col.isAutoIncrement) gormTags.push('autoIncrement');
-      if (!col.isNullable && !col.isPrimaryKey) gormTags.push('not null');
-      if (col.isUnique && !col.isPrimaryKey) gormTags.push('unique');
+      if (col.isPrimaryKey) {
+        gormTags.push('primaryKey');
+      }
+      if (col.isAutoIncrement) {
+        gormTags.push('autoIncrement');
+      }
+      if (!col.isNullable && !col.isPrimaryKey) {
+        gormTags.push('not null');
+      }
+      if (col.isUnique && !col.isPrimaryKey) {
+        gormTags.push('unique');
+      }
 
       const jsonTag = toCamelCase(col.name) + (col.isNullable ? ',omitempty' : '');
       const tagStr = `\`gorm:"${gormTags.join(';')}" json:"${jsonTag}"\``;
@@ -688,7 +761,9 @@ export function generateGorm(tables: SqlTable[]): string {
 }
 
 export function generateTypeScript(tables: SqlTable[]): string {
-  if (tables.length === 0) return '// No tables parsed from input SQL';
+  if (tables.length === 0) {
+    return '// No tables parsed from input SQL';
+  }
 
   const lines: string[] = [
     '// TypeScript Interfaces generated from SQL',

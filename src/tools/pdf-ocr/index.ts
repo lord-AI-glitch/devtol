@@ -1,5 +1,6 @@
-import { defineTool } from '../tool';
 import { Scan } from '@vicons/tabler';
+import { defineTool } from '../tool';
+
 export const tool = defineTool({
   name: 'PDF OCR Text Extractor',
   path: '/pdf-ocr',

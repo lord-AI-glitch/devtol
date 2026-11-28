@@ -24,7 +24,7 @@ describe('curl-to-code-converter.service', () => {
     expect(result.method).toBe('POST');
     expect(result.url).toBe('https://api.example.com/v1/items');
     expect(result.headers['Content-Type']).toBe('application/json');
-    expect(result.headers['Authorization']).toBe('Bearer my-secret-token');
+    expect(result.headers.Authorization).toBe('Bearer my-secret-token');
     expect(result.isJsonBody).toBe(true);
     expect(result.parsedJson).toEqual({ title: 'DevTol Suite', score: 99 });
     expect(result.auth.type).toBe('bearer');
@@ -40,7 +40,7 @@ describe('curl-to-code-converter.service', () => {
   });
 
   it('generates idiomatic Python code with requests and httpx', () => {
-    const parsed = parseCurl(`curl -X POST https://httpbin.org/post -H "X-Custom: Value" -d '{"ping": "pong"}'`);
+    const parsed = parseCurl('curl -X POST https://httpbin.org/post -H "X-Custom: Value" -d \'{"ping": "pong"}\'');
 
     const pyRequests = generateCode(parsed, 'python', { library: 'requests' });
     expect(pyRequests).toContain('import requests');
@@ -53,7 +53,7 @@ describe('curl-to-code-converter.service', () => {
   });
 
   it('generates idiomatic JavaScript and TypeScript code with fetch and axios', () => {
-    const parsed = parseCurl(`curl https://api.github.com/zen`);
+    const parsed = parseCurl('curl https://api.github.com/zen');
 
     const jsFetch = generateCode(parsed, 'javascript', { library: 'fetch' });
     expect(jsFetch).toContain('await fetch');
@@ -66,7 +66,7 @@ describe('curl-to-code-converter.service', () => {
   });
 
   it('generates standard Go net/http code', () => {
-    const parsed = parseCurl(`curl -X DELETE https://api.example.com/items/42 -H "Accept: application/json"`);
+    const parsed = parseCurl('curl -X DELETE https://api.example.com/items/42 -H "Accept: application/json"');
     const goCode = generateCode(parsed, 'go');
     expect(goCode).toContain('package main');
     expect(goCode).toContain('http.NewRequest("DELETE"');
@@ -74,7 +74,7 @@ describe('curl-to-code-converter.service', () => {
   });
 
   it('generates modern Rust reqwest code', () => {
-    const parsed = parseCurl(`curl https://api.example.com/health`);
+    const parsed = parseCurl('curl https://api.example.com/health');
     const rustCode = generateCode(parsed, 'rust');
     expect(rustCode).toContain('reqwest::Client::new()');
     expect(rustCode).toContain('.send()');
@@ -180,10 +180,10 @@ describe('curl-to-code-converter.service', () => {
 
   it('parses -H and -d before the URL', () => {
     const result = parseCurl(
-      `curl -H "Authorization: Bearer abc" -d '{"a":1}' https://api.example.com/data`,
+      'curl -H "Authorization: Bearer abc" -d \'{"a":1}\' https://api.example.com/data',
     );
     expect(result.url).toBe('https://api.example.com/data');
     expect(result.method).toBe('POST');
-    expect(result.headers['Authorization']).toBe('Bearer abc');
+    expect(result.headers.Authorization).toBe('Bearer abc');
   });
 });

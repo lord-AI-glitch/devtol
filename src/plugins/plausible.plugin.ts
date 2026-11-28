@@ -2,7 +2,7 @@ import type Plausible from 'plausible-tracker';
 import type { App } from 'vue';
 import { config } from '@/config';
 
-const noop = () => {};
+function noop() {}
 
 type PlausibleInstance = Pick<ReturnType<typeof Plausible>, 'trackEvent' | 'enableAutoPageviews'>;
 
@@ -18,8 +18,8 @@ function createFakePlausibleInstance(): PlausibleInstance {
 // `useTracker()`) keep working and automatically use the real tracker once
 // its chunk loads; only the inner reference swaps, never the provided object.
 function createDelegatingPlausibleInstance(initial: PlausibleInstance): {
-  instance: PlausibleInstance;
-  setInner: (next: PlausibleInstance) => void;
+  instance: PlausibleInstance
+  setInner: (next: PlausibleInstance) => void
 } {
   let inner = initial;
   return {

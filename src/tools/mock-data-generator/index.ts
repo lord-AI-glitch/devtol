@@ -1,5 +1,6 @@
-import { defineTool } from '../tool';
 import { Database } from '@vicons/tabler';
+import { defineTool } from '../tool';
+
 export const tool = defineTool({
   name: 'Mock Data Generator',
   path: '/mock-data-generator',

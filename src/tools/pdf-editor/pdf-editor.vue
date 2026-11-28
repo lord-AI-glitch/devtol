@@ -1,7 +1,16 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, nextTick } from 'vue';
+import { computed, nextTick, ref } from 'vue';
 import { useHead } from '@vueuse/head';
 import { useMessage } from 'naive-ui';
+
+import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+import fontkit from '@pdf-lib/fontkit';
+
+// @ts-expect-error: no type declarations for arabic-persian-reshaper
+import { ArabicShaper } from 'arabic-persian-reshaper';
+
+// @ts-expect-error: no type declarations for bidi-js
+import bidiFactory from 'bidi-js';
 import { loadPdfJs } from '@/utils/loadPdfJs';
 
 useHead({
@@ -17,34 +26,30 @@ useHead({
     },
     {
       property: 'og:title',
-      content: 'Free PDF Editor - Find & Replace, Edit Text, Sign & Markup'
+      content: 'Free PDF Editor - Find & Replace, Edit Text, Sign & Markup',
     },
     {
       property: 'og:description',
-      content: 'Add visual text overlays, drawings and signatures to PDFs in your browser. Original text remains searchable and extractable. Not for secure redaction or permanent text removal.'
-    }
+      content: 'Add visual text overlays, drawings and signatures to PDFs in your browser. Original text remains searchable and extractable. Not for secure redaction or permanent text removal.',
+    },
   ],
 });
-
-import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
-import fontkit from '@pdf-lib/fontkit';
-// @ts-ignore
-import { ArabicShaper } from 'arabic-persian-reshaper';
-// @ts-ignore
-import bidiFactory from 'bidi-js';
 
 const bidi = bidiFactory();
 
 // Helper to normalize text extracted from PDF (convert reversed/presentation glyphs back to readable Arabic)
 function normalizeExtractedText(str: string): string {
-  if (!str) return '';
+  if (!str) {
+    return '';
+  }
   // Check if string contains Arabic presentation forms (FB50-FDFF, FE70-FEFF)
   const hasPresentationForms = /[\uFB50-\uFDFF\uFE70-\uFEFF]/.test(str);
   if (hasPresentationForms) {
     try {
       const unshaped = ArabicShaper.convertArabicBack(str);
       return unshaped.split('').reverse().join('');
-    } catch (e) {
+    }
+    catch (e) {
       return str;
     }
   }
@@ -52,48 +57,56 @@ function normalizeExtractedText(str: string): string {
 }
 
 // Helper to split text into visual runs (Left-to-Right visual order) for pdf-lib rendering
-function getVisualRuns(text: string): { text: string, isRTL: boolean, isArabic: boolean }[] {
-  if (!text) return [];
+function getVisualRuns(text: string): { text: string; isRTL: boolean; isArabic: boolean }[] {
+  if (!text) {
+    return [];
+  }
   try {
     const embeddingLevels = bidi.getEmbeddingLevels(text, 'rtl');
     const indices = bidi.getReorderedIndices(text, embeddingLevels);
-    const runs: { level: number, indices: number[] }[] = [];
-    let currentRun: { level: number, indices: number[] } | null = null;
-    
+    const runs: { level: number; indices: number[] }[] = [];
+    let currentRun: { level: number; indices: number[] } | null = null;
+
     for (let i = 0; i < indices.length; i++) {
       const logicalIndex = indices[i];
       const level = embeddingLevels.levels[logicalIndex];
       if (!currentRun || currentRun.level !== level) {
-        if (currentRun) runs.push(currentRun);
+        if (currentRun) {
+          runs.push(currentRun);
+        }
         currentRun = { level, indices: [logicalIndex] };
-      } else {
+      }
+      else {
         currentRun.indices.push(logicalIndex);
       }
     }
-    if (currentRun) runs.push(currentRun);
+    if (currentRun) {
+      runs.push(currentRun);
+    }
 
-    return runs.map(run => {
+    return runs.map((run) => {
       const sortedIndices = [...run.indices].sort((a, b) => a - b);
-      let logicalString = sortedIndices.map(idx => {
+      let logicalString = sortedIndices.map((idx) => {
         const char = text[idx];
         if (run.level % 2 === 1) {
           return bidi.getMirroredCharacter(char) || char;
         }
         return char;
       }).join('');
-      
+
       const isRTL = run.level % 2 === 1;
       const isArabic = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/.test(logicalString);
-      
+
       // If a run is RTL but has no Arabic letters (e.g. just punctuation or symbols),
       // fontkit will treat it as LTR and won't reverse it, so we manually reverse it.
       if (isRTL && !isArabic) {
         logicalString = logicalString.split('').reverse().join('');
       }
-      
+
       return { text: logicalString, isRTL, isArabic };
     });
-  } catch (e) {
+  }
+  catch (e) {
     console.warn('BiDi processing error, falling back to raw text:', e);
     return [{ text, isRTL: false, isArabic: false }];
   }
@@ -142,19 +155,19 @@ const pageAnnotations = ref<Record<number, string>>({});
 
 // Interactive Text Layer (Click on original text to edit directly)
 interface InteractiveTextItem {
-  id: number;
-  str: string;
-  tx: number;
-  ty: number;
-  width: number;
-  height: number;
-  origSize: number;
-  fontSize: number;
-  pdfLibTy: number;
-  fontName?: string;
-  fontFamily?: string;
-  isModified?: boolean;
-  newStr?: string;
+  id: number
+  str: string
+  tx: number
+  ty: number
+  width: number
+  height: number
+  origSize: number
+  fontSize: number
+  pdfLibTy: number
+  fontName?: string
+  fontFamily?: string
+  isModified?: boolean
+  newStr?: string
 }
 const currentPageTextItems = ref<InteractiveTextItem[]>([]);
 const isInteractiveTextMode = ref(true);
@@ -171,28 +184,28 @@ const defaultFontOptions = [
   { label: 'Helvetica (Sans)', value: 'Helvetica' },
   { label: 'Helvetica Bold', value: 'HelveticaBold' },
   { label: 'Times (Serif)', value: 'TimesRoman' },
-  { label: 'Courier (Mono)', value: 'Courier' }
+  { label: 'Courier (Mono)', value: 'Courier' },
 ];
+
+// System fonts capability
+const supportsLocalFonts = typeof window !== 'undefined' && 'queryLocalFonts' in window;
+const systemFonts = ref<{ label: string; value: string; fontData?: FontData }[]>([]);
+const isSystemFontsLoaded = ref(false);
 
 const fontOptions = computed(() => {
   return [
     { type: 'group', label: 'Default Fonts', key: 'default', children: defaultFontOptions },
-    ...(isSystemFontsLoaded.value 
-        ? [{ type: 'group', label: 'Your System Fonts', key: 'system', children: systemFonts.value }] 
-        : [])
+    ...(isSystemFontsLoaded.value
+      ? [{ type: 'group', label: 'Your System Fonts', key: 'system', children: systemFonts.value }]
+      : []),
   ];
 });
 
-// System fonts capability
-const supportsLocalFonts = typeof window !== 'undefined' && 'queryLocalFonts' in window;
-const systemFonts = ref<{ label: string, value: string, fontData?: FontData }[]>([]);
-const isSystemFontsLoaded = ref(false);
-
 interface FontData {
-  family: string;
-  fullName: string;
-  postscriptName: string;
-  blob: () => Promise<Blob>;
+  family: string
+  fullName: string
+  postscriptName: string
+  blob: () => Promise<Blob>
 }
 
 async function loadSystemFonts() {
@@ -204,22 +217,23 @@ async function loadSystemFonts() {
     const fonts = await (window as any).queryLocalFonts() as FontData[];
     // Filter and map to unique font families
     const fontMap = new Map<string, FontData>();
-    fonts.forEach(f => {
+    fonts.forEach((f) => {
       // Prefer Regular over Italic/Bold if possible, but keep the first seen
       if (!fontMap.has(f.family) || f.fullName.toLowerCase().includes('regular')) {
         fontMap.set(f.family, f);
       }
     });
-    
+
     systemFonts.value = Array.from(fontMap.values()).map(f => ({
       label: `💻 ${f.family}`,
       value: `SYSTEM_${f.postscriptName}`,
-      fontData: f
+      fontData: f,
     })).sort((a, b) => a.label.localeCompare(b.label));
-    
+
     isSystemFontsLoaded.value = true;
     message.success(`Loaded ${systemFonts.value.length} system fonts!`);
-  } catch (e: any) {
+  }
+  catch (e: any) {
     message.error('Failed to access system fonts. Permission denied?');
   }
 }
@@ -251,16 +265,22 @@ function getBrowserFontFamily(fontValue: string) {
       return `"${sysFont.fontData.family}", sans-serif`;
     }
   }
-  if (fontValue === 'Helvetica' || fontValue === 'HelveticaBold') return 'Helvetica, Arial, sans-serif';
-  if (fontValue === 'TimesRoman') return '"Times New Roman", Times, serif';
-  if (fontValue === 'Courier') return 'Courier, monospace';
+  if (fontValue === 'Helvetica' || fontValue === 'HelveticaBold') {
+    return 'Helvetica, Arial, sans-serif';
+  }
+  if (fontValue === 'TimesRoman') {
+    return '"Times New Roman", Times, serif';
+  }
+  if (fontValue === 'Courier') {
+    return 'Courier, monospace';
+  }
   return `"${fontValue}", sans-serif`;
 }
 
 // Helper to embed proper font (Arabic/Unicode supported)
 async function getEmbeddedFont(doc: any, requestedFont: string, sampleText: string) {
   doc.registerFontkit(fontkit);
-  
+
   if (requestedFont.startsWith('SYSTEM_')) {
     const sysFont = systemFonts.value.find(f => f.value === requestedFont);
     if (sysFont && sysFont.fontData) {
@@ -268,14 +288,15 @@ async function getEmbeddedFont(doc: any, requestedFont: string, sampleText: stri
         const blob = await sysFont.fontData.blob();
         const fontBytes = await blob.arrayBuffer();
         return await doc.embedFont(fontBytes);
-      } catch (e) {
+      }
+      catch (e) {
         console.warn('Failed to embed system font, falling back...', e);
       }
     }
   }
 
   const hasArabicOrUnicode = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/.test(sampleText);
-  
+
   if (requestedFont === 'Cairo' || (hasArabicOrUnicode && requestedFont !== 'Amiri')) {
     const fontBytes = await getCairoFontBytes();
     return await doc.embedFont(fontBytes);
@@ -284,9 +305,15 @@ async function getEmbeddedFont(doc: any, requestedFont: string, sampleText: stri
     const fontBytes = await getAmiriFontBytes();
     return await doc.embedFont(fontBytes);
   }
-  if (requestedFont === 'HelveticaBold') return await doc.embedFont(StandardFonts.HelveticaBold);
-  if (requestedFont === 'TimesRoman') return await doc.embedFont(StandardFonts.TimesRoman);
-  if (requestedFont === 'Courier') return await doc.embedFont(StandardFonts.Courier);
+  if (requestedFont === 'HelveticaBold') {
+    return await doc.embedFont(StandardFonts.HelveticaBold);
+  }
+  if (requestedFont === 'TimesRoman') {
+    return await doc.embedFont(StandardFonts.TimesRoman);
+  }
+  if (requestedFont === 'Courier') {
+    return await doc.embedFont(StandardFonts.Courier);
+  }
   return await doc.embedFont(StandardFonts.Helvetica);
 }
 
@@ -295,7 +322,9 @@ let currentRenderTask: any = null;
 
 async function onFileSelected(e: Event) {
   const target = e.target as HTMLInputElement;
-  if (!target.files?.[0]) return;
+  if (!target.files?.[0]) {
+    return;
+  }
   file.value = target.files[0];
   pageAnnotations.value = {};
   currentPage.value = 1;
@@ -303,7 +332,9 @@ async function onFileSelected(e: Event) {
 }
 
 async function loadPdf() {
-  if (!file.value) return;
+  if (!file.value) {
+    return;
+  }
   isLoading.value = true;
   try {
     const pdfjsLib = await loadPdfJs();
@@ -314,9 +345,11 @@ async function loadPdf() {
     await nextTick();
     await renderPage(currentPage.value);
     message.success(`PDF Loaded: ${totalPages.value} pages`);
-  } catch (err: any) {
+  }
+  catch (err: any) {
     message.error(err?.message || 'Failed to load PDF');
-  } finally {
+  }
+  finally {
     isLoading.value = false;
   }
 }
@@ -328,7 +361,9 @@ const canUndo = computed(() => {
 });
 
 function saveStateToHistory() {
-  if (!drawCanvasRef.value) return;
+  if (!drawCanvasRef.value) {
+    return;
+  }
   if (!pageHistory.value[currentPage.value]) {
     pageHistory.value[currentPage.value] = [];
   }
@@ -338,28 +373,37 @@ function saveStateToHistory() {
 }
 
 function undoLastAnnotation() {
-  if (!canUndo.value) return;
+  if (!canUndo.value) {
+    return;
+  }
   const history = pageHistory.value[currentPage.value];
   const previousState = history.pop();
-  
+
   if (previousState) {
     pageAnnotations.value[currentPage.value] = previousState;
-  } else {
+  }
+  else {
     pageAnnotations.value[currentPage.value] = ''; // blank
   }
   restoreCurrentDrawings();
 }
 
 async function saveCurrentDrawings() {
-  if (!drawCanvasRef.value) return;
+  if (!drawCanvasRef.value) {
+    return;
+  }
   pageAnnotations.value[currentPage.value] = drawCanvasRef.value.toDataURL('image/png');
 }
 
 async function restoreCurrentDrawings() {
   const drawCanvas = drawCanvasRef.value;
-  if (!drawCanvas) return;
+  if (!drawCanvas) {
+    return;
+  }
   const ctx = drawCanvas.getContext('2d');
-  if (!ctx) return;
+  if (!ctx) {
+    return;
+  }
   ctx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
 
   const savedData = pageAnnotations.value[currentPage.value];
@@ -373,7 +417,9 @@ async function restoreCurrentDrawings() {
 }
 
 async function renderPage(pageNum: number) {
-  if (!pdfDocInstance) return;
+  if (!pdfDocInstance) {
+    return;
+  }
   if (currentRenderTask) {
     currentRenderTask.cancel();
   }
@@ -384,7 +430,9 @@ async function renderPage(pageNum: number) {
     const pdfCanvas = pdfCanvasRef.value;
     const drawCanvas = drawCanvasRef.value;
 
-    if (!pdfCanvas || !drawCanvas) return;
+    if (!pdfCanvas || !drawCanvas) {
+      return;
+    }
 
     pdfCanvas.width = viewport.width;
     pdfCanvas.height = viewport.height;
@@ -408,7 +456,8 @@ async function renderPage(pageNum: number) {
           try {
             const fontObj = page.commonObjs.get(item.fontName);
             fontFamily = fontObj?.name || item.fontName;
-          } catch (e) {
+          }
+          catch (e) {
             fontFamily = item.fontName;
           }
         }
@@ -420,7 +469,7 @@ async function renderPage(pageNum: number) {
           width: item.width || (origHeight * item.str.length * 0.55),
           height: origHeight,
           fontName: item.fontName,
-          fontFamily
+          fontFamily,
         });
       }
     }
@@ -450,7 +499,8 @@ async function renderPage(pageNum: number) {
         last.str += (item.pdfLibTx - (unscaledLastTx + unscaledLastWidth) > 2 ? ' ' : '') + item.str;
         const newTotalWidth = (item.pdfLibTx + item.width) - unscaledLastTx;
         last.width = newTotalWidth * zoomScale.value;
-      } else {
+      }
+      else {
         // Start a new text segment
         const tx = item.pdfLibTx * zoomScale.value;
         const ty = viewport.height - (item.pdfLibTy * zoomScale.value) - (item.origSize * zoomScale.value);
@@ -468,7 +518,7 @@ async function renderPage(pageNum: number) {
           fontSize: Math.round(item.origSize * zoomScale.value),
           pdfLibTy: item.pdfLibTy,
           fontName: item.fontName,
-          fontFamily: item.fontFamily
+          fontFamily: item.fontFamily,
         });
       }
     }
@@ -476,7 +526,8 @@ async function renderPage(pageNum: number) {
     currentPageTextItems.value = mergedItems;
 
     restoreCurrentDrawings();
-  } catch (err: any) {
+  }
+  catch (err: any) {
     if (err?.name !== 'RenderingCancelledException') {
       console.error('Render error:', err);
     }
@@ -495,10 +546,12 @@ function openTextEditor(item: InteractiveTextItem) {
     if (fn.includes('serif') || fn.includes('times') || fn.includes('traditional') || fn.includes('naskh') || fn.includes('amiri') || fn.includes('sakkal')) {
       editTextFont.value = 'Amiri';
       message.info(`Detected font: ${item.fontFamily || item.fontName}. Recommended: "Amiri".`);
-    } else if (fn.includes('sans') || fn.includes('arial') || fn.includes('kufi') || fn.includes('ge_ss') || fn.includes('boutros') || fn.includes('frutiger') || fn.includes('cairo') || fn.includes('tahoma') || fn.includes('segoe')) {
+    }
+    else if (fn.includes('sans') || fn.includes('arial') || fn.includes('kufi') || fn.includes('ge_ss') || fn.includes('boutros') || fn.includes('frutiger') || fn.includes('cairo') || fn.includes('tahoma') || fn.includes('segoe')) {
       editTextFont.value = 'Cairo';
       message.info(`Detected font: ${item.fontFamily || item.fontName}. Recommended: "Cairo".`);
-    } else {
+    }
+    else {
       editTextFont.value = 'Cairo'; // Default fallback
       message.info(`Detected font: ${item.fontFamily || item.fontName}. Selected default: "Cairo".`);
     }
@@ -508,7 +561,9 @@ function openTextEditor(item: InteractiveTextItem) {
 }
 
 async function applyDirectTextEdit() {
-  if (!selectedTextItem.value || !file.value) return;
+  if (!selectedTextItem.value || !file.value) {
+    return;
+  }
   const item = selectedTextItem.value;
   const newText = editTextValue.value;
   showEditModal.value = false;
@@ -524,9 +579,9 @@ async function applyDirectTextEdit() {
 
     // Color conversion
     const hex = editTextColor.value.replace('#', '');
-    const r = parseInt(hex.substring(0, 2), 16) / 255 || 0;
-    const g = parseInt(hex.substring(2, 4), 16) / 255 || 0;
-    const b = parseInt(hex.substring(4, 6), 16) / 255 || 0;
+    const r = Number.parseInt(hex.substring(0, 2), 16) / 255 || 0;
+    const g = Number.parseInt(hex.substring(2, 4), 16) / 255 || 0;
+    const b = Number.parseInt(hex.substring(4, 6), 16) / 255 || 0;
     const color = rgb(r, g, b);
 
     // PDF original coordinates
@@ -547,7 +602,7 @@ async function applyDirectTextEdit() {
     // 2. Draw newly edited text at exact position with Arabic shaping & BiDi
     if (newText) {
       const computedFontSize = editTextFontSize.value || Math.max(8, Math.round(unscaledHeight));
-      
+
       const runs = getVisualRuns(newText);
       let totalWidth = 0;
       for (const run of runs) {
@@ -564,7 +619,9 @@ async function applyDirectTextEdit() {
 
       let currentX = startX;
       for (const run of runs) {
-        if (!run.text) continue;
+        if (!run.text) {
+          continue;
+        }
         pdfLibPage.drawText(run.text, {
           x: currentX,
           y: unscaledTy,
@@ -580,16 +637,20 @@ async function applyDirectTextEdit() {
     const blob = new Blob([modifiedBytes], { type: 'application/pdf' });
     file.value = new File([blob], file.value.name, { type: 'application/pdf' });
     await loadPdf();
-    message.success(`Text updated directly in PDF!`);
-  } catch (err: any) {
-    message.error('Failed to update text: ' + (err?.message || 'Error'));
-  } finally {
+    message.success('Text updated directly in PDF!');
+  }
+  catch (err: any) {
+    message.error(`Failed to update text: ${err?.message || 'Error'}`);
+  }
+  finally {
     isLoading.value = false;
   }
 }
 
 async function goToPage(page: number) {
-  if (page < 1 || page > totalPages.value || page === currentPage.value) return;
+  if (page < 1 || page > totalPages.value || page === currentPage.value) {
+    return;
+  }
   saveCurrentDrawings();
   currentPage.value = page;
   await renderPage(currentPage.value);
@@ -601,15 +662,21 @@ let drawSnapshot: ImageData | null = null;
 
 // Canvas Drawing Listeners
 function startDraw(e: MouseEvent) {
-  if (activeTool.value === 'select') return;
+  if (activeTool.value === 'select') {
+    return;
+  }
   const canvas = drawCanvasRef.value;
-  if (!canvas) return;
+  if (!canvas) {
+    return;
+  }
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
   const ctx = canvas.getContext('2d');
-  if (!ctx) return;
+  if (!ctx) {
+    return;
+  }
 
   if (activeTool.value === 'text') {
     if (!textToAdd.value.trim()) {
@@ -625,7 +692,7 @@ function startDraw(e: MouseEvent) {
   startY.value = y;
   lastX.value = x;
   lastY.value = y;
-  
+
   // Save a snapshot of the current canvas for drag preview
   drawSnapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
@@ -638,35 +705,43 @@ function startDraw(e: MouseEvent) {
 }
 
 function onDraw(e: MouseEvent) {
-  if (!isDrawing.value) return;
+  if (!isDrawing.value) {
+    return;
+  }
   const canvas = drawCanvasRef.value;
-  if (!canvas) return;
+  if (!canvas) {
+    return;
+  }
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
   const ctx = canvas.getContext('2d');
-  if (!ctx) return;
+  if (!ctx) {
+    return;
+  }
 
   if (activeTool.value === 'whiteout' || activeTool.value === 'rect' || activeTool.value === 'text') {
     // Restore previous state so we only draw the current preview shape
     if (drawSnapshot) {
       ctx.putImageData(drawSnapshot, 0, 0);
     }
-    
+
     if (activeTool.value === 'text') {
       ctx.font = `${fontSize.value * zoomScale.value}px ${getBrowserFontFamily(textFont.value)}`;
       ctx.fillStyle = fontColor.value;
       ctx.textBaseline = 'middle';
       ctx.fillText(textToAdd.value, x, y);
-    } else {
+    }
+    else {
       const width = x - startX.value;
       const height = y - startY.value;
-      
+
       if (activeTool.value === 'whiteout') {
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(startX.value, startY.value, width, height);
-      } else if (activeTool.value === 'rect') {
+      }
+      else if (activeTool.value === 'rect') {
         ctx.strokeStyle = strokeColor.value;
         ctx.lineWidth = strokeWidth.value;
         ctx.strokeRect(startX.value, startY.value, width, height);
@@ -701,9 +776,13 @@ function stopDraw() {
 function clearCurrentPageAnnotations() {
   saveStateToHistory();
   const canvas = drawCanvasRef.value;
-  if (!canvas) return;
+  if (!canvas) {
+    return;
+  }
   const ctx = canvas.getContext('2d');
-  if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (ctx) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
   delete pageAnnotations.value[currentPage.value];
   message.info('Annotations cleared for this page');
 }
@@ -718,15 +797,15 @@ async function executeFindAndReplace() {
   try {
     const bytes = await file.value.arrayBuffer();
     const pdfLibDoc = await PDFDocument.load(bytes);
-    
+
     // Embed chosen font with Unicode/Arabic fallback
     const font = await getEmbeddedFont(pdfLibDoc, replaceFontFamily.value, replacementText.value || searchText.value);
 
     // Convert hex color to rgb
     const hex = replaceTextColor.value.replace('#', '');
-    const r = parseInt(hex.substring(0, 2), 16) / 255 || 0;
-    const g = parseInt(hex.substring(2, 4), 16) / 255 || 0;
-    const b = parseInt(hex.substring(4, 6), 16) / 255 || 0;
+    const r = Number.parseInt(hex.substring(0, 2), 16) / 255 || 0;
+    const g = Number.parseInt(hex.substring(2, 4), 16) / 255 || 0;
+    const b = Number.parseInt(hex.substring(4, 6), 16) / 255 || 0;
     const textColor = rgb(r, g, b);
 
     const startPage = replaceScope.value === 'current' ? currentPage.value : 1;
@@ -762,7 +841,7 @@ async function executeFindAndReplace() {
           if (replacementText.value) {
             const runs = getVisualRuns(replacementText.value);
             const computedFontSize = Math.max(8, finalSize);
-            
+
             let totalWidth = 0;
             for (const run of runs) {
               totalWidth += font.widthOfTextAtSize(run.text, computedFontSize);
@@ -776,7 +855,9 @@ async function executeFindAndReplace() {
 
             let currentX = startX;
             for (const run of runs) {
-              if (!run.text) continue;
+              if (!run.text) {
+                continue;
+              }
               pdfLibPage.drawText(run.text, {
                 x: currentX,
                 y: ty,
@@ -801,16 +882,20 @@ async function executeFindAndReplace() {
     file.value = new File([blob], file.value.name, { type: 'application/pdf' });
     await loadPdf();
     message.warning(`Applied ${matchCount} visual overlay(s). Original text remains searchable and extractable; this is not redaction.`);
-  } catch (err: any) {
-    message.error('Replace failed: ' + (err?.message || 'Error'));
-  } finally {
+  }
+  catch (err: any) {
+    message.error(`Replace failed: ${err?.message || 'Error'}`);
+  }
+  finally {
     isReplacing.value = false;
   }
 }
 
 // Export / Download Modified PDF
 async function saveAndDownload() {
-  if (!file.value) return;
+  if (!file.value) {
+    return;
+  }
   saveCurrentDrawings();
   isSaving.value = true;
   try {
@@ -842,9 +927,11 @@ async function saveAndDownload() {
     a.click();
     URL.revokeObjectURL(url);
     message.success('Modified PDF downloaded successfully!');
-  } catch (err: any) {
+  }
+  catch (err: any) {
     message.error(err?.message || 'Failed to export PDF');
-  } finally {
+  }
+  finally {
     isSaving.value = false;
   }
 }
@@ -867,7 +954,7 @@ async function saveAndDownload() {
         <p style="color: var(--n-text-color-3)">
           {{ file ? `${file.name} (${totalPages} pages)` : 'Click to select or drop a PDF file here' }}
         </p>
-        <input ref="fi" type="file" accept=".pdf" style="display: none" @change="onFileSelected" />
+        <input ref="fi" type="file" accept=".pdf" style="display: none" @change="onFileSelected">
       </div>
       <n-spin v-if="isLoading" mt-3 />
     </c-card>
@@ -878,7 +965,7 @@ async function saveAndDownload() {
         <n-tabs type="line" animated>
           <!-- Tab 1: Visual Annotate & Draw -->
           <n-tab-pane name="visual" tab="✏️ Visual Markup & Signature">
-            <div flex flex-wrap gap-3 items-center mb-4>
+            <div mb-4 flex flex-wrap items-center gap-3>
               <span text-sm font-semibold>Tool:</span>
               <n-button-group size="small">
                 <n-button :type="activeTool === 'select' ? 'primary' : 'default'" @click="activeTool = 'select'">
@@ -902,15 +989,15 @@ async function saveAndDownload() {
               </n-button-group>
 
               <!-- Pen controls -->
-              <div v-if="activeTool === 'draw'" flex gap-2 items-center>
+              <div v-if="activeTool === 'draw'" flex items-center gap-2>
                 <span text-xs>Color:</span>
-                <input type="color" v-model="strokeColor" style="width: 28px; height: 28px; border: none; cursor: pointer" />
+                <input v-model="strokeColor" type="color" style="width: 28px; height: 28px; border: none; cursor: pointer">
                 <span text-xs>Size:</span>
                 <n-input-number v-model:value="strokeWidth" size="tiny" :min="1" :max="20" style="width: 70px" />
               </div>
 
               <!-- Text controls -->
-              <div v-if="activeTool === 'text'" flex gap-2 items-center>
+              <div v-if="activeTool === 'text'" flex items-center gap-2>
                 <n-input v-model:value="textToAdd" size="small" placeholder="Click canvas to place text" style="width: 150px" />
                 <n-select
                   v-model:value="textFont"
@@ -919,12 +1006,12 @@ async function saveAndDownload() {
                   :options="fontOptions"
                   virtual-scroll
                 />
-                <input type="color" v-model="fontColor" style="width: 28px; height: 28px; border: none; cursor: pointer" />
+                <input v-model="fontColor" type="color" style="width: 28px; height: 28px; border: none; cursor: pointer">
                 <n-input-number v-model:value="fontSize" size="tiny" :min="10" :max="48" style="width: 70px" />
               </div>
 
-              <div flex gap-2 items-center>
-                <c-button size="small" variant="text" @click="undoLastAnnotation" :disabled="!canUndo">
+              <div flex items-center gap-2>
+                <c-button size="small" variant="text" :disabled="!canUndo" @click="undoLastAnnotation">
                   ↩️ Undo
                 </c-button>
                 <c-button size="small" variant="text" @click="clearCurrentPageAnnotations">
@@ -932,7 +1019,7 @@ async function saveAndDownload() {
                 </c-button>
               </div>
             </div>
-            <p text-xs text-slate-400 mb-2>
+            <p mb-2 text-xs text-slate-400>
               💡 Click and drag directly on the page canvas below to draw, sign, or click to stamp text/whiteout.
             </p>
           </n-tab-pane>
@@ -944,7 +1031,7 @@ async function saveAndDownload() {
               copied or extracted. This is not permanent text removal or secure redaction.
               Do not use this operation to hide sensitive information.
             </c-alert>
-            <div grid grid-cols-1 md:grid-cols-2 gap-3 mb-3>
+            <div grid grid-cols-1 mb-3 gap-3 md:grid-cols-2>
               <n-form-item label="Original Text to Find">
                 <n-input v-model:value="searchText" placeholder="Word or phrase to find..." />
               </n-form-item>
@@ -953,12 +1040,16 @@ async function saveAndDownload() {
               </n-form-item>
             </div>
 
-            <div flex flex-wrap gap-4 items-center mb-4 p-3 rounded-lg border border-slate-200 bg-slate-50>
+            <div mb-4 flex flex-wrap items-center gap-4 border border-slate-200 rounded-lg bg-slate-50 p-3>
               <div flex items-center gap-2>
                 <span text-xs font-semibold>Scope:</span>
                 <n-radio-group v-model:value="replaceScope" size="small">
-                  <n-radio-button value="current">Current Page ({{ currentPage }})</n-radio-button>
-                  <n-radio-button value="all">All Pages</n-radio-button>
+                  <n-radio-button value="current">
+                    Current Page ({{ currentPage }})
+                  </n-radio-button>
+                  <n-radio-button value="all">
+                    All Pages
+                  </n-radio-button>
                 </n-radio-group>
               </div>
 
@@ -980,7 +1071,7 @@ async function saveAndDownload() {
 
               <div flex items-center gap-2>
                 <span text-xs font-semibold>Color:</span>
-                <input type="color" v-model="replaceTextColor" style="width: 28px; height: 28px; border: none; cursor: pointer" />
+                <input v-model="replaceTextColor" type="color" style="width: 28px; height: 28px; border: none; cursor: pointer">
               </div>
 
               <div flex items-center gap-2>
@@ -1009,8 +1100,8 @@ async function saveAndDownload() {
       <!-- Page Viewer & Canvas Area -->
       <c-card mb-4>
         <!-- Page Navigation Bar -->
-        <div flex justify-between items-center mb-4 flex-wrap gap-2>
-          <div flex gap-2 items-center>
+        <div mb-4 flex flex-wrap items-center justify-between gap-2>
+          <div flex items-center gap-2>
             <c-button size="small" :disabled="currentPage <= 1" @click="goToPage(currentPage - 1)">
               ◀ Prev Page
             </c-button>
@@ -1020,7 +1111,7 @@ async function saveAndDownload() {
             </c-button>
           </div>
 
-          <div flex gap-2 items-center>
+          <div flex items-center gap-2>
             <c-button size="small" @click="zoomScale = Math.max(0.8, zoomScale - 0.2); renderPage(currentPage)">
               ➖ Zoom Out
             </c-button>
@@ -1047,7 +1138,7 @@ async function saveAndDownload() {
         >
           <div style="position: relative; box-shadow: 0 4px 20px rgba(0,0,0,0.5)">
             <!-- Base PDF Render Canvas -->
-            <canvas ref="pdfCanvasRef" style="display: block; background: #ffffff"></canvas>
+            <canvas ref="pdfCanvasRef" style="display: block; background: #ffffff" />
 
             <!-- Interactive Text Layer (Click to edit text directly) -->
             <div
@@ -1069,7 +1160,7 @@ async function saveAndDownload() {
                 }"
                 @click="openTextEditor(item)"
               >
-                <div class="hover-outline"></div>
+                <div class="hover-outline" />
               </div>
             </div>
 
@@ -1085,7 +1176,7 @@ async function saveAndDownload() {
               @mousemove="onDraw"
               @mouseup="stopDraw"
               @mouseleave="stopDraw"
-            ></canvas>
+            />
           </div>
         </div>
       </c-card>
@@ -1095,7 +1186,7 @@ async function saveAndDownload() {
         <div v-if="selectedTextItem">
           <div mb-3>
             <span text-xs text-slate-500>Original Text:</span>
-            <div p-2 mt-1 rounded bg-slate-100 border border-slate-200 text-slate-800 text-sm font-mono dir="auto">
+            <div mt-1 border border-slate-200 rounded bg-slate-100 p-2 text-sm text-slate-800 font-mono dir="auto">
               {{ normalizeExtractedText(selectedTextItem.str) }}
             </div>
           </div>
@@ -1104,19 +1195,21 @@ async function saveAndDownload() {
             <n-input v-model:value="editTextValue" placeholder="Type new text here..." dir="auto" />
           </n-form-item>
 
-          <div v-if="selectedTextItem?.fontFamily || selectedTextItem?.fontName" mb-3 p-3 bg-blue-50 rounded border border-blue-200>
+          <div v-if="selectedTextItem?.fontFamily || selectedTextItem?.fontName" mb-3 border border-blue-200 rounded bg-blue-50 p-3>
             <div flex items-start gap-2>
-              <div text-blue-500 text-lg>💡</div>
+              <div text-lg text-blue-500>
+                💡
+              </div>
               <div text-xs text-blue-800 leading-relaxed>
-                <span font-semibold block mb-1>تم اكتشاف خط: {{ selectedTextItem.fontFamily || selectedTextItem.fontName }}</span>
+                <span mb-1 block font-semibold>تم اكتشاف خط: {{ selectedTextItem.fontFamily || selectedTextItem.fontName }}</span>
                 بناءً على الخط الأصلي، تم تحديد أقرب خط متاح لك تلقائياً للحفاظ على شكل المستند.
               </div>
             </div>
           </div>
 
-          <div grid grid-cols-3 gap-3 mb-4>
+          <div grid grid-cols-3 mb-4 gap-3>
             <n-form-item label="Font Style:">
-              <div flex flex-col gap-1 w-full>
+              <div w-full flex flex-col gap-1>
                 <n-select
                   v-model:value="editTextFont"
                   size="small"
@@ -1134,35 +1227,55 @@ async function saveAndDownload() {
             </n-form-item>
 
             <n-form-item label="Color:">
-              <input type="color" v-model="editTextColor" class="w-full h-8 cursor-pointer rounded" />
+              <input v-model="editTextColor" type="color" class="h-8 w-full cursor-pointer rounded">
             </n-form-item>
           </div>
 
           <div flex justify-end gap-2>
-            <n-button @click="showEditModal = false">Cancel</n-button>
-            <n-button type="primary" @click="applyDirectTextEdit">Update Text</n-button>
+            <n-button @click="showEditModal = false">
+              Cancel
+            </n-button>
+            <n-button type="primary" @click="applyDirectTextEdit">
+              Update Text
+            </n-button>
           </div>
         </div>
       </n-modal>
     </template>
 
     <!-- SEO Rich Content Section -->
-    <div mt-12 mb-8 style="max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.6; color: var(--n-text-color-3)">
-      <h2 text-xl font-bold mb-4 style="color: var(--n-text-color-1)">The Best Free PDF Editor Online</h2>
+    <div mb-8 mt-12 style="max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.6; color: var(--n-text-color-3)">
+      <h2 mb-4 text-xl font-bold style="color: var(--n-text-color-1)">
+        The Best Free PDF Editor Online
+      </h2>
       <p mb-4>
         Welcome to the most advanced, 100% free client-side PDF editor. Unlike other services, <strong>we never upload your PDF files to our servers</strong>. All processing, text editing, and PDF manipulation happens securely inside your own web browser, ensuring your private and confidential documents remain yours alone.
       </p>
 
-      <h3 text-lg font-bold mt-6 mb-2 style="color: var(--n-text-color-1)">Advanced Features & Arabic Support</h3>
+      <h3 mb-2 mt-6 text-lg font-bold style="color: var(--n-text-color-1)">
+        Advanced Features & Arabic Support
+      </h3>
       <ul style="list-style-type: disc; padding-left: 20px;" mb-4>
-        <li mb-2><strong>Direct Text Editing:</strong> Click any text in your PDF to instantly modify it. We detect the original font and offer the closest match.</li>
-        <li mb-2><strong>Full Arabic & RTL Support:</strong> Seamlessly edit, find, and replace Arabic text. The editor handles complex BiDi shaping, ligatures, and right-to-left logical rendering perfectly.</li>
-        <li mb-2><strong>Local System Fonts:</strong> Load your own installed operating system fonts (like Times New Roman, Arial, Cairo) directly into the browser to match the PDF's native typography perfectly.</li>
-        <li mb-2><strong>Visual text overlays:</strong> Cover words visually and add replacement text. The original text remains extractable. This is not secure redaction.</li>
-        <li mb-2><strong>Sign & Markup:</strong> Add electronic signatures, draw with the pen tool, or insert text boxes and whiteouts anywhere on the page.</li>
+        <li mb-2>
+          <strong>Direct Text Editing:</strong> Click any text in your PDF to instantly modify it. We detect the original font and offer the closest match.
+        </li>
+        <li mb-2>
+          <strong>Full Arabic & RTL Support:</strong> Seamlessly edit, find, and replace Arabic text. The editor handles complex BiDi shaping, ligatures, and right-to-left logical rendering perfectly.
+        </li>
+        <li mb-2>
+          <strong>Local System Fonts:</strong> Load your own installed operating system fonts (like Times New Roman, Arial, Cairo) directly into the browser to match the PDF's native typography perfectly.
+        </li>
+        <li mb-2>
+          <strong>Visual text overlays:</strong> Cover words visually and add replacement text. The original text remains extractable. This is not secure redaction.
+        </li>
+        <li mb-2>
+          <strong>Sign & Markup:</strong> Add electronic signatures, draw with the pen tool, or insert text boxes and whiteouts anywhere on the page.
+        </li>
       </ul>
 
-      <h3 text-lg font-bold mt-6 mb-2 style="color: var(--n-text-color-1)">Why use our Client-Side PDF Editor?</h3>
+      <h3 mb-2 mt-6 text-lg font-bold style="color: var(--n-text-color-1)">
+        Why use our Client-Side PDF Editor?
+      </h3>
       <p>
         Most free PDF editors require you to upload your sensitive documents to a third-party cloud server, putting your data privacy at risk. DevTol's PDF Editor utilizes modern WebAssembly (WASM) and HTML5 Canvas technologies to decode, render, and repackage your PDF entirely on your machine. This guarantees zero data transmission, blazing fast performance, and no file size limits.
       </p>

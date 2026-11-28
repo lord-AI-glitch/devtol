@@ -1,4 +1,4 @@
-import { useRoute, useRouter, type LocationQuery } from 'vue-router';
+import { type LocationQuery, useRoute, useRouter } from 'vue-router';
 import { useMessage } from 'naive-ui';
 import { useCopy } from '@/composable/copy';
 

@@ -1,5 +1,6 @@
-import { defineTool } from '../tool';
 import { ShieldLock } from '@vicons/tabler';
+import { defineTool } from '../tool';
+
 export const tool = defineTool({
   name: 'Text Encrypt & Decrypt',
   path: '/text-encrypt',

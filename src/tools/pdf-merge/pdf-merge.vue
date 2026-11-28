@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useMessage } from 'naive-ui';
 import { PDFDocument } from 'pdf-lib';
 
@@ -11,7 +11,9 @@ const resultSize = ref(0);
 
 function onFileChange(e: Event) {
   const input = e.target as HTMLInputElement;
-  if (input.files) files.value = [...files.value, ...Array.from(input.files)];
+  if (input.files) {
+    files.value = [...files.value, ...Array.from(input.files)];
+  }
 }
 
 function removeFile(i: number) {
@@ -19,15 +21,22 @@ function removeFile(i: number) {
 }
 
 function formatBytes(b: number) {
-  if (b < 1024) return b + ' B';
-  if (b < 1048576) return (b / 1024).toFixed(1) + ' KB';
-  return (b / 1048576).toFixed(2) + ' MB';
+  if (b < 1024) {
+    return `${b} B`;
+  }
+  if (b < 1048576) {
+    return `${(b / 1024).toFixed(1)} KB`;
+  }
+  return `${(b / 1048576).toFixed(2)} MB`;
 }
 
 const totalSize = computed(() => files.value.reduce((a, f) => a + f.size, 0));
 
 async function mergePDFs() {
-  if (files.value.length < 2) { message.warning('Please add at least 2 PDF files'); return; }
+  if (files.value.length < 2) {
+    message.warning('Please add at least 2 PDF files');
+    return;
+  }
   isProcessing.value = true;
   resultUrl.value = null;
   try {
@@ -43,15 +52,19 @@ async function mergePDFs() {
     resultUrl.value = URL.createObjectURL(blob);
     resultSize.value = blob.size;
     message.success('PDF merged successfully!');
-  } catch (err: any) {
-    message.error('Error: ' + (err?.message || 'Failed to merge PDFs'));
-  } finally {
+  }
+  catch (err: any) {
+    message.error(`Error: ${err?.message || 'Failed to merge PDFs'}`);
+  }
+  finally {
     isProcessing.value = false;
   }
 }
 
 function download() {
-  if (!resultUrl.value) return;
+  if (!resultUrl.value) {
+    return;
+  }
   const a = document.createElement('a');
   a.href = resultUrl.value;
   a.download = 'merged.pdf';
@@ -66,9 +79,13 @@ function download() {
         style="border: 2px dashed var(--n-border-color); border-radius: 8px; padding: 32px; text-align: center; cursor: pointer;"
         @click="($refs.fileInput as HTMLInputElement).click()"
       >
-        <n-icon size="40" style="color: var(--n-text-color-3)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></n-icon>
-        <p mt-2 text-sm style="color: var(--n-text-color-2)">Click to add PDF files or drag & drop</p>
-        <input ref="fileInput" type="file" accept=".pdf" multiple style="display:none" @change="onFileChange" />
+        <n-icon size="40" style="color: var(--n-text-color-3)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="12" y1="18" x2="12" y2="12" /><line x1="9" y1="15" x2="15" y2="15" /></svg>
+        </n-icon>
+        <p mt-2 text-sm style="color: var(--n-text-color-2)">
+          Click to add PDF files or drag & drop
+        </p>
+        <input ref="fileInput" type="file" accept=".pdf" multiple style="display:none" @change="onFileChange">
       </div>
     </c-card>
 
@@ -77,11 +94,13 @@ function download() {
         <n-list-item v-for="(file, i) in files" :key="i">
           <n-thing :title="file.name" :description="formatBytes(file.size)" />
           <template #suffix>
-            <c-button size="small" variant="text" @click="removeFile(i)">Remove</c-button>
+            <c-button size="small" variant="text" @click="removeFile(i)">
+              Remove
+            </c-button>
           </template>
         </n-list-item>
       </n-list>
-      <div mt-4 flex gap-2 justify-between items-center>
+      <div mt-4 flex items-center justify-between gap-2>
         <span text-sm style="color: var(--n-text-color-3)">{{ files.length }} files · {{ formatBytes(totalSize) }} total</span>
         <c-button :disabled="isProcessing || files.length < 2" @click="mergePDFs">
           <n-spin v-if="isProcessing" size="small" mr-2 />
@@ -91,9 +110,11 @@ function download() {
     </c-card>
 
     <c-card v-if="resultUrl" title="Result" style="border: 1px solid var(--n-success-color);">
-      <div flex gap-2 items-center justify-between>
+      <div flex items-center justify-between gap-2>
         <span>✅ Merged PDF ready · {{ formatBytes(resultSize) }}</span>
-        <c-button @click="download">Download merged.pdf</c-button>
+        <c-button @click="download">
+          Download merged.pdf
+        </c-button>
       </div>
     </c-card>
   </div>

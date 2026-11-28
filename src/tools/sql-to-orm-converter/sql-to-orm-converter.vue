@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
-import { useCopy } from '@/composable/copy';
+import { computed, ref } from 'vue';
+import { Check, Code, Copy, Database, Download, Table } from '@vicons/tabler';
 import {
-  parseSqlSchema,
-  convertSqlToOrm,
   type OrmTarget,
+  convertSqlToOrm,
+  parseSqlSchema,
 } from './sql-to-orm-converter.service';
-import { Copy, Download, Refresh, Check, Code, Database, Table } from '@vicons/tabler';
+import { useCopy } from '@/composable/copy';
 
 const { copy, isCopied } = useCopy();
 
@@ -101,7 +101,8 @@ const targets: { label: string; value: OrmTarget; ext: string; lang: string }[] 
 const parsedTables = computed(() => {
   try {
     return parseSqlSchema(rawSql.value);
-  } catch (err) {
+  }
+  catch (err) {
     return [];
   }
 });
@@ -111,10 +112,13 @@ const totalColumns = computed(() => {
 });
 
 const generatedCode = computed(() => {
-  if (!rawSql.value.trim()) return '';
+  if (!rawSql.value.trim()) {
+    return '';
+  }
   try {
     return convertSqlToOrm(rawSql.value, selectedTarget.value);
-  } catch (err: any) {
+  }
+  catch (err: any) {
     return `// Error converting SQL schema: ${err?.message || 'Syntax error'}`;
   }
 });
@@ -130,7 +134,9 @@ function handleCopy() {
 }
 
 function handleDownload() {
-  if (!generatedCode.value) return;
+  if (!generatedCode.value) {
+    return;
+  }
   const currentTarget = targets.find(t => t.value === selectedTarget.value);
   const ext = currentTarget?.ext || 'txt';
   const blob = new Blob([generatedCode.value], { type: 'text/plain;charset=utf-8' });
@@ -150,12 +156,12 @@ function clearSql() {
 <template>
   <div class="space-y-6">
     <!-- Top presets bar -->
-    <div class="flex flex-wrap items-center justify-between gap-3 p-4 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700/60">
+    <div class="flex flex-wrap items-center justify-between gap-3 border border-slate-200 rounded-xl bg-slate-50 p-4 dark:border-slate-700/60 dark:bg-slate-800/60">
       <div class="flex items-center gap-2">
         <n-icon :size="20" class="text-primary-500">
           <Database />
         </n-icon>
-        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Load Template Preset:</span>
+        <span class="text-sm text-slate-700 font-semibold dark:text-slate-200">Load Template Preset:</span>
       </div>
       <div class="flex flex-wrap items-center gap-2">
         <n-button size="small" secondary @click="loadPreset('auth')">
@@ -174,16 +180,16 @@ function clearSql() {
     </div>
 
     <!-- Main 2-column grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
       <!-- Left: SQL Input -->
       <div class="flex flex-col space-y-3">
         <div class="flex items-center justify-between">
-          <label class="text-sm font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+          <label class="flex items-center gap-2 text-sm text-slate-800 font-semibold dark:text-slate-200">
             <n-icon :size="16"><Code /></n-icon>
             <span>Raw SQL DDL (CREATE TABLE)</span>
           </label>
           <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-            <span v-if="parsedTables.length > 0" class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-medium">
+            <span v-if="parsedTables.length > 0" class="rounded bg-emerald-100 px-2 py-0.5 text-emerald-700 font-medium dark:bg-emerald-950/60 dark:text-emerald-400">
               {{ parsedTables.length }} Table{{ parsedTables.length > 1 ? 's' : '' }} ({{ totalColumns }} Cols)
             </span>
           </div>
@@ -194,7 +200,7 @@ function clearSql() {
           type="textarea"
           placeholder="Paste raw SQL CREATE TABLE statements here..."
           :rows="18"
-          class="font-mono text-xs"
+          class="text-xs font-mono"
         />
 
         <!-- Detected tables badges -->
@@ -202,9 +208,11 @@ function clearSql() {
           <div
             v-for="t in parsedTables"
             :key="t.name"
-            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700"
+            class="inline-flex items-center gap-1.5 border border-slate-200 rounded-md bg-slate-100 px-2.5 py-1 text-xs text-slate-700 font-mono dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
           >
-            <n-icon :size="12" class="text-primary-500"><Table /></n-icon>
+            <n-icon :size="12" class="text-primary-500">
+              <Table />
+            </n-icon>
             <span class="font-semibold">{{ t.name }}</span>
             <span class="text-slate-400">({{ t.columns.length }})</span>
           </div>
@@ -214,7 +222,7 @@ function clearSql() {
       <!-- Right: Target ORM Selector & Output -->
       <div class="flex flex-col space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2">
-          <label class="text-sm font-semibold text-slate-800 dark:text-slate-200">
+          <label class="text-sm text-slate-800 font-semibold dark:text-slate-200">
             Target ORM / Framework
           </label>
           <div class="flex items-center gap-2">
@@ -245,16 +253,16 @@ function clearSql() {
         </div>
 
         <!-- ORM Target Tabs -->
-        <div class="flex flex-wrap gap-1 p-1 bg-slate-100 dark:bg-slate-800/80 rounded-lg border border-slate-200 dark:border-slate-700/60">
+        <div class="flex flex-wrap gap-1 border border-slate-200 rounded-lg bg-slate-100 p-1 dark:border-slate-700/60 dark:bg-slate-800/80">
           <button
             v-for="t in targets"
             :key="t.value"
             type="button"
-            class="px-3 py-1.5 text-xs font-medium rounded-md transition-all"
+            class="rounded-md px-3 py-1.5 text-xs font-medium transition-all"
             :class="[
               selectedTarget === t.value
                 ? 'bg-white dark:bg-slate-700 text-primary-600 dark:text-primary-400 shadow-sm font-semibold'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100',
             ]"
             @click="selectedTarget = t.value"
           >
@@ -268,15 +276,15 @@ function clearSql() {
           readonly
           placeholder="ORM code will appear here automatically..."
           :rows="18"
-          class="font-mono text-xs"
+          class="text-xs font-mono"
         />
       </div>
     </div>
 
     <!-- Feature highlights -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
-      <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/50">
-        <h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">
+    <div class="grid grid-cols-1 gap-4 border-t border-slate-200 pt-4 md:grid-cols-3 dark:border-slate-800">
+      <div class="border border-slate-200/80 rounded-xl bg-slate-50 p-4 dark:border-slate-700/50 dark:bg-slate-800/40">
+        <h4 class="mb-1 text-sm text-slate-800 font-semibold dark:text-slate-200">
           Zero-Server Client-Side
         </h4>
         <p class="text-xs text-slate-600 dark:text-slate-400">
@@ -284,8 +292,8 @@ function clearSql() {
         </p>
       </div>
 
-      <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/50">
-        <h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">
+      <div class="border border-slate-200/80 rounded-xl bg-slate-50 p-4 dark:border-slate-700/50 dark:bg-slate-800/40">
+        <h4 class="mb-1 text-sm text-slate-800 font-semibold dark:text-slate-200">
           Modern Frameworks
         </h4>
         <p class="text-xs text-slate-600 dark:text-slate-400">
@@ -293,8 +301,8 @@ function clearSql() {
         </p>
       </div>
 
-      <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/50">
-        <h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">
+      <div class="border border-slate-200/80 rounded-xl bg-slate-50 p-4 dark:border-slate-700/50 dark:bg-slate-800/40">
+        <h4 class="mb-1 text-sm text-slate-800 font-semibold dark:text-slate-200">
           Relationship-Aware
         </h4>
         <p class="text-xs text-slate-600 dark:text-slate-400">
