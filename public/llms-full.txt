@@ -16,10 +16,11 @@
 - [Compress PDF](https://devtol.online/pdf-compress): Reduce PDF file size with adjustable quality. 100% browser-based, no uploads.
 - [PDF to Image](https://devtol.online/pdf-to-image): Convert PDF pages to PNG or JPG images. Download all pages as a ZIP. Client-side only.
 - [Images to PDF](https://devtol.online/images-to-pdf): Convert JPG, PNG, or WebP images into a single PDF document. No server uploads.
+- [PDF Protect & Unlock](https://devtol.online/pdf-protect): Password-protect or unlock PDF files directly in your browser. Zero server uploads.
 - [Organize PDF Pages](https://devtol.online/pdf-organize): Reorder and rotate PDF pages visually. Drag and rearrange pages then download.
 - [PDF OCR Text Extractor](https://devtol.online/pdf-ocr): Extract text from scanned PDFs and images using OCR. Supports multiple languages.
+- [PDF Redaction Tool](https://devtol.online/pdf-redact): Permanently redact sensitive text from PDF files. Client-side privacy guaranteed.
 - [PDF Watermark](https://devtol.online/pdf-watermark-tool): Add text watermarks to all pages of a PDF. Custom position, opacity, and font.
-- [PDF signature checker](https://devtol.online/pdf-signature-checker): Verify the signatures of a PDF file. A signed PDF file contains one or more signatures that may be used to determine whether the contents of the file have been altered since the file was signed.
 
 ### AI Tools
 - [AI token & LLM cost calculator](https://devtol.online/ai-token-cost-calculator): Estimate prompt tokens via BPE heuristic and compare live pricing across OpenAI, Anthropic, Gemini, and DeepSeek with prompt caching discounts.
@@ -35,7 +36,7 @@
 - [Video to GIF](https://devtol.online/video-to-gif): Convert video clips to animated GIF. Set start/end time, size and FPS. Client-side.
 - [Color Palette Generator](https://devtol.online/color-palette): Generate color palettes, convert between HEX/RGB/HSL/CMYK and check WCAG contrast ratios.
 - [Favicon Generator](https://devtol.online/favicon-generator): Generate all favicon sizes (16x16 to 512x512) and app icons from a single image. Download as ZIP.
-- [Image Watermark](https://devtol.online/image-watermark): Add text watermarks to photos with custom position, opacity and style.
+- [Image Watermark](https://devtol.online/image-watermark): Add text or image watermarks to photos with custom position, opacity and style.
 - [QR Code Scanner](https://devtol.online/qr-scanner): Scan QR codes from images or your camera. Detects URLs, WiFi, vCards and plain text.
 
 ### Text Utilities
