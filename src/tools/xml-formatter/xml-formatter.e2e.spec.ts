@@ -6,7 +6,7 @@ test.describe('Tool - XML formatter', () => {
   });
 
   test('Has correct title', async ({ page }) => {
-    await expect(page).toHaveTitle('XML formatter - DevTol');
+    await expect(page).toHaveTitle('XML formatter Online — Free & Client-Side | DevTol');
   });
 
   test('XML is converted into a human readable format', async ({ page }) => {

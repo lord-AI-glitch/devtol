@@ -6,7 +6,7 @@ test.describe('Tool - Percentage calculator', () => {
   });
 
   test('Has correct title', async ({ page }) => {
-    await expect(page).toHaveTitle('Percentage calculator - DevTol');
+    await expect(page).toHaveTitle('Percentage calculator Online — Free & Client-Side | DevTol');
   });
 
   test('Correctly works out percentages', async ({ page }) => {

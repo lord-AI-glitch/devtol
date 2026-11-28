@@ -6,6 +6,6 @@ test.describe('Tool - Http status codes', () => {
   });
 
   test('Has correct title', async ({ page }) => {
-    await expect(page).toHaveTitle('HTTP status codes - DevTol');
+    await expect(page).toHaveTitle('HTTP status codes Online — Free & Client-Side | DevTol');
   });
 });

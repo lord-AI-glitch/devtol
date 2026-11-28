@@ -6,6 +6,6 @@ test.describe('Tool - Pdf signature checker', () => {
   });
 
   test('Has correct title', async ({ page }) => {
-    await expect(page).toHaveTitle('PDF signature checker - DevTol');
+    await expect(page).toHaveTitle('PDF signature checker Online — Free & Client-Side | DevTol');
   });
 });

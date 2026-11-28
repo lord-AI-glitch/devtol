@@ -6,7 +6,7 @@ test.describe('Tool - Color converter', () => {
   });
 
   test('Has title', async ({ page }) => {
-    await expect(page).toHaveTitle('Color converter - DevTol');
+    await expect(page).toHaveTitle('Color converter Online — Free & Client-Side | DevTol');
   });
 
   test('Color is converted from its name to other formats', async ({ page }) => {

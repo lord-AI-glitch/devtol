@@ -6,7 +6,7 @@ test.describe('Tool - Text to Unicode', () => {
   });
 
   test('Has correct title', async ({ page }) => {
-    await expect(page).toHaveTitle('Text to Unicode - DevTol');
+    await expect(page).toHaveTitle('Text to Unicode Online — Free & Client-Side | DevTol');
   });
 
   test('Text to unicode conversion', async ({ page }) => {
