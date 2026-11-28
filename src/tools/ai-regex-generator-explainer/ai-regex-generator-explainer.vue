@@ -1,24 +1,20 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import { useStorage } from '@vueuse/core';
 import { useMessage } from 'naive-ui';
 import { useI18n } from 'vue-i18n';
 import {
-  Copy,
   Check,
+  Copy,
   Search,
-  Code,
   Wand,
-  Refresh,
-  Terminal,
 } from '@vicons/tabler';
 import {
-  REGEX_PRESETS,
+  type RegexPreset,
   explainRegexPattern,
   generateCodeSnippets,
   matchNaturalLanguageIntent,
   testRegex,
-  type RegexPreset,
 } from './ai-regex-generator-explainer.service';
 
 const message = useMessage();
@@ -45,11 +41,21 @@ const copiedRegex = ref(false);
 
 const activeFlags = computed(() => {
   let f = '';
-  if (flagG.value) f += 'g';
-  if (flagI.value) f += 'i';
-  if (flagM.value) f += 'm';
-  if (flagS.value) f += 's';
-  if (flagU.value) f += 'u';
+  if (flagG.value) {
+    f += 'g';
+  }
+  if (flagI.value) {
+    f += 'i';
+  }
+  if (flagM.value) {
+    f += 'm';
+  }
+  if (flagS.value) {
+    f += 's';
+  }
+  if (flagU.value) {
+    f += 'u';
+  }
   return f;
 });
 
@@ -95,7 +101,8 @@ async function copyToClipboard(text: string, isSnippet = false) {
     if (isSnippet) {
       copiedCode.value = true;
       setTimeout(() => (copiedCode.value = false), 2000);
-    } else {
+    }
+    else {
       copiedRegex.value = true;
       setTimeout(() => (copiedRegex.value = false), 2000);
     }
@@ -117,10 +124,10 @@ function getTypeBadgeType(type: string): 'default' | 'info' | 'success' | 'warni
 </script>
 
 <template>
-  <div class="ai-regex-tool max-w-1100px mx-auto">
+  <div class="ai-regex-tool mx-auto max-w-1100px">
     <!-- Preset Search & Natural Language Query -->
-    <n-card size="small" class="mb-5 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm">
-      <div class="flex flex-col md:flex-row gap-3 items-center justify-between mb-3">
+    <n-card size="small" class="mb-5 border border-slate-200 rounded-xl shadow-sm dark:border-slate-800">
+      <div class="mb-3 flex flex-col items-center justify-between gap-3 md:flex-row">
         <div class="w-full md:w-1/2">
           <n-input
             v-model:value="searchQuery"
@@ -134,7 +141,7 @@ function getTypeBadgeType(type: string): 'default' | 'info' | 'success' | 'warni
         </div>
 
         <!-- Category filters -->
-        <div class="flex flex-wrap gap-1.5 justify-end">
+        <div class="flex flex-wrap justify-end gap-1.5">
           <n-button
             v-for="cat in categories"
             :key="cat"
@@ -149,7 +156,7 @@ function getTypeBadgeType(type: string): 'default' | 'info' | 'success' | 'warni
       </div>
 
       <!-- Preset Pills -->
-      <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-100 dark:border-slate-800/60 max-h-120px overflow-y-auto">
+      <div class="max-h-120px flex flex-wrap gap-2 overflow-y-auto border-t border-slate-100 pt-2 dark:border-slate-800/60">
         <n-button
           v-for="preset in filteredPresets"
           :key="preset.id"
@@ -167,21 +174,21 @@ function getTypeBadgeType(type: string): 'default' | 'info' | 'success' | 'warni
     </n-card>
 
     <!-- Regex Pattern Editor & Flag Toggles -->
-    <n-card title="Regular Expression Pattern" size="small" class="mb-5 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm">
-      <div class="flex flex-col md:flex-row gap-3 items-center">
-        <div class="flex-1 w-full">
+    <n-card title="Regular Expression Pattern" size="small" class="mb-5 border border-slate-200 rounded-xl shadow-sm dark:border-slate-800">
+      <div class="flex flex-col items-center gap-3 md:flex-row">
+        <div class="w-full flex-1">
           <n-input
             v-model:value="currentPattern"
             type="text"
             size="large"
             placeholder="Enter regex pattern (e.g. ^[a-z0-9]+$)"
-            class="font-mono text-base font-semibold"
+            class="text-base font-semibold font-mono"
           >
             <template #prefix>
-              <span class="text-emerald-600 dark:text-emerald-400 font-mono font-bold text-lg mr-1">/</span>
+              <span class="mr-1 text-lg text-emerald-600 font-bold font-mono dark:text-emerald-400">/</span>
             </template>
             <template #suffix>
-              <span class="text-emerald-600 dark:text-emerald-400 font-mono font-bold text-lg">/{{ activeFlags }}</span>
+              <span class="text-lg text-emerald-600 font-bold font-mono dark:text-emerald-400">/{{ activeFlags }}</span>
             </template>
           </n-input>
         </div>
@@ -202,27 +209,27 @@ function getTypeBadgeType(type: string): 'default' | 'info' | 'success' | 'warni
       </div>
 
       <!-- Regex Flags Toggles -->
-      <div class="flex flex-wrap gap-4 items-center mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs">
-        <span class="font-semibold text-slate-500">Flags:</span>
-        <label class="flex items-center gap-1.5 cursor-pointer">
+      <div class="mt-3 flex flex-wrap items-center gap-4 border-t border-slate-100 pt-3 text-xs dark:border-slate-800">
+        <span class="text-slate-500 font-semibold">Flags:</span>
+        <label class="flex cursor-pointer items-center gap-1.5">
           <n-checkbox v-model:checked="flagG" size="small" />
-          <span class="font-mono font-bold">g</span> (Global)
+          <span class="font-bold font-mono">g</span> (Global)
         </label>
-        <label class="flex items-center gap-1.5 cursor-pointer">
+        <label class="flex cursor-pointer items-center gap-1.5">
           <n-checkbox v-model:checked="flagI" size="small" />
-          <span class="font-mono font-bold">i</span> (Case-Insensitive)
+          <span class="font-bold font-mono">i</span> (Case-Insensitive)
         </label>
-        <label class="flex items-center gap-1.5 cursor-pointer">
+        <label class="flex cursor-pointer items-center gap-1.5">
           <n-checkbox v-model:checked="flagM" size="small" />
-          <span class="font-mono font-bold">m</span> (Multiline)
+          <span class="font-bold font-mono">m</span> (Multiline)
         </label>
-        <label class="flex items-center gap-1.5 cursor-pointer">
+        <label class="flex cursor-pointer items-center gap-1.5">
           <n-checkbox v-model:checked="flagS" size="small" />
-          <span class="font-mono font-bold">s</span> (DotAll)
+          <span class="font-bold font-mono">s</span> (DotAll)
         </label>
-        <label class="flex items-center gap-1.5 cursor-pointer">
+        <label class="flex cursor-pointer items-center gap-1.5">
           <n-checkbox v-model:checked="flagU" size="small" />
-          <span class="font-mono font-bold">u</span> (Unicode)
+          <span class="font-bold font-mono">u</span> (Unicode)
         </label>
       </div>
     </n-card>
@@ -230,32 +237,32 @@ function getTypeBadgeType(type: string): 'default' | 'info' | 'success' | 'warni
     <!-- Interactive Live Sandbox Testing -->
     <n-grid :cols="24" :x-gap="16" :y-gap="16" class="mb-5">
       <n-gi :span="24" :m="12">
-        <n-card title="Test Strings Sandbox" size="small" class="h-full border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm">
+        <n-card title="Test Strings Sandbox" size="small" class="h-full border border-slate-200 rounded-xl shadow-sm dark:border-slate-800">
           <n-input
             v-model:value="testText"
             type="textarea"
             :rows="6"
             placeholder="Type sample text here to test against the pattern..."
-            class="font-mono text-sm"
+            class="text-sm font-mono"
           />
 
           <div class="mt-3 flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span
                 v-if="testResult.matched"
-                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800"
+                class="inline-flex items-center gap-1 border border-emerald-300 rounded-full bg-emerald-100 px-2.5 py-1 text-xs text-emerald-700 font-semibold dark:border-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300"
               >
                 ✓ {{ testResult.matchCount }} Match{{ testResult.matchCount > 1 ? 'es' : '' }} Found
               </span>
               <span
                 v-else-if="testResult.error"
-                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-300 dark:border-rose-800"
+                class="inline-flex items-center gap-1 border border-rose-300 rounded-full bg-rose-100 px-2.5 py-1 text-xs text-rose-700 font-semibold dark:border-rose-800 dark:bg-rose-950/60 dark:text-rose-300"
               >
                 ⚠ Regex Syntax Error
               </span>
               <span
                 v-else
-                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400"
+                class="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-600 font-semibold dark:bg-slate-800 dark:text-slate-400"
               >
                 No Match
               </span>
@@ -270,58 +277,58 @@ function getTypeBadgeType(type: string): 'default' | 'info' | 'success' | 'warni
 
       <!-- Extracted Matches Box -->
       <n-gi :span="24" :m="12">
-        <n-card title="Captured Matches & Groups" size="small" class="h-full border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm">
-          <div v-if="testResult.matches.length > 0" class="max-h-200px overflow-y-auto space-y-2 pr-1">
+        <n-card title="Captured Matches & Groups" size="small" class="h-full border border-slate-200 rounded-xl shadow-sm dark:border-slate-800">
+          <div v-if="testResult.matches.length > 0" class="max-h-200px overflow-y-auto pr-1 space-y-2">
             <div
               v-for="(m, idx) in testResult.matches"
               :key="idx"
-              class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono"
+              class="border border-slate-200 rounded-lg bg-slate-50 p-2.5 text-xs font-mono dark:border-slate-800 dark:bg-slate-900"
             >
-              <div class="flex justify-between items-center text-slate-500 mb-1">
+              <div class="mb-1 flex items-center justify-between text-slate-500">
                 <span>Match #{{ idx + 1 }} (Index: {{ m.index }})</span>
-                <span class="text-emerald-600 dark:text-emerald-400 font-semibold">{{ m.fullMatch.length }} chars</span>
+                <span class="text-emerald-600 font-semibold dark:text-emerald-400">{{ m.fullMatch.length }} chars</span>
               </div>
-              <div class="font-bold text-slate-800 dark:text-slate-200 break-all bg-white dark:bg-slate-950 p-1.5 rounded border border-slate-100 dark:border-slate-800">
+              <div class="break-all border border-slate-100 rounded bg-white p-1.5 text-slate-800 font-bold dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200">
                 {{ m.fullMatch }}
               </div>
-              <div v-if="m.groups && m.groups.length > 0" class="mt-2 pt-1 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-1">
-                <span v-for="(grp, gIdx) in m.groups" :key="gIdx" class="px-1.5 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900 text-[11px]">
+              <div v-if="m.groups && m.groups.length > 0" class="mt-2 flex flex-wrap gap-1 border-t border-slate-200 pt-1 dark:border-slate-800">
+                <span v-for="(grp, gIdx) in m.groups" :key="gIdx" class="border border-blue-200 rounded bg-blue-50 px-1.5 py-0.5 text-[11px] text-blue-700 dark:border-blue-900 dark:bg-blue-950/60 dark:text-blue-300">
                   Group {{ gIdx + 1 }}: "{{ grp }}"
                 </span>
               </div>
             </div>
           </div>
-          <div v-else class="h-160px flex flex-col items-center justify-center text-slate-400 text-sm">
+          <div v-else class="h-160px flex flex-col items-center justify-center text-sm text-slate-400">
             <span>No active matches in the test sandbox</span>
-            <span class="text-xs text-slate-400 mt-1">Type matching text on the left to inspect captured tokens</span>
+            <span class="mt-1 text-xs text-slate-400">Type matching text on the left to inspect captured tokens</span>
           </div>
         </n-card>
       </n-gi>
     </n-grid>
 
     <!-- Structural Breakdown & AI Explanation -->
-    <n-card title="Step-by-Step Structural Breakdown" size="small" class="mb-5 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm">
-      <p class="text-xs text-slate-500 mb-3">
+    <n-card title="Step-by-Step Structural Breakdown" size="small" class="mb-5 border border-slate-200 rounded-xl shadow-sm dark:border-slate-800">
+      <p class="mb-3 text-xs text-slate-500">
         Every token and structural block in your regular expression is disassembled and explained below:
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 max-h-340px overflow-y-auto pr-1">
+      <div class="grid grid-cols-1 max-h-340px gap-2.5 overflow-y-auto pr-1 md:grid-cols-2">
         <div
           v-for="(item, idx) in patternExplanations"
           :key="idx"
-          class="p-3 rounded-lg bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex items-start gap-3 transition hover:border-emerald-500/40"
+          class="flex items-start gap-3 border border-slate-200 rounded-lg bg-slate-50/80 p-3 transition dark:border-slate-800 hover:border-emerald-500/40 dark:bg-slate-900/80"
         >
-          <div class="font-mono text-sm px-2 py-1 rounded bg-white dark:bg-slate-950 font-bold text-emerald-600 dark:text-emerald-400 border border-slate-200 dark:border-slate-800 shrink-0">
+          <div class="shrink-0 border border-slate-200 rounded bg-white px-2 py-1 text-sm text-emerald-600 font-bold font-mono dark:border-slate-800 dark:bg-slate-950 dark:text-emerald-400">
             {{ item.token }}
           </div>
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="font-semibold text-xs text-slate-800 dark:text-slate-200">{{ item.title }}</span>
+          <div class="min-w-0 flex-1">
+            <div class="mb-1 flex items-center gap-2">
+              <span class="text-xs text-slate-800 font-semibold dark:text-slate-200">{{ item.title }}</span>
               <n-tag size="tiny" :type="getTypeBadgeType(item.type)">
                 {{ item.type }}
               </n-tag>
             </div>
-            <p class="text-xs text-slate-600 dark:text-slate-400 m-0 leading-relaxed">
+            <p class="m-0 text-xs text-slate-600 leading-relaxed dark:text-slate-400">
               {{ locale === 'ar' ? item.explanationAr : item.explanationEn }}
             </p>
           </div>
@@ -330,15 +337,27 @@ function getTypeBadgeType(type: string): 'default' | 'info' | 'success' | 'warni
     </n-card>
 
     <!-- Ready-to-Use Code Snippets -->
-    <n-card title="Production Code Snippets" size="small" class="border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm">
-      <div class="flex items-center justify-between mb-3">
+    <n-card title="Production Code Snippets" size="small" class="border border-slate-200 rounded-xl shadow-sm dark:border-slate-800">
+      <div class="mb-3 flex items-center justify-between">
         <n-tabs v-model:value="activeCodeTab" type="segment" size="small">
-          <n-tab name="javascript">JavaScript</n-tab>
-          <n-tab name="python">Python</n-tab>
-          <n-tab name="golang">Go</n-tab>
-          <n-tab name="php">PHP</n-tab>
-          <n-tab name="java">Java</n-tab>
-          <n-tab name="csharp">C#</n-tab>
+          <n-tab name="javascript">
+            JavaScript
+          </n-tab>
+          <n-tab name="python">
+            Python
+          </n-tab>
+          <n-tab name="golang">
+            Go
+          </n-tab>
+          <n-tab name="php">
+            PHP
+          </n-tab>
+          <n-tab name="java">
+            Java
+          </n-tab>
+          <n-tab name="csharp">
+            C#
+          </n-tab>
         </n-tabs>
 
         <n-button size="small" secondary @click="copyToClipboard(codeSnippets[activeCodeTab], true)">
@@ -350,7 +369,7 @@ function getTypeBadgeType(type: string): 'default' | 'info' | 'success' | 'warni
       </div>
 
       <div class="relative">
-        <pre class="m-0 p-4 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs overflow-x-auto leading-relaxed border border-slate-800">{{ codeSnippets[activeCodeTab] }}</pre>
+        <pre class="m-0 overflow-x-auto border border-slate-800 rounded-xl bg-slate-950 p-4 text-xs text-slate-100 leading-relaxed font-mono">{{ codeSnippets[activeCodeTab] }}</pre>
       </div>
     </n-card>
   </div>

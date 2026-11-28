@@ -1,33 +1,33 @@
 export interface RegexPreset {
-  id: string;
-  category: 'Web & Net' | 'Security & Auth' | 'Data & Form' | 'Arabic & Regional' | 'Code & Text';
-  nameEn: string;
-  nameAr: string;
-  pattern: string;
-  flags: string;
-  descriptionEn: string;
-  descriptionAr: string;
-  testStrings: string[];
-  keywords: string[];
+  id: string
+  category: 'Web & Net' | 'Security & Auth' | 'Data & Form' | 'Arabic & Regional' | 'Code & Text'
+  nameEn: string
+  nameAr: string
+  pattern: string
+  flags: string
+  descriptionEn: string
+  descriptionAr: string
+  testStrings: string[]
+  keywords: string[]
 }
 
 export interface RegexTokenExplanation {
-  token: string;
-  type: 'anchor' | 'character-class' | 'quantifier' | 'group' | 'lookaround' | 'literal' | 'meta' | 'flag';
-  title: string;
-  explanationEn: string;
-  explanationAr: string;
+  token: string
+  type: 'anchor' | 'character-class' | 'quantifier' | 'group' | 'lookaround' | 'literal' | 'meta' | 'flag'
+  title: string
+  explanationEn: string
+  explanationAr: string
 }
 
 export interface RegexMatchResult {
-  matched: boolean;
-  matchCount: number;
+  matched: boolean
+  matchCount: number
   matches: Array<{
-    fullMatch: string;
-    index: number;
-    groups: string[];
-  }>;
-  error?: string;
+    fullMatch: string
+    index: number
+    groups: string[]
+  }>
+  error?: string
 }
 
 export const REGEX_PRESETS: RegexPreset[] = [
@@ -200,14 +200,22 @@ export function matchNaturalLanguageIntent(query: string): RegexPreset[] {
   const normalized = query.toLowerCase().trim();
   const words = normalized.split(/\s+/).filter(Boolean);
 
-  const scored = REGEX_PRESETS.map(preset => {
+  const scored = REGEX_PRESETS.map((preset) => {
     let score = 0;
 
     // Exact matches
-    if (preset.nameEn.toLowerCase().includes(normalized)) score += 15;
-    if (preset.nameAr.includes(normalized)) score += 15;
-    if (preset.descriptionEn.toLowerCase().includes(normalized)) score += 8;
-    if (preset.descriptionAr.includes(normalized)) score += 8;
+    if (preset.nameEn.toLowerCase().includes(normalized)) {
+      score += 15;
+    }
+    if (preset.nameAr.includes(normalized)) {
+      score += 15;
+    }
+    if (preset.descriptionEn.toLowerCase().includes(normalized)) {
+      score += 8;
+    }
+    if (preset.descriptionAr.includes(normalized)) {
+      score += 8;
+    }
 
     // Keyword matches
     for (const kw of preset.keywords) {
@@ -235,7 +243,9 @@ export function matchNaturalLanguageIntent(query: string): RegexPreset[] {
  */
 export function explainRegexPattern(pattern: string, flags = ''): RegexTokenExplanation[] {
   const explanations: RegexTokenExplanation[] = [];
-  if (!pattern) return explanations;
+  if (!pattern) {
+    return explanations;
+  }
 
   let i = 0;
   const len = pattern.length;
@@ -305,8 +315,8 @@ export function explainRegexPattern(pattern: string, flags = ''): RegexTokenExpl
           token: sub,
           type: 'group',
           title: 'Non-Capturing Group (?:...)',
-          explanationEn: `Groups multiple tokens together for quantification without storing the match in a capture group.`,
-          explanationAr: `مجموعة غير ملتقطة: تجمع عدة رموز لتطبيق التكرار عليها دون تخزينها كمجموعة مستقلة.`,
+          explanationEn: 'Groups multiple tokens together for quantification without storing the match in a capture group.',
+          explanationAr: 'مجموعة غير ملتقطة: تجمع عدة رموز لتطبيق التكرار عليها دون تخزينها كمجموعة مستقلة.',
         });
         i = close + 1;
         continue;
@@ -318,8 +328,8 @@ export function explainRegexPattern(pattern: string, flags = ''): RegexTokenExpl
         token: sub,
         type: 'group',
         title: 'Capturing Group (...)',
-        explanationEn: `Groups items together and creates a backreference capture group for extraction.`,
-        explanationAr: `مجموعة التقاط: تجمع العناصر معاً وتخزنها لاستخراجها واستدعائها لاحقاً.`,
+        explanationEn: 'Groups items together and creates a backreference capture group for extraction.',
+        explanationAr: 'مجموعة التقاط: تجمع العناصر معاً وتخزنها لاستخراجها واستدعائها لاحقاً.',
       });
       i = close + 1;
       continue;
@@ -342,8 +352,8 @@ export function explainRegexPattern(pattern: string, flags = ''): RegexTokenExpl
             ? `Matches any character NOT present in the specified set: ${sub}`
             : `Matches any single character present in the set: ${sub}`,
           explanationAr: isNegated
-            ? `يطابق أي رمز غير موجود في المجموعة المحددة.`
-            : `يطابق أي رمز مفرد موجود ضمن هذه المجموعة.`,
+            ? 'يطابق أي رمز غير موجود في المجموعة المحددة.'
+            : 'يطابق أي رمز مفرد موجود ضمن هذه المجموعة.',
         });
         i = close + 1;
         continue;
@@ -419,7 +429,7 @@ export function explainRegexPattern(pattern: string, flags = ''): RegexTokenExpl
           type: 'meta',
           title: `Unicode Codepoint ${uSeq}`,
           explanationEn: `Matches specific Unicode character point ${uSeq}.`,
-          explanationAr: `يطابق نقطة الرمز في جدول الترميز الموحد Unicode.`,
+          explanationAr: 'يطابق نقطة الرمز في جدول الترميز الموحد Unicode.',
         });
         i += 6;
         continue;
@@ -513,10 +523,14 @@ function findMatchingParen(str: string, start: number): number {
       i++;
       continue;
     }
-    if (str[i] === '(') depth++;
+    if (str[i] === '(') {
+      depth++;
+    }
     if (str[i] === ')') {
       depth--;
-      if (depth === 0) return i;
+      if (depth === 0) {
+        return i;
+      }
     }
   }
   return str.length - 1;
@@ -534,10 +548,9 @@ export function testRegex(pattern: string, flags: string, testText: string): Reg
     const regex = new RegExp(pattern, flags.includes('g') ? flags : `${flags}g`);
     const matches: Array<{ fullMatch: string; index: number; groups: string[] }> = [];
 
-    let match: RegExpExecArray | null;
     let safeLoopCounter = 0;
 
-    while ((match = regex.exec(testText)) !== null && safeLoopCounter < 1000) {
+    for (let match = regex.exec(testText); match !== null && safeLoopCounter < 1000; match = regex.exec(testText)) {
       safeLoopCounter++;
       matches.push({
         fullMatch: match[0],
@@ -556,7 +569,8 @@ export function testRegex(pattern: string, flags: string, testText: string): Reg
       matchCount: matches.length,
       matches,
     };
-  } catch (err: any) {
+  }
+  catch (err: any) {
     return {
       matched: false,
       matchCount: 0,
@@ -605,22 +619,22 @@ print(f"Total matches: {len(matches)}")`,
 package main
 
 import (
-	"fmt"
-	"regexp"
+\t"fmt"
+\t"regexp"
 )
 
 func main() {
-	pattern := \`${pattern}\`
-	re := regexp.MustCompile(pattern)
-	text := "sample test string"
+\tpattern := \`${pattern}\`
+\tre := regexp.MustCompile(pattern)
+\ttext := "sample test string"
 
-	// Check if matches
-	matched := re.MatchString(text)
-	fmt.Printf("Matched: %v\\n", matched)
+\t// Check if matches
+\tmatched := re.MatchString(text)
+\tfmt.Printf("Matched: %v\\n", matched)
 
-	// Find all string matches
-	results := re.FindAllString(text, -1)
-	fmt.Printf("Matches found: %v\\n", results)
+\t// Find all string matches
+\tresults := re.FindAllString(text, -1)
+\tfmt.Printf("Matches found: %v\\n", results)
 }`,
 
     php: `<?php

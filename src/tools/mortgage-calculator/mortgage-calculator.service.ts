@@ -1,34 +1,34 @@
 export interface MortgageInput {
-  homeValue: number;
-  downPayment: number;
-  interestRate: number; // annual %
-  loanTermYears: number; // years
-  propertyTaxRate: number; // annual %
-  homeInsuranceYearly: number; // yearly $
-  pmiRate?: number; // annual %
-  hoaMonthly?: number; // monthly $
+  homeValue: number
+  downPayment: number
+  interestRate: number // annual %
+  loanTermYears: number // years
+  propertyTaxRate: number // annual %
+  homeInsuranceYearly: number // yearly $
+  pmiRate?: number // annual %
+  hoaMonthly?: number // monthly $
 }
 
 export interface AmortizationPeriod {
-  month: number;
-  payment: number;
-  principal: number;
-  interest: number;
-  totalInterest: number;
-  balance: number;
+  month: number
+  payment: number
+  principal: number
+  interest: number
+  totalInterest: number
+  balance: number
 }
 
 export interface MortgageResult {
-  loanAmount: number;
-  monthlyPrincipalAndInterest: number;
-  monthlyPropertyTax: number;
-  monthlyInsurance: number;
-  monthlyPMI: number;
-  monthlyHOA: number;
-  totalMonthlyPayment: number;
-  totalInterest: number;
-  totalPayment: number;
-  amortizationSchedule: AmortizationPeriod[];
+  loanAmount: number
+  monthlyPrincipalAndInterest: number
+  monthlyPropertyTax: number
+  monthlyInsurance: number
+  monthlyPMI: number
+  monthlyHOA: number
+  totalMonthlyPayment: number
+  totalInterest: number
+  totalPayment: number
+  amortizationSchedule: AmortizationPeriod[]
 }
 
 export function calculateMortgage(input: MortgageInput): MortgageResult {
@@ -43,9 +43,10 @@ export function calculateMortgage(input: MortgageInput): MortgageResult {
   let monthlyPrincipalAndInterest = 0;
   if (loanAmount > 0) {
     if (monthlyInterestRate > 0) {
-      const compoundFactor = Math.pow(1 + monthlyInterestRate, totalMonths);
+      const compoundFactor = (1 + monthlyInterestRate) ** totalMonths;
       monthlyPrincipalAndInterest = loanAmount * (monthlyInterestRate * compoundFactor) / (compoundFactor - 1);
-    } else {
+    }
+    else {
       monthlyPrincipalAndInterest = loanAmount / totalMonths;
     }
   }

@@ -1,5 +1,6 @@
-import { defineTool } from '../tool';
 import { Volume } from '@vicons/tabler';
+import { defineTool } from '../tool';
+
 export const tool = defineTool({
   name: 'Text to Speech',
   path: '/text-to-speech',

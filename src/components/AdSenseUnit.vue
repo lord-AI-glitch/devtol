@@ -3,10 +3,10 @@ import { computed, onMounted, ref } from 'vue';
 import { useStyleStore } from '@/stores/style.store';
 
 interface Props {
-  slotId?: string;
-  adClient?: string;
-  format?: 'horizontal' | 'rectangle' | 'vertical' | 'responsive';
-  minHeight?: string;
+  slotId?: string
+  adClient?: string
+  format?: 'horizontal' | 'rectangle' | 'vertical' | 'responsive'
+  minHeight?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -52,7 +52,8 @@ onMounted(() => {
     try {
       // @ts-expect-error window.adsbygoogle
       (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (_) {
+    }
+    catch (_) {
       showFallback.value = true;
     }
 
@@ -62,14 +63,17 @@ onMounted(() => {
         const hasIframe = insEl && (insEl.querySelector('iframe') || insEl.getAttribute('data-ad-status') === 'filled');
         if (hasIframe) {
           isAdLoaded.value = true;
-        } else {
+        }
+        else {
           showFallback.value = true;
         }
-      } else {
+      }
+      else {
         showFallback.value = true;
       }
     }, 2200);
-  } else {
+  }
+  else {
     // When no slotId is assigned, rely on Auto Ads in index.html and show clean highlight
     showFallback.value = true;
   }
@@ -93,7 +97,7 @@ const formatStyles = computed(() => {
 <template>
   <div
     ref="adContainerRef"
-    class="adsense-unit-wrapper relative w-full overflow-hidden my-4 transition-all duration-300"
+    class="adsense-unit-wrapper relative my-4 w-full overflow-hidden transition-all duration-300"
     :style="formatStyles"
     role="region"
     aria-label="Developer Resources"
@@ -107,37 +111,37 @@ const formatStyles = computed(() => {
         :data-ad-slot="slotId"
         data-ad-format="auto"
         data-full-width-responsive="true"
-      ></ins>
+      />
     </div>
 
     <!-- 2. Clean Platform Architecture Notice (Replaces affiliate ads during AdSense review) -->
     <div
       v-if="showFallback"
-      class="platform-notice-card w-full rounded-xl border p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all"
+      class="platform-notice-card w-full flex flex-col items-start justify-between gap-4 border rounded-xl p-4 transition-all sm:flex-row sm:items-center sm:p-5"
       :class="isDark ? 'border-indigo-500/20 bg-[#121629] text-slate-200' : 'border-slate-200 bg-slate-50 text-slate-800'"
     >
-      <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+      <div class="min-w-0 flex-1">
+        <div class="mb-1.5 flex flex-wrap items-center gap-2">
           <span
-            class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
+            class="rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase"
             :class="isDark ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' : 'bg-indigo-50 text-indigo-700 border border-indigo-200'"
           >
             {{ selectedHighlight.badge }}
           </span>
           <span class="text-xs text-slate-400 font-mono">{{ selectedHighlight.tag }}</span>
         </div>
-        <h4 class="text-sm sm:text-base font-bold tracking-tight mb-1 text-inherit truncate">
+        <h4 class="mb-1 truncate text-sm text-inherit font-bold tracking-tight sm:text-base">
           {{ selectedHighlight.title }}
         </h4>
-        <p class="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">
+        <p class="line-clamp-2 text-xs text-slate-400 leading-relaxed sm:text-sm">
           {{ selectedHighlight.description }}
         </p>
       </div>
 
-      <div class="flex items-center gap-3 shrink-0">
+      <div class="flex shrink-0 items-center gap-3">
         <RouterLink
           to="/about"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors"
+          class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-3 py-1.5 text-xs text-white font-semibold transition-colors hover:bg-indigo-700"
         >
           <span>Architecture & Standards →</span>
         </RouterLink>

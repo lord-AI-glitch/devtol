@@ -1,8 +1,8 @@
 type GuideRenderer = (rawMarkdown: string) => string;
 
-type KatexLike = {
-  renderToString: (tex: string, options?: { displayMode?: boolean; throwOnError?: boolean }) => string;
-};
+interface KatexLike {
+  renderToString: (tex: string, options?: { displayMode?: boolean; throwOnError?: boolean }) => string
+}
 
 let rendererPromise: Promise<GuideRenderer> | null = null;
 
@@ -15,13 +15,23 @@ const MATH_CHARS = '^_{}≈×÷±≤≥≠→⇒∑∏∫√∞';
 
 function isMathSpan(content: string): boolean {
   const s = content.trim();
-  if (!s) return false;
-  if (s.includes('\\')) return true;
-  for (const ch of MATH_CHARS) {
-    if (s.includes(ch)) return true;
+  if (!s) {
+    return false;
   }
-  if (s.includes('=')) return true;
-  if (!/\s/.test(s) && /^[A-Za-z0-9_(),:;.\-+*/<>']+$/.test(s)) return true;
+  if (s.includes('\\')) {
+    return true;
+  }
+  for (const ch of MATH_CHARS) {
+    if (s.includes(ch)) {
+      return true;
+    }
+  }
+  if (s.includes('=')) {
+    return true;
+  }
+  if (!/\s/.test(s) && /^[A-Za-z0-9_(),:;.\-+*/<>']+$/.test(s)) {
+    return true;
+  }
   const tokens = s.split(/\s+/).map(t => t.replace(/^[(),:;]+|[(),:;]+$/g, ''));
   return tokens.length > 0 && tokens.every(t => t.length <= 2 || /^\d+$/.test(t));
 }
@@ -31,20 +41,26 @@ function renderMath(raw: string, katex: KatexLike): string {
   const parts = raw.split(/(```[\s\S]*?```|`[^`\n]+`)/g);
   return parts
     .map((part, i) => {
-      if (i % 2 === 1) return part;
+      if (i % 2 === 1) {
+        return part;
+      }
       return part
         .replace(/\$\$([^$\n]{1,200}?)\$\$/g, (_m, tex: string) => {
           try {
             return katex.renderToString(tex, { displayMode: true, throwOnError: false });
-          } catch {
+          }
+          catch {
             return `$$${tex}$$`;
           }
         })
         .replace(/\$([^$\n]{1,120}?)\$/g, (m, tex: string) => {
-          if (!isMathSpan(tex)) return m;
+          if (!isMathSpan(tex)) {
+            return m;
+          }
           try {
             return katex.renderToString(tex, { displayMode: false, throwOnError: false });
-          } catch {
+          }
+          catch {
             return m;
           }
         });
@@ -154,7 +170,8 @@ async function createGuideRenderer(): Promise<GuideRenderer> {
       if (lang && hljs.getLanguage(lang)) {
         try {
           return `<pre class="hljs"><code class="hljs language-${lang}">${hljs.highlight(str, { language: lang, ignoreIllegals: true }).value}</code></pre>`;
-        } catch (_) {}
+        }
+        catch (_) {}
       }
       return `<pre class="hljs"><code class="hljs">${md.utils.escapeHtml(str)}</code></pre>`;
     },

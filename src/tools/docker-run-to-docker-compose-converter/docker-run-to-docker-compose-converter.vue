@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useHead } from '@vueuse/head';
 import { MessageType, composerize } from 'composerize-ts';
+import { BrandDocker, Check } from '@vicons/tabler';
 import { withDefaultOnError } from '@/utils/defaults';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 import { textToBase64 } from '@/utils/base64';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { BrandDocker, Check } from '@vicons/tabler';
 
 const DOCKER_PRESETS: Record<
   string,
@@ -95,7 +95,8 @@ onMounted(() => {
   const param = (route.params.preset as string) || '';
   if (param && DOCKER_PRESETS[param.toLowerCase()]) {
     selectPreset(param.toLowerCase(), false);
-  } else {
+  }
+  else {
     // Check if path ends with any preset slug
     const pathParts = route.path.split('/').filter(Boolean);
     const lastPart = pathParts[pathParts.length - 1]?.toLowerCase();
@@ -108,7 +109,7 @@ onMounted(() => {
 // Watch for route changes
 watch(
   () => route.params.preset,
-  newPreset => {
+  (newPreset) => {
     if (newPreset && typeof newPreset === 'string' && DOCKER_PRESETS[newPreset.toLowerCase()]) {
       activePresetKey.value = newPreset.toLowerCase();
       dockerRun.value = DOCKER_PRESETS[newPreset.toLowerCase()].command;
@@ -161,17 +162,17 @@ const { download } = useDownloadFileFromBase64({ source: dockerComposeBase64, fi
 <template>
   <div class="space-y-6">
     <!-- Presets bar -->
-    <div class="p-4 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700/60 space-y-3">
+    <div class="border border-slate-200 rounded-xl bg-slate-50 p-4 space-y-3 dark:border-slate-700/60 dark:bg-slate-800/60">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-2">
           <n-icon :size="20" class="text-blue-500">
             <BrandDocker />
           </n-icon>
-          <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">
+          <span class="text-sm text-slate-700 font-semibold dark:text-slate-200">
             Popular Service Presets:
           </span>
         </div>
-        <span v-if="activePreset" class="text-xs text-blue-600 dark:text-blue-400 font-medium">
+        <span v-if="activePreset" class="text-xs text-blue-600 font-medium dark:text-blue-400">
           {{ activePreset.desc }}
         </span>
       </div>
@@ -181,22 +182,24 @@ const { download } = useDownloadFileFromBase64({ source: dockerComposeBase64, fi
           v-for="(preset, key) in DOCKER_PRESETS"
           :key="key"
           type="button"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all"
+          class="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all"
           :class="[
             activePresetKey === key
               ? 'bg-blue-600 text-white shadow-sm font-semibold'
-              : 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 hover:border-blue-400 dark:hover:border-blue-500'
+              : 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 hover:border-blue-400 dark:hover:border-blue-500',
           ]"
           @click="selectPreset(key as string)"
         >
-          <n-icon v-if="activePresetKey === key" :size="13"><Check /></n-icon>
+          <n-icon v-if="activePresetKey === key" :size="13">
+            <Check />
+          </n-icon>
           <span>{{ preset.name }}</span>
           <span
-            class="text-[10px] px-1.5 py-0.2 rounded"
+            class="rounded px-1.5 py-0.2 text-[10px]"
             :class="[
               activePresetKey === key
                 ? 'bg-blue-700 text-blue-100'
-                : 'bg-slate-100 dark:bg-slate-600 text-slate-500 dark:text-slate-300'
+                : 'bg-slate-100 dark:bg-slate-600 text-slate-500 dark:text-slate-300',
             ]"
           >
             {{ preset.tag }}

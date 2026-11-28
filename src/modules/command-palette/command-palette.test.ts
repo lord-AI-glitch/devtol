@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { createPinia, setActivePinia } from 'pinia';
 import { createRouter, createWebHistory } from 'vue-router';
-import { i18n } from '@/plugins/i18n.plugin';
 import CommandPalette from './command-palette.vue';
+import { i18n } from '@/plugins/i18n.plugin';
 
 describe('CommandPalette', () => {
   it('mounts without throwing ReferenceError for storeToRefs', () => {

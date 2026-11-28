@@ -7,7 +7,7 @@ const { tool } = toRefs(props);
 </script>
 
 <template>
-  <router-link :to="tool.path" class="decoration-none tool-card-wrapper">
+  <router-link :to="tool.path" class="tool-card-wrapper decoration-none">
     <c-card class="h-full transition transition-duration-0.5s !border-2px !hover:border-primary">
       <div flex items-center justify-between>
         <n-icon class="text-neutral-400 dark:text-neutral-600" size="40" :component="tool.icon" />
@@ -15,7 +15,7 @@ const { tool } = toRefs(props);
         <div flex items-center gap-8px>
           <div
             v-if="tool.isNew"
-            class="rounded-full px-8px py-3px text-xs text-white dark:text-neutral-800 bg-primary"
+            class="rounded-full bg-primary px-8px py-3px text-xs text-white dark:text-neutral-800"
           >
             {{ $t('toolCard.new') }}
           </div>

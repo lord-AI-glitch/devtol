@@ -1,9 +1,9 @@
 export interface NicheBenchmark {
-  id: string;
-  name: string;
-  typicalCpc: number;
-  typicalCtr: number;
-  typicalRpm: number;
+  id: string
+  name: string
+  typicalCpc: number
+  typicalCtr: number
+  typicalRpm: number
 }
 
 export const AD_NICHES: NicheBenchmark[] = [
@@ -22,21 +22,21 @@ export const AD_NICHES: NicheBenchmark[] = [
 export type CalculationMode = 'cpc' | 'rpm';
 
 export interface AdSenseInput {
-  dailyPageviews: number;
-  calculationMode: CalculationMode;
-  ctrPercent: number; // Click-Through Rate %
-  cpc: number; // Cost Per Click $
-  rpm: number; // Revenue Per Mille (1000 views) $
-  nicheId: string;
+  dailyPageviews: number
+  calculationMode: CalculationMode
+  ctrPercent: number // Click-Through Rate %
+  cpc: number // Cost Per Click $
+  rpm: number // Revenue Per Mille (1000 views) $
+  nicheId: string
 }
 
 export interface AdSenseResult {
-  dailyClicks: number;
-  dailyRevenue: number;
-  monthlyRevenue: number;
-  yearlyRevenue: number;
-  effectiveRpm: number;
-  effectiveCpc: number;
+  dailyClicks: number
+  dailyRevenue: number
+  monthlyRevenue: number
+  yearlyRevenue: number
+  effectiveRpm: number
+  effectiveCpc: number
 }
 
 export function calculateAdSenseRevenue(input: AdSenseInput): AdSenseResult {
@@ -55,7 +55,8 @@ export function calculateAdSenseRevenue(input: AdSenseInput): AdSenseResult {
     dailyRevenue = dailyClicks * cpc;
     effectiveCpc = cpc;
     effectiveRpm = dailyPageviews > 0 ? (dailyRevenue / dailyPageviews) * 1000 : 0;
-  } else {
+  }
+  else {
     // RPM mode
     dailyRevenue = (dailyPageviews / 1000) * rpm;
     effectiveRpm = rpm;

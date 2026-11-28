@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useHead } from '@vueuse/head';
 import { useNow } from '@vueuse/core';
@@ -16,6 +16,7 @@ import {
   parseISO,
   parseJSON,
 } from 'date-fns';
+import { Calendar, Check } from '@vicons/tabler';
 import type { DateFormat, ToDateMapper } from './date-time-converter.types';
 import {
   dateToExcelFormat,
@@ -32,7 +33,6 @@ import {
 } from './date-time-converter.models';
 import { withDefaultOnError } from '@/utils/defaults';
 import { useValidation } from '@/composable/validation';
-import { Calendar, Check } from '@vicons/tabler';
 
 const DATE_PAIRS: Record<
   string,
@@ -138,7 +138,8 @@ function selectPair(pairKey: string, updateUrl = true) {
       const prefix = langPrefix ? `/${langPrefix[1]}` : '';
       router.replace(`${prefix}/date-converter/${pairKey}`);
     }
-  } else {
+  }
+  else {
     activePairKey.value = '';
   }
 }
@@ -147,7 +148,8 @@ onMounted(() => {
   const param = (route.params.pair as string) || '';
   if (param && DATE_PAIRS[param.toLowerCase()]) {
     selectPair(param.toLowerCase(), false);
-  } else {
+  }
+  else {
     const pathParts = route.path.split('/').filter(Boolean);
     const lastPart = pathParts[pathParts.length - 1]?.toLowerCase();
     if (lastPart && DATE_PAIRS[lastPart]) {
@@ -158,7 +160,7 @@ onMounted(() => {
 
 watch(
   () => route.params.pair,
-  newPair => {
+  (newPair) => {
     if (newPair && typeof newPair === 'string' && DATE_PAIRS[newPair.toLowerCase()]) {
       activePairKey.value = newPair.toLowerCase();
       formatIndex.value = DATE_PAIRS[newPair.toLowerCase()].defaultFormatIndex;
@@ -170,7 +172,9 @@ const activePair = computed(() => DATE_PAIRS[activePairKey.value]);
 
 useHead(
   computed(() => {
-    if (!activePair.value) return {};
+    if (!activePair.value) {
+      return {};
+    }
     return {
       title: `${activePair.value.title} | DevTol`,
       meta: [
@@ -192,7 +196,8 @@ const normalizedDate = computed(() => {
 
   try {
     return toDate(inputDate.value);
-  } catch (_ignored) {
+  }
+  catch (_ignored) {
     return undefined;
   }
 });
@@ -235,15 +240,17 @@ function formatDateUsingFormatter(formatter: (date: Date) => string, date?: Date
 <template>
   <div class="space-y-4">
     <!-- Quick Date Scenario Chips -->
-    <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700/60 space-y-2">
+    <div class="border border-slate-200 rounded-xl bg-slate-50 p-3 space-y-2 dark:border-slate-700/60 dark:bg-slate-800/60">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-2">
-          <n-icon :size="18" class="text-primary-500"><Calendar /></n-icon>
-          <span class="text-xs font-semibold text-slate-700 dark:text-slate-200">
+          <n-icon :size="18" class="text-primary-500">
+            <Calendar />
+          </n-icon>
+          <span class="text-xs text-slate-700 font-semibold dark:text-slate-200">
             Frequent Date Conversions:
           </span>
         </div>
-        <span v-if="activePair" class="text-xs text-primary-600 dark:text-primary-400 font-medium">
+        <span v-if="activePair" class="text-primary-600 dark:text-primary-400 text-xs font-medium">
           {{ activePair.title }}
         </span>
       </div>
@@ -253,15 +260,17 @@ function formatDateUsingFormatter(formatter: (date: Date) => string, date?: Date
           v-for="(pair, key) in DATE_PAIRS"
           :key="key"
           type="button"
-          class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium transition-all"
+          class="inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium transition-all"
           :class="[
             activePairKey === key
               ? 'bg-primary-600 text-white shadow-sm font-semibold'
-              : 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 hover:border-primary-400'
+              : 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 hover:border-primary-400',
           ]"
           @click="selectPair(key as string)"
         >
-          <n-icon v-if="activePairKey === key" :size="12"><Check /></n-icon>
+          <n-icon v-if="activePairKey === key" :size="12">
+            <Check />
+          </n-icon>
           <span>{{ pair.title.replace(' Converter', '') }}</span>
         </button>
       </div>

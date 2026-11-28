@@ -1,13 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import {
-  parseSqlSchema,
+  convertSqlToOrm,
+  generateDrizzle,
+  generateGorm,
   generatePrisma,
   generateSqlAlchemy,
-  generateDrizzle,
   generateTypeOrm,
-  generateGorm,
   generateTypeScript,
-  convertSqlToOrm,
+  parseSqlSchema,
 } from './sql-to-orm-converter.service';
 
 const sampleSql = `
@@ -92,8 +92,8 @@ describe('sql-to-orm-converter.service', () => {
       const tables = parseSqlSchema(sampleSql);
       const drizzle = generateDrizzle(tables);
 
-      expect(drizzle).toContain("export const users = pgTable('users', {");
-      expect(drizzle).toContain("id: serial('id').primaryKey()");
+      expect(drizzle).toContain('export const users = pgTable(\'users\', {');
+      expect(drizzle).toContain('id: serial(\'id\').primaryKey()');
       expect(drizzle).toMatch(/email:\s*varchar\('email',\s*\{\s*length:\s*255\s*\}\)\.notNull\(\)\.unique\(\)/);
       expect(drizzle).toContain('.defaultNow()');
     });
@@ -104,7 +104,7 @@ describe('sql-to-orm-converter.service', () => {
       const tables = parseSqlSchema(sampleSql);
       const typeorm = generateTypeOrm(tables);
 
-      expect(typeorm).toContain("@Entity('users')");
+      expect(typeorm).toContain('@Entity(\'users\')');
       expect(typeorm).toContain('export class Users {');
       expect(typeorm).toContain('@PrimaryGeneratedColumn()');
       expect(typeorm).toContain('id: number;');
@@ -142,7 +142,7 @@ describe('sql-to-orm-converter.service', () => {
       expect(prismaRes).toContain('model Users {');
 
       const drizzleRes = convertSqlToOrm(sampleSql, 'drizzle');
-      expect(drizzleRes).toContain("export const users = pgTable('users'");
+      expect(drizzleRes).toContain('export const users = pgTable(\'users\'');
     });
   });
 });

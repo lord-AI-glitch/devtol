@@ -1,5 +1,6 @@
-import { defineTool } from '../tool';
 import { Camera } from '@vicons/tabler';
+import { defineTool } from '../tool';
+
 export const tool = defineTool({
   name: 'EXIF Metadata Viewer',
   path: '/exif-viewer',

@@ -3,8 +3,8 @@ import { computed, watch } from 'vue';
 import { useStorage } from '@vueuse/core';
 import {
   AD_NICHES,
-  calculateAdSenseRevenue,
   type CalculationMode,
+  calculateAdSenseRevenue,
 } from './adsense-revenue-calculator.service';
 
 const dailyPageviews = useStorage('adsense-calc:pageviews', 10000);
@@ -24,7 +24,7 @@ const modeOptions = [
   { label: 'Calculate by RPM (Revenue Per 1000 Impressions)', value: 'rpm' },
 ];
 
-watch(selectedNicheId, newId => {
+watch(selectedNicheId, (newId) => {
   const niche = AD_NICHES.find(n => n.id === newId);
   if (niche && newId !== 'custom') {
     cpc.value = niche.typicalCpc;
@@ -44,11 +44,13 @@ const result = computed(() =>
   }),
 );
 
-const formatCurrency = (val: number) =>
-  new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(val);
+function formatCurrency(val: number) {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(val);
+}
 
-const formatNumber = (val: number) =>
-  new Intl.NumberFormat('en-US').format(val);
+function formatNumber(val: number) {
+  return new Intl.NumberFormat('en-US').format(val);
+}
 </script>
 
 <template>
@@ -110,24 +112,42 @@ const formatNumber = (val: number) =>
         </thead>
         <tbody>
           <tr>
-            <td font-semibold>Estimated Daily Clicks</td>
-            <td font-semibold>{{ formatNumber(result.dailyClicks) }}</td>
-            <td op-80>Calculated as Pageviews × CTR%</td>
+            <td font-semibold>
+              Estimated Daily Clicks
+            </td>
+            <td font-semibold>
+              {{ formatNumber(result.dailyClicks) }}
+            </td>
+            <td op-80>
+              Calculated as Pageviews × CTR%
+            </td>
           </tr>
           <tr>
-            <td font-semibold>Effective RPM</td>
+            <td font-semibold>
+              Effective RPM
+            </td>
             <td>{{ formatCurrency(result.effectiveRpm) }}</td>
-            <td op-80>Revenue per 1,000 page impressions</td>
+            <td op-80>
+              Revenue per 1,000 page impressions
+            </td>
           </tr>
           <tr>
-            <td font-semibold>Effective CPC</td>
+            <td font-semibold>
+              Effective CPC
+            </td>
             <td>{{ formatCurrency(result.effectiveCpc) }}</td>
-            <td op-80>Revenue earned per ad click</td>
+            <td op-80>
+              Revenue earned per ad click
+            </td>
           </tr>
           <tr>
-            <td font-semibold>Monthly Estimated Pageviews</td>
+            <td font-semibold>
+              Monthly Estimated Pageviews
+            </td>
             <td>{{ formatNumber(dailyPageviews * 30.4167) }}</td>
-            <td op-80>Projected monthly traffic volume</td>
+            <td op-80>
+              Projected monthly traffic volume
+            </td>
           </tr>
         </tbody>
       </n-table>

@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import { useStorage } from '@vueuse/core';
 import { useMessage } from 'naive-ui';
-import { Copy, Wand, Refresh } from '@vicons/tabler';
+import { Copy, Refresh, Wand } from '@vicons/tabler';
 import {
-  LLM_MODELS,
   PRICING_DISCLAIMER,
   PRICING_LAST_UPDATED,
   PRICING_SOURCES,
   SAMPLE_PROMPTS,
   calculateLlmCosts,
   estimateTokens,
-  type LlmModel,
 } from './ai-token-cost-calculator.service';
 
 const pricingLastUpdated = PRICING_LAST_UPDATED;
@@ -21,7 +19,8 @@ const pricingDisclaimer = PRICING_DISCLAIMER;
 let message: ReturnType<typeof useMessage> | null = null;
 try {
   message = useMessage();
-} catch {
+}
+catch {
   // Graceful fallback if mounted without n-message-provider
 }
 
@@ -50,8 +49,12 @@ const fullPromptText = computed(() => {
   const parts: string[] = [];
   const sys = typeof systemPrompt.value === 'string' ? systemPrompt.value.trim() : '';
   const usr = typeof userPrompt.value === 'string' ? userPrompt.value.trim() : '';
-  if (sys) parts.push(sys);
-  if (usr) parts.push(usr);
+  if (sys) {
+    parts.push(sys);
+  }
+  if (usr) {
+    parts.push(usr);
+  }
   return parts.join('\n\n');
 });
 
@@ -64,7 +67,8 @@ const tokenMetrics = computed(() => {
       formattedChars: Number(raw.charCount || 0).toLocaleString('en-US'),
       formattedWords: Number(raw.wordCount || 0).toLocaleString('en-US'),
     };
-  } catch (e) {
+  }
+  catch (e) {
     console.error('[AI Token Calculator] Error estimating tokens:', e);
     return {
       ...defaultMetrics,
@@ -87,19 +91,24 @@ const allCalculations = computed(() => {
       requestVolume: volume,
       usePromptCache: cache,
     }) || [];
-  } catch (e) {
+  }
+  catch (e) {
     console.error('[AI Token Calculator] Error calculating costs:', e);
     return [];
   }
 });
 
 const filteredCalculations = computed(() => {
-  if (!Array.isArray(allCalculations.value)) return [];
-  if (selectedTier.value === 'all') return allCalculations.value;
+  if (!Array.isArray(allCalculations.value)) {
+    return [];
+  }
+  if (selectedTier.value === 'all') {
+    return allCalculations.value;
+  }
   return allCalculations.value.filter(c => c?.model?.tier === selectedTier.value);
 });
 
-const loadSample = (index: number) => {
+function loadSample(index: number) {
   const sample = SAMPLE_PROMPTS[index];
   if (sample) {
     systemPrompt.value = sample.systemPrompt;
@@ -107,45 +116,51 @@ const loadSample = (index: number) => {
     expectedOutputTokens.value = sample.expectedOutputTokens;
     message?.success?.(`Loaded preset: ${sample.name}`);
   }
-};
+}
 
-const clearAll = () => {
+function clearAll() {
   systemPrompt.value = '';
   userPrompt.value = '';
   message?.info?.('Cleared inputs');
-};
+}
 
 const formatPricePerM = (price: number) => `$${(price || 0).toFixed(price < 0.1 ? 3 : 2)}`;
 
-const formatCost = (val: number) => {
-  if (!val || val === 0) return '$0.00';
-  if (val < 0.0001) return `$${val.toFixed(6)}`;
-  if (val < 0.01) return `$${val.toFixed(4)}`;
+function formatCost(val: number) {
+  if (!val || val === 0) {
+    return '$0.00';
+  }
+  if (val < 0.0001) {
+    return `$${val.toFixed(6)}`;
+  }
+  if (val < 0.01) {
+    return `$${val.toFixed(4)}`;
+  }
   return `$${val.toFixed(2)}`;
-};
+}
 
-const formatCount = (num: number | string | undefined | null): string => {
-  if (num === undefined || num === null || isNaN(Number(num))) {
+function formatCount(num: number | string | undefined | null): string {
+  if (num === undefined || num === null || Number.isNaN(Number(num))) {
     return '0';
   }
   return Number(num).toLocaleString('en-US');
-};
+}
 
 const formattedVolume = computed(() => formatCount(requestVolume.value));
 
-const copyMarkdownSummary = async () => {
+async function copyMarkdownSummary() {
   const lines = [
-    `### AI Prompt Cost Analysis (DevTol.online)`,
+    '### AI Prompt Cost Analysis (DevTol.online)',
     `- **Input Tokens**: ~${formatCount(tokenMetrics.value?.estimatedTokens ?? 0)}`,
     `- **Expected Output Tokens**: ${formatCount(expectedOutputTokens.value)}`,
     `- **Monthly Request Volume**: ${formatCount(requestVolume.value)} requests`,
     `- **Prompt Caching**: ${usePromptCache.value ? 'Enabled' : 'Disabled'}`,
     '',
-    `| Model | Provider | Input / 1M | Output / 1M | Cost / Call | Monthly Total | Savings |`,
-    `|---|---|---|---|---|---|---|`,
+    '| Model | Provider | Input / 1M | Output / 1M | Cost / Call | Monthly Total | Savings |',
+    '|---|---|---|---|---|---|---|',
   ];
 
-  filteredCalculations.value.forEach(c => {
+  filteredCalculations.value.forEach((c) => {
     lines.push(
       `| ${c.model.name} | ${c.model.provider} | ${formatPricePerM(c.model.inputPricePerMillion)} | ${formatPricePerM(c.model.outputPricePerMillion)} | ${formatCost(c.singleRequestTotalCost)} | ${formatCost(c.monthlyTotalCost)} | ${c.savingsVsHighest}% |`,
     );
@@ -155,11 +170,12 @@ const copyMarkdownSummary = async () => {
     try {
       await navigator.clipboard.writeText(lines.join('\n'));
       message?.success?.('Copied Markdown analysis table to clipboard!');
-    } catch {
+    }
+    catch {
       message?.warning?.('Could not copy to clipboard');
     }
   }
-};
+}
 
 const volumePresets = [
   { label: '1 req', val: 1 },
@@ -169,7 +185,7 @@ const volumePresets = [
   { label: '1,000,000 reqs', val: 1000000 },
 ];
 
-const getProviderTagType = (provider: string): 'default' | 'success' | 'warning' | 'info' | 'error' => {
+function getProviderTagType(provider: string): 'default' | 'success' | 'warning' | 'info' | 'error' {
   switch (provider) {
     case 'Google': return 'success';
     case 'DeepSeek': return 'info';
@@ -177,14 +193,14 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
     case 'Anthropic': return 'error';
     default: return 'default';
   }
-};
+}
 </script>
 
 <template>
   <div class="ai-token-calculator" style="max-width: 1200px; margin: 0 auto;">
     <!-- Preset Banner -->
     <div class="preset-section mb-4 flex flex-wrap items-center gap-2">
-      <span class="text-sm font-semibold text-gray-500">Quick Presets:</span>
+      <span class="text-sm text-gray-500 font-semibold">Quick Presets:</span>
       <n-button
         v-for="(sample, idx) in SAMPLE_PROMPTS"
         :key="sample.name"
@@ -212,7 +228,7 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
         <n-card title="System & User Prompt" size="small">
           <div class="space-y-4">
             <div>
-              <div class="mb-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <div class="mb-1 text-xs text-gray-500 font-medium tracking-wider uppercase">
                 System Prompt / Instructions (Optional)
               </div>
               <n-input
@@ -225,7 +241,7 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
             </div>
 
             <div>
-              <div class="mb-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <div class="mb-1 text-xs text-gray-500 font-medium tracking-wider uppercase">
                 User Prompt / Context / Document Body
               </div>
               <n-input
@@ -244,11 +260,11 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
       <n-gi :span="24" :m="8">
         <n-card title="Real-Time Tokenization Metrics" size="small" class="h-full">
           <div class="flex flex-col gap-4">
-            <div class="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-center">
-              <div class="text-xs font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+            <div class="border border-emerald-500/20 rounded-lg bg-emerald-500/10 p-4 text-center">
+              <div class="text-xs text-emerald-600 font-medium tracking-wider uppercase dark:text-emerald-400">
                 Estimated Input Tokens
               </div>
-              <div class="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 my-1">
+              <div class="my-1 text-3xl text-emerald-600 font-extrabold dark:text-emerald-400">
                 {{ tokenMetrics?.formattedTokens || '0' }}
               </div>
               <div class="text-xs text-gray-500">
@@ -257,28 +273,36 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
             </div>
 
             <div class="grid grid-cols-2 gap-2 text-center">
-              <div class="p-2 rounded bg-gray-50 dark:bg-gray-800">
-                <div class="text-xs text-gray-500">Characters</div>
-                <div class="text-lg font-bold">{{ tokenMetrics?.formattedChars || '0' }}</div>
+              <div class="rounded bg-gray-50 p-2 dark:bg-gray-800">
+                <div class="text-xs text-gray-500">
+                  Characters
+                </div>
+                <div class="text-lg font-bold">
+                  {{ tokenMetrics?.formattedChars || '0' }}
+                </div>
               </div>
-              <div class="p-2 rounded bg-gray-50 dark:bg-gray-800">
-                <div class="text-xs text-gray-500">Words</div>
-                <div class="text-lg font-bold">{{ tokenMetrics?.formattedWords || '0' }}</div>
+              <div class="rounded bg-gray-50 p-2 dark:bg-gray-800">
+                <div class="text-xs text-gray-500">
+                  Words
+                </div>
+                <div class="text-lg font-bold">
+                  {{ tokenMetrics?.formattedWords || '0' }}
+                </div>
               </div>
             </div>
 
             <!-- Language / Density Alerts -->
-            <div v-if="tokenMetrics && tokenMetrics.arabicCharRatio > 0.2" class="p-2 rounded bg-amber-500/10 border border-amber-500/20 text-xs text-amber-700 dark:text-amber-300">
+            <div v-if="tokenMetrics && tokenMetrics.arabicCharRatio > 0.2" class="border border-amber-500/20 rounded bg-amber-500/10 p-2 text-xs text-amber-700 dark:text-amber-300">
               ⚡ <strong>Arabic Script Detected</strong>: Standard BPE models expand Arabic into ~2.1 tokens/word compared to ~1.3 for English.
             </div>
-            <div v-else-if="tokenMetrics && tokenMetrics.codeDensityRatio > 0.12" class="p-2 rounded bg-blue-500/10 border border-blue-500/20 text-xs text-blue-700 dark:text-blue-300">
+            <div v-else-if="tokenMetrics && tokenMetrics.codeDensityRatio > 0.12" class="border border-blue-500/20 rounded bg-blue-500/10 p-2 text-xs text-blue-700 dark:text-blue-300">
               ⚙️ <strong>Code / JSON Syntax Detected</strong>: Punctuation and identifier splits increase token density.
             </div>
 
             <!-- Parameters -->
-            <div class="border-t pt-3 dark:border-gray-700 space-y-3">
+            <div class="border-t pt-3 space-y-3 dark:border-gray-700">
               <div>
-                <div class="flex justify-between text-xs mb-1">
+                <div class="mb-1 flex justify-between text-xs">
                   <span>Expected Output Tokens:</span>
                   <strong class="text-primary">{{ expectedOutputTokens }}</strong>
                 </div>
@@ -286,10 +310,16 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
               </div>
 
               <div>
-                <div class="text-xs mb-1">Prompt Caching:</div>
+                <div class="mb-1 text-xs">
+                  Prompt Caching:
+                </div>
                 <n-switch v-model:value="usePromptCache">
-                  <template #checked>Enabled (Discounts applied)</template>
-                  <template #unchecked>Standard (No Cache)</template>
+                  <template #checked>
+                    Enabled (Discounts applied)
+                  </template>
+                  <template #unchecked>
+                    Standard (No Cache)
+                  </template>
                 </n-switch>
               </div>
             </div>
@@ -338,10 +368,18 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
     <n-card :title="`LLM Cost Comparison Leaderboard (Prices last updated: ${pricingLastUpdated})`" size="small">
       <template #header-extra>
         <n-radio-group v-model:value="selectedTier" size="small">
-          <n-radio-button value="all">All Models</n-radio-button>
-          <n-radio-button value="budget">Budget Leaders (&lt;$1)</n-radio-button>
-          <n-radio-button value="flagship">Flagship Intelligence</n-radio-button>
-          <n-radio-button value="reasoning">Reasoning & STEM</n-radio-button>
+          <n-radio-button value="all">
+            All Models
+          </n-radio-button>
+          <n-radio-button value="budget">
+            Budget Leaders (&lt;$1)
+          </n-radio-button>
+          <n-radio-button value="flagship">
+            Flagship Intelligence
+          </n-radio-button>
+          <n-radio-button value="reasoning">
+            Reasoning & STEM
+          </n-radio-button>
         </n-radio-group>
       </template>
 
@@ -361,8 +399,12 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
           <tbody>
             <tr v-for="item in filteredCalculations" :key="item.model.id">
               <td>
-                <div class="font-bold">{{ item.model.name }}</div>
-                <div class="text-xs text-gray-500">{{ item.model.recommendedFor }}</div>
+                <div class="font-bold">
+                  {{ item.model.name }}
+                </div>
+                <div class="text-xs text-gray-500">
+                  {{ item.model.recommendedFor }}
+                </div>
               </td>
               <td>
                 <n-tag size="small" :type="getProviderTagType(item.model.provider)" round>
@@ -373,13 +415,15 @@ const getProviderTagType = (provider: string): 'default' | 'success' | 'warning'
                 <span :class="{ 'line-through text-gray-400': item.isCached }">
                   {{ formatPricePerM(item.model.inputPricePerMillion) }}
                 </span>
-                <span v-if="item.isCached" class="text-emerald-500 font-bold ml-1">
+                <span v-if="item.isCached" class="ml-1 text-emerald-500 font-bold">
                   {{ formatPricePerM(item.model.cachedInputPricePerMillion || 0) }}
                 </span>
               </td>
               <td>{{ formatPricePerM(item.model.outputPricePerMillion) }}</td>
-              <td class="font-mono font-semibold">{{ formatCost(item.singleRequestTotalCost) }}</td>
-              <td class="font-mono font-bold text-primary">
+              <td class="font-semibold font-mono">
+                {{ formatCost(item.singleRequestTotalCost) }}
+              </td>
+              <td class="text-primary font-bold font-mono">
                 {{ formatCost(item.monthlyTotalCost) }}
               </td>
               <td>

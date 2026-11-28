@@ -32,11 +32,13 @@ const result = computed(() =>
   }),
 );
 
-const formatCurrency = (val: number) =>
-  new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(val);
+function formatCurrency(val: number) {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(val);
+}
 
-const formatNumber = (val: number) =>
-  new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(val);
+function formatNumber(val: number) {
+  return new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(val);
+}
 
 const pagination = {
   pageSize: 12,
@@ -124,7 +126,9 @@ const columns = [
         <tbody>
           <tr>
             <td>Principal & Interest</td>
-            <td font-semibold>{{ formatCurrency(result.monthlyPrincipalAndInterest) }}</td>
+            <td font-semibold>
+              {{ formatCurrency(result.monthlyPrincipalAndInterest) }}
+            </td>
           </tr>
           <tr>
             <td>Property Tax</td>

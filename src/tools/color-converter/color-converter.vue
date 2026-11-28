@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useHead } from '@vueuse/head';
 import type { Colord } from 'colord';
@@ -9,8 +9,8 @@ import cmykPlugin from 'colord/plugins/cmyk';
 import hwbPlugin from 'colord/plugins/hwb';
 import namesPlugin from 'colord/plugins/names';
 import lchPlugin from 'colord/plugins/lch';
+import { Check, Palette } from '@vicons/tabler';
 import { buildColorFormat } from './color-converter.models';
-import { Palette, Check } from '@vicons/tabler';
 
 extend([cmykPlugin, hwbPlugin, namesPlugin, lchPlugin]);
 
@@ -120,7 +120,8 @@ function selectPair(pairKey: string, updateUrl = true) {
       const prefix = langPrefix ? `/${langPrefix[1]}` : '';
       router.replace(`${prefix}/color-converter/${pairKey}`);
     }
-  } else {
+  }
+  else {
     activePairKey.value = '';
   }
 }
@@ -129,7 +130,8 @@ onMounted(() => {
   const param = (route.params.pair as string) || '';
   if (param && COLOR_PAIRS[param.toLowerCase()]) {
     selectPair(param.toLowerCase(), false);
-  } else {
+  }
+  else {
     const pathParts = route.path.split('/').filter(Boolean);
     const lastPart = pathParts[pathParts.length - 1]?.toLowerCase();
     if (lastPart && COLOR_PAIRS[lastPart]) {
@@ -140,7 +142,7 @@ onMounted(() => {
 
 watch(
   () => route.params.pair,
-  newPair => {
+  (newPair) => {
     if (newPair && typeof newPair === 'string' && COLOR_PAIRS[newPair.toLowerCase()]) {
       activePairKey.value = newPair.toLowerCase();
     }
@@ -167,7 +169,9 @@ useHead(
 );
 
 function isHighlighted(formatKey: string): boolean {
-  if (!activePair.value) return false;
+  if (!activePair.value) {
+    return false;
+  }
   return formatKey === activePair.value.from || formatKey === activePair.value.to;
 }
 </script>
@@ -175,15 +179,17 @@ function isHighlighted(formatKey: string): boolean {
 <template>
   <div class="space-y-4">
     <!-- Pair shortcuts bar -->
-    <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700/60 space-y-2">
+    <div class="border border-slate-200 rounded-xl bg-slate-50 p-3 space-y-2 dark:border-slate-700/60 dark:bg-slate-800/60">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-2">
-          <n-icon :size="18" class="text-primary-500"><Palette /></n-icon>
-          <span class="text-xs font-semibold text-slate-700 dark:text-slate-200">
+          <n-icon :size="18" class="text-primary-500">
+            <Palette />
+          </n-icon>
+          <span class="text-xs text-slate-700 font-semibold dark:text-slate-200">
             Quick Conversion Pairs:
           </span>
         </div>
-        <span v-if="activePair" class="text-xs text-primary-600 dark:text-primary-400 font-medium">
+        <span v-if="activePair" class="text-primary-600 dark:text-primary-400 text-xs font-medium">
           {{ activePair.title }}
         </span>
       </div>
@@ -193,15 +199,17 @@ function isHighlighted(formatKey: string): boolean {
           v-for="(pair, key) in COLOR_PAIRS"
           :key="key"
           type="button"
-          class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium transition-all"
+          class="inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium transition-all"
           :class="[
             activePairKey === key
               ? 'bg-primary-600 text-white shadow-sm font-semibold'
-              : 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 hover:border-primary-400'
+              : 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 hover:border-primary-400',
           ]"
           @click="selectPair(key as string)"
         >
-          <n-icon v-if="activePairKey === key" :size="12"><Check /></n-icon>
+          <n-icon v-if="activePairKey === key" :size="12">
+            <Check />
+          </n-icon>
           <span>{{ key.toUpperCase() }}</span>
         </button>
       </div>
@@ -214,7 +222,7 @@ function isHighlighted(formatKey: string): boolean {
           :class="[
             isHighlighted(key)
               ? 'p-2 rounded-lg bg-primary-50/50 dark:bg-primary-950/20 border border-primary-300 dark:border-primary-700/50 my-1'
-              : ''
+              : '',
           ]"
         >
           <input-copyable

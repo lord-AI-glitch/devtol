@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useHead } from '@vueuse/head';
 import { useI18n } from 'vue-i18n';
 import {
   IconBook,
-  IconShieldCheck,
+  IconCalendar,
+  IconChevronDown,
+  IconChevronUp,
+  IconClock,
   IconCpu,
   IconDatabase,
   IconPhoto,
   IconRegex,
-  IconCalendar,
-  IconClock,
+  IconShieldCheck,
   IconUser,
-  IconArrowRight,
-  IconArrowLeft,
-  IconChevronDown,
-  IconChevronUp,
 } from '@tabler/icons-vue';
 
 const { locale } = useI18n();
@@ -38,19 +36,19 @@ useHead(computed(() => ({
 })));
 
 interface Guide {
-  id: string;
-  category: string;
-  icon: any;
-  color: string;
-  readTime: string;
-  date: string;
-  author: string;
-  titleEn: string;
-  titleAr: string;
-  excerptEn: string;
-  excerptAr: string;
-  contentEn: string;
-  contentAr: string;
+  id: string
+  category: string
+  icon: any
+  color: string
+  readTime: string
+  date: string
+  author: string
+  titleEn: string
+  titleAr: string
+  excerptEn: string
+  excerptAr: string
+  contentEn: string
+  contentAr: string
 }
 
 const activeGuideId = ref<string | null>(null);
@@ -248,31 +246,31 @@ This causes the JavaScript event loop or backend CPU core to spike to 100% utili
 </script>
 
 <template>
-  <div class="guides-container max-w-5xl mx-auto px-4 sm:px-6 py-10">
+  <div class="guides-container mx-auto max-w-5xl px-4 py-10 sm:px-6">
     <!-- Breadcrumb -->
-    <nav class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6">
-      <RouterLink :to="isAr ? '/ar' : '/'" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+    <nav class="mb-6 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+      <RouterLink :to="isAr ? '/ar' : '/'" class="transition-colors hover:text-indigo-600 dark:hover:text-indigo-400">
         {{ isAr ? 'الرئيسية' : 'Home' }}
       </RouterLink>
       <span>/</span>
-      <span class="text-slate-900 dark:text-white font-medium">
+      <span class="text-slate-900 font-medium dark:text-white">
         {{ isAr ? 'أدلة ومقالات المطورين' : 'Developer Guides' }}
       </span>
     </nav>
 
     <!-- Page Header -->
     <div class="mb-12">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 mb-3">
+      <div class="mb-3 inline-flex items-center gap-2 border border-indigo-500/20 rounded-full bg-indigo-500/10 px-3 py-1 text-xs text-indigo-600 font-semibold dark:text-indigo-400">
         <n-icon :component="IconBook" size="16" />
         <span>{{ isAr ? 'مركز المعرفة التحريرية والهندسة البرمجية' : 'Engineering Knowledge Hub & Architecture' }}</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+      <h1 class="text-3xl text-slate-900 font-extrabold tracking-tight sm:text-4xl dark:text-white">
         {{ isAr ? 'أدلة المطورين والمقالات المعمارية' : 'Developer Engineering Guides & Technical Articles' }}
       </h1>
-      <p class="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
-        {{ isAr 
-          ? 'مقالات وأدلة هندسية متعمقة موثقة بأمثلة الكود ومعايير RFC لمساعدة المطورين والمصممين على بناء أنظمة ويب آمنة وعالية الأداء مع ضمان الخصوصية التامة.' 
-          : 'Authoritative, in-depth technical guides with code examples, RFC specifications, and architectural analysis to help engineers build fast, compliant, and privacy-first web systems.' 
+      <p class="mt-3 max-w-3xl text-base text-slate-600 leading-relaxed sm:text-lg dark:text-slate-400">
+        {{ isAr
+          ? 'مقالات وأدلة هندسية متعمقة موثقة بأمثلة الكود ومعايير RFC لمساعدة المطورين والمصممين على بناء أنظمة ويب آمنة وعالية الأداء مع ضمان الخصوصية التامة.'
+          : 'Authoritative, in-depth technical guides with code examples, RFC specifications, and architectural analysis to help engineers build fast, compliant, and privacy-first web systems.'
         }}
       </p>
     </div>
@@ -282,18 +280,18 @@ This causes the JavaScript event loop or backend CPU core to spike to 100% utili
       <article
         v-for="guide in guides"
         :key="guide.id"
-        class="guide-card rounded-2xl border transition-all duration-200 overflow-hidden"
+        class="guide-card overflow-hidden border rounded-2xl transition-all duration-200"
         :class="activeGuideId === guide.id
           ? 'border-indigo-500/40 bg-white dark:bg-slate-900/90 shadow-lg ring-1 ring-indigo-500/20'
           : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-slate-300 dark:hover:border-slate-700 shadow-xs'"
       >
         <!-- Card Header (Clickable) -->
         <div
-          class="p-6 cursor-pointer select-none"
+          class="cursor-pointer select-none p-6"
           @click="toggleGuide(guide.id)"
         >
-          <div class="flex items-center gap-3 mb-3 flex-wrap">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+          <div class="mb-3 flex flex-wrap items-center gap-3">
+            <span class="inline-flex items-center gap-1.5 border border-slate-200 rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] text-slate-700 font-semibold dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
               <n-icon :component="guide.icon" size="14" />
               <span>{{ guide.category }}</span>
             </span>
@@ -309,21 +307,21 @@ This causes the JavaScript event loop or backend CPU core to spike to 100% utili
             </span>
           </div>
 
-          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug">
+          <h2 class="text-xl text-slate-900 font-bold leading-snug sm:text-2xl dark:text-white">
             {{ isAr ? guide.titleAr : guide.titleEn }}
           </h2>
 
-          <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed sm:text-base dark:text-slate-400">
             {{ isAr ? guide.excerptAr : guide.excerptEn }}
           </p>
 
-          <div class="mt-4 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800/80">
+          <div class="mt-4 flex items-center justify-between border-t border-slate-100 pt-4 dark:border-slate-800/80">
             <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
               <n-icon :component="IconUser" size="15" />
               <span>{{ guide.author }}</span>
             </div>
 
-            <div class="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 dark:text-indigo-400">
+            <div class="inline-flex items-center gap-1 text-xs text-indigo-600 font-bold dark:text-indigo-400">
               <span>{{ activeGuideId === guide.id ? (isAr ? 'إخفاء المقال الكامل' : 'Collapse Article') : (isAr ? 'قراءة المقال الكامل' : 'Read Full Guide') }}</span>
               <n-icon :component="activeGuideId === guide.id ? IconChevronUp : IconChevronDown" size="16" />
             </div>
@@ -333,21 +331,21 @@ This causes the JavaScript event loop or backend CPU core to spike to 100% utili
         <!-- Expanded Full Content -->
         <div
           v-if="activeGuideId === guide.id"
-          class="px-6 pb-8 pt-2 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40"
+          class="border-t border-slate-100 bg-slate-50/50 px-6 pb-8 pt-2 dark:border-slate-800 dark:bg-slate-950/40"
         >
-          <div class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed text-sm sm:text-base space-y-4 pt-4">
+          <div class="max-w-none pt-4 text-sm text-slate-700 leading-relaxed prose space-y-4 sm:text-base dark:text-slate-300 dark:prose-invert">
             <div
               class="whitespace-pre-line"
               v-html="(isAr ? guide.contentAr : guide.contentEn).replace(/### (.*?)\n/g, '<h3 class=\x22text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-6 mb-2\x22>$1</h3>').replace(/```([\s\S]*?)```/g, '<pre class=\x22p-4 rounded-xl bg-slate-900 text-slate-100 text-xs sm:text-sm font-mono overflow-x-auto my-3\x22><code>$1</code></pre>')"
-            ></div>
+            />
           </div>
 
-          <div class="mt-8 pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <div class="mt-8 flex items-center justify-between border-t border-slate-200 pt-4 dark:border-slate-800">
             <span class="text-xs text-slate-400">
               {{ isAr ? 'المحتوى منشور ومراجع من قِبل الفريق الهندسي لـ DevTol' : 'Published and peer-reviewed by DevTol Engineering Team' }}
             </span>
             <button
-              class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer"
+              class="cursor-pointer text-xs text-indigo-600 font-semibold dark:text-indigo-400 hover:underline"
               @click="toggleGuide(guide.id)"
             >
               {{ isAr ? '↑ العودة للأعلى' : '↑ Back to top' }}

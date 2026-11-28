@@ -10,6 +10,7 @@ import ToolIssueWhatsApp from '@/components/ToolIssueWhatsApp.vue';
 import AdSenseUnit from '@/components/AdSenseUnit.vue';
 import type { Tool } from '@/tools/tools.types';
 import { useStyleStore } from '@/stores/style.store';
+
 // NOTE: use-tool-guide is imported dynamically inside loadArticle (below),
 // so markdown-it / highlight.js / KaTeX stay out of the shared layout chunk
 // and load only when a tool page actually has a guide to render.
@@ -22,11 +23,19 @@ const { t, te, locale } = useI18n();
 
 const i18nKey = computed<string>(() => {
   const metaSlug = route.meta.toolSlug as string;
-  if (metaSlug) return metaSlug;
+  if (metaSlug) {
+    return metaSlug;
+  }
   const pathSlug = route.path.replace(/^\/(?:ar|de|es|fr|no|pt|uk|vi|zh)(?=\/|$)/, '').replace(/^\/+/, '').split('/')[0] || '';
-  if (pathSlug === 'compress-pdf') return 'pdf-compress';
-  if (pathSlug === 'merge-pdf') return 'pdf-merge';
-  if (pathSlug === 'docker-run-to-compose') return 'docker-run-to-docker-compose-converter';
+  if (pathSlug === 'compress-pdf') {
+    return 'pdf-compress';
+  }
+  if (pathSlug === 'merge-pdf') {
+    return 'pdf-merge';
+  }
+  if (pathSlug === 'docker-run-to-compose') {
+    return 'docker-run-to-docker-compose-converter';
+  }
   return pathSlug;
 });
 
@@ -36,19 +45,29 @@ const unavailableDescription = computed(() => locale.value === 'ar'
   : 'Unavailable: previous files were not encrypted or redacted. Uploads and downloads are disabled.');
 
 const toolTitle = computed<string>(() => {
-  if (securityToolUnavailable.value) return locale.value === 'ar' ? 'أداة PDF غير متاحة' : 'PDF security tool unavailable';
+  if (securityToolUnavailable.value) {
+    return locale.value === 'ar' ? 'أداة PDF غير متاحة' : 'PDF security tool unavailable';
+  }
   const key = `tools.${i18nKey.value}.title`;
-  if (te(key)) return t(key);
+  if (te(key)) {
+    return t(key);
+  }
   return String(route.meta.name || 'Tool');
 });
 
 const rawDescription = computed<string>(() => {
-  if (securityToolUnavailable.value) return unavailableDescription.value;
-  if (i18nKey.value === 'pdf-editor') return locale.value === 'ar'
-    ? 'محرر بتغطية مرئية فقط. النص الأصلي يظل قابلًا للبحث والنسخ والاستخراج. لا يصلح لحذف المعلومات الحساسة أو تنقيحها بأمان.'
-    : 'Visual PDF editor. Original text remains searchable, copyable and extractable. Not for secure redaction or permanent text removal.';
+  if (securityToolUnavailable.value) {
+    return unavailableDescription.value;
+  }
+  if (i18nKey.value === 'pdf-editor') {
+    return locale.value === 'ar'
+      ? 'محرر بتغطية مرئية فقط. النص الأصلي يظل قابلًا للبحث والنسخ والاستخراج. لا يصلح لحذف المعلومات الحساسة أو تنقيحها بأمان.'
+      : 'Visual PDF editor. Original text remains searchable, copyable and extractable. Not for secure redaction or permanent text removal.';
+  }
   const key = `tools.${i18nKey.value}.description`;
-  if (te(key)) return t(key);
+  if (te(key)) {
+    return t(key);
+  }
   return String(route.meta.description || '');
 });
 const toolDescription = computed<string>(() => rawDescription.value);
@@ -76,7 +95,9 @@ const OG_LOCALES: Record<string, string> = {
 const ogLocale = computed<string>(() => OG_LOCALES[locale.value] ?? 'en_US');
 
 function clampText(value: string, max: number): string {
-  if (value.length <= max) return value;
+  if (value.length <= max) {
+    return value;
+  }
   const slice = value.slice(0, max - 1);
   const cut = slice.lastIndexOf(' ');
   return `${(cut > max * 0.6 ? slice.slice(0, cut) : slice).trimEnd()}…`;
@@ -84,18 +105,26 @@ function clampText(value: string, max: number): string {
 
 // Prefer a clean cut at a natural separator over a mid-sentence ellipsis.
 function fitTitle(value: string, max: number): string {
-  if (value.length <= max) return value;
+  if (value.length <= max) {
+    return value;
+  }
   let best = '';
   for (const sep of [' — ', ' – ', ' - ', ' | ', ': ', ' (', '، ', ', ']) {
     let idx = value.lastIndexOf(sep, max);
     while (idx > 0) {
       const head = value.slice(0, idx).trimEnd();
-      if (head.length >= 25 && head.length <= max && head.length > best.length) best = head;
+      if (head.length >= 25 && head.length <= max && head.length > best.length) {
+        best = head;
+      }
       idx = value.lastIndexOf(sep, idx - 1);
     }
   }
-  if (best) return best;
-  if (value.length <= 70) return value;
+  if (best) {
+    return best;
+  }
+  if (value.length <= 70) {
+    return value;
+  }
   return clampText(value, max);
 }
 
@@ -104,13 +133,17 @@ const seoTitle = computed<string>(() => {
     ? [' أونلاين مجاناً - DevTol', ' | DevTol']
     : [' Online — Free & Client-Side | DevTol', ' | DevTol'];
   for (const suffix of suffixes) {
-    if (toolTitle.value.length + suffix.length <= 62) return `${toolTitle.value}${suffix}`;
+    if (toolTitle.value.length + suffix.length <= 62) {
+      return `${toolTitle.value}${suffix}`;
+    }
   }
   return fitTitle(toolTitle.value, 62);
 });
 
 const seoDescription = computed<string>(() => {
-  if (securityToolUnavailable.value) return unavailableDescription.value;
+  if (securityToolUnavailable.value) {
+    return unavailableDescription.value;
+  }
   const clean = rawDescription.value.replace(/\s*[.。!]+$/, '').trimEnd();
   if (locale.value === 'ar') {
     const desc = clean || `${toolTitle.value} أداة برمجية أونلاين`;
@@ -191,49 +224,51 @@ const head = computed<HeadObject>(() => ({
       href: canonicalUrl.value,
     },
   ],
-  script: securityToolUnavailable.value ? [] : [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@graph': [
-          {
-            '@type': 'WebApplication',
-            '@id': `${canonicalUrl.value}#webapp`,
-            'url': canonicalUrl.value,
-            'name': `${toolTitle.value} Online`,
-            'applicationCategory': 'DeveloperApplication',
-            'operatingSystem': 'All',
-            'browserRequirements': 'Requires JavaScript. Requires HTML5.',
-            'description': seoDescription.value,
-            'offers': {
-              '@type': 'Offer',
-              'price': '0',
-              'priceCurrency': 'USD',
-            },
-          },
-          {
-            '@type': 'BreadcrumbList',
-            '@id': `${canonicalUrl.value}#breadcrumb`,
-            'itemListElement': [
+  script: securityToolUnavailable.value
+    ? []
+    : [
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@graph': [
               {
-                '@type': 'ListItem',
-                'position': 1,
-                'name': locale.value === 'ar' ? 'الرئيسية' : 'Home',
-                'item': locale.value === 'ar' ? 'https://devtol.online/ar' : 'https://devtol.online',
+                '@type': 'WebApplication',
+                '@id': `${canonicalUrl.value}#webapp`,
+                'url': canonicalUrl.value,
+                'name': `${toolTitle.value} Online`,
+                'applicationCategory': 'DeveloperApplication',
+                'operatingSystem': 'All',
+                'browserRequirements': 'Requires JavaScript. Requires HTML5.',
+                'description': seoDescription.value,
+                'offers': {
+                  '@type': 'Offer',
+                  'price': '0',
+                  'priceCurrency': 'USD',
+                },
               },
               {
-                '@type': 'ListItem',
-                'position': 2,
-                'name': toolTitle.value,
-                'item': canonicalUrl.value,
+                '@type': 'BreadcrumbList',
+                '@id': `${canonicalUrl.value}#breadcrumb`,
+                'itemListElement': [
+                  {
+                    '@type': 'ListItem',
+                    'position': 1,
+                    'name': locale.value === 'ar' ? 'الرئيسية' : 'Home',
+                    'item': locale.value === 'ar' ? 'https://devtol.online/ar' : 'https://devtol.online',
+                  },
+                  {
+                    '@type': 'ListItem',
+                    'position': 2,
+                    'name': toolTitle.value,
+                    'item': canonicalUrl.value,
+                  },
+                ],
               },
             ],
-          },
-        ],
-      }),
-    },
-  ],
+          }),
+        },
+      ],
 }));
 useHead(head);
 
@@ -264,17 +299,22 @@ async function loadArticle(toolSlug: string) {
       loadGuide(),
     ]);
     const renderGuide = await getGuideRenderer();
-    if (requestId !== guideRequestId) return;
+    if (requestId !== guideRequestId) {
+      return;
+    }
     renderedGuideHtml.value = renderGuide(rawContent as string);
-  } catch (error) {
+  }
+  catch (error) {
     console.error('[DevTol] Could not render tool guide:', error);
-    if (requestId === guideRequestId) renderedGuideHtml.value = '';
+    if (requestId === guideRequestId) {
+      renderedGuideHtml.value = '';
+    }
   }
 }
 
 watch(
   () => route.path,
-  newPath => {
+  (newPath) => {
     capturedError.value = null;
     loadArticle(newPath);
   },
@@ -311,7 +351,7 @@ watch(
 
     <!-- Interactive Tool Component Slot or Error Boundary -->
     <div class="tool-content">
-      <div v-if="capturedError" class="w-full max-w-650px px-4 mx-auto">
+      <div v-if="capturedError" class="mx-auto max-w-650px w-full px-4">
         <ToolIssueWhatsApp
           mode="banner"
           :tool-title="toolTitle"
@@ -331,11 +371,11 @@ watch(
     <!-- Elegant Tool Guide & SEO Article Section -->
     <div v-if="renderedGuideHtml" class="mx-auto mt-10 max-w-850px px-4 pb-12">
       <article
-        class="tool-article-card rounded-2xl border p-6 md:p-10 transition-all duration-300"
+        class="tool-article-card border rounded-2xl p-6 transition-all duration-300 md:p-10"
         :class="{ 'is-dark': isDark }"
       >
         <div
-          class="prose prose-slate max-w-none prose-headings:font-semibold prose-a:text-indigo-400 prose-a:no-underline hover:prose-a:underline prose-pre:rounded-xl"
+          class="prose-headings:font-semibold prose-a:text-indigo-400 prose-a:no-underline prose-pre:rounded-xl hover:prose-a:underline max-w-none prose prose-slate"
           :class="{ 'prose-invert': isDark }"
           v-html="renderedGuideHtml"
         />

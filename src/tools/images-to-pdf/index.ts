@@ -1,5 +1,5 @@
-import { defineTool } from '../tool';
 import { FilePlus } from '@vicons/tabler';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: 'Images to PDF',

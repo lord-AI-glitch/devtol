@@ -4,6 +4,7 @@ import { RouterLink, useRoute } from 'vue-router';
 import { Heart, Home2, Menu2, ShieldCheck } from '@vicons/tabler';
 
 import { storeToRefs } from 'pinia';
+import { computed, defineAsyncComponent, ref, watch } from 'vue';
 import HeroGradient from '../assets/hero-gradient.svg?component';
 import MenuLayout from '../components/MenuLayout.vue';
 import NavbarButtons from '../components/NavbarButtons.vue';
@@ -12,9 +13,7 @@ import { config } from '@/config';
 import type { ToolCategory } from '@/tools/tools.types';
 import { useToolStore } from '@/tools/tools.store';
 import { useTracker } from '@/modules/tracker/tracker.services';
-import { computed, defineAsyncComponent, ref, watch } from 'vue';
 import CollapsibleToolMenu from '@/components/CollapsibleToolMenu.vue';
-import AdSenseUnit from '@/components/AdSenseUnit.vue';
 
 const CommandPalette = defineAsyncComponent(() => import('@/modules/command-palette/command-palette.vue'));
 
@@ -80,16 +79,13 @@ watch(() => styleStore.isMenuCollapsed, (collapsed) => {
         </div>
 
         <CollapsibleToolMenu v-if="menuMounted" :tools-by-category="tools" />
-
-
-
       </div>
     </template>
 
     <template #content>
       <div class="min-h-full flex flex-col justify-between">
         <div>
-          <div flex items-center justify-center gap-2 mb-6>
+          <div mb-6 flex items-center justify-center gap-2>
             <c-button
               circle
               variant="text"
@@ -133,7 +129,7 @@ watch(() => styleStore.isMenuCollapsed, (collapsed) => {
         </div>
 
         <!-- High-Craft AdSense & Compliance Global Footer -->
-        <footer class="site-global-footer mt-20 border-t pt-10 pb-12 transition-colors duration-200">
+        <footer class="site-global-footer mt-20 border-t pb-12 pt-10 transition-colors duration-200">
           <div class="mx-auto max-w-6xl px-4 sm:px-6">
             <!-- Trust Badge: Client-side 100% Security Guarantee -->
             <div class="mb-8 flex flex-col items-center justify-center text-center">
@@ -143,17 +139,17 @@ watch(() => styleStore.isMenuCollapsed, (collapsed) => {
                 <NIcon size="18" :component="ShieldCheck" class="text-emerald-500" />
                 <span>{{ $t('home.footer.securityBadge') }}</span>
               </div>
-              <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 max-w-md">
+              <p class="mt-2 max-w-md text-xs text-slate-500 dark:text-slate-400">
                 {{ $t('home.footer.securitySubtext') }}
               </p>
             </div>
 
             <!-- AdSense Compliance Links Navigation -->
-            <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-medium text-slate-600 dark:text-slate-300">
-              <RouterLink :to="`${currentLangPrefix}/pdf-tools`" class="footer-nav-link font-bold text-emerald-600 dark:text-emerald-400">
+            <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-slate-600 font-medium dark:text-slate-300">
+              <RouterLink :to="`${currentLangPrefix}/pdf-tools`" class="footer-nav-link text-emerald-600 font-bold dark:text-emerald-400">
                 {{ $t('home.footer.pdfTools', 'PDF Tools') }}
               </RouterLink>
-              <RouterLink :to="`${currentLangPrefix}/guides`" class="footer-nav-link font-bold text-indigo-600 dark:text-indigo-400">
+              <RouterLink :to="`${currentLangPrefix}/guides`" class="footer-nav-link text-indigo-600 font-bold dark:text-indigo-400">
                 {{ $t('home.footer.guides') }}
               </RouterLink>
               <RouterLink :to="`${currentLangPrefix}/about`" class="footer-nav-link">

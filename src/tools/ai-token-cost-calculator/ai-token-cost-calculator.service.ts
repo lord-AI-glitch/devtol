@@ -1,13 +1,13 @@
 export interface LlmModel {
-  id: string;
-  name: string;
-  provider: 'OpenAI' | 'Anthropic' | 'Google' | 'DeepSeek' | 'Meta / Groq' | 'Mistral';
-  inputPricePerMillion: number;
-  outputPricePerMillion: number;
-  cachedInputPricePerMillion?: number;
-  contextWindow: number;
-  tier: 'flagship' | 'budget' | 'reasoning' | 'code';
-  recommendedFor: string;
+  id: string
+  name: string
+  provider: 'OpenAI' | 'Anthropic' | 'Google' | 'DeepSeek' | 'Meta / Groq' | 'Mistral'
+  inputPricePerMillion: number
+  outputPricePerMillion: number
+  cachedInputPricePerMillion?: number
+  contextWindow: number
+  tier: 'flagship' | 'budget' | 'reasoning' | 'code'
+  recommendedFor: string
 }
 
 export const LLM_MODELS: LlmModel[] = [
@@ -197,23 +197,23 @@ export const LLM_MODELS: LlmModel[] = [
 export const PRICING_LAST_UPDATED = '2026-11-22';
 
 export const PRICING_SOURCES: Record<LlmModel['provider'], string> = {
-  OpenAI: 'https://platform.openai.com/docs/pricing',
-  Anthropic: 'https://docs.anthropic.com/en/docs/about-claude/pricing',
-  Google: 'https://ai.google.dev/gemini-api/docs/pricing',
-  DeepSeek: 'https://api-docs.deepseek.com/quick_start/pricing',
+  'OpenAI': 'https://platform.openai.com/docs/pricing',
+  'Anthropic': 'https://docs.anthropic.com/en/docs/about-claude/pricing',
+  'Google': 'https://ai.google.dev/gemini-api/docs/pricing',
+  'DeepSeek': 'https://api-docs.deepseek.com/quick_start/pricing',
   'Meta / Groq': 'https://groq.com/pricing',
-  Mistral: 'https://mistral.ai/pricing',
+  'Mistral': 'https://mistral.ai/pricing',
 };
 
 export const PRICING_DISCLAIMER = 'Prices are approximate and may change — check the provider\u2019s official pricing page before making a decision. GPT-5 and GPT-5 mini retire on Dec 11, 2026 (OpenAI deprecation schedule); GPT-6.1 Sol and Terra are their replacements. Gemini 3.1 Pro rates apply to prompts up to 200K tokens; GPT-6.1 rates apply to prompts up to 272K tokens. DeepSeek rates shown are peak cache-miss rates — off-peak rates are 50% lower.';
 
 export interface TokenEstimationMetrics {
-  charCount: number;
-  wordCount: number;
-  lineCount: number;
-  estimatedTokens: number;
-  arabicCharRatio: number;
-  codeDensityRatio: number;
+  charCount: number
+  wordCount: number
+  lineCount: number
+  estimatedTokens: number
+  arabicCharRatio: number
+  codeDensityRatio: number
 }
 
 /**
@@ -254,10 +254,12 @@ export function estimateTokens(text: string): TokenEstimationMetrics {
   if (arabicRatio > 0.3) {
     // In standard OpenAI/Anthropic tokenizers, Arabic words typically expand to 1.8 - 2.4 tokens per word
     tokens = Math.ceil(wordCount * 2.1 + (charCount - arabicChars) * 0.25);
-  } else if (codeRatio > 0.12 || text.includes('function ') || text.includes('import ') || text.includes('class ')) {
+  }
+  else if (codeRatio > 0.12 || text.includes('function ') || text.includes('import ') || text.includes('class ')) {
     // Code tokens: punctuation marks are individual tokens, identifier names split on camelCase
     tokens = Math.ceil(charCount / 3.3);
-  } else {
+  }
+  else {
     // Standard English prose: ~1.3 tokens per word or ~4 chars per token
     const tokenByWords = Math.ceil(wordCount * 1.33);
     const tokenByChars = Math.ceil(charCount / 4.0);
@@ -275,26 +277,26 @@ export function estimateTokens(text: string): TokenEstimationMetrics {
 }
 
 export interface ModelCostCalculation {
-  model: LlmModel;
-  inputCost: number;
-  outputCost: number;
-  singleRequestTotalCost: number;
-  monthlyTotalCost: number;
-  isCached: boolean;
-  savingsVsHighest: number;
+  model: LlmModel
+  inputCost: number
+  outputCost: number
+  singleRequestTotalCost: number
+  monthlyTotalCost: number
+  isCached: boolean
+  savingsVsHighest: number
 }
 
 export interface CalculateCostParams {
-  inputTokens: number;
-  outputTokens: number;
-  requestVolume: number;
-  usePromptCache?: boolean;
+  inputTokens: number
+  outputTokens: number
+  requestVolume: number
+  usePromptCache?: boolean
 }
 
 export function calculateLlmCosts(params: CalculateCostParams): ModelCostCalculation[] {
   const { inputTokens, outputTokens, requestVolume, usePromptCache = false } = params;
 
-  const results: ModelCostCalculation[] = LLM_MODELS.map(model => {
+  const results: ModelCostCalculation[] = LLM_MODELS.map((model) => {
     const activeInputRate = (usePromptCache && model.cachedInputPricePerMillion !== undefined)
       ? model.cachedInputPricePerMillion
       : model.inputPricePerMillion;

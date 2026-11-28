@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useStorage } from '@vueuse/core';
-import { calculateCompoundInterest, type CompoundFrequency } from './compound-interest-calculator.service';
+import { type CompoundFrequency, calculateCompoundInterest } from './compound-interest-calculator.service';
 
 const initialInvestment = useStorage('compound-calc:initial', 10000);
 const monthlyContribution = useStorage('compound-calc:monthly', 500);
@@ -27,8 +27,9 @@ const result = computed(() =>
   }),
 );
 
-const formatCurrency = (val: number) =>
-  new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(val);
+function formatCurrency(val: number) {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(val);
+}
 
 const pagination = {
   pageSize: 10,

@@ -89,11 +89,11 @@ const pillarsAr = [
   <div class="about-container" :dir="isAr ? 'rtl' : 'ltr'">
     <div class="about-card">
       <!-- Header -->
-      <div class="text-center mb-10">
-        <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+      <div class="mb-10 text-center">
+        <h1 class="text-4xl text-slate-900 font-extrabold tracking-tight dark:text-white">
           {{ isAr ? 'عن منصة DevTol' : 'About DevTol' }}
         </h1>
-        <p class="text-lg text-primary font-medium mt-2">
+        <p class="mt-2 text-lg text-primary font-medium">
           {{ isAr
             ? 'حرفية هندسية، وحوسبة محلية آمنة، وأدوات إنتاجية متقدمة للمطورين والمصممين'
             : 'Engineering Craftsmanship, Privacy-First Architecture & Rigorous Developer Utilities'
@@ -102,9 +102,11 @@ const pillarsAr = [
       </div>
 
       <!-- Content (Arabic) -->
-      <div v-if="isAr" class="space-y-8 text-slate-600 dark:text-neutral-300 leading-relaxed text-right">
+      <div v-if="isAr" class="text-right text-slate-600 leading-relaxed space-y-8 dark:text-neutral-300">
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">رسالتنا وهويتنا الهندسية</h2>
+          <h2 class="mb-3 text-2xl text-slate-900 font-bold dark:text-white">
+            رسالتنا وهويتنا الهندسية
+          </h2>
           <p>
             تأسست <strong>منصة DevTol</strong> لحل معضلة متجذرة في بيئات تطوير البرمجيات المعاصرة: انتشار مواقع الأدوات السحابية المليئة بالإعلانات المزعجة، والتي تتطلب رفع شفرات المطورين، واستعلامات قواعد البيانات، ورموز التوكن الحساسة إلى خوادم سحابية مجهولة لمعالجتها.
           </p>
@@ -120,20 +122,28 @@ const pillarsAr = [
         </section>
 
         <!-- Pillars Grid -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-          <div v-for="p in pillarsAr" :key="p.title" class="p-5 rounded-lg bg-slate-50 dark:bg-neutral-800/60 border border-slate-200 dark:border-neutral-700/60 flex flex-col">
-            <div class="text-3xl mb-2">{{ p.icon }}</div>
-            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-1">{{ p.title }}</h3>
-            <p class="text-sm text-slate-500 dark:text-neutral-400">{{ p.desc }}</p>
+        <section class="grid grid-cols-1 my-6 gap-4 md:grid-cols-2">
+          <div v-for="p in pillarsAr" :key="p.title" class="flex flex-col border border-slate-200 rounded-lg bg-slate-50 p-5 dark:border-neutral-700/60 dark:bg-neutral-800/60">
+            <div class="mb-2 text-3xl">
+              {{ p.icon }}
+            </div>
+            <h3 class="mb-1 text-lg text-slate-900 font-semibold dark:text-white">
+              {{ p.title }}
+            </h3>
+            <p class="text-sm text-slate-500 dark:text-neutral-400">
+              {{ p.desc }}
+            </p>
           </div>
         </section>
 
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">الالتزام بمعايير الجودة والمصداقية التحريرية (E-E-A-T)</h2>
+          <h2 class="mb-3 text-2xl text-slate-900 font-bold dark:text-white">
+            الالتزام بمعايير الجودة والمصداقية التحريرية (E-E-A-T)
+          </h2>
           <p>
             امتثالاً لدليل مقيمي جودة البحث الصادر عن جوجل <strong>E-E-A-T (الخبرة، التخصص، المصداقية، والموثوقية)</strong>، تلتزم منصة DevTol بتوفير توثيق هندسي رصين ومدقق علمياً يصاحب كل أداة برمجية:
           </p>
-          <div class="bg-slate-100 dark:bg-neutral-800/40 p-5 rounded-lg border border-slate-200 dark:border-neutral-700/70 mt-3 space-y-2">
+          <div class="mt-3 border border-slate-200 rounded-lg bg-slate-100 p-5 space-y-2 dark:border-neutral-700/70 dark:bg-neutral-800/40">
             <p><strong>الخبرة العملية (Experience):</strong> محتوانا الهندسي يكتبه ويراجعه ممارسون تقنيون ذوو خبرة ميدانية في بناء وإدارة البنى السحابية الموزعة وبوابات التحقق وقواعد البيانات الإنتاجية.</p>
             <p><strong>التخصص العلمي (Expertise):</strong> تتم مراجعة كافة المعادلات الرياضية ومقتطفات الشفرات بالرجوع المباشر إلى وثائق RFC الرسمية (مثل IETF RFC 7519 لرموز JWT، و RFC 4648 لترميز Base64، و RFC 4122/9562 لمعرفات UUID، ومعايير POSIX IEEE 1003.1 لجدولة المهام).</p>
             <p><strong>المصداقية والأثر (Authoritativeness):</strong> تحظى أدواتنا بانتشار وثقة مجتمعات المطورين والفرق الهندسية حول العالم بفضل شفافيتها وسرعتها الفائقة.</p>
@@ -142,32 +152,44 @@ const pillarsAr = [
         </section>
 
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">المؤسس</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div v-for="m in teamMembersAr" :key="m.name" class="p-5 rounded-lg bg-slate-50 dark:bg-neutral-800/70 border border-slate-200 dark:border-neutral-700">
-              <h3 class="text-lg font-bold text-slate-900 dark:text-white">{{ m.name }}</h3>
-              <p class="text-xs text-primary font-semibold mb-2">{{ m.role }}</p>
-              <p class="text-sm text-slate-600 dark:text-neutral-300 mb-3">{{ m.bio }}</p>
+          <h2 class="mb-4 text-2xl text-slate-900 font-bold dark:text-white">
+            المؤسس
+          </h2>
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div v-for="m in teamMembersAr" :key="m.name" class="border border-slate-200 rounded-lg bg-slate-50 p-5 dark:border-neutral-700 dark:bg-neutral-800/70">
+              <h3 class="text-lg text-slate-900 font-bold dark:text-white">
+                {{ m.name }}
+              </h3>
+              <p class="mb-2 text-xs text-primary font-semibold">
+                {{ m.role }}
+              </p>
+              <p class="mb-3 text-sm text-slate-600 dark:text-neutral-300">
+                {{ m.bio }}
+              </p>
               <div class="text-xs text-slate-500 dark:text-neutral-400">
-                <span class="font-semibold text-slate-600 dark:text-neutral-300">نطاق التركيز:</span> {{ m.focus }}
+                <span class="text-slate-600 font-semibold dark:text-neutral-300">نطاق التركيز:</span> {{ m.focus }}
               </div>
             </div>
           </div>
         </section>
 
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">الشفافية وقنوات التواصل المباشرة</h2>
+          <h2 class="mb-3 text-2xl text-slate-900 font-bold dark:text-white">
+            الشفافية وقنوات التواصل المباشرة
+          </h2>
           <p>
             نؤمن بأن أدوات المطورين يجب أن تكون آمنة، وشفافة، وقابلة للتدقيق. نرحب دائماً بملاحظاتكم، واقتراحات إضافة أدوات جديدة، وتقارير الإفصاح الأمني المسؤول عبر قنوات التواصل المباشرة الموضحة في صفحة الاتصال:
-            <a href="/contact" class="text-primary font-medium hover:underline mx-1">صفحة اتصل بنا</a>.
+            <a href="/contact" class="mx-1 text-primary font-medium hover:underline">صفحة اتصل بنا</a>.
           </p>
         </section>
       </div>
 
       <!-- Content (English) -->
-      <div v-else class="space-y-8 text-slate-600 dark:text-neutral-300 leading-relaxed text-left">
+      <div v-else class="text-left text-slate-600 leading-relaxed space-y-8 dark:text-neutral-300">
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Our Mission & Engineering Pedigree</h2>
+          <h2 class="mb-3 text-2xl text-slate-900 font-bold dark:text-white">
+            Our Mission & Engineering Pedigree
+          </h2>
           <p>
             <strong>DevTol</strong> was engineered to solve a pervasive problem in modern software engineering: the proliferation of cloud-dependent, ad-saturated, and privacy-invasive web utilities.
           </p>
@@ -186,20 +208,28 @@ const pillarsAr = [
         </section>
 
         <!-- Pillars Grid -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-          <div v-for="p in pillarsEn" :key="p.title" class="p-5 rounded-lg bg-slate-50 dark:bg-neutral-800/60 border border-slate-200 dark:border-neutral-700/60 flex flex-col">
-            <div class="text-3xl mb-2">{{ p.icon }}</div>
-            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-1">{{ p.title }}</h3>
-            <p class="text-sm text-slate-500 dark:text-neutral-400">{{ p.desc }}</p>
+        <section class="grid grid-cols-1 my-6 gap-4 md:grid-cols-2">
+          <div v-for="p in pillarsEn" :key="p.title" class="flex flex-col border border-slate-200 rounded-lg bg-slate-50 p-5 dark:border-neutral-700/60 dark:bg-neutral-800/60">
+            <div class="mb-2 text-3xl">
+              {{ p.icon }}
+            </div>
+            <h3 class="mb-1 text-lg text-slate-900 font-semibold dark:text-white">
+              {{ p.title }}
+            </h3>
+            <p class="text-sm text-slate-500 dark:text-neutral-400">
+              {{ p.desc }}
+            </p>
           </div>
         </section>
 
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Commitment to E-E-A-T & Editorial Standards</h2>
+          <h2 class="mb-3 text-2xl text-slate-900 font-bold dark:text-white">
+            Commitment to E-E-A-T & Editorial Standards
+          </h2>
           <p>
             In alignment with Google's <strong>E-E-A-T (Experience, Expertise, Authoritativeness, and Trustworthiness)</strong> quality guidelines, our platform provides authoritative, fact-checked, and deeply technical documentation accompanying every utility:
           </p>
-          <div class="bg-slate-100 dark:bg-neutral-800/40 p-5 rounded-lg border border-slate-200 dark:border-neutral-700/70 mt-3 space-y-2">
+          <div class="mt-3 border border-slate-200 rounded-lg bg-slate-100 p-5 space-y-2 dark:border-neutral-700/70 dark:bg-neutral-800/40">
             <p><strong>Experience:</strong> Our editorial materials are authored and reviewed by practicing engineers with hands-on production experience managing cloud microservices, authentication gateways, and distributed databases.</p>
             <p><strong>Expertise:</strong> Technical specifications, formulas, and code snippets are cross-referenced directly against canonical RFCs (e.g., IETF RFC 7519 for JWTs, RFC 4648 for Base64, RFC 4122/9562 for UUIDs, and POSIX IEEE 1003.1 for crontab syntax).</p>
             <p><strong>Authoritativeness:</strong> DevTol is recognized across a growing community of developers.</p>
@@ -208,24 +238,34 @@ const pillarsAr = [
         </section>
 
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Founder</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div v-for="m in teamMembersEn" :key="m.name" class="p-5 rounded-lg bg-slate-50 dark:bg-neutral-800/70 border border-slate-200 dark:border-neutral-700">
-              <h3 class="text-lg font-bold text-slate-900 dark:text-white">{{ m.name }}</h3>
-              <p class="text-xs text-primary font-semibold mb-2">{{ m.role }}</p>
-              <p class="text-sm text-slate-600 dark:text-neutral-300 mb-3">{{ m.bio }}</p>
+          <h2 class="mb-4 text-2xl text-slate-900 font-bold dark:text-white">
+            Founder
+          </h2>
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div v-for="m in teamMembersEn" :key="m.name" class="border border-slate-200 rounded-lg bg-slate-50 p-5 dark:border-neutral-700 dark:bg-neutral-800/70">
+              <h3 class="text-lg text-slate-900 font-bold dark:text-white">
+                {{ m.name }}
+              </h3>
+              <p class="mb-2 text-xs text-primary font-semibold">
+                {{ m.role }}
+              </p>
+              <p class="mb-3 text-sm text-slate-600 dark:text-neutral-300">
+                {{ m.bio }}
+              </p>
               <div class="text-xs text-slate-500 dark:text-neutral-400">
-                <span class="font-semibold text-slate-600 dark:text-neutral-300">Key Focus:</span> {{ m.focus }}
+                <span class="text-slate-600 font-semibold dark:text-neutral-300">Key Focus:</span> {{ m.focus }}
               </div>
             </div>
           </div>
         </section>
 
         <section>
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Transparency & Direct Communication</h2>
+          <h2 class="mb-3 text-2xl text-slate-900 font-bold dark:text-white">
+            Transparency & Direct Communication
+          </h2>
           <p>
             We believe developer tools must remain auditable, transparent, and responsive. We actively welcome tool suggestions, pull requests, and responsible security disclosures through our
-            <a href="/contact" class="text-primary font-medium hover:underline mx-1">Contact Page</a>.
+            <a href="/contact" class="mx-1 text-primary font-medium hover:underline">Contact Page</a>.
           </p>
         </section>
       </div>

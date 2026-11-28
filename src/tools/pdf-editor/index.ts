@@ -1,5 +1,5 @@
-import { defineTool } from '../tool';
 import { Edit } from '@vicons/tabler';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: 'PDF Editor',

@@ -1,5 +1,6 @@
-import { defineTool } from '../tool';
 import { Qrcode } from '@vicons/tabler';
+import { defineTool } from '../tool';
+
 export const tool = defineTool({
   name: 'QR Code Scanner',
   path: '/qr-scanner',

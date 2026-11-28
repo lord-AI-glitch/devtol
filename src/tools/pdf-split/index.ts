@@ -1,5 +1,5 @@
-import { defineTool } from '../tool';
 import { Cut } from '@vicons/tabler';
+import { defineTool } from '../tool';
 
 export const tool = defineTool({
   name: 'Split PDF',

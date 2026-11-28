@@ -1,5 +1,6 @@
-import { defineTool } from '../tool';
 import { Scan } from '@vicons/tabler';
+import { defineTool } from '../tool';
+
 export const tool = defineTool({
   name: 'Image OCR Text Extractor',
   path: '/image-ocr',
